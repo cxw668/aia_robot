@@ -1,0 +1,1952 @@
+[
+  {
+    "productName": "友邦增盈宝C款终身寿险（万能型）",
+    "productStatus": "在售",
+    "productItem": "B3158-1友邦增盈宝C款终身寿险（万能型）的条款",
+    "ratesTable": "prem/B3158-1友邦增盈宝C款终身寿险（万能型）的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B3158-1友邦增盈宝C款终身寿险（万能型）的产品说明书",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦星耀未来年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3156-1_ParJEB(20251230)_IAC9100031205_con",
+    "ratesTable": "prem/友邦星耀未来年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦星耀未来年金保险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31561brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦附加星耀未来年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3157-1_ParJER(20251230)_IAC9100031206_con",
+    "ratesTable": "prem/友邦附加星耀未来年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦附加星耀未来年金保险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31571brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦自在福2026养老年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3149-1_Agency Par Senior Annuity(20251230)_IAC9100030524_con",
+    "ratesTable": "prem/友邦自在福2026养老年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦自在福2026养老年金保险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/友邦自在福2026养老年金保险（分红型）的产品说明书",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦传世经典2026终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3153-1_Banc PWL 2026A(20251205)_IAC9100030679_con",
+    "ratesTable": "prem/友邦传世经典2026终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世经典2026终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31531brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦传世经典2026尊享版终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3154-1_Banc PWL 2026B(20251205)_IAC9100030680_con",
+    "ratesTable": "prem/友邦传世经典2026尊享版终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世经典2026尊享版终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31541brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦悦享恒裕2026终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3150-1_Broker PWL 2026A(20251125)_IAC9100030486_con",
+    "ratesTable": "prem/友邦悦享恒裕2026终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦悦享恒裕2026终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31501brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦悦享传世2026终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3151-1_Broker PWL 2026B(20251125)_IAC9100030487_con",
+    "ratesTable": "prem/友邦悦享传世2026终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦悦享传世2026终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31511brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦传世臻享年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3155-1_Par BT Revamp(20251230)_IAC9100031119_con",
+    "ratesTable": "prem/友邦传世臻享年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世臻享年金保险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31551brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦盈添利B款两全保险",
+    "productStatus": "在售",
+    "productItem": "B3141-2_BancSP6E(20251113)_IAC9100030620_con",
+    "ratesTable": "prem/友邦盈添利B款两全保险的费率表",
+    "cashValueTable": "csv/友邦盈添利B款两全保险的现金价值表全表",
+    "productInstruction": "brochure/友邦盈添利B款两全保险的产品说明书",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦盛世经典众享版3.1终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3148-1_Banc Par ISWL 6.1(20251031)_IAC9100030288_con",
+    "ratesTable": "prem/友邦盛世经典众享版3.1终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦盛世经典众享版3.1终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31481brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦友相伴2026养老年金保险",
+    "productStatus": "在售",
+    "productItem": "B3140-1_Banc Nonpar Pension(20250925)_IAC9100029676_con",
+    "ratesTable": "prem/友邦友相伴2026养老年金保险的费率表",
+    "cashValueTable": "csv/友邦友相伴2026养老年金保险的现金价值表全表",
+    "productInstruction": "brochure/B31401brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦传世经典乐享2025终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3133-1_PWL2025A (20250915)_IAC9100029555_con",
+    "ratesTable": "prem/友邦传世经典乐享2025终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世经典乐享2025终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31331brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦传世经典荣耀2025终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3134-1_PWL2025B (20250915)_IAC9100029561_con",
+    "ratesTable": "prem/友邦传世经典荣耀2025终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世经典荣耀2025终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31341brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦附加经典2025定期寿险",
+    "productStatus": "在售",
+    "productItem": "B3135-1_PWLTL (20250915)_IAC9100029562_con",
+    "ratesTable": "prem/友邦附加经典2025定期寿险的费率表",
+    "cashValueTable": "csv/友邦附加经典2025定期寿险的现金价值表全表",
+    "productInstruction": "brochure/B31351brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦盈如意顺心2026终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3136-1_Par CI Adu Basic N-1(20251104)_IAC9100029759_con",
+    "ratesTable": "prem/友邦盈如意顺心2026终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦盈如意顺心2026终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31361brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦附加盈如意顺心2026提前给付重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B3137-1_Par CI Adu Rider N-1(20251104)_IAC9100029760_con",
+    "ratesTable": "prem/友邦附加盈如意顺心2026提前给付重大疾病保险的费率表",
+    "cashValueTable": "csv/友邦附加盈如意顺心2026提前给付重大疾病保险的现金价值表全表",
+    "productInstruction": "brochure/B31371brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦盈如意星享2026终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3138-1_Par CI Juv Basic N-1(20251104)_IAC9100029762_con",
+    "ratesTable": "prem/友邦盈如意星享2026终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦盈如意星享2026终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31381brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦附加盈如意星享2026提前给付重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B3139-1_Par CI Juv Rider N-1(20251104)_IAC9100029764_con",
+    "ratesTable": "prem/友邦附加盈如意星享2026提前给付重大疾病保险的费率表",
+    "cashValueTable": "csv/友邦附加盈如意星享2026提前给付重大疾病保险的现金价值表全表",
+    "productInstruction": "brochure/B31391brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦传世盈佳2025荣耀A款终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3094-1_Par ISWL Favor 2025A(20250523)_IAC9100026873_con",
+    "ratesTable": "prem/友邦传世盈佳2025荣耀A款终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世盈佳2025荣耀A款终身寿险（分红型）的现金价值全表",
+    "productInstruction": "brochure/B30941brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦传世颐年养老年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3145-1_Par WL Annuity Basic(20251110)_IAC9100029956_con",
+    "ratesTable": "prem/友邦传世颐年养老年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世颐年养老年金保险（分红型）的现金价值全表",
+    "productInstruction": "brochure/B31451brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦传世未来2025荣耀版年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3146-1_Par DA Favor(20251103)_IAC9100029958_con",
+    "ratesTable": "prem/友邦传世未来2025荣耀版年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世未来2025荣耀版年金保险（分红型）的现金价值全表",
+    "productInstruction": "brochure/B31461brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦附加颐年养老年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3147-1_Par WL Annuity Rider(20251110)_IAC9100029959_con",
+    "ratesTable": "prem/友邦附加颐年养老年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦附加颐年养老年金保险（分红型）的现金价值全表",
+    "productInstruction": "brochure/B31471brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦鑫友相伴尊享版养老年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3131-1_Banc Par IA (20250902)_IAC9100029264_con",
+    "ratesTable": "prem/友邦鑫友相伴尊享版养老年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦鑫友相伴尊享版养老年金保险（分红型）的现金价值表全表(含增额红利表)",
+    "productInstruction": "brochure/B31311brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦安行无忧（2025）两全保险",
+    "productStatus": "在售",
+    "productItem": "B3142-1_ROPPVAA2025(20251016)_9100023729_con",
+    "ratesTable": "prem/友邦安行无忧（2025）两全保险的费率表",
+    "cashValueTable": "csv/友邦安行无忧（2025）两全保险的现金价值表全表",
+    "productInstruction": "brochure/B31421brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦安行无忧荣耀（2025）两全保险",
+    "productStatus": "在售",
+    "productItem": "B3143-1_ROPPVAB2025(20251016)_9100023730_con",
+    "ratesTable": "prem/友邦安行无忧荣耀（2025）两全保险的费率表",
+    "cashValueTable": "csv/友邦安行无忧荣耀（2025）两全保险的现金价值表全表",
+    "productInstruction": "brochure/B31431brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦鑫友相伴青春版年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3117-1_Banc Par DA 1.75(20250808)_IAC9100028750_con",
+    "ratesTable": "prem/友邦鑫友相伴青春版年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦鑫友相伴青春版年金保险（分红型）的现金价值表全表(含增额红利表)",
+    "productInstruction": "brochure/友邦鑫友相伴青春版年金保险（分红型）的产品说明书",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦悦享丰盈终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3132-2_Broker Par ISWL Normal 2025 (20251013)_IAC9100030046_con",
+    "ratesTable": "prem/友邦悦享丰盈终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦悦享丰盈终身寿险（分红型）的现金价值全表(含增额红利表及减额交清现金价值表)",
+    "productInstruction": "brochure/友邦悦享丰盈终身寿险（分红型）的产品说明书",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦百倍安欣（精英版）定期寿险",
+    "productStatus": "在售",
+    "productItem": "B3091-1_ATermLB(20250902)_IAC9100026758_con",
+    "ratesTable": "prem/友邦百倍安欣（精英版）定期寿险的费率表",
+    "cashValueTable": "csv/友邦百倍安欣（精英版）定期寿险的现金价值表全表",
+    "productInstruction": "brochure/B30911brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦附加百倍安欣（精英版）定期寿险",
+    "productStatus": "在售",
+    "productItem": "B3092-1_ATermLR(20250902)_IAC9100026759_con",
+    "ratesTable": "prem/友邦附加百倍安欣（精英版）定期寿险的费率表",
+    "cashValueTable": "csv/友邦附加百倍安欣（精英版）定期寿险的现金价值表全表",
+    "productInstruction": "brochure/B30921brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦优享长伴（2025）终身护理保险",
+    "productStatus": "在售",
+    "productItem": "B3113-1_TDHLTC 2025(20250806)_IAC9100028314_con",
+    "ratesTable": "prem/友邦优享长伴（2025）终身护理保险的费率表",
+    "cashValueTable": "csv/友邦优享长伴（2025）终身护理保险的现金价值表全表",
+    "productInstruction": "brochure/B31131brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦传世金生2025荣耀版年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B31251_PLAC2025(20250903)_IAC9100028980_con",
+    "ratesTable": "prem/友邦传世金生2025荣耀版年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世金生2025荣耀版年金保险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31251brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦传世未来2025A款年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3107-1_Par DA 1.75(20250626)_IAC9100026956_con",
+    "ratesTable": "prem/友邦传世未来2025A款年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世未来2025A款年金保险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31071brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦附加万全如意A款豁免保费重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B3130-1_AUWPB 2025 (20250901)_IAC9100028937_con",
+    "ratesTable": "prem/友邦附加万全如意A款豁免保费重大疾病保险的费率表",
+    "cashValueTable": "csv/友邦附加万全如意A款豁免保费重大疾病保险的现金价值表全表",
+    "productInstruction": "brochure/B31301brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦盈如意顺心版终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3118-1_Par CI Adu Basic(20250905)_9100028716_con",
+    "ratesTable": "prem/友邦盈如意顺心版终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦盈如意顺心版终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31181brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦附加盈如意顺心版提前给付重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B3119-1_Par CI Adu Rider(20250905)_IAC9100028717_con",
+    "ratesTable": "prem/友邦附加盈如意顺心版提前给付重大疾病保险的费率表",
+    "cashValueTable": "csv/友邦附加盈如意顺心版提前给付重大疾病保险的现金价值表全表",
+    "productInstruction": "brochure/B31191brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦盈如意星享版终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3120-1_Par CI Juv Basic(20250905)_IAC9100028718_con",
+    "ratesTable": "prem/友邦盈如意星享版终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦盈如意星享版终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31201brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦附加盈如意星享版提前给付重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B3121-2_Par CI Juv Rider(20251024)_IAC9100030048_con",
+    "ratesTable": "prem/友邦附加盈如意星享版提前给付重大疾病保险的费率表",
+    "cashValueTable": "csv/友邦附加盈如意星享版提前给付重大疾病保险的现金价值表全表",
+    "productInstruction": "brochure/B31212brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦传世盈佳2025A款终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3124-1_Par ISWL Normal 2025A (20250903)_IAC9100028944_con",
+    "ratesTable": "prem/友邦传世盈佳2025A款终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦传世盈佳2025A款终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/B31241brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦增利宝（2025）终身寿险（万能型）",
+    "productStatus": "在售",
+    "productItem": "B3126-1_UL2025(20250905)_IAC9100029050_con",
+    "ratesTable": "prem/友邦增利宝（2025）终身寿险（万能型）的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦增利宝（2025）终身寿险（万能型）的产品说明书",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦友如意顺心版（2025）重大疾病保险　",
+    "productStatus": "在售",
+    "productItem": "B3122-1_AUWA N 2.0(20250829)_IAC9100028926_con",
+    "ratesTable": "prem/友邦友如意顺心版（2025）重大疾病保险的费率表",
+    "cashValueTable": "csv/友邦友如意顺心版（2025）重大疾病保险的现金价值表全表(含减额交清现金价值表)",
+    "productInstruction": "brochure/友邦友如意顺心版（2025）重大疾病保险的产品说明书",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦友如意星享版（2025）重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B3123-1_AUWJ N 2.0(20250829)_IAC9100028927_con",
+    "ratesTable": "prem/友邦友如意星享版（2025）重大疾病保险的费率表",
+    "cashValueTable": "csv/友邦友如意星享版（2025）重大疾病保险的现金价值表全表",
+    "productInstruction": "brochure/友邦友如意星享版（2025）重大疾病保险的产品说明书",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦附加轻如意（2025）豁免保险费疾病保险",
+    "productStatus": "在售",
+    "productItem": "B31281_CIWP2025(20250829)_IAC9100029059_con",
+    "ratesTable": "prem/友邦附加轻如意（2025）豁免保险费疾病保险的费率表",
+    "cashValueTable": "csv/友邦附加轻如意（2025）豁免保险费疾病保险的现金价值表全表",
+    "productInstruction": "brochure/B31281brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦附加爱如意D款恶性肿瘤（重度）疾病保险",
+    "productStatus": "在售",
+    "productItem": "B31291_CCR2025(20250829)_IAC9100029060_con",
+    "ratesTable": "prem/友邦附加爱如意D款恶性肿瘤（重度）疾病保险的费率表",
+    "cashValueTable": "csv/友邦附加爱如意D款恶性肿瘤（重度）疾病保险的现金价值表全表",
+    "productInstruction": "brochure/B31291brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦附加倍如意（2025）重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B31271_MCI2025(20250829)_IAC9100029061_con",
+    "ratesTable": "prem/友邦附加倍如意（2025）重大疾病保险的费率表",
+    "cashValueTable": "csv/友邦附加倍如意（2025）重大疾病保险的现金价值表全表",
+    "productInstruction": "brochure/B31271brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦盛世经典众优版2.0终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3089-1_Banc Par ISWL 3.0(20250430)_IAC9100026626_con",
+    "ratesTable": "prem/友邦盛世经典众优版2.0终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦盛世经典众优版2.0终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/友邦盛世经典众优版2.0终身寿险（分红型）的产品说明书",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦盛世经典众享版2.0终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3096-1_Banc Par ISWL 4.0(20250529)_IAC9100026899_con",
+    "ratesTable": "prem/友邦盛世经典众享版2.0终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦盛世经典众享版2.0终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/友邦盛世经典众享版2.0终身寿险（分红型）的产品说明书",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦盛世经典众优版3.0终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3095-1_Banc Par ISWL 5.0(20250522)_IAC9100026898_con",
+    "ratesTable": "prem/友邦盛世经典众优版3.0终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦盛世经典众优版3.0终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/友邦盛世经典众优版3.0终身寿险（分红型）的产品说明书",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦盛世经典众享版3.0终身寿险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3097-1_Banc Par ISWL 6.0(20250609)_IAC9100026900_con",
+    "ratesTable": "prem/友邦盛世经典众享版3.0终身寿险（分红型）的费率表",
+    "cashValueTable": "csv/友邦盛世经典众享版3.0终身寿险（分红型）的现金价值表全表",
+    "productInstruction": "brochure/友邦盛世经典众享版3.0终身寿险（分红型）的产品说明书",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦盛世经典乐优版2.0终身寿险",
+    "productStatus": "在售",
+    "productItem": "B3086-1_Banc ISWL9.0(20250428)_IAC9100026531_con",
+    "ratesTable": "prem/友邦盛世经典乐优版2.0终身寿险的费率表",
+    "cashValueTable": "csv/友邦盛世经典乐优版2.0终身寿险的现金价值表全表",
+    "productInstruction": "brochure/B30861brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦盛世经典乐惠版2.0终身寿险",
+    "productStatus": "在售",
+    "productItem": "B3087-1_Banc ISWL10.0(20250528)_IAC9100026532_con",
+    "ratesTable": "prem/友邦盛世经典乐惠版2.0终身寿险的费率表",
+    "cashValueTable": "csv/友邦盛世经典乐惠版2.0终身寿险的现金价值表全表",
+    "productInstruction": "brochure/B30871brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦智选逸生医疗保险",
+    "productStatus": "在售",
+    "productItem": "B3114-1_DIY MM(20250901)_IAC9100028733_con",
+    "ratesTable": "prem/友邦智选逸生医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦智选逸生医疗保险的产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦利享年年（2025）A款年金保险（分红型）",
+    "productStatus": "在售",
+    "productItem": "B3100-1_Par PPB Annuity 1.75(20250620)_IAC9100027067_con",
+    "ratesTable": "prem/友邦利享年年（2025）A款年金保险（分红型）的费率表",
+    "cashValueTable": "csv/友邦利享年年（2025）A款年金保险（分红型）的现金价值表全表(含增额红利表)",
+    "productInstruction": "brochure/B31001brochure1",
+    "followUpService": null,
+    "productGroup": "P3"
+  },
+  {
+    "productName": "友邦优享年年（2025）A款年金保险",
+    "productStatus": "在售",
+    "productItem": "B3109-1_PPB Annuity 5.0(20250704)_IAC9100027713_con",
+    "ratesTable": "prem/友邦优享年年（2025）A款年金保险的费率表",
+    "cashValueTable": "csv/友邦优享年年（2025）A款年金保险的现金价值表全表",
+    "productInstruction": "brochure/B31091brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦优享未来（2025）A款两全保险",
+    "productStatus": "在售",
+    "productItem": "B3110-1_PPB  Endowment 5.0(20250709)_IAC9100027714_con",
+    "ratesTable": "prem/友邦优享未来（2025）A款两全保险的费率表",
+    "cashValueTable": "csv/友邦优享未来（2025）A款两全保险的现金价值表全表",
+    "productInstruction": "brochure/B31101brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦友童行意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B3115-1_SSI ADD(20250818)_IAC9100028463_con",
+    "ratesTable": "prem/友邦友童行意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友童行意外伤害保险的产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加友童行住院费用补偿医疗保险",
+    "productStatus": "在售",
+    "productItem": "B3116-1_SSI JHSR(20250818)_IAC9100028464_con",
+    "ratesTable": "prem/友邦附加友童行住院费用补偿医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦附加友童行住院费用补偿医疗保险的产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益（2025）意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B3093-1_LAPAADD2025(20250609)_IAC9100026857_con",
+    "ratesTable": "prem/友邦附加添益（2025）意外伤害保险的费率表",
+    "cashValueTable": "csv/友邦附加添益（2025）意外伤害保险的现金价值表全表",
+    "productInstruction": "brochure/B30931brochure1",
+    "followUpService": null,
+    "productGroup": "P2"
+  },
+  {
+    "productName": "友邦附加四海无忧（2025）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B3085-1_WD OTARR(20250604)_IAC9100026485_con",
+    "ratesTable": "prem/友邦附加四海无忧（2025）医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦附加四海无忧（2025）医疗保险的产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦深圳专属团体24医疗保险（互联网）",
+    "productStatus": "在售",
+    "productItem": "B1233-3_SSBA2024(20250606)_ IAC9100027193_con",
+    "ratesTable": "prem/友邦深圳专属团体24医疗保险（互联网）的费率表",
+    "cashValueTable": "csv/友邦深圳专属团体24医疗保险（互联网）的现金价值表全表",
+    "productInstruction": "brochure/友邦深圳专属团体24医疗保险（互联网）的产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦卓越逸生A款医疗保险",
+    "productStatus": "在售",
+    "productItem": "B3041-1_DRG MM A(20241002)_IAC9100023935_con",
+    "ratesTable": "prem/友邦卓越逸生A款医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦卓越逸生A款医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦卓越逸生B款医疗保险",
+    "productStatus": "在售",
+    "productItem": "B3044-1_DRG MM B(20241002)_IAC9100023936_con",
+    "ratesTable": "prem/友邦卓越逸生B款医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦卓越逸生B款医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦卓越逸生C款医疗保险",
+    "productStatus": "在售",
+    "productItem": "B3045-1_DRG MM C(20241002)_IAC9100023937_con",
+    "ratesTable": "prem/友邦卓越逸生C款医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦卓越逸生C款医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦卓越海外特药医疗保险",
+    "productStatus": "在售",
+    "productItem": "B30541_OTDMT Basic(20241101)_IAC9100024225_con",
+    "ratesTable": "prem/友邦卓越海外特药医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦卓越海外特药医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加卓越海外特药医疗保险",
+    "productStatus": "在售",
+    "productItem": "B30551_OTDMT Rider(20241101)_IAC9100024226_con",
+    "ratesTable": "prem/友邦附加卓越海外特药医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦附加卓越海外特药医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦乐运动意外伤害保险（互联网）",
+    "productStatus": "在售",
+    "productItem": "B3017-1_DPPSportAccidentA(20240805)_IAC9100022386_con",
+    "ratesTable": "prem/友邦乐运动意外伤害保险（互联网）的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B30171brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦享运动意外伤害保险（互联网）",
+    "productStatus": "在售",
+    "productItem": "B3018-1_DPPSportAccidentB(20240805)_IAC9100022387_con",
+    "ratesTable": "prem/友邦享运动意外伤害保险（互联网）的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B30181brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦传世无忧（2024）高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1218-1_HEM2024(20240415)_IAC9100021247_con",
+    "ratesTable": "prem/友邦传世无忧（2024）高端医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦传世无忧（2024）高端医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友童无忧高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1219-1_Juv Outpatient(20240412)_IAC9100021326_con",
+    "ratesTable": "prem/友邦友童无忧高端医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友童无忧高端医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦优享康惠医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1212-1_TDHMM(20231229)_IAC9100020683_con",
+    "ratesTable": "prem/友邦优享康惠医疗保险的保险费率表",
+    "cashValueTable": "csv/友邦优享康惠医疗保险的现金价值表全表",
+    "productInstruction": "brochure/B12121brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友型运动意外伤害保险（互联网专属）",
+    "productStatus": "在售",
+    "productItem": "B1152-1_e Free Sports Accident(20230920)_IAC9100015912_con",
+    "ratesTable": "prem/友邦友型运动意外伤害保险（互联网专属）的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友型运动意外伤害保险（互联网专属）产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦长保康惠长期医疗保险（费率可调）",
+    "productStatus": "在售",
+    "productItem": "B1194-1_LTMM(20230713)_IAC9100017229_con",
+    "ratesTable": "prem/友邦长保康惠长期医疗保险（费率可调）的费率表",
+    "cashValueTable": "csv/友邦长保康惠长期医疗保险（费率可调）的现金价值表全表",
+    "productInstruction": "brochure/B11941brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益（2023A）意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1175-1_3YADDrider2023A(20230905)_IAC9100017793_con",
+    "ratesTable": "prem/B1175-1_3YADDrider2023A(20230905)_prem",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12061brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益（2023B）意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1198-1_3YADDrider2023B(20230919)_IAC9100017794_con",
+    "ratesTable": "prem/B1198-1_3YADDrider2023B(20230919)_prem",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11981brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦深圳专属团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0983-4_SSBMA(20230706)_IAC9100017006_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦深圳专属团体医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦守护长青（2023）意外骨折医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1162-1_BBPAMEDB2023(20230531)_IAC9100016213_con",
+    "ratesTable": "prem/友邦守护长青(2023)意外骨折医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11621brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加守护长青（2023）意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1163-1_BBPAADR2023(20230531)_IAC9100016214_con",
+    "ratesTable": "prem/友邦附加守护长青(2023)意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11631brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康惠2023团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1147-1_GMMA2023(20230303)_IAC9100015447_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11471brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦畅游九州（2023）意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1153-1_WD TAB(20230519)_IAC9100015933_con",
+    "ratesTable": "prem/友邦畅游九州(2023)意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦畅游九州（2023）意外伤害保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加九州无忧医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1154-1_WD TAR(20230519)_IAC9100015934_con",
+    "ratesTable": "prem/友邦附加九州无忧医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦附加九州无忧医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦畅游四海（2023）意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1155-1_WD OTAB(20230519)_IAC9100015935_con",
+    "ratesTable": "prem/友邦畅游四海(2023)意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦畅游四海（2023）意外伤害保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加四海无忧医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1156-1_WD OTAR(20230519)_IAC9100015936_con",
+    "ratesTable": "prem/友邦附加四海无忧医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦附加四海无忧医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦畅行无忧航空意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1157-1_WD AVAB(20230519)_IAC9100015937_con",
+    "ratesTable": "prem/友邦畅行无忧航空意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦畅行无忧航空意外伤害保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友型运动年享版意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1150-1_Sports Accident YRT(20230505)_IAC9100015883_con",
+    "ratesTable": "prem/友邦友型运动年享版意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友型运动年享版意外伤害保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友型运动随享版意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1151-1_Sports Accident Short Term(20230505)_IAC9100015884_con",
+    "ratesTable": "prem/友邦友型运动随享版意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友型运动随享版意外伤害保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益50（2023）重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B1146-1_6YCI50(20230317)_IAC9100015482_con",
+    "ratesTable": "prem/友邦附加添益50(2023)重大疾病保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11461brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友童乐齿医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1143-1_Juv Dental(20230118)_IAC9100015292_con",
+    "ratesTable": "prem/友邦友童乐齿医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友童乐齿医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦顺康2022团体恶性肿瘤疾病保险",
+    "productStatus": "在售",
+    "productItem": "B1140-1_GVSCAN2022(20221117)_IAC9100014735_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11401brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦顺康2022恶性肿瘤疾病保险",
+    "productStatus": "在售",
+    "productItem": "B1141-1_GVS Cancer (Individual version)(20221117)_IAC9100014736_con",
+    "ratesTable": "prem/友邦顺康2022恶性肿瘤疾病保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦顺康2022恶性肿瘤疾病保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益（2023）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1125-1_LAPAhealthrider2023(20220929)_9100014276_con",
+    "ratesTable": "prem/友邦附加添益(2023)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11251brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益（2023）少儿住院医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1126-1_6YJHSR2023(20220929)_9100014277_con",
+    "ratesTable": "prem/友邦附加添益(2023)少儿住院医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11261brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友型运动意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1127-1_Free Sports Accident(20220926)_IAC9100014383_con",
+    "ratesTable": "prem/友邦友型运动意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友型运动意外伤害保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友宠无忧疾病保险",
+    "productStatus": "在售",
+    "productItem": "B1128-1_Pet owner basic-free(20220927)_IAC9100014390_con",
+    "ratesTable": "prem/友邦友宠无忧疾病保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友宠无忧疾病保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加友宠无忧意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1129-1_Pet owner rider-free(20220927)_IAC9100014391_con",
+    "ratesTable": "prem/友邦附加友宠无忧意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦附加友宠无忧意外伤害保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦安行寰宇2022团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1115-2_GTRPADD(20220720)_IAC9100013926_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11152brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加安行寰宇公共交通2022团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1116-2_GTRPPCA(20220720)_IAC9100013928_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11162brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加畅游无忧综合意外2022团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1117-2_GTRPAMR(20220720)_IAC9100013929_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11172brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康惠2022团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1077-1_GMMA2022(20220114)_IAC9100011493_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10771brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友一苗意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1034-3_VSE(20220715)_IAC9100013911_con",
+    "ratesTable": "prem/友邦友一苗意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友一苗意外伤害保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康惠加惠（2022）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1120-1_IVSMM2022(20220630)_IAC9100013372_con",
+    "ratesTable": "prem/友邦智选康惠加惠(2022)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B1120brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦2022团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1101-1_GADD2022(20220516)_IAC9100013016_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11011brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加2022团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1102-1_GADR2022(20220516)_IAC9100013017_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11021brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦C款2022团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1103-1_GADDC2022(20220516)_IAC9100013018_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11031brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦公共交通2022团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1104-1_PCAB2022(20220516)_IAC9100013019_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11041brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦意外医药补偿2022团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1105-1_GAMR2022(20220516)_IAC9100013020_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11051brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康惠荣耀（2022）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1118-3_MajorMedB2022(20230914)_IAC9100018452_con",
+    "ratesTable": "prem/友邦智选康惠荣耀(2022)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B1118brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康逸荣耀（2022）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1119-3_MajorMedD2022(20230914)_IAC9100018455_con",
+    "ratesTable": "prem/友邦智选康逸荣耀(2022)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B1119brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦传世无忧（2022）高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1110-3_HEM2022(20230914)_IAC9100018529_con",
+    "ratesTable": "prem/友邦传世无忧(2022)高端医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦传世无忧（2022）高端医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦传世无忧荣耀（2022）高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1111-3_HEM2022favor(20230911)_IAC9100019293_con",
+    "ratesTable": "prem/友邦传世无忧荣耀(2022)高端医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦传世无忧荣耀（2022）高端医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦传世无忧安心版（2022）高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1112-1_JADEHEM2022(20220630)_IAC9100013308_con",
+    "ratesTable": "prem/友邦传世无忧安心版(2022)高端医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦传世无忧安心版（2022）高端医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦安益加惠（2022）综合意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1109-1_IVSADD2022(20220630)_IAC9100013448_con",
+    "ratesTable": "prem/友邦安益加惠(2022)综合意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦安益加惠（2022）综合意外伤害保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加守护希望特药器械医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1080-1_TDMTRider(20220216)_IAC9100011722_con",
+    "ratesTable": "prem/友邦附加守护希望特药器械医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦附加守护希望特药器械医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦守护希望特药器械医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1079-1_TDMTBasic(20220216)_IAC9100011721_con",
+    "ratesTable": "prem/友邦守护希望特药器械医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦守护希望特药器械医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友九州意外伤害保险（互联网专属）",
+    "productStatus": "在售",
+    "productItem": "B1076-1_ETA domestic(20211230)_IAC9100011332_con",
+    "ratesTable": "prem/友邦友九州意外伤害保险(互联网专属)的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦友九州意外伤害保险（互联网专属）产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦传世无忧安心版高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1055-1_HEMmainland(20210709)_IAC9100009765_con",
+    "ratesTable": "prem/友邦传世无忧安心版高端医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦传世无忧安心版高端医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康惠慢病版医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1054-1_SMM(20210709)_IAC9100009764_con",
+    "ratesTable": "prem/友邦智选康惠慢病版医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B1054brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦康爱无忧医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1050-1_CANR(20210709)_IAC9100009756_con",
+    "ratesTable": "prem/友邦康爱无忧医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦康爱无忧医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦传世无忧（2021）高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1047-3_HEM2021(20230914)_IAC9100018527_con",
+    "ratesTable": "prem/友邦传世无忧(2021)高端医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦传世无忧（2021）高端医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦传世无忧荣耀（2021）高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1046-3_HEM2021favor(20230914)_IAC9100018528_con",
+    "ratesTable": "prem/友邦传世无忧荣耀(2021)高端医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦传世无忧荣耀（2021）高端医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康逸荣耀（2021）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1043-3_MajorMedD2021(20230914)_IAC9100018470_con",
+    "ratesTable": "prem/友邦智选康逸荣耀(2021)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B1043brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康惠荣耀（2021）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1042-3_MajorMedB2021(20230914)_IAC9100018466_con",
+    "ratesTable": "prem/友邦智选康惠荣耀(2021)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B1042brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦守护安康（2021）特种药品医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1041-1_TDO2021(20210602_IAC9100009343_con",
+    "ratesTable": "prem/友邦守护安康(2021)特种药品医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦守护安康（2021）特种药品医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦2021团体重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B1033-1_GCI2021(20210128)_IAC9100007223_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10331brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦环球无忧专属团体高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1015-1_GVSHEMS(20201029)_IAC9100005991_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10151brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦环球精英B款团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1009-1_GHighMedB(20200929)_IAC9100005746_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10091brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益住院及手术医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1008-1_3YHIS(20201009)_IAC9100005845_con",
+    "ratesTable": "prem/友邦附加添益住院及手术医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10082brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益（2020）少儿综合住院医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0998-1_3YJHRS(20201009)_IAC9100005843_con",
+    "ratesTable": "prem/友邦附加添益(2020)少儿综合住院医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09982brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益（2020）手术费补偿医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0996-1_3YSBrider(20201009)_IAC9100005841_con",
+    "ratesTable": "prem/友邦附加添益(2020)手术费补偿医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09962brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益（2020）住院费用补偿医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0994-1_3YHRrider(20201009)_IAC9100005839_con",
+    "ratesTable": "prem/友邦附加添益(2020)住院费用补偿医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09942brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益（2020）住院日额保障医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0992-1_3YHIrider(20201009)_IAC9100005837_con",
+    "ratesTable": "prem/友邦附加添益(2020)住院日额保障医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09922brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦尊享康逸（2020）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0964-2_MedAffluent2020(20210602)_IAC9100009383_con",
+    "ratesTable": "prem/友邦尊享康逸(2020)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B0964brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦尊享康惠（2020）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0963-2_MedMass2020(2020602)_IAC9100009384_con",
+    "ratesTable": "prem/友邦尊享康惠(2020)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B0963brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦环球无忧团体高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0945-1_GVSHEM(20191017)_IAC9100001611_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09451brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康逸2019团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0940-1_GTMajorMedB2019N(20190704)_IAC9100000608_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09401brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加定期II疾病保险",
+    "productStatus": "在售",
+    "productItem": "B0897-1_CIII630(20180629)_IAC00000405999_con",
+    "ratesTable": "prem/友邦附加定期Ⅱ疾病保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B08973brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加网络超值意外医药补偿医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0696-1_SESTA_AMR(20130227)_IAC0000016639_con",
+    "ratesTable": "prem/友邦附加网络超值意外医药补偿医疗的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/友邦附加网络超值意外医药补偿医疗保险产品说明",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加住院费用补偿II医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0874-1_NHRII630(20180629)_IAC0000040604_con",
+    "ratesTable": "prem/友邦附加住院费用补偿Ⅱ医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B08743brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康逸B款团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0797-2_GMajorMedB2(20180627)_IAC0000037527_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B07972brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦智选康惠B款团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0796-2_GMajorMedB1(20180627)_IAC0000037526_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B07962brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦康逸一家团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0779-2_GMEDG(20180627)_IAC0000037521_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B07792brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦康惠一家团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0778-2_GMEDM(20180627)_IAC0000037520_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B07782brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加纵横四海境外综合团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0663-2_GTMR(20180627)_IAC0000037508_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B06632brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦环球精英团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0631-2_GHighMed(20180627)_IAC0000037506_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B06312brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益少儿综合住院II医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0630-2_newJHSR(20180625)_IAC0000040611_con",
+    "ratesTable": "prem/友邦附加添益少儿综合住院II医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B06304brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加每日住院给付团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0582-2_GHIR(20180627)_IAC0000037505_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B05822brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加意外住院给付B款团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0580-2_GAHIR(B)(20180627)_IAC0000037474_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B05802brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦健康保障委托管理产品",
+    "productStatus": "在售",
+    "productItem": "B0566-1_ASO(20090427)_IAC0000007922_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": null,
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加环球妊娠及生育团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0537-3_GCMBR(20180627)_IAC0000037495_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B05373brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加环球门诊急诊团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0533-3_GGCBR(20180627)_IAC0000037479_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B05333brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益B款住院费用补偿医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0516-4_3YGRHR(B)(20191028)_IAC9100001744_con",
+    "ratesTable": "prem/友邦附加添益B款住院费用补偿医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B05166brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加添益意外医药补偿医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0513-3_3YGRAMR(20180625)_IAC0000040613_con",
+    "ratesTable": "prem/友邦附加添益意外医药补偿医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B05135brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加牙科医疗补偿团体医疗保险(B款)",
+    "productStatus": "在售",
+    "productItem": "B0465-3_GDBR(B)(20180627)_IAC0000037499_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B04653brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加公共保额医疗给付团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0463-3_GMPPR(20180627)_IAC0000037500_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B04633brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦住院门诊急诊共用保额团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0462-3_GCMB(20180627)_IAC0000037498_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B04624brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦住院及手术B2款团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0415-3_GHS(B2)(20180627)_IAC0000037497_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B04153brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加年免赔门诊急诊A2款团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0394-3_GCBRAD(A2)(20180627)_IAC0000037478_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B03944brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加门诊急诊A2款团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0392-3_GCBR(A2)(20180627)_IAC0000037477_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B03924brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦住院A款团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0364-3_GH(A)(20180627)_IAC0000037496_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B03644brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加妊娠及生育A款团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0362-3_GMBR(A)(20180627)_IAC0000037494_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B03623brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦团体定期寿险",
+    "productStatus": "在售",
+    "productItem": "B0356-3_GTL(20180627)_IAC0000040495_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B03564brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦加惠团体定期寿险",
+    "productStatus": "在售",
+    "productItem": "B0355-3_GTLTPD(20180627)_IAC0000040263_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B03554brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦如意康惠团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1209-1_GMajorMedB2023(20231229)_IAC9100020712_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12091brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦欣安益（2023）意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1161-1_COPAYIPA(20230609)_IAC9100016366_con",
+    "ratesTable": "prem/友邦欣安益(2023)意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10651brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦守护天使意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B0969-3_minorIPA(20220715)_IAC9100013905_con",
+    "ratesTable": "prem/友邦守护天使意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11611brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加重大自然灾害（2020）意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B0997-3_1YDISADD(20220715)_IAC9100013907_con",
+    "ratesTable": "prem/友邦附加重大自然灾害(2020)意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11231brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加重大自然灾害（2022）意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1067-1_DISADD2022(20211019)_IAC9100010629_con",
+    "ratesTable": "prem/友邦附加重大自然灾害(2022)意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09932brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加安益（2021）少儿综合住院医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1057-1_1YJHSR2021(20210929)_IAC9100010433_con",
+    "ratesTable": "prem/友邦附加安益(2021)少儿综合住院医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09992brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦安孕保（2021）疾病保险",
+    "productStatus": "在售",
+    "productItem": "B1039-2_PregnInft(20210510)_IAC9100008113_con",
+    "ratesTable": "prem/友邦安孕保(2021)疾病保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10002brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加安益住院及手术医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1007-2_1YHIS(20210602)_IAC9100009385_con",
+    "ratesTable": "prem/友邦附加安益住院及手术医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11221brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加安益50重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B1000-2_CI50rider(20210602)_IAC9100009382_con",
+    "ratesTable": "prem/友邦附加安益50重大疾病保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10072brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦安益50重大疾病保险",
+    "productStatus": "在售",
+    "productItem": "B0999-2_CI50basic(20210602)_IAC9100009381_con",
+    "ratesTable": "prem/友邦安益50重大疾病保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10392brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加安益（2020）手术费补偿医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0995-2_1YSBrider(20210602)_IAC9100009386_con",
+    "ratesTable": "prem/友邦附加安益(2020)手术费补偿医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09693brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加安益（2020）住院费用补偿医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0993-2_1YHRrider(20210602)_IAC9100009387_con",
+    "ratesTable": "prem/友邦附加安益(2020)住院费用补偿医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B09973brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加安益（2020）住院日额保障医疗保险",
+    "productStatus": "在售",
+    "productItem": "B0991-2_1YHIrider(20210602)_IAC9100009388_con",
+    "ratesTable": "prem/友邦附加安益(2020)住院日额保障医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B10671brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦守护丽人（2021）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1037-2_WBC2021(20210510)_IAC9100008003_con",
+    "ratesTable": "prem/友邦守护丽人(2021)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/brochureB10372brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦守护宝贝（2021）医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1038-2_CL2021(20210510)_IAC9100008004_con",
+    "ratesTable": "prem/友邦守护宝贝(2021)医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/brochureB10382brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦友好出行意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1108-2_New Free TA(20220718)_IAC9100013921_con",
+    "ratesTable": "prem/友邦友好出行意外伤害保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/brochureB11082brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦欣安益B意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B3005_1_CopayIPAB(20240329)_IAC9100021203_con",
+    "ratesTable": "prem/B3005_0_CopayIPAB(20240329)_prem",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B30051",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦加惠（2024A）团体定期寿险",
+    "productStatus": "在售",
+    "productItem": "B1227-1_GTLTPDA(20241231)_IAC9100024517_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12271brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦加惠（2024B）团体定期寿险",
+    "productStatus": "在售",
+    "productItem": "B1228-1_GTLTPDB(20241231)_IAC9100024518_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12281brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦加惠（2024C）团体定期寿险",
+    "productStatus": "在售",
+    "productItem": "B1229-1_GTLTPDC(20241231)_IAC9100024519_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12291brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦环球精英（2024A）团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1230-1_GHEM2024A(20241231)_IAC9100025024_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12301brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦环球精英（2024B）团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1231-1_GHEM2024B(20241231)_IAC9100025025_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12311brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦环球精英（2024C）团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1232-1_GHEM2024C(20241231)_IAC9100025026_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12321brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦综合交通（2025A）团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1237-1_PCA2025A(20250519)_IAC9100026725_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12371brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦综合交通（2025B）团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1238-1_PCA2025A(20250519)_IAC9100026726_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12381brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦综合交通（2025C）团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1239-1_PCA2025A(20250519)_IAC9100026727_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12391brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦短期团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1235-1_GSTADD(20250513)_IAC9100026686_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12351brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦短期综合团体医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1236-1_GSTCMED(20250513)_IAC9100026688_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12361brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦附加全残团体失能收入损失保险",
+    "productStatus": "在售",
+    "productItem": "B1142-1_TPDI(20221207)_IAC9100014900_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B11421brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦传世无忧精英版高端医疗保险",
+    "productStatus": "在售",
+    "productItem": "B1224-1_HEM2024b(20250418)_IAC9100022236_con",
+    "ratesTable": "prem/B1224友邦传世无忧精英版高端医疗保险的费率表",
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12241brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦C款（2025A）团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1240-1_GADDC2025A(20250917)_IAC9100029152_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12401brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦C款（2025B）团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1241-1_GADDC2025B(20250917)_IAC9100029153_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12411brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦（2025A）团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1242-1_GADD2025A(20250917)_IAC9100029157_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12421brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  },
+  {
+    "productName": "友邦（2025B）团体意外伤害保险",
+    "productStatus": "在售",
+    "productItem": "B1243-1_GADD2025B(20250917)_IAC9100029158_con",
+    "ratesTable": null,
+    "cashValueTable": null,
+    "productInstruction": "brochure/B12431brochure1",
+    "followUpService": null,
+    "productGroup": "P1"
+  }
+]
