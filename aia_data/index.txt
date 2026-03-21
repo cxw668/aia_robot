@@ -1,0 +1,23 @@
+aia_robot/
+├── spiders/
+│   ├── aia_news_spider.py      # 新闻采集
+│   ├── aia_product_spider.py   # 产品分类采集
+│   ├── aia_disclosure_spider.py # 信息披露采集
+│   └── aia_csr_spider.py        # 公益与社会责任采集
+├── pipelines.py                 # 数据清洗与存储管道
+├── items.py                     # 定义数据模型
+├── middlewares.py               # 反爬中间件
+├── settings.py                  # 配置参数（延迟、User-Agent等）
+└── utils/
+    ├── file_downloader.py       # 文件下载工具
+    └── id_generator.py          # 唯一ID生成器
+
+https://www.aia.com.cn/robots.txt
+    User-agent: *
+    Disallow:
+
+    Sitemap: http://www.aia.com.cn/zh-cn/sitemap.xml
+
+OS: Windows
+
+target website: https://www.aia.com.cn/

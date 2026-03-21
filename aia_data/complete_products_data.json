@@ -1,0 +1,5166 @@
+{
+  "personal_insurance": [
+    {
+      "name": "意外/医疗",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "医疗保险是补偿因疾病所产生医疗费用的一种保险。",
+            "商业医疗保险可以对社保中自负部分以及其他社保不能承担的部分提供保障，是社保的有力补充，可以为希望获得更高医疗质量、享受更高医疗服务的您提供帮助。"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "疾病保障",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "重疾险是指当被保险人患有约定的重大疾病时，由保险公司给予补偿或补贴的商业保险行为。",
+            "部分重疾险产品可在重疾早期阶段便提供现金赔偿，用以支付沉重的医疗费用，帮助您减轻经济负担，与您并肩度过难关。"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "寿险保障",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "寿险不仅是对自己和家庭应尽的责任，更是防范人生风险和支付人生必须费用的手段和方法。",
+            "无论您是为人子女还是为人父母，无论生死，这份责任将永远存在。",
+            "寿险正是帮您尽到这份责任，实现爱的承诺的最佳方法之一。"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "享老保障",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "通过商业保险补充社保不足，提高养老金替代率，以维持或提高享老生活水平，从而真正实现老有所养。"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "财富管理",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "您努力打拼积累财富，自然需要专业的财富管理来抵御风险，满足人生不同阶段财务需求，实现财富稳健增值。我们为您度身定制产品，帮助您早日实现人生梦想。"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "护理保障",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "护理保险是为日常生活能力障碍引发护理需要提供保障的一种保险。"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "教育储备",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "教育金保险是以为孩子准备教育金为目的的保险，属于财富规划类保障，具有强制储备的作用，合理整体规划助力孩子筑梦未来。"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "互联网专属产品",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "对生活的憧憬，对健康的管理，对人生的保驾护航，友邦重视您的每一点需求。",
+            "友邦互联网专属产品，想您所想，超越时空，将“百年品质”带到您身边，",
+            "在线即可自助体验“保障+服务+体验”的全方位保障方案。",
+            "让您随时随地想保就保，掌握平衡人生，开启健康长久好生活！"
+          ]
+        },
+        {
+          "title": "未命名",
+          "content": [
+            "敬请期待"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "高净值传世系列",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "作为家庭和企业的顶梁柱，我们深知您肩上所承载的责任和重担。一份量身定做的尊享保单，助您完善财富保障、品质养老、尊贵医疗的“顶层设计”，充分彰显您的身价，成为您家庭财富的奠基石。"
+          ]
+        }
+      ]
+    }
+  ],
+  "group_insurance": [
+    {
+      "name": "员工企业福利",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "友邦团险在亚太区市场是行业卓越的团险供应商，逾1,700万名团体保险计划参与成员，深谙各类企业对员工福利的重视，结合自身深厚的保险产品经验，设计了一系列针对不同类型企业的员工福利保险方案，可以帮助企业客户以合理的保费，实现灵活的员工福利保障组合。同时还可为客户量身定制最合适产品和服务以满足客户的需求,提供包括意外，医疗，住院，门诊，生育，寿险在内的全方面保障。"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "员工自选加保",
+      "description": "",
+      "features": [],
+      "benefits": [],
+      "coverage": [],
+      "sections": [
+        {
+          "title": "未命名",
+          "content": [
+            "友邦人寿凭借多年的企业福利方案设计经验，提出了员工自选福利保险方案，成功地解决了员工不断提升的福利需求和企业有限的福利预算之间的矛盾，也为员工提供了个性化选择最适合的保险方案的途径。通过友邦自选加保平台，企业员工可以按照自身需求，私人定制福利保险计划。同时享受友邦专业、周到的客户服务，免除企业员工和雇主的后顾之忧。"
+          ]
+        }
+      ]
+    }
+  ],
+  "recommended_products": {
+    "意外/医疗": [
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "这是一款高性价比的保证续保20年的长期医疗险，给您省心、长久、充足的保障之选。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2023-09-18T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦长保康惠长期医疗保险（费率可调）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/changbaokanghui.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "这是一款高性价比的保证续保20年的长期医疗险，给您省心、长久、充足的保障之选。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦长保康惠长期医疗保险（费率可调）",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "孩子的成长与蜕变，时刻牵绊着父母的心。 预约就医、舒适就诊、优质服务，聪明的父母选择《友邦友童无忧高端医疗保险》, 臻爱呵护少儿健康！",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2024-04-06T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦友童无忧高端医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/youtongwuyou.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "孩子的成长与蜕变，时刻牵绊着父母的心。 预约就医、舒适就诊、优质服务，聪明的父母选择《友邦友童无忧高端医疗保险》, 臻爱呵护少儿健康！",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦友童无忧高端医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "高额医疗保障 海内外高端医疗资源 愈无忧精英就医服务 ，给精英更强大的守护 愈无忧精英就医服务依托覆盖海内外优质直付医疗资源及医学支持团队，从疾病的普适、就医、专案三个维度，覆盖治疗的前、中、后三个阶段，为您提供高效专属、一站式、多方位的专业健康管理服务。尊贵服务体验，尊享无忧高品质生活。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2024-04-06T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世无忧(2024)高端医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/chuanshiwuyou2024.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "高额医疗保障 海内外高端医疗资源 愈无忧精英就医服务 ，给精英更强大的守护 愈无忧精英就医服务依托覆盖海内外优质直付医疗资源及医学支持团队，从疾病的普适、就医、专案三个维度，覆盖治疗的前、中、后三个阶段，为您提供高效专属、一站式、多方位的专业健康管理服务。尊贵服务体验，尊享无忧高品质生活。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦传世无忧(2024)高端医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "儿童安心计划，为儿童提供省心、放心、安心，以低保费获得高保障的意外及医疗产品。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2024-03-29T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障",
+          "cn-wise:产品/highlights/意外保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦欣安益（2023）意外伤害保险产品计划—儿童",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/xinanyiertong.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "儿童安心计划，为儿童提供省心、放心、安心，以低保费获得高保障的意外及医疗产品。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障",
+            "cn-wise:产品/highlights/意外保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障",
+            "cn-wise:产品/highlights/意外保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦欣安益（2023）意外伤害保险产品计划—儿童",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "友邦再度优化升级友邦安益（2023）意外伤害及医疗保险产品计划——成人安心计划，为成人提供省心、放心、安心，以低保费获得高保障的意外及医疗产品。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2024-03-30T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障",
+          "cn-wise:产品/highlights/意外保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦欣安益（2023）意外伤害保险产品计划—成人",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/xinanyi2023.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦再度优化升级友邦安益（2023）意外伤害及医疗保险产品计划——成人安心计划，为成人提供省心、放心、安心，以低保费获得高保障的意外及医疗产品。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障",
+            "cn-wise:产品/highlights/意外保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障",
+            "cn-wise:产品/highlights/意外保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦欣安益（2023）意外伤害保险产品计划—成人",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "投保更自由，人生更自在。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2022-11-30T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦智选康惠慢病版医疗保险| 友邦人寿",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/kanghuimanbing.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "投保更自由，人生更自在。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦智选康惠慢病版医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "覆盖肿瘤疑似阶段、确诊治疗、康复阶段的一站式健康服务保险产品。 注：肿瘤指交界性肿瘤、原位癌、恶性肿瘤——轻度、恶性肿瘤——重度。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2021-06-30T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦康爱无忧医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/kangaiwuyou.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "覆盖肿瘤疑似阶段、确诊治疗、康复阶段的一站式健康服务保险产品。 注：肿瘤指交界性肿瘤、原位癌、恶性肿瘤——轻度、恶性肿瘤——重度。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦康爱无忧医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "友邦尊享康逸（2020）医疗保险，为您提供周全的保障方案和支持，让您轻松应对健康问题，即使在病中，也能悠享健康长久好生活！",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2020-10-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦尊享康逸（2020）医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/zunxiangkangyi.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦尊享康逸（2020）医疗保险，为您提供周全的保障方案和支持，让您轻松应对健康问题，即使在病中，也能悠享健康长久好生活！",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦尊享康逸（2020）医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "年度限额27,000元 0免赔 7天等待期",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2023-01-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦友童乐齿医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/youtonglechi.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "年度限额27,000元 0免赔 7天等待期",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦友童乐齿医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "友邦尊享康惠（2020）医疗保险，为您提供周全的保障方案和支持，让您轻松应对健康问题，即使在病中，也能尽享健康长久好生活！",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2020-10-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦尊享康惠（2020）医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/zunxiangkanghui.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦尊享康惠（2020）医疗保险，为您提供周全的保障方案和支持，让您轻松应对健康问题，即使在病中，也能尽享健康长久好生活！",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦尊享康惠（2020）医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "药械专项保障，资金和资源双守护， 有效解决恶性肿瘤用药贵、购药难问题。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2022-02-13T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦守护希望特药器械医疗保险| 友邦人寿",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/shouhuxiwang.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "药械专项保障，资金和资源双守护， 有效解决恶性肿瘤用药贵、购药难问题。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦守护希望特药器械医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "守护宝贝（2021）引入了全流程资金保障与资源服务的概念，从预防、诊断、治疗、康复四个阶段着手，贴心关怀每一个细节！",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2021-10-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦守护宝贝（2021）医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/shouhubaobei.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "守护宝贝（2021）引入了全流程资金保障与资源服务的概念，从预防、诊断、治疗、康复四个阶段着手，贴心关怀每一个细节！",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦守护宝贝（2021）医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "友邦全新推出守护长青（2023）意外保险产品计划，专注中老年意外及骨折全流程的服务产品，银发保障，贴心服务，为爱打造。尽一份孝心，给父母全年安心守护。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2023-06-30T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦守护长青（2023）意外保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/shouhuchangqing2023.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦全新推出守护长青（2023）意外保险产品计划，专注中老年意外及骨折全流程的服务产品，银发保障，贴心服务，为爱打造。尽一份孝心，给父母全年安心守护。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦守护长青（2023）意外保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "高额医疗保障 海内外高端医疗资源 愈无忧精英就医服务 ，给精英更强大的守护 愈无忧精英就医服务依托覆盖海内外优质直付医疗资源及医学支持团队，从疾病的普适、就医、专案三个维度，覆盖治疗的前、中、后三个阶段，为您提供高效专属、一站式、全方位的专业健康管理服务。尊贵服务体验，尊享无忧高品质生活。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2022-11-30T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世无忧(2022)高端医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/chuanshiwuyou2022.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "高额医疗保障 海内外高端医疗资源 愈无忧精英就医服务 ，给精英更强大的守护 愈无忧精英就医服务依托覆盖海内外优质直付医疗资源及医学支持团队，从疾病的普适、就医、专案三个维度，覆盖治疗的前、中、后三个阶段，为您提供高效专属、一站式、全方位的专业健康管理服务。尊贵服务体验，尊享无忧高品质生活。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦传世无忧(2022)高端医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "针对女性高发恶性肿瘤乳腺癌，提供从预防，到诊断，到治疗，到药物，再到康复的全程服务！",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2021-10-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦守护丽人（2021）医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/shouhuliren.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "针对女性高发恶性肿瘤乳腺癌，提供从预防，到诊断，到治疗，到药物，再到康复的全程服务！",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦守护丽人（2021）医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "品质生活，面临风险也要从容应对， 尊享体验，安心治疗也要匹配身价， 高额保障，医疗方式尽可自主选择， 一份卓而不凡的医疗保险产品，时刻相伴， 品质医疗加护，资金资源双享，让您的生活轻松写意！",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2022-03-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦智选康逸荣耀（2022）医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/kangyirongyao2022.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "品质生活，面临风险也要从容应对， 尊享体验，安心治疗也要匹配身价， 高额保障，医疗方式尽可自主选择， 一份卓而不凡的医疗保险产品，时刻相伴， 品质医疗加护，资金资源双享，让您的生活轻松写意！",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦智选康逸荣耀（2022）医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "品质医疗，欣享无忧 高额境内医疗保障，专业专属健康管理服务，惠及更多家庭的品质优选。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2022-11-30T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世无忧安心版（2022）高端医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/chuanshianxin.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "品质医疗，欣享无忧 高额境内医疗保障，专业专属健康管理服务，惠及更多家庭的品质优选。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦传世无忧安心版（2022）高端医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "上班下班、旅行度假、商务差旅，现代人经常行进在路上，人在途中，各类意外风险不可忽视，您是否为自己准备了充足的保障，是否为家人绸缪了坚实的后盾？  当家庭支柱遭受意外后，至爱的家人是否有足够的经济能力应对生活的重负?  当意外伤害降临时，我们是否能够继续维持人生的尊严而无忧生活?  “居安而思危，防患于未然”，虽然意外无时无刻威胁着我们的幸福生活，但只要准备充分，便能“安心出行，日日无忧”！",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-10-16T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/意外保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦安行无忧（2025）/荣耀（2025）两全保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/anxingwuyou2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "上班下班、旅行度假、商务差旅，现代人经常行进在路上，人在途中，各类意外风险不可忽视，您是否为自己准备了充足的保障，是否为家人绸缪了坚实的后盾？  当家庭支柱遭受意外后，至爱的家人是否有足够的经济能力应对生活的重负?  当意外伤害降临时，我们是否能够继续维持人生的尊严而无忧生活?  “居安而思危，防患于未然”，虽然意外无时无刻威胁着我们的幸福生活，但只要准备充分，便能“安心出行，日日无忧”！",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/意外保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/意外保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦安行无忧（2025）/荣耀（2025）两全保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "commerceCardDescription": "丰俭由人、灵活定制的医疗保障",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦智选逸生医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yiwaiyiliao/zhixuanyisheng2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "丰俭由人、灵活定制的医疗保障",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/意外医疗"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/意外医疗",
+            "title": "意外·医疗"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/意外医疗"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/意外医疗",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/意外医疗"
+          ]
+        },
+        "title": "友邦智选逸生医疗保险",
+        "toAge": null
+      }
+    ],
+    "疾病保障": [
+      {
+        "category": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "commerceCardDescription": "重疾保障+、如意愈从容",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/成人"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦盈如意顺心版保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/jibingbaozhang/yingruyishunxinban.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "重疾保障+、如意愈从容",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/疾病保障",
+            "title": "疾病保障"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/疾病保障"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/疾病保障",
+            "cn-wise:产品/highlights/成人"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/成人"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/疾病保障"
+          ]
+        },
+        "title": "友邦盈如意顺心版保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "commerceCardDescription": "友邦周全保障利益，守护您和您家人的健康心愿。 周全守护 一生如意",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/成人"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦友如意顺心版（2025）保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/jibingbaozhang/ruyishunxin2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦周全保障利益，守护您和您家人的健康心愿。 周全守护 一生如意",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/疾病保障",
+            "title": "疾病保障"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/疾病保障"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/疾病保障",
+            "cn-wise:产品/highlights/成人"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/成人"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/疾病保障"
+          ]
+        },
+        "title": "友邦友如意顺心版（2025）保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "commerceCardDescription": "重疾保障+、如意愈从容",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/成人"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦盈如意星享版保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/jibingbaozhang/yingruyixingxiangban.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "重疾保障+、如意愈从容",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/疾病保障",
+            "title": "疾病保障"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/疾病保障"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/疾病保障",
+            "cn-wise:产品/highlights/成人"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/成人"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/疾病保障"
+          ]
+        },
+        "title": "友邦盈如意星享版保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "commerceCardDescription": "重疾保障+、如意愈从容",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-11-12T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/儿童"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦盈如意星享2026保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/jibingbaozhang/yinruyixingxiang2026.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "重疾保障+、如意愈从容",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/疾病保障",
+            "title": "疾病保障"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/疾病保障"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/疾病保障",
+            "cn-wise:产品/highlights/儿童"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/儿童"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/疾病保障"
+          ]
+        },
+        "title": "友邦盈如意星享2026保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "commerceCardDescription": "重疾保障+、如意愈从容",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-11-12T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/成人"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦盈如意顺心2026保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/jibingbaozhang/yinruyishunxin2026.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "重疾保障+、如意愈从容",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/疾病保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/疾病保障",
+            "title": "疾病保障"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/疾病保障"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/疾病保障",
+            "cn-wise:产品/highlights/成人"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/成人"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/疾病保障"
+          ]
+        },
+        "title": "友邦盈如意顺心2026保险产品计划",
+        "toAge": null
+      }
+    ],
+    "寿险保障": [
+      {
+        "category": null,
+        "commerceCardDescription": "定期寿险、高额保障",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦百倍安欣（精英版）定期寿险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/renshoubaoxian/baibeianxin.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "定期寿险、高额保障",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/寿险保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/寿险保障",
+            "title": "寿险保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/寿险保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/寿险保障"
+          ]
+        },
+        "title": "友邦百倍安欣（精英版）定期寿险",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦助您解决人身风险规划难题，实现高额保障，给予家庭永恒的爱。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世经典乐享2025保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/renshoubaoxian/jingdianlexiang2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦助您解决人身风险规划难题，实现高额保障，给予家庭永恒的爱。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/寿险保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/寿险保障",
+            "title": "寿险保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/寿险保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/寿险保障"
+          ]
+        },
+        "title": "友邦传世经典乐享2025保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦助您提升风险保障，均衡财富配置，规划财富传承，为您的传世梦想保驾护航。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世经典荣耀2025保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/renshoubaoxian/jingdianrongyao2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦助您提升风险保障，均衡财富配置，规划财富传承，为您的传世梦想保驾护航。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/寿险保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/寿险保障",
+            "title": "寿险保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/寿险保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/寿险保障"
+          ]
+        },
+        "title": "友邦传世经典荣耀2025保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦全新推出传世盈佳2025荣耀A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世盈佳2025荣耀A款终身寿险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/renshoubaoxian/chuanshiyingjia2025rongyao.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦全新推出传世盈佳2025荣耀A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/寿险保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/寿险保障",
+            "title": "寿险保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/寿险保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/寿险保障"
+          ]
+        },
+        "title": "友邦传世盈佳2025荣耀A款终身寿险（分红型）",
+        "toAge": null
+      }
+    ],
+    "享老保障": [
+      {
+        "category": null,
+        "commerceCardDescription": "友邦个人养老金保险产品",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦优享年年（2025）A款年金保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yanglaobaoxian/youxiangniannian2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦个人养老金保险产品",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/享老保障",
+            "title": "享老保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/享老保障"
+          ]
+        },
+        "title": "友邦优享年年（2025）A款年金保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "commerceCardDescription": "为您与家人提供终身护理&疾病身故保障",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/hulixianglao"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦优享长伴（2025）终身护理保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yanglaobaoxian/youbangyouxiangchangban2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "为您与家人提供终身护理&疾病身故保障",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/享老保障",
+            "title": "享老保障"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/享老保障",
+            "cn-wise:产品/highlights/hulixianglao"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/hulixianglao"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/享老保障"
+          ]
+        },
+        "title": "友邦优享长伴（2025）终身护理保险",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "商海搏击，成就了今天的事业版图； 待到人生下半场，增一份闲适，添一份精彩； 今日的财富规划，是您和家人未来幸福安心的来源",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世金生2025荣耀版保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yanglaobaoxian/chuanshijinsheng2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "商海搏击，成就了今天的事业版图； 待到人生下半场，增一份闲适，添一份精彩； 今日的财富规划，是您和家人未来幸福安心的来源",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/享老保障",
+            "title": "享老保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/享老保障"
+          ]
+        },
+        "title": "友邦传世金生2025荣耀版保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "commerceCardDescription": "友邦分红型个人养老金产品",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦利享年年（2025）A款年金保险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yanglaobaoxian/lixiangniannian2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦分红型个人养老金产品",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/享老保障",
+            "title": "享老保障"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/享老保障"
+          ]
+        },
+        "title": "友邦利享年年（2025）A款年金保险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦全新推出传世盈佳2025A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世盈佳2025A款终身寿险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yanglaobaoxian/chuanshiyingjia2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦全新推出传世盈佳2025A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/享老保障",
+            "title": "享老保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/享老保障"
+          ]
+        },
+        "title": "友邦传世盈佳2025A款终身寿险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "现在播种一份保单，收获未来的底气、财气、福气",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世未来2025保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yanglaobaoxian/chuanshiweilai2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "现在播种一份保单，收获未来的底气、财气、福气",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/享老保障",
+            "title": "享老保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/享老保障"
+          ]
+        },
+        "title": "友邦传世未来2025保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦个人养老金保险产品",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦优享未来（2025）A款两全保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yanglaobaoxian/youxiangweilai2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦个人养老金保险产品",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/享老保障",
+            "title": "享老保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/享老保障"
+          ]
+        },
+        "title": "友邦优享未来（2025）A款两全保险",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "现在播种一份保单，收获未来的底气、财气、福气",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世未来2025荣耀版保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yanglaobaoxian/chuanshiweilai2025rongyaoban.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "现在播种一份保单，收获未来的底气、财气、福气",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/享老保障",
+            "title": "享老保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/享老保障"
+          ]
+        },
+        "title": "友邦传世未来2025荣耀版保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "传世颐年，您长寿最美好的祝福",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世颐年养老年金保险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/yanglaobaoxian/chuanshiyinian.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "传世颐年，您长寿最美好的祝福",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/享老保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/享老保障",
+            "title": "享老保障"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/享老保障"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/享老保障"
+          ]
+        },
+        "title": "友邦传世颐年养老年金保险（分红型）",
+        "toAge": null
+      }
+    ],
+    "财富管理": [
+      {
+        "category": null,
+        "commerceCardDescription": "友邦全新推出传世盈佳2025荣耀A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世盈佳2025荣耀A款终身寿险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/chuanshiyingjia2025rongyao.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦全新推出传世盈佳2025荣耀A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/财富管理"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/财富管理",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/财富管理"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/财富管理"
+          ]
+        },
+        "title": "友邦传世盈佳2025荣耀A款终身寿险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "传世颐年，您长寿最美好的祝福",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世颐年养老年金保险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/chuanshiyinian.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "传世颐年，您长寿最美好的祝福",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/财富管理"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/财富管理",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/财富管理"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/财富管理"
+          ]
+        },
+        "title": "友邦传世颐年养老年金保险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "现在播种一份保单，收获未来的底气、财气、福气",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世未来2025荣耀版保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/chuanshiweilai2025rongyaoban.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "现在播种一份保单，收获未来的底气、财气、福气",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/财富管理"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/财富管理",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/财富管理"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/财富管理"
+          ]
+        },
+        "title": "友邦传世未来2025荣耀版保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "臻享分红 传世可期",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2026-01-11T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世臻享年金保险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/chuanshizhenxiang.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "臻享分红 传世可期",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/财富管理"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/财富管理",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/财富管理"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/财富管理"
+          ]
+        },
+        "title": "友邦传世臻享年金保险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/health"
+        ],
+        "commerceCardDescription": "友邦分红型个人养老金产品",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦利享年年（2025）A款年金保险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/lixiangniannian2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦分红型个人养老金产品",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/health"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/health",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/health"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/health"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/health"
+          ]
+        },
+        "title": "友邦利享年年（2025）A款年金保险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "现在播种一份保单，收获未来的底气、财气、福气",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世未来2025保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/chuanshiweilai2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "现在播种一份保单，收获未来的底气、财气、福气",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/health"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/health",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/health"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/health"
+          ]
+        },
+        "title": "友邦传世未来2025保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦全新推出传世盈佳2025A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世盈佳2025A款终身寿险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/chuanshiyingjia2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦全新推出传世盈佳2025A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/health"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/health",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/health"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/health"
+          ]
+        },
+        "title": "友邦传世盈佳2025A款终身寿险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦个人养老金保险产品",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦优享年年（2025）A款年金保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/youxiangniannian2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦个人养老金保险产品",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/health"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/health",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/health"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/health"
+          ]
+        },
+        "title": "友邦优享年年（2025）A款年金保险",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦个人养老金保险产品",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦优享未来（2025）A款两全保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/youxiangweilai2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦个人养老金保险产品",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/health"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/health",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/health"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/health"
+          ]
+        },
+        "title": "友邦优享未来（2025）A款两全保险",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "商海搏击，成就了今天的事业版图； 待到人生下半场，增一份闲适，添一份精彩； 今日的财富规划，是您和家人未来幸福安心的来源",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世金生2025荣耀版保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/touzilicai/chuanshijinsheng2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "商海搏击，成就了今天的事业版图； 待到人生下半场，增一份闲适，添一份精彩； 今日的财富规划，是您和家人未来幸福安心的来源",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/health"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/health",
+            "title": "财富管理"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/health"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/health"
+          ]
+        },
+        "title": "友邦传世金生2025荣耀版保险产品计划",
+        "toAge": null
+      }
+    ],
+    "护理保障": [
+      {
+        "category": [
+          "cn-wise:产品/分类/护理保障"
+        ],
+        "commerceCardDescription": "为您与家人提供终身护理&疾病身故保障",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/hulixianglao"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦优享长伴（2025）终身护理保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/hulibaozhang/youbangyouxiangchangban2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "为您与家人提供终身护理&疾病身故保障",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/护理保障"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/护理保障",
+            "title": "护理保障"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/护理保障"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/护理保障",
+            "cn-wise:产品/highlights/hulixianglao"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/hulixianglao"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/护理保障"
+          ]
+        },
+        "title": "友邦优享长伴（2025）终身护理保险",
+        "toAge": null
+      }
+    ],
+    "教育储备": [
+      {
+        "category": null,
+        "commerceCardDescription": "商海搏击，成就了今天的事业版图； 待到人生下半场，增一份闲适，添一份精彩； 今日的财富规划，是您和家人未来幸福安心的来源",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世金生2025荣耀版保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/jiaoyujijin/chuanshijinsheng2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "商海搏击，成就了今天的事业版图； 待到人生下半场，增一份闲适，添一份精彩； 今日的财富规划，是您和家人未来幸福安心的来源",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/教育储备"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/教育储备",
+            "title": "教育储备"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/教育储备"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/教育储备"
+          ]
+        },
+        "title": "友邦传世金生2025荣耀版保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "今天，为TA储备每一份成长 明天，为TA兑现每一个梦想",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2026-01-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦星耀未来保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/jiaoyujijin/xingyaoweilaibaoxian.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "今天，为TA储备每一份成长 明天，为TA兑现每一个梦想",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/教育储备"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/教育储备",
+            "title": "教育储备"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/教育储备"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/教育储备"
+          ]
+        },
+        "title": "友邦星耀未来保险产品计划",
+        "toAge": null
+      }
+    ],
+    "高净值传世系列": [
+      {
+        "category": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "commerceCardDescription": "孩子的成长与蜕变，时刻牵绊着父母的心。 预约就医、舒适就诊、优质服务，聪明的父母选择《友邦友童无忧高端医疗保险》, 臻爱呵护少儿健康！",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2024-04-06T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦友童无忧高端医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/youtongwuyou.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "孩子的成长与蜕变，时刻牵绊着父母的心。 预约就医、舒适就诊、优质服务，聪明的父母选择《友邦友童无忧高端医疗保险》, 臻爱呵护少儿健康！",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦友童无忧高端医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "commerceCardDescription": "高额医疗保障 海内外高端医疗资源 愈无忧精英就医服务 ，给精英更强大的守护 愈无忧精英就医服务依托覆盖海内外优质直付医疗资源及医学支持团队，从疾病的普适、就医、专案三个维度，覆盖治疗的前、中、后三个阶段，为您提供高效专属、一站式、多方位的专业健康管理服务。尊贵服务体验，尊享无忧高品质生活。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2024-04-06T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世无忧(2024)高端医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/chuanshiwuyou2024.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "高额医疗保障 海内外高端医疗资源 愈无忧精英就医服务 ，给精英更强大的守护 愈无忧精英就医服务依托覆盖海内外优质直付医疗资源及医学支持团队，从疾病的普适、就医、专案三个维度，覆盖治疗的前、中、后三个阶段，为您提供高效专属、一站式、多方位的专业健康管理服务。尊贵服务体验，尊享无忧高品质生活。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦传世无忧(2024)高端医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "commerceCardDescription": "高额医疗保障 海内外高端医疗资源 愈无忧精英就医服务 ，给精英更强大的守护 愈无忧精英就医服务依托覆盖海内外优质直付医疗资源及医学支持团队，从疾病的普适、就医、专案三个维度，覆盖治疗的前、中、后三个阶段，为您提供高效专属、一站式、全方位的专业健康管理服务。尊贵服务体验，尊享无忧高品质生活。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2022-11-30T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世无忧(2022)高端医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/chuanshiwuyou2022.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "高额医疗保障 海内外高端医疗资源 愈无忧精英就医服务 ，给精英更强大的守护 愈无忧精英就医服务依托覆盖海内外优质直付医疗资源及医学支持团队，从疾病的普适、就医、专案三个维度，覆盖治疗的前、中、后三个阶段，为您提供高效专属、一站式、全方位的专业健康管理服务。尊贵服务体验，尊享无忧高品质生活。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦传世无忧(2022)高端医疗保险",
+        "toAge": null
+      },
+      {
+        "category": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "commerceCardDescription": "品质医疗，欣享无忧 高额境内医疗保障，专业专属健康管理服务，惠及更多家庭的品质优选。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2022-11-30T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": [
+          "cn-wise:产品/highlights/医疗保障"
+        ],
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世无忧安心版（2022）高端医疗保险",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/chuanshianxin.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "品质医疗，欣享无忧 高额境内医疗保障，专业专属健康管理服务，惠及更多家庭的品质优选。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列",
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "highlight": [
+            "cn-wise:产品/highlights/医疗保障"
+          ],
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦传世无忧安心版（2022）高端医疗保险",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦全新推出传世盈佳2025荣耀A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世盈佳2025荣耀A款终身寿险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/chuanshiyingjia2025rongyao.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦全新推出传世盈佳2025荣耀A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦传世盈佳2025荣耀A款终身寿险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦助您解决人身风险规划难题，实现高额保障，给予家庭永恒的爱。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世经典乐享2025保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/jingdianlexiang2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦助您解决人身风险规划难题，实现高额保障，给予家庭永恒的爱。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦传世经典乐享2025保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦助您提升风险保障，均衡财富配置，规划财富传承，为您的传世梦想保驾护航。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-12-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世经典荣耀2025保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/jingdianrongyao2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦助您提升风险保障，均衡财富配置，规划财富传承，为您的传世梦想保驾护航。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦传世经典荣耀2025保险产品计划",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "臻享分红 传世可期",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2026-01-11T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世臻享年金保险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/chuanshizhenxiang.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "臻享分红 传世可期",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦传世臻享年金保险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "友邦全新推出传世盈佳2025A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世盈佳2025A款终身寿险（分红型）",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/chuanshiyingjia2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "友邦全新推出传世盈佳2025A款终身寿险（分红型）产品，为您提供终身寿险保障及周全财富规划，帮您实现人身风险防范、财富积累增长、传世家业长青的美好愿景。还可以共享公司经营成果，增额红利再加码，奏响生活华美乐章。",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦传世盈佳2025A款终身寿险（分红型）",
+        "toAge": null
+      },
+      {
+        "category": null,
+        "commerceCardDescription": "商海搏击，成就了今天的事业版图； 待到人生下半场，增一份闲适，添一份精彩； 今日的财富规划，是您和家人未来幸福安心的来源",
+        "currency": null,
+        "dateCreated": null,
+        "dateUpdated": "2025-08-31T16:00:00.000+00:00",
+        "features": null,
+        "fromAge": null,
+        "fromPrice": null,
+        "highlight": null,
+        "id": null,
+        "isOnlineProduct": false,
+        "isVitality": false,
+        "name": "友邦传世金生2025荣耀版保险产品计划",
+        "needSegment": null,
+        "path": "/zh-cn/baoxian/chuanshixilie/chuanshijinsheng2025.html",
+        "productAttributes": {
+          "Benefit limit": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Benefit limit",
+            "value": "HKD600,000/yr"
+          },
+          "Supplementary major medical benefit": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "Supplementary major medical benefit",
+            "value": "HKD120,000/yr"
+          },
+          "Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "noicon",
+            "label": "Prescribed diagnostic imaging tests",
+            "value": "HKD26,000/yr"
+          },
+          "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "checkmark",
+            "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+          },
+          "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+            "comparable": true,
+            "icon": "xmark",
+            "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+            "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+          }
+        },
+        "productCardDescription": "商海搏击，成就了今天的事业版图； 待到人生下半场，增一份闲适，添一份精彩； 今日的财富规划，是您和家人未来幸福安心的来源",
+        "productComparable": false,
+        "productPlanList": [],
+        "protectionPeriod": null,
+        "recurrence": null,
+        "riders": null,
+        "sortvalues": null,
+        "subcategory": [
+          "cn-wise:产品/分类/高净值传世系列"
+        ],
+        "subcategoryWithTitle": [
+          {
+            "id": "cn-wise:产品/分类/高净值传世系列",
+            "title": "高净值传世系列"
+          }
+        ],
+        "tags": {
+          "category": null,
+          "features": null,
+          "filter": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ],
+          "highlight": null,
+          "subcategory": [
+            "cn-wise:产品/分类/高净值传世系列"
+          ]
+        },
+        "title": "友邦传世金生2025荣耀版保险产品计划",
+        "toAge": null
+      }
+    ]
+  }
+}
