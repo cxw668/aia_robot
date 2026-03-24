@@ -1,0 +1,30 @@
+# Web framework
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.7.0
+pydantic-settings>=2.0.0
+
+# Environment
+python-dotenv>=1.0.0
+
+# MySQL
+sqlalchemy>=2.0.0
+aiomysql>=0.2.0
+pymysql>=1.1.0
+
+# Redis
+redis>=4.6.0
+aioredis>=2.0.0
+
+# Vector DB
+qdrant-client>=1.9.0
+
+# Embedding
+sentence-transformers>=3.0.0
+
+# LLM calls
+requests>=2.31.0
+
+# Auth
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
