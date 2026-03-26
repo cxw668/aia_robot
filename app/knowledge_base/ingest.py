@@ -208,6 +208,7 @@ def ingest_forms_pdf(
     data: dict,
     source_file: str = "",
     *,
+    collection_name: str = DEFAULT_COLLECTION,
     progress_cb=None,
 ) -> dict:
     """Ingest a forms JSON whose items contain PDF URLs.
@@ -228,7 +229,7 @@ def ingest_forms_pdf(
 
     ensure_buckets()
     client = _client()
-    _ensure_collection(client)
+    _ensure_collection(client, collection_name)
     model = _model()
 
     items = data.get("items", [])
@@ -327,7 +328,7 @@ def ingest_forms_pdf(
             )
             for i in range(len(chunks))
         ]
-        client.upsert(COLLECTION_NAME, points=points)
+        client.upsert(collection_name, points=points)
         total_chunks += len(chunks)
         logger.info(f"[ingest] '{filename}' -> {len(chunks)} chunks upserted")
 
@@ -365,7 +366,12 @@ def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, pr
 
     # Route forms JSON to PDF pipeline
     if schema == "forms":
-        return ingest_forms_pdf(data, source_file=path.name, progress_cb=progress_cb)
+        return ingest_forms_pdf(
+            data,
+            source_file=path.name,
+            collection_name=collection_name,
+            progress_cb=progress_cb,
+        )
 
     # service_categories: ingest each category into its own named collection
     if schema == "service_categories":
