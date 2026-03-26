@@ -1,16 +1,17 @@
 import os
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
-from dotenv import load_dotenv
 
-load_dotenv()
-custom_model_dir = os.getenv("MODEL_CACHE_PATH")
+from app.config import settings
 
-os.environ["HF_HOME"] = custom_model_dir
-os.environ["TRANSFORMERS_CACHE"] = custom_model_dir
-os.environ["SENTENCE_TRANSFORMERS_HOME"] = custom_model_dir
-    
-COLLECTION_NAME = "knowledge_base"
+# Set HuggingFace cache dirs only when a custom path is configured
+_model_cache = settings.model_cache_path
+if _model_cache:
+    os.environ["HF_HOME"] = _model_cache
+    os.environ["TRANSFORMERS_CACHE"] = _model_cache
+    os.environ["SENTENCE_TRANSFORMERS_HOME"] = _model_cache
+
+DEFAULT_COLLECTION = "knowledge_base"
 MODEL_NAME = "BAAI/bge-small-zh-v1.5"
 TOP_K = 3
 
@@ -22,8 +23,8 @@ def _get_client() -> QdrantClient:
     global _client
     if _client is None:
         _client = QdrantClient(
-            url=os.getenv("QdrantClient_url"),
-            api_key=os.getenv("QdrantClient_key"),
+            url=settings.qdrantclient_url or None,
+            api_key=settings.qdrantclient_key or None,
         )
     return _client
 
@@ -36,21 +37,10 @@ def _get_model() -> SentenceTransformer:
 
 
 # ── 核心检索函数 ──────────────────────────────────
-def retrieve(query: str, top_k: int = TOP_K) -> list[dict]:
+def retrieve(query: str, top_k: int = TOP_K, collection_name: str = DEFAULT_COLLECTION) -> list[dict]:
     """
     对 query 进行向量检索，返回最相关的 top_k 条知识条目。
-
-    返回値格式：
-    [
-        {
-            "score":        float,   # 余弦相似度（越高越相关）
-            "title":        str,
-            "content":      str,
-            "service_name": str,
-            "service_url":  str,
-        },
-        ...
-    ]
+    collection_name 指定要检索的知识库分类（collection）。
     """
     model = _get_model()
     client = _get_client()
@@ -58,7 +48,7 @@ def retrieve(query: str, top_k: int = TOP_K) -> list[dict]:
     query_vector = model.encode(query, normalize_embeddings=True).tolist()
 
     response = client.query_points(
-        collection_name=COLLECTION_NAME,
+        collection_name=collection_name,
         query=query_vector,
         limit=top_k,
         with_payload=True,
@@ -78,11 +68,11 @@ def retrieve(query: str, top_k: int = TOP_K) -> list[dict]:
 
 
 # ── RAG 组合函数：检索 + 拼接上下文 ──────────────────
-def build_rag_context(query: str, top_k: int = TOP_K) -> str:
+def build_rag_context(query: str, top_k: int = TOP_K, collection_name: str = DEFAULT_COLLECTION) -> str:
     """
     检索相关知识并拼接为可直接注入 LLM prompt 的上下文字符串。
     """
-    docs = retrieve(query, top_k=top_k)
+    docs = retrieve(query, top_k=top_k, collection_name=collection_name)
     if not docs:
         return "未找到相关知识库内容。"
 
@@ -96,7 +86,7 @@ def build_rag_context(query: str, top_k: int = TOP_K) -> str:
 
 
 # ── 便捷：检索 + 调用 LLM 一步完成 ────────────────────
-def rag_query(query: str, top_k: int = TOP_K) -> str:
+def rag_query(query: str, top_k: int = TOP_K, collection_name: str = DEFAULT_COLLECTION) -> str:
     """
     完整的 RAG 流程：
       1. 向量检索相关保单服务知识
@@ -105,7 +95,7 @@ def rag_query(query: str, top_k: int = TOP_K) -> str:
     """
     from app.chat.index import query_llm
 
-    context = build_rag_context(query, top_k=top_k)
+    context = build_rag_context(query, top_k=top_k, collection_name=collection_name)
 
     prompt = (
         "你是友邦保险（AIA）的智能客服助手，请根据以下知识库内容回答用户问题。\n"

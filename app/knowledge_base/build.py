@@ -44,6 +44,7 @@ def load_documents(path: str) -> list[dict]:
                         "content": content,
                         "service_name": service_name,
                         "service_url": service_url,
+                        "category": title,
                     },
                 }
             )

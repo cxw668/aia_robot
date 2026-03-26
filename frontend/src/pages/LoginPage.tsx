@@ -16,15 +16,16 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
+import { useSnackbar } from 'notistack';
 import { login, register } from '../api/auth';
 import { useAppStore } from '../store/useAppStore';
 import Logo from '../components/atoms/Logo';
 import ThemeToggle from '../components/atoms/ThemeToggle';
 import LangToggle from '../components/atoms/LangToggle';
-import SnackbarAlert from '../components/atoms/SnackbarAlert';
 
 export default function LoginPage() {
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const theme = useTheme();
   const setUser = useAppStore((s) => s.setUser);
@@ -36,11 +37,6 @@ export default function LoginPage() {
   const [confirmPwd, setConfirmPwd] = useState('');
   const [showPwd, setShowPwd] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [snack, setSnack] = useState<{ open: boolean; msg: string; sev: 'success' | 'error' }>({
-    open: false,
-    msg: '',
-    sev: 'success',
-  });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
@@ -61,10 +57,10 @@ export default function LoginPage() {
           ? await login({ username, password })
           : await register({ username, password });
       setUser({ username: data.username, token: data.token });
-      setSnack({ open: true, msg: tab === 0 ? t('loginSuccess') : t('registerSuccess'), sev: 'success' });
+      enqueueSnackbar(tab === 0 ? t('loginSuccess') : t('registerSuccess'), { variant: 'success' });
       setTimeout(() => navigate('/chat'), 800);
     } catch {
-      setSnack({ open: true, msg: t('loginError'), sev: 'error' });
+      enqueueSnackbar(t('loginError'), { variant: 'error' });
     } finally {
       setLoading(false);
     }
@@ -226,13 +222,6 @@ export default function LoginPage() {
           Demo: admin / admin123
         </Typography>
       </Card>
-
-      <SnackbarAlert
-        open={snack.open}
-        message={snack.msg}
-        severity={snack.sev}
-        onClose={() => setSnack((s) => ({ ...s, open: false }))}
-      />
     </Box>
   );
 }

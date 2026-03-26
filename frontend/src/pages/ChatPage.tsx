@@ -8,15 +8,16 @@ import {
   Send, Add, Delete, ContentCopy, ThumbUp, ThumbDown,
   AutoAwesome, Clear, ExpandMore,
 } from '@mui/icons-material';
+import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useChatStore, type Message } from '../store/useChatStore';
 import { sendChat } from '../api/chat';
-import SnackbarAlert from '../components/atoms/SnackbarAlert';
 
 function MsgBubble({ msg, convId }: { msg: Message; convId: string }) {
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
   const theme = useTheme();
   const { updateMessage } = useChatStore();
   const isUser = msg.role === 'user';
@@ -27,6 +28,7 @@ function MsgBubble({ msg, convId }: { msg: Message; convId: string }) {
   const copy = () => {
     navigator.clipboard.writeText(msg.content);
     setCopied(true);
+    enqueueSnackbar(t('copyMsg'), { variant: 'success' });
     setTimeout(() => setCopied(false), 1500);
   };
 
@@ -62,14 +64,28 @@ function MsgBubble({ msg, convId }: { msg: Message; convId: string }) {
               </IconButton>
             </Tooltip>
             <Tooltip title={t('helpful')}>
-              <IconButton size="small" onClick={() => updateMessage(convId, msg.id, { feedback: 'helpful' })}
-                color={msg.feedback === 'helpful' ? 'success' : 'default'} sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}>
+              <IconButton
+                size="small"
+                onClick={() => {
+                  updateMessage(convId, msg.id, { feedback: 'helpful' });
+                  enqueueSnackbar(t('feedbackSent'), { variant: 'success' });
+                }}
+                color={msg.feedback === 'helpful' ? 'success' : 'default'}
+                sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
+              >
                 <ThumbUp sx={{ fontSize: 14 }} />
               </IconButton>
             </Tooltip>
             <Tooltip title={t('notHelpful')}>
-              <IconButton size="small" onClick={() => updateMessage(convId, msg.id, { feedback: 'not_helpful' })}
-                color={msg.feedback === 'not_helpful' ? 'error' : 'default'} sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}>
+              <IconButton
+                size="small"
+                onClick={() => {
+                  updateMessage(convId, msg.id, { feedback: 'not_helpful' });
+                  enqueueSnackbar(t('feedbackSent'), { variant: 'success' });
+                }}
+                color={msg.feedback === 'not_helpful' ? 'error' : 'default'}
+                sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
+              >
                 <ThumbDown sx={{ fontSize: 14 }} />
               </IconButton>
             </Tooltip>
@@ -118,6 +134,7 @@ function ThinkingBubble() {
 
 export default function ChatPage() {
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const {
@@ -131,7 +148,6 @@ export default function ChatPage() {
   const [sideOpen, setSideOpen] = useState(!isMobile);
   const [confirmClear, setConfirmClear] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
-  const [snack, setSnack] = useState<{ open: boolean; msg: string; sev: 'success' | 'error' }>({ open: false, msg: '', sev: 'success' });
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const isDark = theme.palette.mode === 'dark';
@@ -154,7 +170,7 @@ export default function ChatPage() {
       const res = await sendChat({ query: text, session_id: activeId });
       addMessage(activeId, { id: Math.random().toString(36).slice(2), role: 'assistant', content: res.answer, citations: res.citations, timestamp: Date.now() });
     } catch {
-      setSnack({ open: true, msg: t('chatError'), sev: 'error' });
+      enqueueSnackbar(t('chatError'), { variant: 'error' });
     } finally {
       setStreaming(false);
       setTimeout(() => inputRef.current?.focus(), 100);
@@ -179,7 +195,11 @@ export default function ChatPage() {
       }}>
         <Box sx={{ p: 1.5, display: 'flex', alignItems: 'center', gap: 1 }}>
           <Button variant="contained" startIcon={<Add />}
-            onClick={() => { createConversation(); if (isMobile) setSideOpen(false); }}
+            onClick={() => {
+              createConversation();
+              enqueueSnackbar(t('chatCreated'), { variant: 'success' });
+              if (isMobile) setSideOpen(false);
+            }}
             fullWidth size="small"
             sx={{ borderRadius: 2, background: 'linear-gradient(135deg,#e94560,#0f3460)', '&:hover': { background: 'linear-gradient(135deg,#c73652,#0a2440)' } }}>
             {t('newChat')}
@@ -260,7 +280,17 @@ export default function ChatPage() {
         <DialogTitle sx={{ fontSize: '1rem' }}>{t('clearHistory')}</DialogTitle>
         <DialogActions>
           <Button onClick={() => setConfirmClear(false)}>{t('cancel')}</Button>
-          <Button variant="contained" color="error" onClick={() => { clearAll(); setConfirmClear(false); }}>{t('confirm')}</Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => {
+              clearAll();
+              setConfirmClear(false);
+              enqueueSnackbar(t('historyCleared'), { variant: 'success' });
+            }}
+          >
+            {t('confirm')}
+          </Button>
         </DialogActions>
       </Dialog>
 
@@ -269,11 +299,21 @@ export default function ChatPage() {
         <DialogTitle sx={{ fontSize: '1rem' }}>{t('confirmDelete')}</DialogTitle>
         <DialogActions>
           <Button onClick={() => setDeleteTarget(null)}>{t('cancel')}</Button>
-          <Button variant="contained" color="error" onClick={() => { if (deleteTarget) deleteConversation(deleteTarget); setDeleteTarget(null); }}>{t('confirm')}</Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => {
+              if (deleteTarget) {
+                deleteConversation(deleteTarget);
+                enqueueSnackbar(t('chatDeleted'), { variant: 'success' });
+              }
+              setDeleteTarget(null);
+            }}
+          >
+            {t('confirm')}
+          </Button>
         </DialogActions>
       </Dialog>
-
-      <SnackbarAlert open={snack.open} message={snack.msg} severity={snack.sev} onClose={() => setSnack((s) => ({ ...s, open: false }))} />
     </Box>
   );
 }

@@ -4,10 +4,16 @@ export interface IngestJob {
   job_id: string;
   type: 'dir' | 'url' | 'file';
   source: string;
+  collection: string;
   status: 'pending' | 'running' | 'done' | 'failed';
   created_at: string;
   doc_count: number;
   error?: string;
+}
+
+export interface KbCollection {
+  name: string;
+  doc_count: number;
 }
 
 export interface KbDoc {
@@ -26,35 +32,31 @@ export interface KbDocsResponse {
   total: number;
   offset: number;
   limit: number;
-  category: string | null;
   docs: KbDoc[];
-}
-
-export interface KbCategory {
-  name: string;
-  count: number;
+  collection: string;
 }
 
 export interface HealthResponse {
   status: string;
   doc_count: number;
+  collection: string;
   last_updated: string;
 }
 
-export async function ingestDir(path: string): Promise<{ job_id: string }> {
-  const res = await client.post<{ job_id: string }>('/kb/ingest', { type: 'dir', path });
+export async function ingestDir(path: string, collection: string): Promise<{ job_id: string; collection: string }> {
+  const res = await client.post('/kb/ingest', { type: 'dir', path, collection });
   return res.data;
 }
 
-export async function ingestUrl(url: string): Promise<{ job_id: string }> {
-  const res = await client.post<{ job_id: string }>('/kb/ingest', { type: 'url', url });
+export async function ingestUrl(url: string, collection: string): Promise<{ job_id: string; collection: string }> {
+  const res = await client.post('/kb/ingest', { type: 'url', url, collection });
   return res.data;
 }
 
-export async function uploadFile(file: File): Promise<{ job_id: string }> {
+export async function uploadFile(file: File, collection: string): Promise<{ job_id: string; collection: string }> {
   const form = new FormData();
   form.append('file', file);
-  const res = await client.post<{ job_id: string }>('/kb/upload', form, {
+  const res = await client.post(`/kb/upload?collection=${encodeURIComponent(collection)}`, form, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
   return res.data;
@@ -65,22 +67,27 @@ export async function getJobs(): Promise<IngestJob[]> {
   return res.data;
 }
 
+export async function getCollections(): Promise<KbCollection[]> {
+  const res = await client.get<{ collections: KbCollection[] }>('/kb/collections');
+  return res.data.collections;
+}
+
+export async function deleteCollection(name: string): Promise<void> {
+  await client.delete(`/kb/collections/${encodeURIComponent(name)}`);
+}
+
 export async function getDocs(
-  params: { q?: string; limit?: number; offset?: number } = {}
+  params: { collection?: string; q?: string; limit?: number; offset?: number } = {}
 ): Promise<KbDocsResponse> {
   const res = await client.get<KbDocsResponse>('/kb/docs', { params });
   return res.data;
 }
 
-export async function deleteDoc(docId: string): Promise<void> {
-  await client.delete(`/kb/docs/${docId}`);
+export async function deleteDoc(docId: string, collection: string): Promise<void> {
+  await client.delete(`/kb/docs/${docId}?collection=${encodeURIComponent(collection)}`);
 }
 
-export async function deleteAllDocs(): Promise<void> {
-  await client.delete('/kb/docs');
-}
-
-export async function getHealth(): Promise<HealthResponse> {
-  const res = await client.get<HealthResponse>('/health');
+export async function getHealth(collection?: string): Promise<HealthResponse> {
+  const res = await client.get<HealthResponse>('/health', { params: collection ? { collection } : {} });
   return res.data;
 }

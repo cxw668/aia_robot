@@ -37,7 +37,7 @@ class Settings(BaseSettings):
     db_name: str = "aia_bot"
     db_user: str = "root"
     db_password: str = "1234"
-    db_echo: bool = False          # set True to log SQL statements
+    db_echo: bool = False
     db_pool_size: int = 10
     db_max_overflow: int = 20
 
@@ -83,6 +83,41 @@ class Settings(BaseSettings):
 
     # ── Embedding ─────────────────────────────────────────────────────────────
     model_cache_path: str = ""
+
+    # ── OCR (SiliconFlow DeepSeek-OCR) ────────────────────────────────────────
+    ocr_api_url: str = "https://api.siliconflow.cn/v1/chat/completions"
+    ocr_api_key: str = "sk-zuqiutkxiargdkzgsitjnjtkqbndpeznribbxxzpaywckxve"
+    ocr_model: str = "deepseek-ai/DeepSeek-OCR"
+    # Minimum chars extracted by PyMuPDF before falling back to OCR
+    ocr_fallback_min_chars: int = 50
+    # HTTP timeout for OCR API calls (seconds)
+    ocr_timeout: int = 60
+
+    # ── MinIO object storage ───────────────────────────────────────────────────
+    minio_endpoint: str = "localhost:9000"
+    minio_access_key: str = "minioadmin"
+    minio_secret_key: str = "minioadmin"
+    minio_secure: bool = False
+    # Bucket names
+    minio_bucket_raw: str = "kb-raw"
+    minio_bucket_parsed: str = "kb-parsed"
+
+    # ── PDF ingestion ──────────────────────────────────────────────────────────
+    # Maximum file size to download (bytes). Default 50 MB.
+    pdf_max_bytes: int = 52_428_800
+    # HTTP download timeout (seconds)
+    pdf_download_timeout: int = 60
+    # Comma-separated allowed origin hostnames
+    pdf_allowed_hosts: str = "www.aia.com.cn,aia.com.cn"
+    # Text chunk size (chars) for splitting parsed PDF content
+    pdf_chunk_size: int = 600
+    # Overlap between consecutive chunks (chars)
+    pdf_chunk_overlap: int = 80
+
+    @property
+    def pdf_allowed_host_list(self) -> list[str]:
+        """Parsed list of allowed download hostnames."""
+        return [h.strip() for h in self.pdf_allowed_hosts.split(",") if h.strip()]
 
 
 @lru_cache(maxsize=1)

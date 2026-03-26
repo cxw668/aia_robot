@@ -25,6 +25,15 @@ sentence-transformers>=3.0.0
 # LLM calls
 requests>=2.31.0
 
+# Object storage
+minio>=7.2.0
+
+# PDF processing
+pymupdf>=1.24.0
+
+# Image processing (for OCR preprocessing)
+Pillow>=10.0.0
+
 # Auth
 python-jose[cryptography]>=3.3.0
 passlib[bcrypt]>=1.7.4
