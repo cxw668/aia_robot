@@ -1,21 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   Box, IconButton, TextField, Typography, Tooltip, Divider,
-  Chip, Paper, Collapse, CircularProgress, Button, Dialog,
+  Chip, Paper, Collapse, Button, Dialog,
   DialogTitle, DialogActions, useTheme, useMediaQuery, Avatar,
 } from '@mui/material';
 import {
   Send, Add, Delete, ContentCopy, ThumbUp, ThumbDown,
-  AutoAwesome, Clear, ExpandMore,
+  AutoAwesome, Clear, ExpandMore, Stop,
 } from '@mui/icons-material';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { useChatStore, type Message } from '../store/useChatStore';
-import { sendChat } from '../api/chat';
-
-function MsgBubble({ msg, convId }: { msg: Message; convId: string }) {
+import { useChatStore, type Message, type Citation } from '../store/useChatStore';
+import { sendChatStream } from '../api/chat';
+function MsgBubble({ msg, convId, isStreamingActive }: { msg: Message; convId: string; isStreamingActive?: boolean }) {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const theme = useTheme();
@@ -54,9 +53,27 @@ function MsgBubble({ msg, convId }: { msg: Message; convId: string }) {
           '& th,& td': { border: '1px solid', borderColor: 'divider', px: 1, py: 0.5, fontSize: '0.85rem' },
         }}>
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg.content}</ReactMarkdown>
+          {!isUser && isStreamingActive && (
+            <Box
+              component="span"
+              sx={{
+                display: 'inline-block',
+                width: '8px',
+                height: '1em',
+                bgcolor: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.75)',
+                verticalAlign: 'text-bottom',
+                ml: 0.4,
+                animation: 'cursorBlink 1s steps(1) infinite',
+                '@keyframes cursorBlink': {
+                  '0%, 50%': { opacity: 1 },
+                  '50.01%, 100%': { opacity: 0 },
+                },
+              }}
+            />
+          )}
         </Paper>
 
-        {!isUser && (
+        {!isUser && !isStreamingActive && (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5, ml: 0.5 }}>
             <Tooltip title={copied ? t('copyMsg') : 'Copy'}>
               <IconButton size="small" onClick={copy} sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}>
@@ -117,21 +134,6 @@ function MsgBubble({ msg, convId }: { msg: Message; convId: string }) {
   );
 }
 
-function ThinkingBubble() {
-  const { t } = useTranslation();
-  return (
-    <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'flex-start', px: { xs: 1, sm: 2 }, mb: 2 }}>
-      <Avatar sx={{ width: 32, height: 32, bgcolor: 'secondary.main', fontSize: 14, flexShrink: 0 }}>
-        <AutoAwesome sx={{ fontSize: 16 }} />
-      </Avatar>
-      <Paper elevation={0} sx={{ px: 2, py: 1.5, borderRadius: '4px 16px 16px 16px', border: 1, borderColor: 'divider', bgcolor: 'background.paper', display: 'flex', alignItems: 'center', gap: 1 }}>
-        <CircularProgress size={14} thickness={5} />
-        <Typography variant="caption" color="text.secondary">{t('thinking')}</Typography>
-      </Paper>
-    </Box>
-  );
-}
-
 export default function ChatPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
@@ -140,7 +142,7 @@ export default function ChatPage() {
   const {
     conversations, activeId, streaming,
     createConversation, setActiveId,
-    addMessage, deleteConversation, clearAll, setStreaming,
+    addMessage, updateMessage, deleteConversation, clearAll, setStreaming,
   } = useChatStore();
   const messages = useChatStore((s) => s.conversations.find((x) => x.id === s.activeId)?.messages ?? []);
   const convTitle = useChatStore((s) => s.conversations.find((x) => x.id === s.activeId)?.title ?? '');
@@ -150,6 +152,8 @@ export default function ChatPage() {
   const [deleteTarget, setDeleteTarget] = useState<string | null>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const streamAbortRef = useRef<AbortController | null>(null);
+  const streamAssistantIdRef = useRef<string | null>(null);
   const isDark = theme.palette.mode === 'dark';
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages.length, streaming]);
@@ -159,22 +163,75 @@ export default function ChatPage() {
     else if (!activeId && conversations.length > 0) setActiveId(conversations[0].id);
   }, []);
 
+  useEffect(() => {
+    return () => {
+      streamAbortRef.current?.abort();
+    };
+  }, []);
+
   const handleSend = async () => {
     const text = input.trim();
     if (!text || streaming || !activeId) return;
+
     setInput('');
-    const userMsg: Message = { id: Math.random().toString(36).slice(2), role: 'user', content: text, timestamp: Date.now() };
+    const userMsg: Message = {
+      id: Math.random().toString(36).slice(2),
+      role: 'user',
+      content: text,
+      timestamp: Date.now(),
+    };
     addMessage(activeId, userMsg);
+
+    // placeholder assistant message for typewriter stream
+    const assistantMsgId = Math.random().toString(36).slice(2);
+    streamAssistantIdRef.current = assistantMsgId;
+    addMessage(activeId, {
+      id: assistantMsgId,
+      role: 'assistant',
+      content: '',
+      citations: [],
+      timestamp: Date.now(),
+    });
+
     setStreaming(true);
-    try {
-      const res = await sendChat({ query: text, session_id: activeId });
-      addMessage(activeId, { id: Math.random().toString(36).slice(2), role: 'assistant', content: res.answer, citations: res.citations, timestamp: Date.now() });
-    } catch {
-      enqueueSnackbar(t('chatError'), { variant: 'error' });
-    } finally {
-      setStreaming(false);
-      setTimeout(() => inputRef.current?.focus(), 100);
-    }
+
+    const convId = activeId;
+
+    streamAbortRef.current = sendChatStream(
+      { query: text, session_id: activeId, top_k: 5 },
+      {
+        onCitations: (citations: Citation[], _sessionId: string) => {
+          updateMessage(convId, assistantMsgId, { citations });
+        },
+        onDelta: (chunk: string) => {
+          const state = useChatStore.getState();
+          const conv = state.conversations.find((c) => c.id === convId);
+          const msg = conv?.messages.find((m) => m.id === assistantMsgId);
+          if (!msg) return;
+          updateMessage(convId, assistantMsgId, { content: msg.content + chunk });
+        },
+        onDone: () => {
+          setStreaming(false);
+          streamAbortRef.current = null;
+          streamAssistantIdRef.current = null;
+          setTimeout(() => inputRef.current?.focus(), 100);
+        },
+        onError: () => {
+          enqueueSnackbar(t('chatError'), { variant: 'error' });
+          if (convId) {
+            const state = useChatStore.getState();
+            const conv = state.conversations.find((c) => c.id === convId);
+            const msg = conv?.messages.find((m) => m.id === assistantMsgId);
+            if (msg && !msg.content.trim()) {
+              updateMessage(convId, assistantMsgId, { content: '抱歉，请求失败，请稍后重试。' });
+            }
+          }
+          setStreaming(false);
+          streamAbortRef.current = null;
+          streamAssistantIdRef.current = null;
+        },
+      }
+    );
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -247,8 +304,11 @@ export default function ChatPage() {
               <Typography variant="body1" color="text.secondary">{t('inputPlaceholder')}</Typography>
             </Box>
           )}
-          {messages.map((m) => <MsgBubble key={m.id} msg={m} convId={activeId!} />)}
-          {streaming && <ThinkingBubble />}
+          {messages.map((m, idx) => {
+            const isLast = idx === messages.length - 1;
+            const isStreamingActive = streaming && isLast && m.role === 'assistant';
+            return <MsgBubble key={m.id} msg={m} convId={activeId!} isStreamingActive={isStreamingActive} />;
+          })}
           <div ref={bottomRef} />
         </Box>
 
@@ -259,17 +319,36 @@ export default function ChatPage() {
               onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
               disabled={streaming}
               sx={{ '& .MuiOutlinedInput-root': { borderRadius: 3, bgcolor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.02)' } }} />
-            <IconButton onClick={handleSend}
-              disabled={!input.trim() || streaming}
+            <IconButton
+              onClick={() => {
+                if (streaming) {
+                  streamAbortRef.current?.abort();
+                  streamAbortRef.current = null;
+                  if (activeId && streamAssistantIdRef.current) {
+                    const currentId = streamAssistantIdRef.current;
+                    const state = useChatStore.getState();
+                    const conv = state.conversations.find((c) => c.id === activeId);
+                    const msg = conv?.messages.find((m) => m.id === currentId);
+                    if (msg && !msg.content.trim()) {
+                      updateMessage(activeId, currentId, { content: '已停止生成。' });
+                    }
+                  }
+                  streamAssistantIdRef.current = null;
+                  setStreaming(false);
+                  return;
+                }
+                handleSend();
+              }}
+              disabled={!streaming && !input.trim()}
               sx={{
                 width: 44, height: 44, flexShrink: 0, borderRadius: 2,
-                background: input.trim() && !streaming ? 'linear-gradient(135deg,#e94560,#0f3460)' : undefined,
-                color: input.trim() && !streaming ? '#fff' : undefined,
+                background: (input.trim() || streaming) ? 'linear-gradient(135deg,#e94560,#0f3460)' : undefined,
+                color: (input.trim() || streaming) ? '#fff' : undefined,
                 '&:hover': { background: 'linear-gradient(135deg,#c73652,#0a2440)' },
                 '&.Mui-disabled': { opacity: 0.3 },
                 transition: 'all 0.2s',
               }}>
-              {streaming ? <CircularProgress size={18} color="inherit" /> : <Send fontSize="small" />}
+              {streaming ? <Stop fontSize="small" /> : <Send fontSize="small" />}
             </IconButton>
           </Box>
         </Box>

@@ -86,8 +86,8 @@ export function DocCard({
             {doc.title || doc.id}
           </Typography>
           <Box sx={{ display: 'flex', gap: 0.75, mt: 0.25, flexWrap: 'wrap' }}>
-            {doc.source_file && <Chip size="small" label={doc.source_file} variant="outlined" sx={{ fontSize: '0.63rem', height: 18 }} />}
-            {doc.category && doc.category !== doc.source_file && <Chip size="small" label={doc.category} sx={{ fontSize: '0.63rem', height: 18 }} />}
+            {doc.source_file && <Chip onClick={()=>{ window.open('https://www.aia.com.cn' + (doc.source_url ? doc.source_url : doc.service_url))}} size="small" title={doc.source_url ? doc.source_url : doc.service_url } label={doc.source_url ? '前往下载' : '前往服务'} variant="outlined" sx={{ fontSize: '0.63rem', height: 18, '&:hover': { backgroundColor: isDark ? '#fff' : '#f38181' } }} />}
+            {doc.category && <Chip size="small" label={doc.category} sx={{ fontSize: '0.63rem', height: 18 }} />}
             {doc.score != null && <Chip size="small" color="secondary" label={`${Math.round(doc.score * 100)}%`} sx={{ fontSize: '0.63rem', height: 18 }} />}
           </Box>
         </Box>

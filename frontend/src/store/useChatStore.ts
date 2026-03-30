@@ -7,6 +7,7 @@ export interface Citation {
   score: number;
   service_name?: string;
   service_url?: string;
+  collection?: string;
 }
 
 export interface Message {
@@ -16,6 +17,7 @@ export interface Message {
   citations?: Citation[];
   feedback?: 'helpful' | 'not_helpful';
   timestamp: number;
+  streaming?: boolean;
 }
 
 export interface Conversation {

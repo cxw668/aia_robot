@@ -16,7 +16,6 @@ from __future__ import annotations
 
 import hashlib
 import io
-import time
 from datetime import datetime
 from functools import lru_cache
 from typing import Optional
@@ -65,6 +64,12 @@ def content_hash(data: bytes) -> str:
     return hashlib.md5(data).hexdigest()
 
 
+def normalize_form_filename(filename: str, suffix: str = ".pdf") -> str:
+    """Normalize AIA form display name into stored object filename."""
+    safe_name = filename.strip("《》").replace("/", "-").replace(" ", "_")
+    return safe_name if safe_name.lower().endswith(suffix.lower()) else f"{safe_name}{suffix}"
+
+
 # ── Upload helpers ────────────────────────────────────────────────────────────
 
 def upload_raw(
@@ -111,7 +116,7 @@ def upload_parsed(
     return key
 
 
-# ── Idempotency check ─────────────────────────────────────────────────────────
+# ── Idempotency / lookup helpers ──────────────────────────────────────────────
 
 def raw_object_exists(doc_hash: str, filename: str, source_tag: str = "aia-form") -> Optional[str]:
     """Return the existing object key if a file with the same hash is already stored,
@@ -124,6 +129,42 @@ def raw_object_exists(doc_hash: str, filename: str, source_tag: str = "aia-form"
         return key
     except S3Error:
         return None
+
+
+def find_parsed_object_key(filename: str, source_tag: str = "aia-form") -> Optional[str]:
+    """Find a parsed text object by normalized filename.
+
+    Because object keys include a date/hash prefix, this scans the parsed bucket
+    below the source tag and returns the first object whose basename matches the
+    normalized ``.txt`` filename.
+    """
+    client = get_minio_client()
+    normalized_pdf = normalize_form_filename(filename, suffix=".pdf")
+    normalized_txt = f"{normalized_pdf.rsplit('.', 1)[0]}.txt"
+    prefix = f"{source_tag}/"
+
+    try:
+        for obj in client.list_objects(
+            settings.minio_bucket_parsed,
+            prefix=prefix,
+            recursive=True,
+        ):
+            if obj.object_name.rsplit("/", 1)[-1] == normalized_txt:
+                return obj.object_name
+    except S3Error:
+        return None
+    return None
+
+
+def download_parsed_text(object_key: str) -> str:
+    """Download parsed UTF-8 text from MinIO."""
+    client = get_minio_client()
+    resp = client.get_object(settings.minio_bucket_parsed, object_key)
+    try:
+        return resp.read().decode("utf-8")
+    finally:
+        resp.close()
+        resp.release_conn()
 
 
 # ── Presigned URL (optional, for debug / preview) ─────────────────────────────

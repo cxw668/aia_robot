@@ -17,7 +17,7 @@ from app.database import User, get_db
 router = APIRouter(prefix="/auth", tags=["auth"])
 bearer = HTTPBearer(auto_error=False)
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRE_HOURS = 24 * 7
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "aia-robot-dev-secret")

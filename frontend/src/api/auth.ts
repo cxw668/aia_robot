@@ -30,14 +30,6 @@ export async function login(payload: LoginPayload): Promise<AuthResponse> {
 }
 
 export async function register(payload: LoginPayload): Promise<AuthResponse> {
-  try {
-    const res = await client.post<AuthResponse>('/auth/register', payload);
-    return res.data;
-  } catch {
-    // Mock: allow admin/admin123 registration
-    if (payload.username && payload.password) {
-      return { token: 'mock-token-' + payload.username, username: payload.username };
-    }
-    throw new Error('register_failed');
-  }
+  const res = await client.post<AuthResponse>('/auth/register', payload);
+  return res.data;
 }

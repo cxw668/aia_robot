@@ -24,6 +24,7 @@ export interface KbDoc {
   service_name: string;
   service_url?: string;
   source_file?: string;
+  source_url?: string;
   category?: string;
   schema?: string;
 }

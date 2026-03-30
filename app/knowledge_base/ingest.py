@@ -90,20 +90,33 @@ def _detect_schema(data: Any) -> str:
         keys = set(data.keys())
         if "service_categories" in keys:
             return "service_categories"
-        # 表单下载 JSON: top-level "items" list with "full_url" fields
+        # 表单下载 JSON: top-level "items" list with "full_url" or "filename" fields
         if "items" in keys and isinstance(data.get("items"), list):
             sample = data["items"][:1]
-            if sample and isinstance(sample[0], dict) and "full_url" in sample[0]:
-                return "forms"
+            if sample and isinstance(sample[0], dict):
+                if "full_url" in sample[0] or "filename" in sample[0]:
+                    return "forms"
+                # 客户服务菜单: items with title+url but no full_url/filename
+                if "title" in sample[0] and "url" in sample[0] and "full_url" not in sample[0]:
+                    return "menu"
         if "forms" in keys or "form_categories" in keys:
             return "forms"
+        # 个险+团险产品页
+        if "personal_insurance" in keys or "group_insurance" in keys:
+            return "products_page"
         if "products" in keys or any("product" in k for k in keys):
             return "products"
-        if "branches" in keys or "branch" in keys:
+        # 分公司页面（含 regions 数组）
+        if "regions" in keys:
+            return "branches"
+        if "branch" in keys:
             return "branches"
         if "menu" in keys or "menus" in keys:
             return "menu"
     if isinstance(data, list):
+        # 在售产品基本信息：数组元素含 productName
+        if data and isinstance(data[0], dict) and "productName" in data[0]:
+            return "products_list"
         return "generic_list"
     return "generic"
 
@@ -162,15 +175,166 @@ def _flatten_generic(data: Any, source_file: str = "") -> list[dict]:
     return docs
 
 
+def _flatten_products_list(data: list, source_file: str = "") -> list[dict]:
+    """在售产品基本信息.json — 顶层数组，每条含 productName/productStatus 等字段。"""
+    docs = []
+    for obj in data:
+        name = obj.get("productName", "")
+        status = obj.get("productStatus", "")
+        group = obj.get("productGroup", "")
+        parts = [f"产品名称：{name}", f"状态：{status}"]
+        if group:
+            parts.append(f"产品组：{group}")
+        for k in ("productItem", "ratesTable", "cashValueTable", "productInstruction", "followUpService"):
+            v = obj.get(k)
+            if v:
+                parts.append(f"{k}：{v}")
+        content = "\n".join(parts)
+        text = f"「{name}」\n{content}"
+        docs.append({"text": text, "payload": {
+            "title": name,
+            "content": content,
+            "service_name": source_file,
+            "service_url": "",
+            "category": "在售产品",
+            "product_status": status,
+            "product_group": group,
+            "schema": "products_list",
+        }})
+    return docs
+
+
+def _flatten_products_page(data: dict, source_file: str = "") -> list[dict]:
+    """个险+团险产品.json — 含 personal_insurance / group_insurance 分类描述列表。"""
+    docs = []
+    for section_key, section_label in (
+        ("personal_insurance", "个险"),
+        ("group_insurance", "团险"),
+    ):
+        for item in data.get(section_key, []):
+            name = item.get("name", "")
+            desc = item.get("description", "")
+            text = f"「{section_label}·{name}」\n{desc}"
+            docs.append({"text": text, "payload": {
+                "title": name,
+                "content": desc,
+                "service_name": section_label,
+                "service_url": "",
+                "category": f"{section_label}产品分类",
+                "schema": "products_page",
+                "source_file": source_file,
+            }})
+    return docs
+
+
+def _flatten_branches(data: dict, source_file: str = "") -> list[dict]:
+    """分公司页面 JSON — 含 regions 数组，每个 region 有 flexitems 或 news_items。"""
+    docs = []
+    for region in data.get("regions", []):
+        rname = region.get("region_name", "")
+        rurl = region.get("region_url", "")
+        # 分公司基本信息（地址、电话、服务时间）
+        flex = region.get("flexitems")
+        if flex and isinstance(flex, dict):
+            full_text = flex.get("full_text", "")
+            address = flex.get("address", "")
+            phone = flex.get("phone", "")
+            service_time = flex.get("service_time", "")
+            content = full_text or f"地址：{address}\n服务时间：{service_time}\n电话：{phone}"
+            text = f"「{rname}分公司」\n{content}"
+            docs.append({"text": text, "payload": {
+                "title": f"{rname}分公司",
+                "content": content,
+                "service_name": rname,
+                "service_url": f"https://www.aia.com.cn{rurl}",
+                "category": "分公司",
+                "address": address,
+                "phone": phone,
+                "schema": "branches",
+                "source_file": source_file,
+            }})
+        # 分公司新闻/活动条目
+        for news in region.get("news_items", []):
+            title = news.get("title", "")
+            desc = news.get("description", "")
+            full_url = news.get("full_url", "")
+            if not (title or desc):
+                continue
+            content = f"{title}\n{desc}".strip()
+            text = f"「{rname}·{title}」\n{desc}"
+            docs.append({"text": text, "payload": {
+                "title": title,
+                "content": content,
+                "service_name": rname,
+                "service_url": full_url,
+                "category": "分公司动态",
+                "schema": "branches",
+                "source_file": source_file,
+            }})
+    return docs
+
+
+def _flatten_forms_text(data: dict, source_file: str = "") -> list[dict]:
+    """表单下载 JSON — ingest form names + download URLs as text (no PDF download)."""
+    docs = []
+    page_name = data.get("page_name", source_file)
+    for item in data.get("items", []):
+        filename = item.get("filename", "")
+        full_url = item.get("full_url", "")
+        url = item.get("url", full_url)
+        content = f"表单名称：{filename}\n下载地址：{full_url or url}"
+        text = f"\u300c{filename}\u300d\n{content}"
+        docs.append({"text": text, "payload": {
+            "title": filename,
+            "content": content,
+            "service_name": page_name,
+            "service_url": full_url or url,
+            "category": page_name,
+            "schema": "forms_text",
+            "source_file": source_file,
+        }})
+    return docs
+
+
+def _flatten_menu(data: Any, source_file: str = "") -> list[dict]:
+    """客户服务菜单 JSON — flat list of navigation items."""
+    docs = []
+    items = data.get("items", []) if isinstance(data, dict) else data
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        title = item.get("title", "")
+        url = item.get("url", "")
+        text_val = item.get("text", title)
+        content = f"菜单项：{title}\n链接：https://www.aia.com.cn{url}"
+        text = f"\u300c{title}\u300d\n{content}"
+        docs.append({"text": text, "payload": {
+            "title": title,
+            "content": content,
+            "service_name": "客户服务导航",
+            "service_url": f"https://www.aia.com.cn{url}",
+            "category": "客户服务导航",
+            "schema": "menu",
+            "source_file": source_file,
+        }})
+    return docs
+
+
 def flatten_json(data: Any, source_file: str = "") -> list[dict]:
-    """Auto-detect schema and return list of {text, payload} dicts.
-    Returns empty list for forms schema — those go through PDF pipeline.
-    """
+    """Auto-detect schema and return list of {text, payload} dicts."""
     schema = _detect_schema(data)
     if schema == "service_categories":
         return _flatten_service_categories(data)
     if schema == "forms":
-        return []  # handled by ingest_forms_pdf
+        return _flatten_forms_text(data, source_file=source_file)
+    if schema == "products_list":
+        return _flatten_products_list(data, source_file=source_file)
+    if schema == "products_page":
+        return _flatten_products_page(data, source_file=source_file)
+    if schema == "branches":
+        return _flatten_branches(data, source_file=source_file)
+    if schema == "menu":
+        return _flatten_menu(data, source_file=source_file)
     return _flatten_generic(data, source_file=source_file)
 
 
@@ -344,6 +508,177 @@ def ingest_forms_pdf(
     }
 
 
+# ── Text file ingestor (.txt) ────────────────────────────────────────────────
+
+def ingest_text_file(
+    file_path: str,
+    *,
+    collection_name: str,
+    title: str = "",
+) -> dict:
+    """Chunk a plain-text file and ingest into Qdrant.
+
+    Used for files like 反保险欺诈提示及举报渠道.txt.
+    """
+    from app.knowledge_base.pdf_parser import chunk_text
+
+    path = Path(file_path)
+    text = path.read_text(encoding="utf-8")
+    if not text.strip():
+        return {"file": path.name, "schema": "text", "doc_count": 0}
+
+    chunks = chunk_text(text)
+    if not chunks:
+        return {"file": path.name, "schema": "text", "doc_count": 0}
+
+    client = _client()
+    _ensure_collection(client, collection_name)
+    model = _model()
+
+    vectors = model.encode(
+        chunks, batch_size=_BATCH, normalize_embeddings=True, show_progress_bar=False
+    )
+    points = [
+        models.PointStruct(
+            id=_doc_id(chunks[i] + path.name),
+            vector=vectors[i].tolist(),
+            payload={
+                "title": title or path.stem,
+                "content": chunks[i],
+                "service_name": collection_name,
+                "service_url": "",
+                "category": collection_name,
+                "schema": "text",
+                "source_file": path.name,
+                "chunk_index": i,
+                "chunk_total": len(chunks),
+            },
+        )
+        for i in range(len(chunks))
+    ]
+    client.upsert(collection_name, points=points)
+    logger.info(f"[ingest] '{collection_name}' <- {len(points)} chunks from {path.name}")
+    return {"file": path.name, "schema": "text", "doc_count": len(points)}
+
+
+# ── 全量 AIA 数据入库入口 ──────────────────────────────────────────────────────
+
+def ingest_all_aia_data(aia_data_dir: str = "") -> list[dict]:
+    """One-shot: ingest all cleaned aia_data files into local Qdrant.
+
+    Skips 表单下载-个险/团险.json (PDF pipeline — already processed via MinIO).
+    For service_categories/ files, each JSON is ingested into its own named
+    collection matching the Chinese service_name.
+
+    Call this from a script or the FastAPI knowledge router.
+    """
+    import os
+    base = Path(aia_data_dir) if aia_data_dir else (
+        Path(__file__).resolve().parent.parent.parent / "aia_data"
+    )
+    results: list[dict] = []
+
+    # ── 1. service_categories/ — 8 个分类，各自独立 collection ────────────────
+    sc_dir = base / "service_categories"
+    if sc_dir.exists():
+        for p in sorted(sc_dir.glob("*.json")):
+            try:
+                r = ingest_file(str(p))
+                results.append(r)
+                logger.info(f"[ingest_all] {p.name}: {r}")
+            except Exception as exc:
+                results.append({"file": p.name, "schema": "error", "doc_count": 0, "error": str(exc)})
+                logger.error(f"[ingest_all] {p.name} FAILED: {exc}")
+
+    # ── 2. 在售产品基本信息.json → '在售产品' collection ──────────────────────
+    for fname, cname in [
+        ("在售产品基本信息.json", "在售产品"),
+    ]:
+        p = base / fname
+        if p.exists():
+            try:
+                r = ingest_file(str(p), collection_name=cname)
+                results.append(r)
+                logger.info(f"[ingest_all] {fname}: {r}")
+            except Exception as exc:
+                results.append({"file": fname, "schema": "error", "doc_count": 0, "error": str(exc)})
+                logger.error(f"[ingest_all] {fname} FAILED: {exc}")
+
+    # ── 3. 个险+团险产品.json → '产品分类' collection ──────────────────────────
+    for fname, cname in [
+        ("个险+团险产品.json", "产品分类"),
+    ]:
+        p = base / fname
+        if p.exists():
+            try:
+                r = ingest_file(str(p), collection_name=cname)
+                results.append(r)
+                logger.info(f"[ingest_all] {fname}: {r}")
+            except Exception as exc:
+                results.append({"file": fname, "schema": "error", "doc_count": 0, "error": str(exc)})
+                logger.error(f"[ingest_all] {fname} FAILED: {exc}")
+
+    # ── 4. 分公司数据 → '分公司' collection ──────────────────────────────────
+    for fname in ("所有分公司页面.json", "分公司页面.json"):
+        p = base / fname
+        if p.exists():
+            try:
+                r = ingest_file(str(p), collection_name="分公司")
+                results.append(r)
+                logger.info(f"[ingest_all] {fname}: {r}")
+            except Exception as exc:
+                results.append({"file": fname, "schema": "error", "doc_count": 0, "error": str(exc)})
+                logger.error(f"[ingest_all] {fname} FAILED: {exc}")
+            break  # 优先用 所有分公司页面.json，存在则跳过另一个
+
+    # ── 5. 表单下载-个险.json → '个险表单' collection ────────────────────────
+    for fname, cname in [
+        ("表单下载-个险.json", "个险表单"),
+        ("表单下载-团险.json", "团险表单"),
+    ]:
+        p = base / fname
+        if p.exists():
+            try:
+                r = ingest_file(str(p), collection_name=cname)
+                results.append(r)
+                logger.info(f"[ingest_all] {fname}: {r}")
+            except Exception as exc:
+                results.append({"file": fname, "schema": "error", "doc_count": 0, "error": str(exc)})
+                logger.error(f"[ingest_all] {fname} FAILED: {exc}")
+
+    # ── 6. 客户服务菜单.json → '客户服务导航' collection ─────────────────────
+    p = base / "客户服务菜单.json"
+    if p.exists():
+        try:
+            r = ingest_file(str(p), collection_name="客户服务导航")
+            results.append(r)
+            logger.info(f"[ingest_all] 客户服务菜单.json: {r}")
+        except Exception as exc:
+            results.append({"file": "客户服务菜单.json", "schema": "error", "doc_count": 0, "error": str(exc)})
+            logger.error(f"[ingest_all] 客户服务菜单.json FAILED: {exc}")
+
+    # ── 7. 反保险欺诈提示及举报渠道.txt → '反欺诈' collection ────────────────
+    p = base / "反保险欺诈提示及举报渠道.txt"
+    if p.exists():
+        try:
+            r = ingest_text_file(
+                str(p),
+                collection_name="反欺诈",
+                title="反保险欺诈提示及举报渠道",
+            )
+            results.append(r)
+            logger.info(f"[ingest_all] 反保险欺诈提示及举报渠道.txt: {r}")
+        except Exception as exc:
+            results.append({"file": "反保险欺诈提示及举报渠道.txt", "schema": "error", "doc_count": 0, "error": str(exc)})
+            logger.error(f"[ingest_all] 反保险欺诈提示及举报渠道.txt FAILED: {exc}")
+
+    # ── 汇总 ──────────────────────────────────────────────────────────────────
+    total = sum(r.get("doc_count", 0) for r in results)
+    errors = [r for r in results if r.get("schema") == "error"]
+    logger.info(f"[ingest_all] DONE — {len(results)} files, {total} docs, {len(errors)} errors")
+    return results
+
+
 # ── Core ingest function ──────────────────────────────────────────────────────
 
 def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, progress_cb=None) -> dict:
@@ -363,15 +698,6 @@ def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, pr
         data = json.load(f)
 
     schema = _detect_schema(data)
-
-    # Route forms JSON to PDF pipeline
-    if schema == "forms":
-        return ingest_forms_pdf(
-            data,
-            source_file=path.name,
-            collection_name=collection_name,
-            progress_cb=progress_cb,
-        )
 
     # service_categories: ingest each category into its own named collection
     if schema == "service_categories":
