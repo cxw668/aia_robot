@@ -3,7 +3,7 @@
 Buckets
 -------
 kb-raw    : original downloaded files (PDF, etc.)
-kb-parsed : parsed text / JSON artefacts
+kb-parsed : parsed Markdown artefacts
 
 Object key convention
 ---------------------
@@ -79,7 +79,7 @@ def upload_raw(
     source_tag: str = "aia-form",
     content_type: str = "application/pdf",
 ) -> str:
-    """Upload raw bytes to kb-raw bucket.  Returns the object key."""
+    """Upload raw bytes to kb-raw bucket. Returns the object key."""
     client = get_minio_client()
     key = _make_key(filename, doc_hash, source_tag)
     client.put_object(
@@ -98,19 +98,21 @@ def upload_parsed(
     filename: str,
     doc_hash: str,
     source_tag: str = "aia-form",
+    suffix: str = ".md",
+    content_type: str = "text/markdown; charset=utf-8",
 ) -> str:
-    """Upload parsed text to kb-parsed bucket as UTF-8 .txt.  Returns the object key."""
+    """Upload parsed Markdown/text to kb-parsed bucket. Returns the object key."""
     client = get_minio_client()
-    # Store alongside the raw key but in the parsed bucket, with .txt extension
     base = filename.rsplit(".", 1)[0] if "." in filename else filename
-    key = _make_key(f"{base}.txt", doc_hash, source_tag)
+    normalized_suffix = suffix if suffix.startswith(".") else f".{suffix}"
+    key = _make_key(f"{base}{normalized_suffix}", doc_hash, source_tag)
     encoded = text.encode("utf-8")
     client.put_object(
         bucket_name=settings.minio_bucket_parsed,
         object_name=key,
         data=io.BytesIO(encoded),
         length=len(encoded),
-        content_type="text/plain; charset=utf-8",
+        content_type=content_type,
         metadata={"doc_hash": doc_hash, "source_tag": source_tag},
     )
     return key
@@ -119,9 +121,7 @@ def upload_parsed(
 # ── Idempotency / lookup helpers ──────────────────────────────────────────────
 
 def raw_object_exists(doc_hash: str, filename: str, source_tag: str = "aia-form") -> Optional[str]:
-    """Return the existing object key if a file with the same hash is already stored,
-    otherwise return None.
-    """
+    """Return the existing object key if a file with the same hash is already stored."""
     client = get_minio_client()
     key = _make_key(filename, doc_hash, source_tag)
     try:
@@ -131,16 +131,18 @@ def raw_object_exists(doc_hash: str, filename: str, source_tag: str = "aia-form"
         return None
 
 
-def find_parsed_object_key(filename: str, source_tag: str = "aia-form") -> Optional[str]:
-    """Find a parsed text object by normalized filename.
-
-    Because object keys include a date/hash prefix, this scans the parsed bucket
-    below the source tag and returns the first object whose basename matches the
-    normalized ``.txt`` filename.
-    """
+def find_parsed_object_key(
+    filename: str,
+    source_tag: str = "aia-form",
+    suffixes: tuple[str, ...] = (".md", ".txt"),
+) -> Optional[str]:
+    """Find a parsed object by normalized filename across supported suffixes."""
     client = get_minio_client()
     normalized_pdf = normalize_form_filename(filename, suffix=".pdf")
-    normalized_txt = f"{normalized_pdf.rsplit('.', 1)[0]}.txt"
+    normalized_names = {
+        f"{normalized_pdf.rsplit('.', 1)[0]}{suffix}"
+        for suffix in suffixes
+    }
     prefix = f"{source_tag}/"
 
     try:
@@ -149,7 +151,7 @@ def find_parsed_object_key(filename: str, source_tag: str = "aia-form") -> Optio
             prefix=prefix,
             recursive=True,
         ):
-            if obj.object_name.rsplit("/", 1)[-1] == normalized_txt:
+            if obj.object_name.rsplit("/", 1)[-1] in normalized_names:
                 return obj.object_name
     except S3Error:
         return None
@@ -157,7 +159,7 @@ def find_parsed_object_key(filename: str, source_tag: str = "aia-form") -> Optio
 
 
 def download_parsed_text(object_key: str) -> str:
-    """Download parsed UTF-8 text from MinIO."""
+    """Download parsed UTF-8 text/Markdown from MinIO."""
     client = get_minio_client()
     resp = client.get_object(settings.minio_bucket_parsed, object_key)
     try:
@@ -167,11 +169,36 @@ def download_parsed_text(object_key: str) -> str:
         resp.release_conn()
 
 
+# ── Cleanup helpers ───────────────────────────────────────────────────────────
+
+def remove_objects_by_prefix(bucket: str, prefix: str) -> int:
+    """Delete all objects under a bucket prefix and return deleted count."""
+    client = get_minio_client()
+    deleted = 0
+    try:
+        for obj in client.list_objects(bucket, prefix=prefix, recursive=True):
+            client.remove_object(bucket, obj.object_name)
+            deleted += 1
+    except S3Error as exc:
+        print(f"[minio] warn — could not remove objects under '{bucket}/{prefix}': {exc}")
+    return deleted
+
+
+def clear_source_tag(source_tag: str) -> dict[str, int]:
+    """Remove all raw and parsed objects belonging to a source tag."""
+    prefix = f"{source_tag}/"
+    return {
+        settings.minio_bucket_raw: remove_objects_by_prefix(settings.minio_bucket_raw, prefix),
+        settings.minio_bucket_parsed: remove_objects_by_prefix(settings.minio_bucket_parsed, prefix),
+    }
+
+
 # ── Presigned URL (optional, for debug / preview) ─────────────────────────────
 
 def presigned_url(bucket: str, key: str, expires_seconds: int = 3600) -> str:
     """Return a presigned GET URL valid for *expires_seconds*."""
     from datetime import timedelta
+
     client = get_minio_client()
     return client.presigned_get_object(
         bucket_name=bucket,

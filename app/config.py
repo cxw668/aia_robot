@@ -88,10 +88,18 @@ class Settings(BaseSettings):
     ocr_api_url: str = "https://api.siliconflow.cn/v1/chat/completions"
     ocr_api_key: str = "sk-zuqiutkxiargdkzgsitjnjtkqbndpeznribbxxzpaywckxve"
     ocr_model: str = "deepseek-ai/DeepSeek-OCR"
-    # Minimum chars extracted by PyMuPDF before falling back to OCR
+    # Kept for backward compatibility; parser now OCRs all pages to Markdown.
     ocr_fallback_min_chars: int = 50
+    # Render DPI for OCR page images
+    ocr_render_dpi: int = 300
     # HTTP timeout for OCR API calls (seconds)
-    ocr_timeout: int = 60
+    ocr_timeout: int = 120
+    # Max tokens requested from OCR model per page
+    ocr_max_tokens: int = 8192
+    # Repeated short edge lines appearing at least N times are treated as noise
+    ocr_noise_min_repeat: int = 2
+    # Max length of repeated edge line candidates
+    ocr_noise_max_line_length: int = 80
 
     # ── MinIO object storage ───────────────────────────────────────────────────
     minio_endpoint: str = "localhost:9000"

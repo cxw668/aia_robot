@@ -1,0 +1,276 @@
+
+========================================================================
+文件                         Schema                   Doc数
+------------------------------------------------------------------------
+万能险.json                   service_categories          5
+  -> collections: ['aia_knowledge_base']
+保单服务.json                  service_categories         11
+  -> collections: ['aia_knowledge_base']
+保险计划变更.json                service_categories          7
+  -> collections: ['aia_knowledge_base']
+借款.json                    service_categories          2
+  -> collections: ['aia_knowledge_base']
+合同.json                    service_categories          4
+  -> collections: ['aia_knowledge_base']
+年金.json                    service_categories          5
+  -> collections: ['aia_knowledge_base']
+续期及账户管理.json               service_categories          7
+  -> collections: ['aia_knowledge_base']
+退保.json                    service_categories          2
+  -> collections: ['aia_knowledge_base']
+分公司页面.json                 branches                   13
+个险+团险产品.json               products_page              11
+个险-推荐产品.json               personal_insurance         60
+团险-推荐产品.json               personal_insurance          0
+分公司新闻.json                 branches                   22
+反保险欺诈提示及举报渠道.txt           text                        5
+------------------------------------------------------------------------
+总计: 14 文件  154 条向量  0 个错误  耗时 94.3s
+========================================================================
+
+
+========================================================================
+文件                         Schema                   Doc数
+------------------------------------------------------------------------
+万能险.json                   service_categories          5
+  -> collections: ['aia_knowledge_base']
+保单服务.json                  service_categories         11
+  -> collections: ['aia_knowledge_base']
+保险计划变更.json                service_categories          7
+  -> collections: ['aia_knowledge_base']
+借款.json                    service_categories          2
+  -> collections: ['aia_knowledge_base']
+合同.json                    service_categories          4
+  -> collections: ['aia_knowledge_base']
+年金.json                    service_categories          5
+  -> collections: ['aia_knowledge_base']
+续期及账户管理.json               service_categories          7
+  -> collections: ['aia_knowledge_base']
+退保.json                    service_categories          2
+  -> collections: ['aia_knowledge_base']
+分公司页面.json                 branches                   13
+个险+团险产品.json               products_page              11
+个险-推荐产品.json               personal_insurance         60
+团险-推荐产品.json               group_insurance_re          9
+在售产品基本信息.json              products_list             195
+分公司新闻.json                 branches                   22
+反保险欺诈提示及举报渠道.txt           text                        5
+------------------------------------------------------------------------
+总计: 15 文件  358 条向量  0 个错误  耗时 46.8s
+========================================================================
+
+14:28:48 [INFO] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+14:28:48 [INFO] HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+14:28:48 [INFO] HTTP Request: GET http://localhost:6333/collections/aia_knowledge_base "HTTP/1.1 200 OK"
+
+=======================================================
+Collection 名称                   Point Count
+-------------------------------------------------------
+aia_knowledge_base                      358
+-------------------------------------------------------
+TOTAL                                   358
+=======================================================
+
+15:26:14 [INFO] ========================================================================
+15:26:14 [INFO] 开始重处理: 表单下载-个险.json
+15:26:14 [INFO] ========================================================================
+15:26:25 [INFO] HTTP Request: POST http://localhost:6333/collections/aia_knowledge_base/points/delete?wait=true "HTTP/1.1 200 OK"
+15:26:26 [INFO] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+15:26:26 [INFO] [cleanup] 表单下载-个险.json -> qdrant=-1 raw=13 parsed=0
+15:26:27 [INFO] HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+15:26:28 [INFO] [embedding] using local model path: E:\aia_embedding_models\models--BAAI--bge-small-zh-v1.5\snapshots\7999e1d3359715c523056ef9478215996d62a620
+15:26:28 [INFO] Use pytorch device_name: cpu
+15:26:28 [INFO] Load pretrained SentenceTransformer: E:\aia_embedding_models\models--BAAI--bge-small-zh-v1.5\snapshots\7999e1d3359715c523056ef9478215996d62a620
+Loading weights: 100%|█████████████████████████████████████████████████████████| 71/71 [00:00<00:00, 5131.49it/s]
+BertModel LOAD REPORT from: E:\aia_embedding_models\models--BAAI--bge-small-zh-v1.5\snapshots\7999e1d3359715c523056ef9478215996d62a620
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED    :can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+15:26:28 [INFO] [ingest] downloading 《最新个人资料通知书》 ...
+15:26:29 [INFO] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+15:26:29 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/f23e541d/最新个人资料通知书.pdf
+15:26:46 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/f23e541d/最新个人资料通知书.md
+15:26:47 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:26:47 [INFO] [ingest] '《最新个人资料通知书》' -> 12 markdown chunks upserted
+15:26:47 [INFO] [ingest] downloading 《最新个人资料通知书》（指定产品专用） ...
+15:26:48 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/f19179fb/最新个人资料通知书》（指定产品专用）.pdf
+15:27:16 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/f19179fb/最新个人资料通知书》（指定产品专用）.md
+15:27:17 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:27:17 [INFO] [ingest] '《最新个人资料通知书》（指定产品专用）' -> 13 markdown chunks upserted
+15:27:17 [INFO] [ingest] downloading 《保险合同内容变更申请书》 ...
+15:27:18 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/b63af8e1/保险合同内容变更申请书.pdf
+15:27:37 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/b63af8e1/保险合同内容变更申请书.md
+15:27:38 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:27:38 [INFO] [ingest] '《保险合同内容变更申请书》' -> 16 markdown chunks upserted
+15:27:38 [INFO] [ingest] downloading 《保险合同内容变更申请书》（投资连结型/万能型保险专用） ...
+15:27:40 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/bbe28c10/保险合同内容变更申请书》（投资连结型-万能型保险专用）.pdf
+15:27:45 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/bbe28c10/保险合同内容变更申请书》（投资连结型-万能型保险专用）.md
+15:27:45 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:27:45 [INFO] [ingest] '《保险合同内容变更申请书》（投资连结型/万能型保险专用）' -> 3 markdown chunks upserted
+15:27:45 [INFO] [ingest] downloading 《高端医疗保险专用申请书》 ...
+15:27:46 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/c7e0b600/高端医疗保险专用申请书.pdf
+15:28:02 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/c7e0b600/高端医疗保险专用申请书.md
+15:28:03 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:28:03 [INFO] [ingest] '《高端医疗保险专用申请书》' -> 12 markdown chunks upserted
+15:28:03 [INFO] [ingest] downloading 《撤销投保/解除保险合同申请书》 ...
+15:28:04 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/0fe1e577/撤销投保-解除保险合同申请书.pdf
+15:28:17 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/0fe1e577/撤销投保-解除保险合同申请 书.md
+15:28:17 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:28:17 [INFO] [ingest] '《撤销投保/解除保险合同申请书》' -> 10 markdown chunks upserted
+15:28:17 [INFO] [ingest] downloading 《个人税收居民身份声明书》 ...
+15:28:18 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/7df5012c/个人税收居民身份声明书.pdf
+15:28:20 [WARNING] [ingest] no markdown extracted from '《个人税收居民身份声明书》', skipping
+15:28:20 [INFO] [ingest] downloading 《第三方缴费授权委托书》 ...
+15:28:20 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/c5592acf/第三方缴费授权委托书.pdf
+15:28:23 [WARNING] [ingest] no markdown extracted from '《第三方缴费授权委托书》', skipping
+15:28:23 [INFO] [ingest] downloading 《保险金给付申请书》 ...
+15:28:23 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/c00a9201/保险金给付申请书.pdf
+15:28:35 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/c00a9201/保险金给付申请书.md
+15:28:35 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:28:35 [INFO] [ingest] '《保险金给付申请书》' -> 10 markdown chunks upserted
+15:28:35 [INFO] [ingest] downloading 《身故保险金受益人身份信息确认表》（未指定或法定继承人专用） ...
+15:28:36 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/a013b0aa/身故保险金受益人身份信息确认表》（未指定或法定继承人专用）.pdf
+15:28:38 [WARNING] [ingest] no markdown extracted from '《身故保险金受益人身份信息确认表》（未指定或法定继承人专用）', skipping
+15:28:38 [INFO] [ingest] downloading 《身故保险金受益人身份信息确认表》（指定受益人专用） ...
+15:28:39 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/e4c3e210/身故保险金受益人身份信息确认表》（指定受益人专用）.pdf
+15:28:45 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/e4c3e210/身故保险金受益人身份信息确认表》（指定受益人专用）.md
+15:28:45 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:28:45 [INFO] [ingest] '《身故保险金受益人身份信息确认表》（指定受益人专用）' -> 5 markdown chunks upserted
+15:28:45 [INFO] [ingest] downloading 《理赔银行卡自动转账授权书》 ...
+15:28:46 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/2508d6ee/理赔银行卡自动转账授权书.pdf
+15:28:54 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/2508d6ee/理赔银行卡自动转账授权书.md
+15:28:54 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:28:54 [INFO] [ingest] '《理赔银行卡自动转账授权书》' -> 4 markdown chunks upserted
+15:28:54 [INFO] [ingest] downloading 证照公示 ...
+15:28:56 [INFO] [ingest] raw -> minio://kb-raw/aia-form-personal/2026/04/9d276755/证照公示.pdf
+15:29:24 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-personal/2026/04/9d276755/证照公示.md
+15:29:24 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:29:24 [INFO] [ingest] '证照公示' -> 1 markdown chunks upserted
+15:29:24 [INFO] [done] 表单下载-个险.json -> 86 chunks
+15:29:24 [INFO] ========================================================================
+15:29:24 [INFO] 开始重处理: 表单下载-团险.json
+15:29:24 [INFO] ========================================================================
+15:29:25 [INFO] HTTP Request: POST http://localhost:6333/collections/aia_knowledge_base/points/delete?wait=true "HTTP/1.1 200 OK"
+15:29:26 [INFO] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+15:29:27 [INFO] [cleanup] 表单下载-团险.json -> qdrant=-1 raw=18 parsed=0
+15:29:28 [INFO] HTTP Request: GET http://localhost:6333/collections "HTTP/1.1 200 OK"
+15:29:28 [INFO] [embedding] using local model path: E:\aia_embedding_models\models--BAAI--bge-small-zh-v1.5\snapshots\7999e1d3359715c523056ef9478215996d62a620
+15:29:28 [INFO] Use pytorch device_name: cpu
+15:29:28 [INFO] Load pretrained SentenceTransformer: E:\aia_embedding_models\models--BAAI--bge-small-zh-v1.5\snapshots\7999e1d3359715c523056ef9478215996d62a620
+Loading weights: 100%|█████████████████████████████████████████████████████████| 71/71 [00:00<00:00, 3563.64it/s]
+BertModel LOAD REPORT from: E:\aia_embedding_models\models--BAAI--bge-small-zh-v1.5\snapshots\7999e1d3359715c523056ef9478215996d62a620
+Key                     | Status     |  |
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  |
+
+Notes:
+- UNEXPECTED    :can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+15:29:28 [INFO] [ingest] downloading 【理赔】团险理赔申请书 ...
+15:29:29 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/2568746e/【理赔】团险理赔申请书.pdf
+15:29:30 [INFO] HTTP Request: GET http://localhost:6333 "HTTP/1.1 200 OK"
+15:29:40 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/2568746e/【理赔】团险理赔申请书.md
+15:29:41 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:29:41 [INFO] [ingest] '【理赔】团险理赔申请书' -> 13 markdown chunks upserted
+15:29:41 [INFO] [ingest] downloading 【理赔】身故保险金受益人及领款人信息确认表 ...
+15:29:42 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/7a798e7a/【理赔】身故保险金受益人及领款人信 息确认表.pdf
+15:29:52 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/7a798e7a/【理赔】身故保险金受益人及领 款人信息确认表.md
+15:29:52 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:29:52 [INFO] [ingest] '【理赔】身故保险金受益人及领款人信息确认表' -> 13 markdown chunks upserted
+15:29:52 [INFO] [ingest] downloading 【续保】友邦团体保险续保申请书 ...
+15:29:53 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/1b6ebbfe/【续保】友邦团体保险续保申请书.pdf
+15:30:07 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/1b6ebbfe/【续保】友邦团体保险续保申请 书.md
+15:30:08 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:30:08 [INFO] [ingest] '【续保】友邦团体保险续保申请书' -> 8 markdown chunks upserted
+15:30:08 [INFO] [ingest] skip non-PDF form '【人员清单】友邦团体保险被保险人清单': https://www.aia.com.cn/content/dam/cn/zh-cn/docs/fuwu/support/individual/feilipeileibiaodan/%E3%80%90%E4%BA%BA%E5%91%98%E6%B8%85%E5%8D%95%E3%80%91%E5%8F%8B%E9%82%A6%E4%BA%BA%E5%AF%BF%E5%9B%A2%E4%BD%93%E4%BF%9D%E9%99%A9%E8%A2%AB%E4%BF%9D%E9%99%A9%E4%BA%BA%E6%B8%85%E5%8D%95-20250912.xlsx.coredownload.inline.xlsx
+15:30:08 [INFO] [ingest] skip non-PDF form '【人员清单】友邦人寿团体保险被保险人清单（旅行险保单专用版）': https://www.aia.com.cn/content/dam/cn/zh-cn/docs/fuwu/support/individual/feilipeileibiaodan/%E3%80%90%E4%BA%BA%E5%91%98%E6%B8%85%E5%8D%95%E3%80%91%E5%8F%8B%E9%82%A6%E4%BA%BA%E5%AF%BF%E5%9B%A2%E4%BD%93%E4%BF%9D%E9%99%A9%E8%A2%AB%E4%BF%9D%E9%99%A9%E4%BA%BA%E6%B8%85%E5%8D%95%EF%BC%88%E9%80%82%E7%94%A8%E4%BA%8E%E6%97%85%E8%A1%8C%E9%99%A9%E4%B8%9A%E5%8A%A1%EF%BC%89-20250912.xlsx.coredownload.inline.xlsx
+15:30:08 [INFO] [ingest] downloading 【变更】个人内容变更申请书 ...
+15:30:08 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/c69bbbb4/【变更】个人内容变更申请书.pdf
+15:30:14 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/c69bbbb4/【变更】个人内容变更申请书.md
+15:30:15 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:30:15 [INFO] [ingest] '【变更】个人内容变更申请书' -> 5 markdown chunks upserted
+15:30:15 [INFO] [ingest] downloading 【变更】友邦人寿团体保险合同变更申请书 ...
+15:30:16 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/daa890a7/【变更】友邦人寿团体保险合同变更申 请书.pdf
+15:30:42 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/daa890a7/【变更】友邦人寿团体保险合同 变更申请书.md
+15:30:44 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:30:44 [INFO] [ingest] '【变更】友邦人寿团体保险合同变更申请书' -> 50 markdown chunks upserted
+15:30:44 [INFO] [ingest] downloading 【变更】友邦人寿团体保险合同变更申请书（上海专用版） ...
+15:30:45 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/ebd702dd/【变更】友邦人寿团体保险合同变更申 请书（上海专用版）.pdf
+15:30:57 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/ebd702dd/【变更】友邦人寿团体保险合同 变更申请书（上海专用版）.md
+15:30:57 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:30:57 [INFO] [ingest] '【变更】友邦人寿团体保险合同变更申请书（上海专用版）' -> 5 markdown chunks upserted
+15:30:57 [INFO] [ingest] downloading 【健康告知】友邦团体保险被保险人健康告知书 ...
+15:30:58 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/a40d93f0/【健康告知】友邦团体保险被保险人健 康告知书.pdf
+15:31:04 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/a40d93f0/【健康告知】友邦团体保险被保 险人健康告知书.md
+15:31:04 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:31:04 [INFO] [ingest] '【健康告知】友邦团体保险被保险人健康告知书' -> 1 markdown chunks upserted
+15:31:04 [INFO] [ingest] downloading 【其他】团险电子投保声明暨授权书 ...
+15:31:05 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/c9d0e376/【其他】团险电子投保声明暨授权书.pdf
+15:31:09 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/c9d0e376/【其他】团险电子投保声明暨授 权书.md
+15:31:10 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:31:10 [INFO] [ingest] '【其他】团险电子投保声明暨授权书' -> 3 markdown chunks upserted
+15:31:10 [INFO] [ingest] downloading 【其他】团险电子投保声明暨授权书（上海专用版） ...
+15:31:10 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/4e19afb0/【其他】团险电子投保声明暨授权书（ 上海专用版）.pdf
+15:31:18 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/4e19afb0/【其他】团险电子投保声明暨授 权书（上海专用版）.md
+15:31:18 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:31:18 [INFO] [ingest] '【其他】团险电子投保声明暨授权书（上海专用版）' -> 2 markdown chunks upserted
+15:31:18 [INFO] [ingest] downloading 【其他】团险电子投保声明暨授权书（北京专用版） ...
+15:31:19 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/fa2e94a2/【其他】团险电子投保声明暨授权书（ 北京专用版）.pdf
+15:31:22 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/fa2e94a2/【其他】团险电子投保声明暨授 权书（北京专用版）.md
+15:31:22 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:31:22 [INFO] [ingest] '【其他】团险电子投保声明暨授权书（北京专用版）' -> 1 markdown chunks upserted
+15:31:22 [INFO] [ingest] downloading 【其他】团体保险保单资料修正申请书 ...
+15:31:22 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/506b1b4f/【其他】团体保险保单资料修正申请书.pdf
+15:31:24 [WARNING] [ingest] no markdown extracted from '【其他】团体保险保单资料修正申请书', skipping
+15:31:24 [INFO] [ingest] downloading 【其他】团体保险保单资料修正申请书（上海专用版） ...
+15:31:25 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/c8716572/【其他】团体保险保单资料修正申请书 （上海专用版）.pdf
+15:31:33 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/c8716572/【其他】团体保险保单资料修正 申请书（上海专用版）.md
+15:31:33 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:31:33 [INFO] [ingest] '【其他】团体保险保单资料修正申请书（上海专用版）' -> 7 markdown chunks upserted
+15:31:33 [INFO] [ingest] downloading 【其他】友邦人寿团险个人账户缴付保险费授权书 ...
+15:31:34 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/fa80aefb/【其他】友邦人寿团险个人账户缴付保 险费授权书.pdf
+15:31:37 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/fa80aefb/【其他】友邦人寿团险个人账户 缴付保险费授权书.md
+15:31:37 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:31:37 [INFO] [ingest] '【其他】友邦人寿团险个人账户缴付保险费授权书' -> 1 markdown chunks upserted
+15:31:37 [INFO] [ingest] skip non-PDF form '【其他】关联企业及其分支机构投保信息表': https://www.aia.com.cn/content/dam/cn/zh-cn/docs/fuwu/support/individual/feilipeileibiaodan/%E3%80%90%E5%85%B6%E4%BB%96%E3%80%91%E5%85%B3%E8%81%94%E4%BC%81%E4%B8%9A%E5%8F%8A%E5%85%B6%E5%88%86%E6%94%AF%E6%9C%BA%E6%9E%84%E6%8A%95%E4%BF%9D%E4%BF%A1%E6%81%AF%E8%A1%A820230910.xlsx.coredownload.inline.xlsx
+15:31:37 [INFO] [ingest] skip non-PDF form '【其他】关联企业及其分支机构投保信息表（上海专用版）': https://www.aia.com.cn/content/dam/cn/zh-cn/docs/fuwu/support/individual/feilipeileibiaodan/%E3%80%90%E5%85%B6%E4%BB%96%E3%80%91%E5%85%B3%E8%81%94%E4%BC%81%E4%B8%9A%E5%8F%8A%E5%85%B6%E5%88%86%E6%94%AF%E6%9C%BA%E6%9E%84%E6%8A%95%E4%BF%9D%E4%BF%A1%E6%81%AF%E8%A1%A8%EF%BC%88%E4%B8%8A%E6%B5%B7%E4%B8%93%E7%94%A8%E7%89%88%EF%BC%8920230910.xlsx.coredownload.inline.xlsx
+15:31:37 [INFO] [ingest] downloading 【其他】客户身份识别资料告知书 ...
+15:31:37 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/cd941b53/【其他】客户身份识别资料告知书.pdf
+15:31:59 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/cd941b53/【其他】客户身份识别资料告知 书.md
+15:32:01 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:32:01 [INFO] [ingest] '【其他】客户身份识别资料告知书' -> 39 markdown chunks upserted
+15:32:01 [INFO] [ingest] downloading 【其他】个人客户身份识别资料告知书 ...
+15:32:02 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/5196a6d1/【其他】个人客户身份识别资料告知书.pdf
+15:32:05 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/5196a6d1/【其他】个人客户身份识别资料 告知书.md
+15:32:05 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:32:05 [INFO] [ingest] '【其他】个人客户身份识别资料告知书' -> 1 markdown chunks upserted
+15:32:05 [INFO] [ingest] skip non-PDF form '【其他】友邦养老团体保险计划保险金给付申请书': https://www.aia.com.cn/content/dam/cn/zh-cn/docs/fuwu/support/individual/feilipeileibiaodan/%E3%80%90%E5%85%B6%E4%BB%96%E3%80%91%E5%8F%8B%E9%82%A6%E5%85%BB%E8%80%81%E5%9B%A2%E4%BD%93%E4%BF%9D%E9%99%A9%E8%AE%A1%E5%88%92%E4%BF%9D%E9%99%A9%E9%87%91%E7%BB%99%E4%BB%98%E7%94%B3%E8%AF%B7%E4%B9%A6.xlsx.coredownload.inline.xlsx
+15:32:05 [INFO] [ingest] downloading 【其他】友邦养老团体保险计划客户身份识别资料告知书 ...
+15:32:06 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/6bc774eb/【其他】友邦养老团体保险计划客户身 份识别资料告知书.pdf
+15:32:20 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/6bc774eb/【其他】友邦养老团体保险计划 客户身份识别资料告知书.md
+15:32:20 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:32:20 [INFO] [ingest] '【其他】友邦养老团体保险计划客户身份识别资料告知书' -> 7 markdown chunks upserted
+15:32:20 [INFO] [ingest] downloading 【其他】关于财政拨款专用账户收付团体保险费的情况说明 ...
+15:32:21 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/071159b0/【其他】关于财政拨款专用账户收付团 体保险费的情况说明.pdf
+15:32:22 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/071159b0/【其他】关于财政拨款专用账户 收付团体保险费的情况说明.md
+15:32:22 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:32:22 [INFO] [ingest] '【其他】关于财政拨款专用账户收付团体保险费的情况说明' -> 1 markdown chunks upserted
+15:32:22 [INFO] [ingest] downloading 证照公示 ...
+15:32:25 [INFO] [ingest] raw -> minio://kb-raw/aia-form-group/2026/04/9d276755/证照公示.pdf
+15:33:44 [INFO] [ingest] parsed -> minio://kb-parsed/aia-form-group/2026/04/9d276755/证照公示.md
+15:33:44 [INFO] HTTP Request: PUT http://localhost:6333/collections/aia_knowledge_base/points?wait=true "HTTP/1.1 200 OK"
+15:33:44 [INFO] [ingest] '证照公示' -> 7 markdown chunks upserted
+15:33:44 [INFO] [done] 表单下载-团险.json -> 164 chunks
+
+==========================================================================================
+文件                       Schema                   Chunk数       失败
+------------------------------------------------------------------------------------------
+表单下载-个险.json             forms_markdown               86        3
+  cleanup -> qdrant=-1 raw=13 parsed=0
+表单下载-团险.json             forms_markdown              164        1
+  cleanup -> qdrant=-1 raw=18 parsed=0
+------------------------------------------------------------------------------------------
+总耗时: 450.7s
+==========================================================================================

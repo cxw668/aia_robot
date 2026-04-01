@@ -106,7 +106,7 @@ def load_settings() -> tuple[object, str]:
             qdrantclient_key=env("QdrantClient_key", ""),
             model_cache_path=env("MODEL_CACHE_PATH", ""),
             ocr_api_url=env("OCR_API_URL", "https://api.siliconflow.cn/v1/chat/completions"),
-            ocr_api_key=env("OCR_API_KEY", ""),
+            ocr_api_key=env("OCR_API_KEY", "sk-zuqiutkxiargdkzgsitjnjtkqbndpeznribbxxzpaywckxve"),
             ocr_model=env("OCR_MODEL", "deepseek-ai/DeepSeek-OCR"),
             ocr_timeout=_parse_int(env("OCR_TIMEOUT", "60"), 60),
             minio_endpoint=env("MINIO_ENDPOINT", "localhost:9000"),
@@ -273,11 +273,22 @@ async def check_llm() -> tuple[str, str]:
 
 
 async def check_ocr() -> tuple[str, str]:
-    api_key = settings.ocr_api_key.strip()
+    api_key = settings.ocr_api_key.strip() or settings.llm_chat_api_key.strip()
     if not api_key:
-        return "warn", "OCR_API_KEY 未配置"
-    return "ok", f"{settings.ocr_model} | timeout={settings.ocr_timeout}s | key={mask_secret(api_key)}"
-
+        return "warn", "OCR_API_KEY / LLM_CHAT_API_KEY 未配置"
+    # 检查连接状态
+    try:
+        import requests
+        resp = requests.post(
+            settings.ocr_api_url,
+            json={"model": settings.ocr_model, "messages": [{"role": "user", "content": "test"}]},
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            timeout=settings.ocr_timeout,
+        )
+        resp.raise_for_status()
+        return "ok", f"{settings.ocr_model} | timeout={settings.ocr_timeout}s | key={mask_secret(api_key)}"
+    except Exception as exc:
+        return "fail", f"OCR 连接失败: {exc}"
 
 def print_header() -> None:
     title = f"{settings.app_name} 初始化状态自检"

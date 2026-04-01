@@ -5,9 +5,11 @@
 1) `aia_data/service_categories/*.json`
 2) `aia_data/分公司页面.json`（若不存在则回退到 `aia_data/所有分公司页面.json`）
 3) `aia_data/个险+团险产品.json`
-4) `aia_data/推荐产品.json`
-5) `aia_data/分公司新闻.json`
-6) `aia_data/反保险欺诈提示及举报渠道.txt`
+4) `aia_data/个险-推荐产品.json`
+5) `aia_data/团险-推荐产品.json`
+6) `aia_data/在售产品基本信息.json`
+7) `aia_data/分公司新闻.json`
+8) `aia_data/反保险欺诈提示及举报渠道.txt`
 
 实现要点：
 1) 所有文档统一写入集合 `aia_knowledge_base`
@@ -142,14 +144,24 @@ def main() -> None:
         help="分公司页面 JSON 文件路径（默认: aia_data/分公司页面.json）",
     )
     parser.add_argument(
-        "--products-file",
+        "--products-page-file",
         default="",
         help="个险+团险产品 JSON 文件路径（默认: aia_data/个险+团险产品.json）",
     )
     parser.add_argument(
-        "--recommended-products-file",
+        "--personal-insurance-recommended-products-file",
         default="",
-        help="推荐产品 JSON 文件路径（默认: aia_data/推荐产品.json）",
+        help="个险推荐产品 JSON 文件路径（默认: aia_data/个险-推荐产品.json）",
+    )
+    parser.add_argument(
+        "--group-insurance-recommended-products-file",
+        default="",
+        help="团险推荐产品 JSON 文件路径（默认: aia_data/团险-推荐产品.json）",
+    )
+    parser.add_argument(
+        "--on-sale-products-file",
+        default="",
+        help="在售产品基本信息 JSON 文件路径（默认: aia_data/在售产品基本信息.json）",
     )
     parser.add_argument(
         "--branch-news-file",
@@ -173,12 +185,19 @@ def main() -> None:
     branches_file = resolve_optional_file(
         args.branches_file,
         "aia_data/分公司页面.json",
-        "aia_data/所有分公司页面.json",
     )
-    products_file = resolve_optional_file(args.products_file, "aia_data/个险+团险产品.json")
-    recommended_products_file = resolve_optional_file(
-        args.recommended_products_file,
-        "aia_data/推荐产品.json",
+    products_page_file = resolve_optional_file(args.products_page_file, "aia_data/个险+团险产品.json")
+    personal_insurance_recommended_products_file = resolve_optional_file(
+        args.personal_insurance_recommended_products_file,
+        "aia_data/个险-推荐产品.json",
+    )
+    group_insurance_recommended_products_file = resolve_optional_file(
+        args.group_insurance_recommended_products_file,
+        "aia_data/团险-推荐产品.json",
+    )
+    on_sale_products_file = resolve_optional_file(
+        args.on_sale_products_file,
+        "aia_data/在售产品基本信息.json",
     )
     branch_news_file = resolve_optional_file(args.branch_news_file, "aia_data/分公司新闻.json")
     anti_fraud_file = resolve_optional_file(
@@ -198,15 +217,24 @@ def main() -> None:
     logger.info("=" * 55)
     logger.info(f"service_categories 目录: {service_categories_dir}")
     logger.info(f"分公司页面文件: {branches_file}")
-    logger.info(f"个险+团险产品文件: {products_file}")
-    logger.info(f"推荐产品文件: {recommended_products_file}")
+    logger.info(f"个险+团险产品文件: {products_page_file}")
+    logger.info(f"个险推荐产品文件: {personal_insurance_recommended_products_file}")
+    logger.info(f"团险推荐产品文件: {group_insurance_recommended_products_file}")
+    logger.info(f"在售产品基本信息文件: {on_sale_products_file}")
     logger.info(f"分公司新闻文件: {branch_news_file}")
     logger.info(f"反保险欺诈文本: {anti_fraud_file}")
 
     t0 = time.time()
     results = ingest_service_categories(service_categories_dir)
 
-    for optional_json in [branches_file, products_file, recommended_products_file, branch_news_file]:
+    for optional_json in [
+        branches_file,
+        products_page_file,
+        personal_insurance_recommended_products_file,
+        group_insurance_recommended_products_file,
+        on_sale_products_file,
+        branch_news_file,
+    ]:
         if optional_json:
             results.append(ingest_json_file(optional_json))
 

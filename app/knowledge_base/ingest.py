@@ -68,7 +68,6 @@ def _model() -> SentenceTransformer:
         os.environ["HF_HOME"] = mp
         os.environ["SENTENCE_TRANSFORMERS_HOME"] = mp
 
-    # 优先使用用户提供的本地模型目录，避免联网请求 HuggingFace
     local_candidates: list[Path] = []
     if explicit_local:
         local_candidates.append(Path(explicit_local))
@@ -125,10 +124,16 @@ def _detect_schema(data: Any) -> str:
         if "forms" in keys or "form_categories" in keys:
             return "forms"
         # 个险+团险产品页
-        if "personal_insurance" in keys or "group_insurance" in keys:
+        if "personal_insurance_menu" in keys or "group_insurance_menu" in keys:
             return "products_page"
-        if "recommended_products" in keys:
-            return "recommended_products"
+        if "personal_insurance_recommended_products" in keys:
+            return "personal_insurance_recommended_products"
+        if "group_insurance_recommended_products" in keys:
+            return "group_insurance_recommended_products"
+        if "on_sale_products_list" in keys and isinstance(data.get("on_sale_products_list"), list):
+            sample = data["on_sale_products_list"][:1]
+            if sample and isinstance(sample[0], dict) and "productName" in sample[0]:
+                return "products_list"
         if "products" in keys or any("product" in k for k in keys):
             return "products"
         # 分公司页面（含 regions 数组）
@@ -232,40 +237,68 @@ def _flatten_generic(data: Any, source_file: str = "") -> list[dict]:
 
 
 def _flatten_products_list(data: list, source_file: str = "") -> list[dict]:
-    """在售产品基本信息.json — 顶层数组，每条含 productName/productStatus 等字段。"""
+    """在售产品基本信息.json — 顶层数组，每条含 productName/productStatus/productGroup 等字段。"""
     docs = []
+    file_url_prefix = (
+        "https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/"
+        "clientlib-base/resources/pdfviewer/viewer.html?file=/content/dam/cn/zh-cn/docs/public-disclosure/"
+    )
     for obj in data:
         name = obj.get("productName", "")
         status = obj.get("productStatus", "")
         group = obj.get("productGroup", "")
+
+        file_fields = {
+            "productItem": obj.get("productItem"),
+            "ratesTable": obj.get("ratesTable"),
+            "cashValueTable": obj.get("cashValueTable"),
+            "productInstruction": obj.get("productInstruction"),
+            "followUpService": obj.get("followUpService"),
+        }
+        full_urls = {
+            key: f"{file_url_prefix}{value}" if value else ""
+            for key, value in file_fields.items()
+        }
+
         parts = [f"产品名称：{name}", f"状态：{status}"]
         if group:
             parts.append(f"产品组：{group}")
-        for k in ("productItem", "ratesTable", "cashValueTable", "productInstruction", "followUpService"):
-            v = obj.get(k)
-            if v:
-                parts.append(f"{k}：{v}")
+        for key in ("productItem", "ratesTable", "cashValueTable", "productInstruction", "followUpService"):
+            value = file_fields.get(key)
+            if value:
+                parts.append(f"{key}：{value}")
+                parts.append(f"{key}链接：{full_urls[key]}")
         content = "\n".join(parts)
         text = f"「{name}」\n{content}"
         docs.append({"text": text, "payload": {
             "title": name,
             "content": content,
             "service_name": source_file,
-            "service_url": "",
+            "service_url": full_urls.get("productInstruction") or full_urls.get("productItem") or "",
             "category": "在售产品",
             "product_status": status,
             "product_group": group,
+            "product_item": file_fields.get("productItem") or "",
+            "rates_table": file_fields.get("ratesTable") or "",
+            "cash_value_table": file_fields.get("cashValueTable") or "",
+            "product_instruction": file_fields.get("productInstruction") or "",
+            "follow_up_service": file_fields.get("followUpService") or "",
+            "product_item_url": full_urls.get("productItem") or "",
+            "rates_table_url": full_urls.get("ratesTable") or "",
+            "cash_value_table_url": full_urls.get("cashValueTable") or "",
+            "product_instruction_url": full_urls.get("productInstruction") or "",
+            "follow_up_service_url": full_urls.get("followUpService") or "",
             "schema": "products_list",
         }})
     return docs
 
 
 def _flatten_products_page(data: dict, source_file: str = "") -> list[dict]:
-    """个险+团险产品.json — 含 personal_insurance / group_insurance 分类描述列表。"""
+    """个险+团险产品.json — 含 personal_insurance_menu / group_insurance_menu 分类描述列表。"""
     docs = []
     for section_key, section_label in (
-        ("personal_insurance", "个险"),
-        ("group_insurance", "团险"),
+        ("personal_insurance_menu", "个险"),
+        ("group_insurance_menu", "团险"),
     ):
         for item in data.get(section_key, []):
             name = item.get("name", "")
@@ -276,58 +309,50 @@ def _flatten_products_page(data: dict, source_file: str = "") -> list[dict]:
                 "content": desc,
                 "service_name": section_label,
                 "service_url": "",
-                "category": f"{section_label}产品分类",
+                "category": f"{section_label}产品",
                 "schema": "products_page",
                 "source_file": source_file,
             }})
     return docs
 
 
-def _flatten_recommended_products(data: dict, source_file: str = "") -> list[dict]:
-    """推荐产品.json — 按推荐分类展开产品卡片信息。"""
+def _flatten_personal_insurance_recommended_products(data: dict, source_file: str = "") -> list[dict]:
+    """个险-推荐产品.json — 按推荐分类展开产品卡片信息。"""
     docs = []
-    for category_name, items in (data.get("recommended_products") or {}).items():
-        if not isinstance(items, list):
-            continue
+    for category_name, items in (data.get("personal_insurance_recommended_products") or {}).items():
         for item in items:
-            if not isinstance(item, dict):
-                continue
-            name = item.get("title") or item.get("name") or ""
-            desc = item.get("productCardDescription") or ""
-            path = item.get("path") or ""
-            highlights = item.get("highlight") or []
-            parts = [f"推荐分类：{category_name}"]
-            if desc:
-                parts.append(f"产品简介：{desc}")
-            if path:
-                parts.append(f"产品链接：https://www.aia.com.cn{path}")
-            if highlights:
-                parts.append("产品亮点：" + "、".join(str(x) for x in highlights))
-
+            name = item.get("name") or ""
             attributes = item.get("productAttributes") or {}
-            for attr in attributes.values():
-                if not isinstance(attr, dict):
-                    continue
-                label = attr.get("label") or ""
-                value = attr.get("value") or ""
-                if label and value:
-                    parts.append(f"{label}：{value}")
-
-            content = "\n".join(p for p in parts if p)
-            if not (name or content):
-                continue
-            text = f"「{category_name}·{name}」\n{content}" if name else content
+            text = f"「{category_name}·{name}」\n{attributes}"
             docs.append({"text": text, "payload": {
                 "title": name,
-                "content": content,
+                "content": attributes,
                 "service_name": category_name,
-                "service_url": f"https://www.aia.com.cn{path}" if path else "",
-                "category": "推荐产品",
+                "service_url": "",
+                "category": "个险推荐产品",
                 "schema": "recommended_products",
                 "source_file": source_file,
             }})
     return docs
 
+def _flatten_group_insurance_recommended_products(data: dict, source_file: str = "") -> list[dict]:
+    """团险-推荐产品.json — 按推荐分类展开产品卡片信息。"""
+    docs = []
+    for category_name, items in (data.get("group_insurance_recommended_products") or {}).items():
+        for item in items:
+            name = item.get("name") or ""
+            attributes = item.get("productAttributes") or {}
+            text = f"「{category_name}·{name}」\n{attributes}"
+            docs.append({"text": text, "payload": {
+                "title": name,
+                "content": attributes,
+                "service_name": category_name,
+                "service_url": "",
+                "category": "团险推荐产品",
+                "schema": "recommended_products",
+                "source_file": source_file,
+            }})
+    return docs
 
 def _flatten_branches(data: dict, source_file: str = "") -> list[dict]:
     """分公司页面 JSON — 含 regions 数组，每个 region 有 flexitems 或 news_items。"""
@@ -430,17 +455,19 @@ def flatten_json(data: Any, source_file: str = "") -> list[dict]:
     if schema == "forms":
         return _flatten_forms_text(data, source_file=source_file)
     if schema == "products_list":
-        return _flatten_products_list(data, source_file=source_file)
+        products_data = data.get("on_sale_products_list", data) if isinstance(data, dict) else data
+        return _flatten_products_list(products_data, source_file=source_file)
     if schema == "products_page":
         return _flatten_products_page(data, source_file=source_file)
-    if schema == "recommended_products":
-        return _flatten_recommended_products(data, source_file=source_file)
+    if schema == "personal_insurance_recommended_products":
+        return _flatten_personal_insurance_recommended_products(data, source_file=source_file)
+    if schema == "group_insurance_recommended_products":
+        return _flatten_group_insurance_recommended_products(data, source_file=source_file)
     if schema == "branches":
         return _flatten_branches(data, source_file=source_file)
     if schema == "menu":
         return _flatten_menu(data, source_file=source_file)
     return _flatten_generic(data, source_file=source_file)
-
 
 # ── PDF download helpers ──────────────────────────────────────────────────────
 
@@ -477,22 +504,26 @@ def ingest_forms_pdf(
     source_file: str = "",
     *,
     collection_name: str = DEFAULT_COLLECTION,
+    source_tag: str = "aia-form",
     progress_cb=None,
 ) -> dict:
     """Ingest a forms JSON whose items contain PDF URLs.
 
-    For each item:
+    For each supported PDF item:
       1. Download PDF
-      2. Hash for idempotency — skip if unchanged
-      3. Upload raw bytes to MinIO kb-raw
-      4. Extract text (PyMuPDF + DeepSeek-OCR fallback)
-      5. Upload parsed text to MinIO kb-parsed
-      6. Chunk → embed → upsert Qdrant
+      2. Store raw PDF in MinIO
+      3. Parse document into Markdown via DeepSeek-OCR
+      4. Store Markdown in MinIO
+      5. Chunk semantically
+      6. Embed and upsert into Qdrant
     """
-    from app.knowledge_base.pdf_parser import extract_pdf_text, chunk_text
+    from app.knowledge_base.pdf_parser import extract_pdf_markdown, chunk_markdown
     from app.knowledge_base.storage import (
-        ensure_buckets, upload_raw, upload_parsed,
-        raw_object_exists, content_hash,
+        ensure_buckets,
+        upload_raw,
+        upload_parsed,
+        raw_object_exists,
+        content_hash,
     )
 
     ensure_buckets()
@@ -511,11 +542,15 @@ def ingest_forms_pdf(
         full_url: str = item.get("full_url", "")
         if not full_url:
             logger.warning(f"[ingest] no full_url for '{filename}', skipping")
+            skipped += 1
+            continue
+        if ".pdf" not in full_url.lower():
+            logger.info(f"[ingest] skip non-PDF form '{filename}': {full_url}")
+            skipped += 1
             continue
 
-        safe_name = filename.strip("\u300a\u300b").replace("/", "-").replace(" ", "_") + ".pdf"
+        safe_name = filename.strip("《》").replace("/", "-").replace(" ", "_") + ".pdf"
 
-        # 1. Download
         try:
             logger.info(f"[ingest] downloading {filename} ...")
             pdf_bytes = _download_pdf(full_url)
@@ -525,55 +560,54 @@ def ingest_forms_pdf(
             continue
 
         doc_hash = content_hash(pdf_bytes)
+        existing_raw_key = raw_object_exists(doc_hash, safe_name, source_tag=source_tag)
 
-        # 2. Idempotency (raw file may already exist, but embedding should still proceed)
-        existing_raw_key = raw_object_exists(doc_hash, safe_name, source_tag="aia-form")
-
-        # 3. Store raw PDF (only when absent)
         raw_key = existing_raw_key or ""
-        if existing_raw_key:
-            logger.info(
-                f"[ingest] '{filename}' raw already exists (hash={doc_hash[:8]}), reuse object"
-            )
-        else:
+        if not existing_raw_key:
             try:
-                raw_key = upload_raw(pdf_bytes, safe_name, doc_hash, source_tag="aia-form")
-                logger.info(f"[ingest] raw -> minio://kb-raw/{raw_key}")
+                raw_key = upload_raw(pdf_bytes, safe_name, doc_hash, source_tag=source_tag)
+                logger.info(f"[ingest] raw -> minio://{settings.minio_bucket_raw}/{raw_key}")
             except Exception as exc:
                 logger.warning(f"[ingest] MinIO raw upload failed '{filename}': {exc}")
 
-        # 4. Parse PDF text
         try:
-            full_text = extract_pdf_text(pdf_bytes)
+            markdown = extract_pdf_markdown(pdf_bytes)
         except Exception as exc:
             logger.warning(f"[ingest] PDF parse failed '{filename}': {exc}")
             failed += 1
             continue
 
-        if not full_text.strip():
-            logger.warning(f"[ingest] no text extracted from '{filename}', skipping")
+        if not markdown.strip():
+            logger.warning(f"[ingest] no markdown extracted from '{filename}', skipping")
             failed += 1
             continue
 
-        # 5. Store parsed text
         parsed_key = ""
         try:
-            parsed_key = upload_parsed(full_text, safe_name, doc_hash, source_tag="aia-form")
-            logger.info(f"[ingest] parsed -> minio://kb-parsed/{parsed_key}")
+            parsed_key = upload_parsed(
+                markdown,
+                safe_name,
+                doc_hash,
+                source_tag=source_tag,
+                suffix=".md",
+                content_type="text/markdown; charset=utf-8",
+            )
+            logger.info(f"[ingest] parsed -> minio://{settings.minio_bucket_parsed}/{parsed_key}")
         except Exception as exc:
             logger.warning(f"[ingest] MinIO parsed upload failed '{filename}': {exc}")
 
-        # 6. Chunk
-        chunks = chunk_text(full_text)
+        chunks = chunk_markdown(markdown)
         if not chunks:
+            skipped += 1
             continue
 
-        # 7. Embed
         vectors = model.encode(
-            chunks, batch_size=_BATCH, normalize_embeddings=True, show_progress_bar=False,
+            chunks,
+            batch_size=_BATCH,
+            normalize_embeddings=True,
+            show_progress_bar=False,
         )
 
-        # 8. Upsert Qdrant
         points = [
             models.PointStruct(
                 id=_doc_id(chunks[i] + doc_hash),
@@ -584,31 +618,76 @@ def ingest_forms_pdf(
                     "service_name": page_name,
                     "service_url": full_url,
                     "category": page_name,
-                    "schema": "forms_pdf",
+                    "schema": "forms_markdown",
                     "source_file": source_file,
                     "source_url": full_url,
+                    "source_tag": source_tag,
                     "doc_hash": doc_hash,
                     "raw_object_key": raw_key,
                     "parsed_object_key": parsed_key,
                     "chunk_index": i,
                     "chunk_total": len(chunks),
+                    "format": "markdown",
                 },
             )
             for i in range(len(chunks))
         ]
         client.upsert(collection_name, points=points)
         total_chunks += len(chunks)
-        logger.info(f"[ingest] '{filename}' -> {len(chunks)} chunks upserted")
+        logger.info(f"[ingest] '{filename}' -> {len(chunks)} markdown chunks upserted")
 
         if progress_cb:
             progress_cb(idx + 1, len(items), filename)
 
     return {
         "file": source_file,
-        "schema": "forms_pdf",
+        "schema": "forms_markdown",
         "doc_count": total_chunks,
         "skipped": skipped,
         "failed": failed,
+        "source_tag": source_tag,
+    }
+
+
+def clear_form_knowledge(
+    *,
+    collection_name: str,
+    source_file: str,
+    source_tag: str,
+) -> dict[str, int]:
+    """Remove existing form knowledge from Qdrant and MinIO before re-import."""
+    from app.knowledge_base.storage import clear_source_tag
+
+    client = _client()
+    deleted_points = 0
+    try:
+        client.delete(
+            collection_name=collection_name,
+            points_selector=models.FilterSelector(
+                filter=models.Filter(
+                    should=[
+                        models.FieldCondition(
+                            key="source_file",
+                            match=models.MatchValue(value=source_file),
+                        ),
+                        models.FieldCondition(
+                            key="source_tag",
+                            match=models.MatchValue(value=source_tag),
+                        ),
+                    ]
+                )
+            ),
+        )
+    except Exception as exc:
+        logger.warning(f"[ingest] failed clearing Qdrant dirty data for {source_file}: {exc}")
+    else:
+        deleted_points = -1
+
+    deleted_objects = clear_source_tag(source_tag)
+    return {
+        "qdrant_points": deleted_points,
+        "raw_objects": deleted_objects.get(settings.minio_bucket_raw, 0),
+        "parsed_objects": deleted_objects.get(settings.minio_bucket_parsed, 0),
     }
 
 
@@ -834,6 +913,17 @@ def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, pr
             "doc_count": total,
             "collections": [collection_name],
         }
+
+    # forms: reprocess via DeepSeek-OCR Markdown pipeline
+    if schema == "forms":
+        source_tag = "aia-form-group" if "团险" in path.name else "aia-form-personal"
+        return ingest_forms_pdf(
+            data,
+            source_file=path.name,
+            collection_name=collection_name,
+            source_tag=source_tag,
+            progress_cb=progress_cb,
+        )
 
     # Standard JSON text ingestion
     docs = flatten_json(data, source_file=path.name)
