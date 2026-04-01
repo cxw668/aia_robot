@@ -51,7 +51,31 @@ def _get_client() -> QdrantClient:
 def _get_model() -> SentenceTransformer:
     global _model
     if _model is None:
-        _model = SentenceTransformer(MODEL_NAME)
+        explicit_local = os.getenv("EMBEDDING_MODEL_PATH", "").strip()
+        local_candidates: list[str] = []
+
+        if explicit_local:
+            local_candidates.append(explicit_local)
+
+        if _model_cache:
+            direct = os.path.join(_model_cache, "models--BAAI--bge-small-zh-v1.5")
+            if os.path.isdir(direct):
+                local_candidates.append(direct)
+                snapshots = os.path.join(direct, "snapshots")
+                if os.path.isdir(snapshots):
+                    for d in os.listdir(snapshots):
+                        p = os.path.join(snapshots, d)
+                        if os.path.isdir(p):
+                            local_candidates.append(p)
+
+        for cand in local_candidates:
+            if os.path.exists(os.path.join(cand, "config.json")) or os.path.exists(os.path.join(cand, "modules.json")):
+                logger.info(f"[rag] using local embedding model path: {cand}")
+                _model = SentenceTransformer(cand, local_files_only=True)
+                break
+
+        if _model is None:
+            _model = SentenceTransformer(MODEL_NAME)
     return _model
 
 

@@ -1,0 +1,746 @@
+{
+    "group_insurance_recommended_products": {
+        "员工企业福利": [
+            {
+                "category": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "commerceCardDescription": "友邦人寿凭借多年为当地企业提供保险服务的经验，为中小企业客户量身定制中小企业员工优选福利保险，帮助企业在有限的预算内，实现高效灵活的员工保障组合。友邦中小企业员工优选福利保险操作简便，并有多种可选保额，可以为您的员工提供人寿、意外、住院和门诊等多重保障。籍此专业的保险计划，您还可以享受友邦专业、周到的客户服务，免除您及您的员工在工作或生活上的后顾之忧。",
+                "currency": null,
+                "dateCreated": null,
+                "dateUpdated": "2024-03-31T16:00:00.000+00:00",
+                "features": null,
+                "fromAge": null,
+                "fromPrice": null,
+                "highlight": null,
+                "id": null,
+                "isOnlineProduct": false,
+                "isVitality": false,
+                "name": "友邦团险中端医疗智享组合计划",
+                "needSegment": null,
+                "path": "/zh-cn/baoxian/yuangongfuli/zhongduanyiliaozhixiangjihua.html",
+                "productAttributes": {
+                    "Benefit limit": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Benefit limit",
+                        "value": "HKD600,000/yr"
+                    },
+                    "Supplementary major medical benefit": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "Supplementary major medical benefit",
+                        "value": "HKD120,000/yr"
+                    },
+                    "Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Prescribed diagnostic imaging tests",
+                        "value": "HKD26,000/yr"
+                    },
+                    "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+                    },
+                    "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "xmark",
+                        "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+                    }
+                },
+                "productCardDescription": "友邦人寿凭借多年为当地企业提供保险服务的经验，为中小企业客户量身定制中小企业员工优选福利保险，帮助企业在有限的预算内，实现高效灵活的员工保障组合。友邦中小企业员工优选福利保险操作简便，并有多种可选保额，可以为您的员工提供人寿、意外、住院和门诊等多重保障。籍此专业的保险计划，您还可以享受友邦专业、周到的客户服务，免除您及您的员工在工作或生活上的后顾之忧。",
+                "productComparable": false,
+                "productPlanList": [],
+                "protectionPeriod": null,
+                "recurrence": null,
+                "riders": null,
+                "sortvalues": "3",
+                "subcategory": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "subcategoryWithTitle": [
+                    {
+                        "id": "cn-wise:产品/分类/员工企业福利",
+                        "title": "员工企业福利"
+                    }
+                ],
+                "tags": {
+                    "category": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "features": null,
+                    "filter": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "highlight": null,
+                    "subcategory": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ]
+                },
+                "title": "友邦团险中端医疗智享组合计划",
+                "toAge": null
+            },
+            {
+                "category": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "commerceCardDescription": "友邦人寿凭借多年为当地企业提供保险服务的经验，为中小企业客户量身定制中小企业员工优选福利保险，帮助企业在有限的预算内，实现高效灵活的员工保障组合。友邦中小企业员工优选福利保险操作简便，并有多种可选保额，可以为您的员工提供人寿、意外、住院和门诊等多重保障。籍此专业的保险计划，您还可以享受友邦专业、周到的客户服务，免除您及您的员工在工作或生活上的后顾之忧。",
+                "currency": null,
+                "dateCreated": null,
+                "dateUpdated": "2024-03-31T16:00:00.000+00:00",
+                "features": null,
+                "fromAge": null,
+                "fromPrice": null,
+                "highlight": null,
+                "id": null,
+                "isOnlineProduct": false,
+                "isVitality": false,
+                "name": "友邦团险补充医疗优享组合计划",
+                "needSegment": null,
+                "path": "/zh-cn/baoxian/yuangongfuli/youxiang.html",
+                "productAttributes": {
+                    "Benefit limit": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Benefit limit",
+                        "value": "HKD600,000/yr"
+                    },
+                    "Supplementary major medical benefit": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "Supplementary major medical benefit",
+                        "value": "HKD120,000/yr"
+                    },
+                    "Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Prescribed diagnostic imaging tests",
+                        "value": "HKD26,000/yr"
+                    },
+                    "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+                    },
+                    "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "xmark",
+                        "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+                    }
+                },
+                "productCardDescription": "友邦人寿凭借多年为当地企业提供保险服务的经验，为中小企业客户量身定制中小企业员工优选福利保险，帮助企业在有限的预算内，实现高效灵活的员工保障组合。友邦中小企业员工优选福利保险操作简便，并有多种可选保额，可以为您的员工提供人寿、意外、住院和门诊等多重保障。籍此专业的保险计划，您还可以享受友邦专业、周到的客户服务，免除您及您的员工在工作或生活上的后顾之忧。",
+                "productComparable": false,
+                "productPlanList": [],
+                "protectionPeriod": null,
+                "recurrence": null,
+                "riders": null,
+                "sortvalues": "2",
+                "subcategory": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "subcategoryWithTitle": [
+                    {
+                        "id": "cn-wise:产品/分类/员工企业福利",
+                        "title": "员工企业福利"
+                    }
+                ],
+                "tags": {
+                    "category": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "features": null,
+                    "filter": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "highlight": null,
+                    "subcategory": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ]
+                },
+                "title": "友邦团险补充医疗优享组合计划",
+                "toAge": null
+            },
+            {
+                "category": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "commerceCardDescription": "友邦人寿凭借多年为当地企业提供保险服务的经验，为中小企业客户量身定制中小企业员工优选福利保险，帮助企业实现高效灵活的员工保障组合。友邦中小企业员工优选福利保险操作简便，并有多种可选保额，可以为您的员工提供人寿、意外、住院、门诊、牙科和眼科等多重保障。籍此专业的保险计划，您还可以享受友邦专业、周到的客户服务，免除您及您的员工在工作或生活上的后顾之忧。",
+                "currency": null,
+                "dateCreated": null,
+                "dateUpdated": "2024-03-30T16:00:00.000+00:00",
+                "features": null,
+                "fromAge": null,
+                "fromPrice": null,
+                "highlight": null,
+                "id": null,
+                "isOnlineProduct": false,
+                "isVitality": false,
+                "name": "友邦团险环球精英高端医疗尊享组合计划（含可转换版）",
+                "needSegment": null,
+                "path": "/zh-cn/baoxian/yuangongfuli/zunxiang.html",
+                "productAttributes": {
+                    "Benefit limit": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Benefit limit",
+                        "value": "HKD600,000/yr"
+                    },
+                    "Supplementary major medical benefit": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "Supplementary major medical benefit",
+                        "value": "HKD120,000/yr"
+                    },
+                    "Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Prescribed diagnostic imaging tests",
+                        "value": "HKD26,000/yr"
+                    },
+                    "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+                    },
+                    "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "xmark",
+                        "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+                    }
+                },
+                "productCardDescription": "友邦人寿凭借多年为当地企业提供保险服务的经验，为中小企业客户量身定制中小企业员工优选福利保险，帮助企业实现高效灵活的员工保障组合。友邦中小企业员工优选福利保险操作简便，并有多种可选保额，可以为您的员工提供人寿、意外、住院、门诊、牙科和眼科等多重保障。籍此专业的保险计划，您还可以享受友邦专业、周到的客户服务，免除您及您的员工在工作或生活上的后顾之忧。",
+                "productComparable": false,
+                "productPlanList": [],
+                "protectionPeriod": null,
+                "recurrence": null,
+                "riders": null,
+                "sortvalues": "3",
+                "subcategory": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "subcategoryWithTitle": [
+                    {
+                        "id": "cn-wise:产品/分类/员工企业福利",
+                        "title": "员工企业福利"
+                    }
+                ],
+                "tags": {
+                    "category": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "features": null,
+                    "filter": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "highlight": null,
+                    "subcategory": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ]
+                },
+                "title": "友邦团险环球精英高端医疗尊享组合计划（含可转换版）",
+                "toAge": null
+            },
+            {
+                "category": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "commerceCardDescription": "友邦人寿凭借多年为当地企业提供保险服务的经验，为中小企业客户量身定制中小企业员工优选福利保险，帮助企业在有限的预算内，实现高效灵活的员工保障组合。友邦中小企业员工优选福利保险操作简便，并有多种可选保额，可以为您的员工提供人寿、意外、住院和重疾等多重保障。籍此专业的保险计划，您还可以享受友邦专业、周到的客户服务，免除您及您的员工在工作或生活上的后顾之忧。",
+                "currency": null,
+                "dateCreated": null,
+                "dateUpdated": "2024-03-31T16:00:00.000+00:00",
+                "features": null,
+                "fromAge": null,
+                "fromPrice": null,
+                "highlight": null,
+                "id": null,
+                "isOnlineProduct": false,
+                "isVitality": false,
+                "name": "友邦团险安心固定/灵活组合计划",
+                "needSegment": null,
+                "path": "/zh-cn/baoxian/yuangongfuli/anxinguding.html",
+                "productAttributes": {
+                    "Benefit limit": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Benefit limit",
+                        "value": "HKD600,000/yr"
+                    },
+                    "Supplementary major medical benefit": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "Supplementary major medical benefit",
+                        "value": "HKD120,000/yr"
+                    },
+                    "Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Prescribed diagnostic imaging tests",
+                        "value": "HKD26,000/yr"
+                    },
+                    "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+                    },
+                    "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "xmark",
+                        "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+                    }
+                },
+                "productCardDescription": "友邦人寿凭借多年为当地企业提供保险服务的经验，为中小企业客户量身定制中小企业员工优选福利保险，帮助企业在有限的预算内，实现高效灵活的员工保障组合。友邦中小企业员工优选福利保险操作简便，并有多种可选保额，可以为您的员工提供人寿、意外、住院和重疾等多重保障。籍此专业的保险计划，您还可以享受友邦专业、周到的客户服务，免除您及您的员工在工作或生活上的后顾之忧。",
+                "productComparable": false,
+                "productPlanList": [],
+                "protectionPeriod": null,
+                "recurrence": null,
+                "riders": null,
+                "sortvalues": "1",
+                "subcategory": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "subcategoryWithTitle": [
+                    {
+                        "id": "cn-wise:产品/分类/员工企业福利",
+                        "title": "员工企业福利"
+                    }
+                ],
+                "tags": {
+                    "category": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "features": null,
+                    "filter": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "highlight": null,
+                    "subcategory": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ]
+                },
+                "title": "友邦团险安心固定/灵活组合计划",
+                "toAge": null
+            },
+            {
+                "category": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "commerceCardDescription": "友邦人寿拥有超过五十年雇员褔利和团体保险服务的经验。在本地及国际保险业内的丰富经验让我们不断创新思维，并为客户提供最全面的服务。我们为客户量身定制最合适产品和服务以满足客户的需求,提供包括意外，医疗，住院，门诊，生育，寿险在内的全方面保障。",
+                "currency": null,
+                "dateCreated": null,
+                "dateUpdated": null,
+                "features": null,
+                "fromAge": null,
+                "fromPrice": null,
+                "highlight": null,
+                "id": null,
+                "isOnlineProduct": false,
+                "isVitality": false,
+                "name": "友邦团险大型企业员工专属福利保险计划",
+                "needSegment": null,
+                "path": "/zh-cn/baoxian/yuangongfuli/dingzhi.html",
+                "productAttributes": {
+                    "Benefit limit": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Benefit limit",
+                        "value": "HKD600,000/yr"
+                    },
+                    "Supplementary major medical benefit": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "Supplementary major medical benefit",
+                        "value": "HKD120,000/yr"
+                    },
+                    "Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Prescribed diagnostic imaging tests",
+                        "value": "HKD26,000/yr"
+                    },
+                    "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+                    },
+                    "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "xmark",
+                        "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+                    }
+                },
+                "productCardDescription": "友邦人寿拥有超过五十年雇员褔利和团体保险服务的经验。在本地及国际保险业内的丰富经验让我们不断创新思维，并为客户提供最全面的服务。我们为客户量身定制最合适产品和服务以满足客户的需求,提供包括意外，医疗，住院，门诊，生育，寿险在内的全方面保障。",
+                "productComparable": false,
+                "productPlanList": [],
+                "protectionPeriod": null,
+                "recurrence": null,
+                "riders": null,
+                "sortvalues": "4",
+                "subcategory": [
+                    "cn-wise:产品/分类/员工企业福利"
+                ],
+                "subcategoryWithTitle": [
+                    {
+                        "id": "cn-wise:产品/分类/员工企业福利",
+                        "title": "员工企业福利"
+                    }
+                ],
+                "tags": {
+                    "category": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "features": null,
+                    "filter": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ],
+                    "highlight": null,
+                    "subcategory": [
+                        "cn-wise:产品/分类/员工企业福利"
+                    ]
+                },
+                "title": "友邦团险大型企业员工专属福利保险计划",
+                "toAge": null
+            }
+        ],
+        "员工自选加保": [
+            {
+                "category": [
+                    "cn-wise:产品/分类/员工自选加保"
+                ],
+                "commerceCardDescription": " ",
+                "currency": null,
+                "dateCreated": null,
+                "dateUpdated": null,
+                "features": null,
+                "fromAge": null,
+                "fromPrice": null,
+                "highlight": null,
+                "id": null,
+                "isOnlineProduct": false,
+                "isVitality": false,
+                "name": "友邦环球无忧团体高端医疗保险",
+                "needSegment": null,
+                "path": "/zh-cn/baoxian/yuangongzixuanjiabao/huanqiu.html",
+                "productAttributes": {
+                    "Benefit limit": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Benefit limit",
+                        "value": "HKD600,000/yr"
+                    },
+                    "Supplementary major medical benefit": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "Supplementary major medical benefit",
+                        "value": "HKD120,000/yr"
+                    },
+                    "Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Prescribed diagnostic imaging tests",
+                        "value": "HKD26,000/yr"
+                    },
+                    "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+                    },
+                    "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "xmark",
+                        "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+                    }
+                },
+                "productCardDescription": " ",
+                "productComparable": false,
+                "productPlanList": [],
+                "protectionPeriod": null,
+                "recurrence": null,
+                "riders": null,
+                "sortvalues": "4",
+                "subcategory": [
+                    "cn-wise:产品/分类/员工自选加保"
+                ],
+                "subcategoryWithTitle": [
+                    {
+                        "id": "cn-wise:产品/分类/员工自选加保",
+                        "title": "员工自选加保"
+                    }
+                ],
+                "tags": {
+                    "category": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ],
+                    "features": null,
+                    "filter": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ],
+                    "highlight": null,
+                    "subcategory": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ]
+                },
+                "title": "友邦环球无忧团体高端医疗保险",
+                "toAge": null
+            },
+            {
+                "category": [
+                    "cn-wise:产品/分类/员工自选加保"
+                ],
+                "commerceCardDescription": "员工自选加保专属产品",
+                "currency": null,
+                "dateCreated": null,
+                "dateUpdated": null,
+                "features": null,
+                "fromAge": null,
+                "fromPrice": null,
+                "highlight": null,
+                "id": null,
+                "isOnlineProduct": false,
+                "isVitality": false,
+                "name": "友邦顺康2022团体恶性肿瘤疾病保险 ",
+                "needSegment": null,
+                "path": "/zh-cn/baoxian/yuangongzixuanjiabao/2022.html",
+                "productAttributes": {
+                    "Benefit limit": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Benefit limit",
+                        "value": "HKD600,000/yr"
+                    },
+                    "Supplementary major medical benefit": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "Supplementary major medical benefit",
+                        "value": "HKD120,000/yr"
+                    },
+                    "Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Prescribed diagnostic imaging tests",
+                        "value": "HKD26,000/yr"
+                    },
+                    "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+                    },
+                    "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "xmark",
+                        "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+                    }
+                },
+                "productCardDescription": "员工自选加保专属产品",
+                "productComparable": false,
+                "productPlanList": [],
+                "protectionPeriod": null,
+                "recurrence": null,
+                "riders": null,
+                "sortvalues": "3",
+                "subcategory": [
+                    "cn-wise:产品/分类/员工自选加保"
+                ],
+                "subcategoryWithTitle": [
+                    {
+                        "id": "cn-wise:产品/分类/员工自选加保",
+                        "title": "员工自选加保"
+                    }
+                ],
+                "tags": {
+                    "category": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ],
+                    "features": null,
+                    "filter": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ],
+                    "highlight": null,
+                    "subcategory": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ]
+                },
+                "title": "友邦顺康2022团体恶性肿瘤疾病保险 ",
+                "toAge": null
+            },
+            {
+                "category": [
+                    "cn-wise:产品/分类/员工自选加保"
+                ],
+                "commerceCardDescription": "企业员工加保团体医疗保险解决方案",
+                "currency": null,
+                "dateCreated": null,
+                "dateUpdated": null,
+                "features": null,
+                "fromAge": null,
+                "fromPrice": null,
+                "highlight": null,
+                "id": null,
+                "isOnlineProduct": false,
+                "isVitality": false,
+                "name": "友邦智选康惠2023团体医疗保险 ",
+                "needSegment": null,
+                "path": "/zh-cn/baoxian/yuangongzixuanjiabao/2023.html",
+                "productAttributes": {
+                    "Benefit limit": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Benefit limit",
+                        "value": "HKD600,000/yr"
+                    },
+                    "Supplementary major medical benefit": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "Supplementary major medical benefit",
+                        "value": "HKD120,000/yr"
+                    },
+                    "Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Prescribed diagnostic imaging tests",
+                        "value": "HKD26,000/yr"
+                    },
+                    "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+                    },
+                    "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "xmark",
+                        "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+                    }
+                },
+                "productCardDescription": "企业员工加保团体医疗保险解决方案",
+                "productComparable": false,
+                "productPlanList": [],
+                "protectionPeriod": null,
+                "recurrence": null,
+                "riders": null,
+                "sortvalues": "1",
+                "subcategory": [
+                    "cn-wise:产品/分类/员工自选加保"
+                ],
+                "subcategoryWithTitle": [
+                    {
+                        "id": "cn-wise:产品/分类/员工自选加保",
+                        "title": "员工自选加保"
+                    }
+                ],
+                "tags": {
+                    "category": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ],
+                    "features": null,
+                    "filter": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ],
+                    "highlight": null,
+                    "subcategory": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ]
+                },
+                "title": "友邦智选康惠2023团体医疗保险 ",
+                "toAge": null
+            },
+            {
+                "category": [
+                    "cn-wise:产品/分类/员工自选加保"
+                ],
+                "commerceCardDescription": "企业员工加保团体医疗保险解决方案",
+                "currency": null,
+                "dateCreated": null,
+                "dateUpdated": null,
+                "features": null,
+                "fromAge": null,
+                "fromPrice": null,
+                "highlight": null,
+                "id": null,
+                "isOnlineProduct": false,
+                "isVitality": false,
+                "name": "友邦智选康逸2019团体医疗保险",
+                "needSegment": null,
+                "path": "/zh-cn/baoxian/yuangongzixuanjiabao/2019.html",
+                "productAttributes": {
+                    "Benefit limit": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Benefit limit",
+                        "value": "HKD600,000/yr"
+                    },
+                    "Supplementary major medical benefit": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "Supplementary major medical benefit",
+                        "value": "HKD120,000/yr"
+                    },
+                    "Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "noicon",
+                        "label": "Prescribed diagnostic imaging tests",
+                        "value": "HKD26,000/yr"
+                    },
+                    "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "checkmark",
+                        "label": "test1 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,From HKD20,000/mth,"
+                    },
+                    "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests": {
+                        "comparable": true,
+                        "icon": "xmark",
+                        "label": "test3 Prescribed diagnostic imaging tests Prescribed diagnostic imaging tests",
+                        "value": "HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000 HKD120,000-125,000"
+                    }
+                },
+                "productCardDescription": "企业员工加保团体医疗保险解决方案",
+                "productComparable": false,
+                "productPlanList": [],
+                "protectionPeriod": null,
+                "recurrence": null,
+                "riders": null,
+                "sortvalues": "2",
+                "subcategory": [
+                    "cn-wise:产品/分类/员工自选加保"
+                ],
+                "subcategoryWithTitle": [
+                    {
+                        "id": "cn-wise:产品/分类/员工自选加保",
+                        "title": "员工自选加保"
+                    }
+                ],
+                "tags": {
+                    "category": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ],
+                    "features": null,
+                    "filter": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ],
+                    "highlight": null,
+                    "subcategory": [
+                        "cn-wise:产品/分类/员工自选加保"
+                    ]
+                },
+                "title": "友邦智选康逸2019团体医疗保险",
+                "toAge": null
+            }
+        ]
+    }
+}

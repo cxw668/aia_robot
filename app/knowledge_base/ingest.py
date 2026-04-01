@@ -38,12 +38,13 @@ from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 
 from app.config import settings
+from app.knowledge_base.pdf_parser import chunk_text
 
 load_dotenv()
 
 logger = logging.getLogger(__name__)
 
-COLLECTION_NAME = "knowledge_base"
+COLLECTION_NAME = "aia_knowledge_base"
 DEFAULT_COLLECTION = COLLECTION_NAME
 MODEL_NAME = "BAAI/bge-small-zh-v1.5"
 VECTOR_SIZE = 512
@@ -61,9 +62,31 @@ def _client() -> QdrantClient:
 
 def _model() -> SentenceTransformer:
     mp = settings.model_cache_path or os.getenv("MODEL_CACHE_PATH", "")
+    explicit_local = os.getenv("EMBEDDING_MODEL_PATH", "").strip()
+
     if mp:
         os.environ["HF_HOME"] = mp
         os.environ["SENTENCE_TRANSFORMERS_HOME"] = mp
+
+    # 优先使用用户提供的本地模型目录，避免联网请求 HuggingFace
+    local_candidates: list[Path] = []
+    if explicit_local:
+        local_candidates.append(Path(explicit_local))
+
+    if mp:
+        root = Path(mp)
+        direct = root / "models--BAAI--bge-small-zh-v1.5"
+        if direct.exists():
+            local_candidates.append(direct)
+            snap_dir = direct / "snapshots"
+            if snap_dir.exists():
+                local_candidates.extend([p for p in snap_dir.iterdir() if p.is_dir()])
+
+    for cand in local_candidates:
+        if (cand / "config.json").exists() or (cand / "modules.json").exists():
+            logger.info(f"[embedding] using local model path: {cand}")
+            return SentenceTransformer(str(cand), local_files_only=True)
+
     return SentenceTransformer(MODEL_NAME)
 
 
@@ -104,6 +127,8 @@ def _detect_schema(data: Any) -> str:
         # 个险+团险产品页
         if "personal_insurance" in keys or "group_insurance" in keys:
             return "products_page"
+        if "recommended_products" in keys:
+            return "recommended_products"
         if "products" in keys or any("product" in k for k in keys):
             return "products"
         # 分公司页面（含 regions 数组）
@@ -131,12 +156,43 @@ def _flatten_service_categories(data: dict) -> list[dict]:
         for item in cat.get("items", []):
             title = item.get("title", "")
             content = item.get("content", "")
-            text = f"\u300c{title}\u300d\n{content}"
-            docs.append({"text": text, "payload": {
-                "title": title, "content": content,
-                "service_name": sname, "service_url": surl,
-                "category": sname, "schema": "service_categories",
-            }})
+            base_text = f"「{title}」\n{content}"
+
+            # 记录完整属性：分类级 + 条目级全部字段
+            payload = {
+                "title": title,
+                "content": content,
+                "service_name": sname,
+                "service_url": surl,
+                "category": sname,
+                "schema": "service_categories",
+                "service_category": cat,
+                "item": item,
+                "chunk_enabled": len(content) > settings.pdf_chunk_size,
+            }
+
+            if len(content) > settings.pdf_chunk_size:
+                chunks = chunk_text(content)
+                for idx, chunk in enumerate(chunks):
+                    text = f"「{title}」\n{chunk}"
+                    docs.append({
+                        "text": text,
+                        "payload": {
+                            **payload,
+                            "content": chunk,
+                            "chunk_index": idx,
+                            "chunk_total": len(chunks),
+                        },
+                    })
+            else:
+                docs.append({
+                    "text": base_text,
+                    "payload": {
+                        **payload,
+                        "chunk_index": 0,
+                        "chunk_total": 1,
+                    },
+                })
     return docs
 
 
@@ -222,6 +278,52 @@ def _flatten_products_page(data: dict, source_file: str = "") -> list[dict]:
                 "service_url": "",
                 "category": f"{section_label}产品分类",
                 "schema": "products_page",
+                "source_file": source_file,
+            }})
+    return docs
+
+
+def _flatten_recommended_products(data: dict, source_file: str = "") -> list[dict]:
+    """推荐产品.json — 按推荐分类展开产品卡片信息。"""
+    docs = []
+    for category_name, items in (data.get("recommended_products") or {}).items():
+        if not isinstance(items, list):
+            continue
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            name = item.get("title") or item.get("name") or ""
+            desc = item.get("productCardDescription") or ""
+            path = item.get("path") or ""
+            highlights = item.get("highlight") or []
+            parts = [f"推荐分类：{category_name}"]
+            if desc:
+                parts.append(f"产品简介：{desc}")
+            if path:
+                parts.append(f"产品链接：https://www.aia.com.cn{path}")
+            if highlights:
+                parts.append("产品亮点：" + "、".join(str(x) for x in highlights))
+
+            attributes = item.get("productAttributes") or {}
+            for attr in attributes.values():
+                if not isinstance(attr, dict):
+                    continue
+                label = attr.get("label") or ""
+                value = attr.get("value") or ""
+                if label and value:
+                    parts.append(f"{label}：{value}")
+
+            content = "\n".join(p for p in parts if p)
+            if not (name or content):
+                continue
+            text = f"「{category_name}·{name}」\n{content}" if name else content
+            docs.append({"text": text, "payload": {
+                "title": name,
+                "content": content,
+                "service_name": category_name,
+                "service_url": f"https://www.aia.com.cn{path}" if path else "",
+                "category": "推荐产品",
+                "schema": "recommended_products",
                 "source_file": source_file,
             }})
     return docs
@@ -331,6 +433,8 @@ def flatten_json(data: Any, source_file: str = "") -> list[dict]:
         return _flatten_products_list(data, source_file=source_file)
     if schema == "products_page":
         return _flatten_products_page(data, source_file=source_file)
+    if schema == "recommended_products":
+        return _flatten_recommended_products(data, source_file=source_file)
     if schema == "branches":
         return _flatten_branches(data, source_file=source_file)
     if schema == "menu":
@@ -685,10 +789,8 @@ def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, pr
     """Parse a JSON file and ingest into Qdrant.
 
     For forms schema (items with full_url): triggers PDF download pipeline.
-    For service_categories schema: each category is ingested into its own
-      collection named after the Chinese service_name (e.g. "保单服务").
-      The caller-supplied collection_name is used as fallback only when a
-      category's service_name is empty.
+    For service_categories schema: writes all category documents into the
+      single collection named by collection_name.
     For all other schemas: embeds JSON text directly into collection_name.
 
     Returns: {"file": str, "schema": str, "doc_count": int}
@@ -699,39 +801,38 @@ def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, pr
 
     schema = _detect_schema(data)
 
-    # service_categories: ingest each category into its own named collection
+    # service_categories: ingest all categories into the same collection
     if schema == "service_categories":
         qdrant = _client()
         model = _model()
         total = 0
-        collections_created: list[str] = []
+        _ensure_collection(qdrant, collection_name)
+        cat_docs: list[dict] = []
         for cat in data.get("service_categories", []):
-            cat_name: str = cat.get("service_name") or collection_name
-            cat_docs = _flatten_service_categories({"service_categories": [cat]})
-            if not cat_docs:
-                continue
-            _ensure_collection(qdrant, cat_name)
-            texts = [d["text"] for d in cat_docs]
-            vectors = model.encode(
-                texts, batch_size=_BATCH, normalize_embeddings=True, show_progress_bar=False
+            cat_docs.extend(_flatten_service_categories({"service_categories": [cat]}))
+        if not cat_docs:
+            return {"file": path.name, "schema": schema, "doc_count": 0, "collections": [collection_name]}
+
+        texts = [d["text"] for d in cat_docs]
+        vectors = model.encode(
+            texts, batch_size=_BATCH, normalize_embeddings=True, show_progress_bar=False
+        )
+        points = [
+            models.PointStruct(
+                id=_doc_id(cat_docs[i]["text"]),
+                vector=vectors[i].tolist(),
+                payload={**cat_docs[i]["payload"], "source_file": path.name},
             )
-            points = [
-                models.PointStruct(
-                    id=_doc_id(cat_docs[i]["text"]),
-                    vector=vectors[i].tolist(),
-                    payload={**cat_docs[i]["payload"], "source_file": path.name},
-                )
-                for i in range(len(cat_docs))
-            ]
-            qdrant.upsert(cat_name, points=points)
-            total += len(points)
-            collections_created.append(cat_name)
-            logger.info(f"[ingest] '{cat_name}' <- {len(points)} docs from {path.name}")
+            for i in range(len(cat_docs))
+        ]
+        qdrant.upsert(collection_name, points=points)
+        total += len(points)
+        logger.info(f"[ingest] '{collection_name}' <- {len(points)} docs from {path.name}")
         return {
             "file": path.name,
             "schema": schema,
             "doc_count": total,
-            "collections": collections_created,
+            "collections": [collection_name],
         }
 
     # Standard JSON text ingestion

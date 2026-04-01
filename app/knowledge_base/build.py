@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 model_path = os.getenv("MODEL_CACHE_PATH")
+explicit_model_path = os.getenv("EMBEDDING_MODEL_PATH", "").strip()
 DATA_PATH = os.path.join(os.path.dirname(__file__), "../../aia_data/保单服务.json")
 COLLECTION_NAME = "knowledge_base"
 MODEL_NAME = "BAAI/bge-small-zh-v1.5"  # 中文小模型，向量维度 512

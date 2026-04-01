@@ -73,16 +73,16 @@ class Settings(BaseSettings):
         return f"redis://{auth}{self.redis_host}:{self.redis_port}/{self.redis_db}"
 
     # ── LLM ───────────────────────────────────────────────────────────────────
-    llm_chat_api_key: str = ""
+    llm_chat_api_key: str = "sk-fdrluchjggxamwzuqfhsrjfbobuitjoacecvxxdqcpdbivmm"
     llm_api_url: str = "https://api.siliconflow.cn/v1/chat/completions"
     llm_model: str = "tencent/Hunyuan-MT-7B"
 
     # ── Qdrant ────────────────────────────────────────────────────────────────
-    qdrantclient_url: str = ""
+    qdrantclient_url: str = "http://localhost:6333"
     qdrantclient_key: str = ""
 
     # ── Embedding ─────────────────────────────────────────────────────────────
-    model_cache_path: str = ""
+    model_cache_path: str = "E:\\aia_embedding_models"
 
     # ── OCR (SiliconFlow DeepSeek-OCR) ────────────────────────────────────────
     ocr_api_url: str = "https://api.siliconflow.cn/v1/chat/completions"
