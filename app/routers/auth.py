@@ -1,7 +1,6 @@
 """Auth router — POST /auth/login, POST /auth/register (DB-backed)."""
 from __future__ import annotations
 
-import os
 from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -13,6 +12,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import User, get_db
+from app.env_loader import EnvLoader
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 bearer = HTTPBearer(auto_error=False)
@@ -20,7 +20,7 @@ bearer = HTTPBearer(auto_error=False)
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRE_HOURS = 24 * 7
-JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "aia-robot-dev-secret")
+JWT_SECRET_KEY = EnvLoader.get("JWT_SECRET_KEY", "aia-robot-dev-secret") or "aia-robot-dev-secret"
 
 
 class AuthRequest(BaseModel):

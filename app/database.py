@@ -179,6 +179,5 @@ async def get_db() -> AsyncSession:  # type: ignore[return]
 
 
 async def init_db() -> None:
-    """Create all tables that don't yet exist (idempotent)."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)

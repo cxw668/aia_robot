@@ -1,9 +1,9 @@
-"""LLM client — wraps SiliconFlow chat completions API.
+"""LLM 客户端 —— 封装了 SiliconFlow 的对话补全 API。
 
-Supports:
-- Multi-turn messages (chat_completion)
-- Streaming SSE (chat_completion_stream) — yields text deltas
-- Legacy single-turn (query_llm)
+支持功能：
+- 多轮对话消息 (chat_completion)
+- 流式传输 SSE (chat_completion_stream) —— 实时输出文本增量
+- 传统的单轮对话 (query_llm)
 """
 from __future__ import annotations
 
@@ -29,7 +29,6 @@ def _model() -> str:
 
 
 def chat_completion(messages: list[dict], stream: bool = False) -> str:
-    """Call SiliconFlow chat API (non-streaming).  Returns full reply text."""
     payload = {
         "model": _model(),
         "messages": messages,
@@ -49,13 +48,6 @@ def chat_completion(messages: list[dict], stream: bool = False) -> str:
 def chat_completion_stream(
     messages: list[dict],
 ) -> Generator[str, None, None]:
-    """Call SiliconFlow chat API with streaming.  Yields text delta chunks.
-
-    Usage::
-
-        for chunk in chat_completion_stream(messages):
-            print(chunk, end="", flush=True)
-    """
     payload = {
         "model": _model(),
         "messages": messages,
@@ -92,5 +84,4 @@ def chat_completion_stream(
 # ── Legacy single-turn helper (backward-compat) ─────────────────────────────
 
 def query_llm(prompt: str) -> str:
-    """Single-turn convenience wrapper — keeps existing callers working."""
     return chat_completion([{"role": "user", "content": prompt}])

@@ -1,4 +1,4 @@
-"""Session manager — in-memory multi-turn conversation store.
+"""Session manager — 多轮会话
 
 Each session holds an ordered list of {role, content} messages.
 The context window is capped at MAX_TURNS pairs to stay within LLM limits.
@@ -50,8 +50,6 @@ class Session:
 
 
 class SessionStore:
-    """Thread-safe (GIL-level) in-memory store with LRU eviction."""
-
     def __init__(self, max_sessions: int = 1000) -> None:
         self._store: OrderedDict[str, Session] = OrderedDict()
         self._max = max_sessions
@@ -80,6 +78,4 @@ class SessionStore:
         while len(self._store) > self._max:
             self._store.popitem(last=False)
 
-
-# module-level singleton
 store = SessionStore()

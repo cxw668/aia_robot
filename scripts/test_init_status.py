@@ -1,13 +1,11 @@
 from __future__ import annotations
 
 import asyncio
-import os
 import socket
 import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from types import SimpleNamespace
 from typing import Awaitable, Callable
 from urllib.parse import urlparse
 
@@ -20,6 +18,10 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 if str(ROOT_DIR) not in sys.path:
     sys.path.insert(0, str(ROOT_DIR))
 
+from app.config import settings
+
+SETTINGS_SOURCE = "environment / .env via app.config"
+
 
 RESET = "\033[0m"
 BOLD = "\033[1m"
@@ -29,97 +31,6 @@ BLUE = "\033[34m"
 GREEN = "\033[32m"
 YELLOW = "\033[33m"
 RED = "\033[31m"
-
-
-def _parse_bool(value: str | bool | None, default: bool = False) -> bool:
-    if isinstance(value, bool):
-        return value
-    if value is None:
-        return default
-    return str(value).strip().lower() in {"1", "true", "yes", "on"}
-
-
-def _parse_int(value: str | int | None, default: int) -> int:
-    if isinstance(value, int):
-        return value
-    if value in (None, ""):
-        return default
-    return int(str(value).strip())
-
-
-def _load_env_file(env_path: Path) -> dict[str, str]:
-    data: dict[str, str] = {}
-    if not env_path.exists():
-        return data
-
-    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, value = line.split("=", 1)
-        data[key.strip()] = value.strip().strip('"').strip("'")
-    return data
-
-
-def load_settings() -> tuple[object, str]:
-    try:
-        from app.config import settings as app_settings
-
-        return app_settings, "app.config"
-    except Exception:
-        env_data = _load_env_file(ROOT_DIR / ".env")
-
-        def env(key: str, default: str = "") -> str:
-            return os.getenv(key, env_data.get(key, default))
-
-        redis_password = env("REDIS_PASSWORD", "") or None
-        redis_host = env("REDIS_HOST", "localhost")
-        redis_port = _parse_int(env("REDIS_PORT", "6379"), 6379)
-        redis_db = _parse_int(env("REDIS_DB", "6"), 6)
-        redis_auth = f":{redis_password}@" if redis_password else ""
-
-        settings_obj = SimpleNamespace(
-            app_name=env("APP_NAME", "AIA Robot API"),
-            app_version=env("APP_VERSION", "1.0.0"),
-            debug=_parse_bool(env("DEBUG", "false"), False),
-            cors_origins=[
-                "http://localhost:5173",
-                "http://localhost:5174",
-                "http://localhost:3000",
-                "http://127.0.0.1:5173",
-                "http://127.0.0.1:5174",
-            ],
-            db_host=env("DB_HOST", "localhost"),
-            db_port=_parse_int(env("DB_PORT", "3306"), 3306),
-            db_name=env("DB_NAME", "aia_bot"),
-            db_user=env("DB_USER", "root"),
-            db_password=env("DB_PASSWORD", "1234"),
-            redis_host=redis_host,
-            redis_port=redis_port,
-            redis_db=redis_db,
-            redis_password=redis_password,
-            redis_url=f"redis://{redis_auth}{redis_host}:{redis_port}/{redis_db}",
-            llm_chat_api_key=env("LLM_CHAT_API_KEY", ""),
-            llm_api_url=env("LLM_API_URL", "https://api.siliconflow.cn/v1/chat/completions"),
-            llm_model=env("LLM_MODEL", "tencent/Hunyuan-MT-7B"),
-            qdrantclient_url=env("QdrantClient_url", ""),
-            qdrantclient_key=env("QdrantClient_key", ""),
-            model_cache_path=env("MODEL_CACHE_PATH", ""),
-            ocr_api_url=env("OCR_API_URL", "https://api.siliconflow.cn/v1/chat/completions"),
-            ocr_api_key=env("OCR_API_KEY", "sk-zuqiutkxiargdkzgsitjnjtkqbndpeznribbxxzpaywckxve"),
-            ocr_model=env("OCR_MODEL", "deepseek-ai/DeepSeek-OCR"),
-            ocr_timeout=_parse_int(env("OCR_TIMEOUT", "60"), 60),
-            minio_endpoint=env("MINIO_ENDPOINT", "localhost:9000"),
-            minio_access_key=env("MINIO_ACCESS_KEY", "minioadmin"),
-            minio_secret_key=env("MINIO_SECRET_KEY", "minioadmin"),
-            minio_secure=_parse_bool(env("MINIO_SECURE", "false"), False),
-            minio_bucket_raw=env("MINIO_BUCKET_RAW", "kb-raw"),
-            minio_bucket_parsed=env("MINIO_BUCKET_PARSED", "kb-parsed"),
-        )
-        return settings_obj, ".env fallback"
-
-
-settings, SETTINGS_SOURCE = load_settings()
 
 
 @dataclass

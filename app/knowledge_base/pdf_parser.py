@@ -1,12 +1,12 @@
 """Markdown-oriented PDF parsing with DeepSeek-OCR.
 
-Pipeline per page
+单页处理流程
 -----------------
-1. Render PDF pages to PNG images.
-2. Call DeepSeek-OCR for Markdown reconstruction.
-3. Clean repeated headers/footers/page numbers.
-4. Fall back to native PDF text if OCR is rejected.
-5. Chunk semantically by headings and tables.
+1. 将 PDF 页面渲染为 PNG 图片。
+2. 调用 DeepSeek-OCR 进行 Markdown 内容重建。
+3. 清理重复的页眉、页脚和页码。
+4. 如果 OCR 识别失败或被拒绝，则回退使用 PDF 原生的文本提取方式。
+5. 根据标题和表格进行语义化切片。
 """
 from __future__ import annotations
 

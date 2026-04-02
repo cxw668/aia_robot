@@ -1,22 +1,22 @@
-"""Universal ingestor — JSON data + PDF-link forms support.
+"""通用导入工具 —— 支持 JSON 数据和带 PDF 链接的表单。
 
-Supported ingest modes
+支持的数据导入模式
 ----------------------
-1. JSON knowledge files  (保单服务, 产品, 分公司, 菜单 …)  — existing behaviour
-2. Forms JSON  (表单下载-个险/团险.json)  — NEW
-   Each item contains a ``full_url`` pointing to a PDF on aia.com.cn.
-   Pipeline: download PDF → store raw in MinIO → parse text (PyMuPDF + OCR)
-   → store parsed text in MinIO → chunk → embed → upsert Qdrant.
+1. JSON 知识文件 (保单服务, 产品, 分公司, 菜单 …)  — 现有功能
+2. 表单 JSON (表单下载-个险/团险.json)  — 新功能
+   每个条目都包含一个指向 aia.com.cn 上 PDF 文件的 ``full_url``。
+   处理流程：下载 PDF → 将原始文件存入 MinIO → 解析文本 (使用 PyMuPDF + OCR)
+   → 将解析后的文本存入 MinIO → 切片 → 向量化 → 更新至 Qdrant。
 
-Idempotency
+防重复机制
 -----------
-A content-hash (MD5 of raw bytes) is stored as Qdrant payload ``doc_hash``.
-If the hash is unchanged on re-ingest the file is skipped.
+系统会计算内容的哈希值（基于原始字节的 MD5），并将其作为 ``doc_hash`` 存入 Qdrant 的有效负载中。
+如果在重新导入时哈希值没有变化，该文件就会被跳过。
 
-Schemas auto-detected
+自动识别的分类
 ---------------------
 1. service_categories
-2. forms / items with full_url  <- triggers PDF download pipeline
+2. forms / items with full_url  <- 会触发 PDF 下载流程
 3. products
 4. branches
 5. menu
@@ -33,14 +33,12 @@ from typing import Any
 from urllib.parse import urlparse
 
 import requests
-from dotenv import load_dotenv
 from qdrant_client import QdrantClient, models
 from sentence_transformers import SentenceTransformer
 
 from app.config import settings
+from app.env_loader import EnvLoader
 from app.knowledge_base.pdf_parser import chunk_text
-
-load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -55,14 +53,14 @@ _BATCH = 32
 
 def _client() -> QdrantClient:
     return QdrantClient(
-        url=settings.qdrantclient_url or os.getenv("QdrantClient_url", ""),
-        api_key=settings.qdrantclient_key or os.getenv("QdrantClient_key") or None,
+        url=settings.qdrantclient_url,
+        api_key=settings.qdrantclient_key or None,
     )
 
 
 def _model() -> SentenceTransformer:
-    mp = settings.model_cache_path or os.getenv("MODEL_CACHE_PATH", "")
-    explicit_local = os.getenv("EMBEDDING_MODEL_PATH", "").strip()
+    mp = settings.model_cache_path or EnvLoader.get("MODEL_CACHE_PATH", "")
+    explicit_local = (EnvLoader.get("EMBEDDING_MODEL_PATH", "") or "").strip()
 
     if mp:
         os.environ["HF_HOME"] = mp
@@ -202,7 +200,7 @@ def _flatten_service_categories(data: dict) -> list[dict]:
 
 
 def _flatten_generic(data: Any, source_file: str = "") -> list[dict]:
-    """Best-effort: walk any nested structure and extract text fields."""
+    """通用数据清洗与提取"""
     docs = []
     items = data if isinstance(data, list) else [data]
     for obj in items:

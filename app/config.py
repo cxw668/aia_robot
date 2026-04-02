@@ -1,49 +1,107 @@
-"""Centralised application configuration.
-
-All settings are read from environment variables (with fallbacks).
-Load order: system env > .env file > defaults below.
-"""
 from __future__ import annotations
-
 from functools import lru_cache
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from app.env_loader import EnvLoader
+
+def _to_bool(value: str | None, default: bool = False) -> bool:
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
-class Settings(BaseSettings):
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8",
-        case_sensitive=False,
-        extra="ignore",
-    )
+def _to_int(value: str | None, default: int) -> int:
+    if value is None or value == "":
+        return default
+    return int(value)
 
-    # ── App ───────────────────────────────────────────────────────────────────
-    app_name: str = "AIA Robot API"
-    app_version: str = "1.0.0"
-    debug: bool = False
 
-    # ── CORS ──────────────────────────────────────────────────────────────────
-    cors_origins: list[str] = [
-        "http://localhost:5173",
-        "http://localhost:5174",
-        "http://localhost:3000",
-        "http://127.0.0.1:5173",
-        "http://127.0.0.1:5174",
-    ]
+def _to_optional_str(value: str | None) -> str | None:
+    if value is None:
+        return None
+    text = value.strip()
+    return text or None
 
-    # ── MySQL ─────────────────────────────────────────────────────────────────
-    db_host: str = "localhost"
-    db_port: int = 3306
-    db_name: str = "aia_bot"
-    db_user: str = "root"
-    db_password: str = "1234"
-    db_echo: bool = False
-    db_pool_size: int = 10
-    db_max_overflow: int = 20
+
+class Settings:
+    def __init__(self) -> None:
+        EnvLoader.load()
+
+        # ── App ───────────────────────────────────────────────────────────────
+        self.app_name: str = EnvLoader.get("APP_NAME", "AIA Robot API") or "AIA Robot API"
+        self.app_version: str = EnvLoader.get("APP_VERSION", "1.0.0") or "1.0.0"
+        self.debug: bool = _to_bool(EnvLoader.get("DEBUG", "false"), False)
+
+        # ── CORS ──────────────────────────────────────────────────────────────
+        self.cors_origins: list[str] = [
+            "http://localhost:5173",
+            "http://localhost:5174",
+            "http://localhost:3000",
+            "http://127.0.0.1:5173",
+            "http://127.0.0.1:5174",
+        ]
+
+        # ── MySQL ─────────────────────────────────────────────────────────────
+        self.db_host: str = EnvLoader.get("DB_HOST", "localhost") or "localhost"
+        self.db_port: int = _to_int(EnvLoader.get("DB_PORT", "3306"), 3306)
+        self.db_name: str = EnvLoader.get("DB_NAME", "aia_bot") or "aia_bot"
+        self.db_user: str = EnvLoader.get("DB_USER", "root") or "root"
+        self.db_password: str = EnvLoader.get("DB_PASSWORD", "1234") or "1234"
+        self.db_echo: bool = _to_bool(EnvLoader.get("DB_ECHO", "false"), False)
+        self.db_pool_size: int = _to_int(EnvLoader.get("DB_POOL_SIZE", "10"), 10)
+        self.db_max_overflow: int = _to_int(EnvLoader.get("DB_MAX_OVERFLOW", "20"), 20)
+
+        # ── Redis ─────────────────────────────────────────────────────────────
+        self.redis_host: str = EnvLoader.get("REDIS_HOST", "localhost") or "localhost"
+        self.redis_port: int = _to_int(EnvLoader.get("REDIS_PORT", "6379"), 6379)
+        self.redis_db: int = _to_int(EnvLoader.get("REDIS_DB", "6"), 6)
+        self.redis_password: str | None = _to_optional_str(EnvLoader.get("REDIS_PASSWORD", None))
+        self.redis_max_connections: int = _to_int(EnvLoader.get("REDIS_MAX_CONNECTIONS", "20"), 20)
+
+        # ── LLM ───────────────────────────────────────────────────────────────
+        self.llm_chat_api_key: str = EnvLoader.get("LLM_CHAT_API_KEY", "") or ""
+        self.llm_api_url: str = (
+            EnvLoader.get("LLM_API_URL", "https://api.siliconflow.cn/v1/chat/completions")
+            or "https://api.siliconflow.cn/v1/chat/completions"
+        )
+        self.llm_model: str = EnvLoader.get("LLM_MODEL", "tencent/Hunyuan-MT-7B") or "tencent/Hunyuan-MT-7B"
+
+        # ── Qdrant ────────────────────────────────────────────────────────────
+        self.qdrantclient_url: str = EnvLoader.get("QdrantClient_url", "http://localhost:6333") or "http://localhost:6333"
+        self.qdrantclient_key: str = EnvLoader.get("QdrantClient_key", "") or ""
+
+        # ── Embedding ─────────────────────────────────────────────────────────
+        self.model_cache_path: str = EnvLoader.get("MODEL_CACHE_PATH", "E:\\aia_embedding_models") or "E:\\aia_embedding_models"
+
+        # ── OCR ───────────────────────────────────────────────────────────────
+        self.ocr_api_url: str = (
+            EnvLoader.get("OCR_API_URL", "https://api.siliconflow.cn/v1/chat/completions")
+            or "https://api.siliconflow.cn/v1/chat/completions"
+        )
+        self.ocr_api_key: str = EnvLoader.get("OCR_API_KEY", "") or ""
+        self.ocr_model: str = EnvLoader.get("OCR_MODEL", "deepseek-ai/DeepSeek-OCR") or "deepseek-ai/DeepSeek-OCR"
+        self.ocr_fallback_min_chars: int = _to_int(EnvLoader.get("OCR_FALLBACK_MIN_CHARS", "50"), 50)
+        self.ocr_render_dpi: int = _to_int(EnvLoader.get("OCR_RENDER_DPI", "300"), 300)
+        self.ocr_timeout: int = _to_int(EnvLoader.get("OCR_TIMEOUT", "120"), 120)
+        self.ocr_max_tokens: int = _to_int(EnvLoader.get("OCR_MAX_TOKENS", "8192"), 8192)
+        self.ocr_noise_min_repeat: int = _to_int(EnvLoader.get("OCR_NOISE_MIN_REPEAT", "2"), 2)
+        self.ocr_noise_max_line_length: int = _to_int(EnvLoader.get("OCR_NOISE_MAX_LINE_LENGTH", "80"), 80)
+
+        # ── MinIO ─────────────────────────────────────────────────────────────
+        self.minio_endpoint: str = EnvLoader.get("MINIO_ENDPOINT", "localhost:9000") or "localhost:9000"
+        self.minio_access_key: str = EnvLoader.get("MINIO_ACCESS_KEY", "minioadmin") or "minioadmin"
+        self.minio_secret_key: str = EnvLoader.get("MINIO_SECRET_KEY", "minioadmin") or "minioadmin"
+        self.minio_secure: bool = _to_bool(EnvLoader.get("MINIO_SECURE", "false"), False)
+        self.minio_bucket_raw: str = EnvLoader.get("MINIO_BUCKET_RAW", "kb-raw") or "kb-raw"
+        self.minio_bucket_parsed: str = EnvLoader.get("MINIO_BUCKET_PARSED", "kb-parsed") or "kb-parsed"
+
+        # ── PDF ingestion ─────────────────────────────────────────────────────
+        self.pdf_max_bytes: int = _to_int(EnvLoader.get("PDF_MAX_BYTES", "52428800"), 52_428_800)
+        self.pdf_download_timeout: int = _to_int(EnvLoader.get("PDF_DOWNLOAD_TIMEOUT", "60"), 60)
+        self.pdf_allowed_hosts: str = EnvLoader.get("PDF_ALLOWED_HOSTS", "www.aia.com.cn,aia.com.cn") or "www.aia.com.cn,aia.com.cn"
+        self.pdf_chunk_size: int = _to_int(EnvLoader.get("PDF_CHUNK_SIZE", "600"), 600)
+        self.pdf_chunk_overlap: int = _to_int(EnvLoader.get("PDF_CHUNK_OVERLAP", "80"), 80)
 
     @property
     def database_url(self) -> str:
-        """Async SQLAlchemy DSN (aiomysql driver)."""
         return (
             f"mysql+aiomysql://{self.db_user}:{self.db_password}"
             f"@{self.db_host}:{self.db_port}/{self.db_name}"
@@ -52,87 +110,25 @@ class Settings(BaseSettings):
 
     @property
     def database_url_sync(self) -> str:
-        """Sync SQLAlchemy DSN (pymysql driver) — for Alembic migrations."""
         return (
             f"mysql+pymysql://{self.db_user}:{self.db_password}"
             f"@{self.db_host}:{self.db_port}/{self.db_name}"
             f"?charset=utf8mb4"
         )
 
-    # ── Redis ─────────────────────────────────────────────────────────────────
-    redis_host: str = "localhost"
-    redis_port: int = 6379
-    redis_db: int = 6
-    redis_password: str | None = None
-    redis_max_connections: int = 20
-
     @property
     def redis_url(self) -> str:
-        """Redis connection URL."""
         auth = f":{self.redis_password}@" if self.redis_password else ""
         return f"redis://{auth}{self.redis_host}:{self.redis_port}/{self.redis_db}"
 
-    # ── LLM ───────────────────────────────────────────────────────────────────
-    llm_chat_api_key: str = "sk-fdrluchjggxamwzuqfhsrjfbobuitjoacecvxxdqcpdbivmm"
-    llm_api_url: str = "https://api.siliconflow.cn/v1/chat/completions"
-    llm_model: str = "tencent/Hunyuan-MT-7B"
-
-    # ── Qdrant ────────────────────────────────────────────────────────────────
-    qdrantclient_url: str = "http://localhost:6333"
-    qdrantclient_key: str = ""
-
-    # ── Embedding ─────────────────────────────────────────────────────────────
-    model_cache_path: str = "E:\\aia_embedding_models"
-
-    # ── OCR (SiliconFlow DeepSeek-OCR) ────────────────────────────────────────
-    ocr_api_url: str = "https://api.siliconflow.cn/v1/chat/completions"
-    ocr_api_key: str = "sk-zuqiutkxiargdkzgsitjnjtkqbndpeznribbxxzpaywckxve"
-    ocr_model: str = "deepseek-ai/DeepSeek-OCR"
-    # Kept for backward compatibility; parser now OCRs all pages to Markdown.
-    ocr_fallback_min_chars: int = 50
-    # Render DPI for OCR page images
-    ocr_render_dpi: int = 300
-    # HTTP timeout for OCR API calls (seconds)
-    ocr_timeout: int = 120
-    # Max tokens requested from OCR model per page
-    ocr_max_tokens: int = 8192
-    # Repeated short edge lines appearing at least N times are treated as noise
-    ocr_noise_min_repeat: int = 2
-    # Max length of repeated edge line candidates
-    ocr_noise_max_line_length: int = 80
-
-    # ── MinIO object storage ───────────────────────────────────────────────────
-    minio_endpoint: str = "localhost:9000"
-    minio_access_key: str = "minioadmin"
-    minio_secret_key: str = "minioadmin"
-    minio_secure: bool = False
-    # Bucket names
-    minio_bucket_raw: str = "kb-raw"
-    minio_bucket_parsed: str = "kb-parsed"
-
-    # ── PDF ingestion ──────────────────────────────────────────────────────────
-    # Maximum file size to download (bytes). Default 50 MB.
-    pdf_max_bytes: int = 52_428_800
-    # HTTP download timeout (seconds)
-    pdf_download_timeout: int = 60
-    # Comma-separated allowed origin hostnames
-    pdf_allowed_hosts: str = "www.aia.com.cn,aia.com.cn"
-    # Text chunk size (chars) for splitting parsed PDF content
-    pdf_chunk_size: int = 600
-    # Overlap between consecutive chunks (chars)
-    pdf_chunk_overlap: int = 80
-
     @property
     def pdf_allowed_host_list(self) -> list[str]:
-        """Parsed list of allowed download hostnames."""
         return [h.strip() for h in self.pdf_allowed_hosts.split(",") if h.strip()]
 
 
 @lru_cache(maxsize=1)
 def get_settings() -> Settings:
-    """Return the cached singleton Settings instance."""
     return Settings()
 
 
-# Module-level shortcut — use `from app.config import settings`
 settings = get_settings()
