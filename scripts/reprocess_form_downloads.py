@@ -5,17 +5,13 @@
 1) aia_data/表单下载-个险.json
 2) aia_data/表单下载-团险.json
 
-行为：
-- 清理 Qdrant 中对应 source_file/source_tag 的旧向量数据
-- 清理 MinIO 中对应 source_tag 的 raw/parsed 旧对象
-- 重新下载 PDF
-- 用 DeepSeek-OCR 输出 Markdown
-- Markdown 存入 MinIO
-- Markdown 语义分块后入 Qdrant
+支持单表单重处理：
+- 通过 --form-name 指定表单名，仅重跑该条 item（不清理整文件历史数据）
 """
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import sys
 import time
@@ -48,8 +44,12 @@ def _source_tag_for_file(path: Path) -> str:
     return "aia-form-group" if "团险" in path.name else "aia-form-personal"
 
 
+def _normalize_form_name(name: str) -> str:
+    return (name or "").replace("《", "").replace("》", "").replace("（", "").replace("）", "").replace(" ", "").strip().lower()
+
+
 def reprocess_one(file_path: Path, collection_name: str) -> dict:
-    """重建表单下载知识库（DeepSeek-OCR Markdown）"""
+    """重建整份表单 JSON（先清理旧数据，再全量重建）。"""
     from app.knowledge_base.ingest import clear_form_knowledge, ingest_file
 
     source_tag = _source_tag_for_file(file_path)
@@ -66,8 +66,48 @@ def reprocess_one(file_path: Path, collection_name: str) -> dict:
         cleanup.get("parsed_objects"),
     )
 
-    result = ingest_file(str(file_path), collection_name=collection_name) # 导入
+    result = ingest_file(str(file_path), collection_name=collection_name)
     result["cleanup"] = cleanup
+    return result
+
+
+def reprocess_single_form(file_path: Path, collection_name: str, form_name: str) -> dict:
+    """仅重处理一个指定表单（不清理整文件历史数据）。"""
+    from app.knowledge_base.ingest import ingest_forms_pdf
+
+    with open(file_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    items = data.get("items", []) if isinstance(data, dict) else []
+    if not items:
+        raise ValueError(f"文件中未找到 items: {file_path}")
+
+    target_norm = _normalize_form_name(form_name)
+    target_item = None
+    target_item = next(
+        (item for item in items if _normalize_form_name(item.get("filename", "")) == target_norm),
+        None
+    )
+    if target_item is None and target_norm:
+        target_item = next(
+            (item for item in items if target_norm in _normalize_form_name(item.get("filename", ""))),
+            None
+        )
+    if target_item is None:
+        raise ValueError(f"未匹配到表单: {form_name}")
+
+    single_data = {
+        "page_name": data.get("page_name", file_path.name),
+        "items": [target_item],
+    }
+    source_tag = _source_tag_for_file(file_path)
+    result = ingest_forms_pdf(
+        single_data,
+        source_file=file_path.name,
+        collection_name=collection_name,
+        source_tag=source_tag,
+    )
+    result["target_form"] = target_item.get("filename", "")
     return result
 
 
@@ -77,6 +117,11 @@ def main() -> None:
         "--collection-name",
         default="aia_knowledge_base",
         help="Qdrant collection 名称，默认 aia_knowledge_base",
+    )
+    parser.add_argument(
+        "--form-name",
+        default="",
+        help="可选：仅重处理指定表单名（仅支持单个 JSON 文件）",
     )
     parser.add_argument(
         "files",
@@ -90,6 +135,9 @@ def main() -> None:
     if missing:
         raise SystemExit(f"以下文件不存在: {missing}")
 
+    if args.form_name and len(file_paths) != 1:
+        raise SystemExit("使用 --form-name 时，请只传入一个 JSON 文件路径")
+
     started = time.time()
     results: list[dict] = []
 
@@ -98,18 +146,24 @@ def main() -> None:
         logger.info("开始重处理: %s", file_path.name)
         logger.info("=" * 72)
         try:
-            result = reprocess_one(file_path, args.collection_name)
+            if args.form_name:
+                result = reprocess_single_form(file_path, args.collection_name, args.form_name)
+                logger.info("[done] %s -> target=%s, %s chunks", file_path.name, result.get("target_form", ""), result.get("doc_count", 0))
+            else:
+                result = reprocess_one(file_path, args.collection_name)
+                logger.info("[done] %s -> %s chunks", file_path.name, result.get("doc_count", 0))
+
             results.append(result)
-            logger.info("[done] %s -> %s chunks", file_path.name, result.get("doc_count", 0))
         except Exception as exc:
             logger.exception("[failed] %s", file_path.name)
-            results.append({
-                "file": file_path.name,
-                "schema": "error",
-                "doc_count": 0,
-                "error": str(exc),
-            })
-
+            results.append(
+                {
+                    "file": file_path.name,
+                    "schema": "error",
+                    "doc_count": 0,
+                    "error": str(exc),
+                }
+            )            
     elapsed = time.time() - started
 
     print(f"\n{'=' * 90}")
@@ -122,6 +176,8 @@ def main() -> None:
             f"{row.get('doc_count', 0):>10} "
             f"{row.get('failed', 0):>8}"
         )
+        if row.get("target_form"):
+            print(f"  target -> {row['target_form']}")
         cleanup = row.get("cleanup") or {}
         if cleanup:
             print(
