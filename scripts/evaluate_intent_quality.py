@@ -64,7 +64,14 @@ def evaluate_case(case: IntentTestCase) -> dict:
     result = classify_query_intent_with_scores(case.query)
     elapsed_ms = round((time.perf_counter() - started) * 1000, 2)
     predicted = result.intent.key if result.intent else None
-    top_scores = sorted(result.scores.items(), key=lambda item: item[1], reverse=True)[:3]
+    top_candidates = [
+        {
+            "intent": candidate.key,
+            "score": candidate.score,
+            "confidence": candidate.confidence,
+        }
+        for candidate in result.candidates[:3]
+    ]
     return {
         "query": case.query,
         "expected_intent": case.expected_intent,
@@ -72,7 +79,9 @@ def evaluate_case(case: IntentTestCase) -> dict:
         "passed": predicted == case.expected_intent,
         "elapsed_ms": elapsed_ms,
         "normalized_query": result.normalized_query,
-        "top_scores": [{"intent": key, "score": score} for key, score in top_scores],
+        "confidence": result.confidence,
+        "needs_confirmation": result.needs_confirmation,
+        "top_candidates": top_candidates,
         "notes": case.notes,
     }
 
@@ -82,24 +91,37 @@ def build_summary(results: list[dict]) -> dict:
     passed = sum(int(row["passed"]) for row in results)
     by_intent: dict[str, dict[str, int]] = {}
     failed_cases: list[dict] = []
+    confirmation_required = sum(int(row["needs_confirmation"]) for row in results)
+    avg_confidence = round(sum(float(row["confidence"]) for row in results) / total, 4) if total else 0.0
 
     for row in results:
-        bucket = by_intent.setdefault(row["expected_intent"], {"total": 0, "passed": 0})
+        bucket = by_intent.setdefault(
+            row["expected_intent"],
+            {"total": 0, "passed": 0, "avg_confidence": 0.0, "confirmation_required": 0},
+        )
         bucket["total"] += 1
         bucket["passed"] += int(row["passed"])
+        bucket["avg_confidence"] += float(row["confidence"])
+        bucket["confirmation_required"] += int(row["needs_confirmation"])
         if not row["passed"]:
             failed_cases.append({
                 "query": row["query"],
                 "expected_intent": row["expected_intent"],
                 "predicted_intent": row["predicted_intent"],
-                "top_scores": row["top_scores"],
+                "confidence": row["confidence"],
+                "top_candidates": row["top_candidates"],
             })
+
+    for stats in by_intent.values():
+        stats["avg_confidence"] = round(stats["avg_confidence"] / stats["total"], 4) if stats["total"] else 0.0
 
     return {
         "total_cases": total,
         "passed_cases": passed,
         "failed_cases": total - passed,
         "pass_rate": round(passed / total * 100, 2) if total else 0.0,
+        "avg_confidence": avg_confidence,
+        "confirmation_required": confirmation_required,
         "by_intent": by_intent,
         "failed_case_details": failed_cases,
     }
@@ -124,10 +146,15 @@ def main() -> None:
     print(f"passed     : {summary['passed_cases']}")
     print(f"failed     : {summary['failed_cases']}")
     print(f"pass_rate  : {summary['pass_rate']}%")
+    print(f"avg_conf   : {summary['avg_confidence']}")
+    print(f"need_clarify: {summary['confirmation_required']}")
     print(f"output     : {OUTPUT_PATH}")
     print("-" * 72)
     for intent, stats in summary["by_intent"].items():
-        print(f"{intent:<20} {stats['passed']}/{stats['total']}")
+        print(
+            f"{intent:<20} {stats['passed']}/{stats['total']} "
+            f"avg_conf={stats['avg_confidence']} clarify={stats['confirmation_required']}"
+        )
     print("=" * 72)
 
 
