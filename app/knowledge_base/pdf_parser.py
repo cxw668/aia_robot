@@ -178,6 +178,41 @@ def _is_noise_line(line: str) -> bool:
     )
 
 
+def _is_html_noise_line(line: str) -> bool:
+    text = _normalize_line(line)
+    return (
+        bool(re.search(r"<[^>]+>", text))
+        or text.count("</") >= 1
+        or text.count("{{") >= 1
+        or text.count("}}") >= 1
+        or text.count("\\/") >= 2
+        or bool(re.search(r"[{}\\]{4,}", text))
+    )
+
+
+def _looks_like_table_garbage(line: str) -> bool:
+    text = _normalize_line(line)
+    if not text:
+        return False
+    if text.startswith("|") and text.endswith("|"):
+        cells = [cell.strip() for cell in text.strip("|").split("|")]
+        dense_short_cells = sum(1 for cell in cells if 0 < len(cell) <= 4)
+        repeated_cells = len(cells) >= 6 and len(set(cells)) <= max(2, len(cells) // 4)
+        return dense_short_cells >= max(4, len(cells) // 2) or repeated_cells
+    repeated_phrases = ["产品 数据供", "qqq", "components:array", "}}}}", "{{{{"]
+    return any(token in text for token in repeated_phrases)
+
+
+def _clean_markdown_line(line: str) -> str:
+    text = line.strip()
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = text.replace("&nbsp;", " ")
+    text = re.sub(r"\\/", "/", text)
+    text = re.sub(r"[\t\r]+", " ", text)
+    text = re.sub(r"\s{2,}", " ", text)
+    return text.strip(" |")
+
+
 def _clean_markdown_pages(pages: list[str]) -> list[str]:
     normalized_pages: list[list[str]] = []
     edge_counter: Counter[str] = Counter()
@@ -202,7 +237,12 @@ def _clean_markdown_pages(pages: list[str]) -> list[str]:
                 continue
             if text in repeated_noise and (idx < 2 or idx >= max(len(lines) - 2, 0)):
                 continue
-            kept.append(line.rstrip())
+            if _is_html_noise_line(text) or _looks_like_table_garbage(text):
+                continue
+            cleaned = _clean_markdown_line(line)
+            if not cleaned:
+                continue
+            kept.append(cleaned)
         cleaned = "\n".join(kept).strip()
         if cleaned:
             cleaned_pages.append(cleaned)

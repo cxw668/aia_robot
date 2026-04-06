@@ -24,8 +24,7 @@ from fastapi import APIRouter, HTTPException, UploadFile, File, Query
 from pydantic import BaseModel
 from qdrant_client import models
 
-from app.knowledge_base.rag import _get_client, _get_model
-from app.knowledge_base.ingest import DEFAULT_COLLECTION
+from app.knowledge_base.retrieval_data_source import DEFAULT_COLLECTION, get_client, get_model
 
 router = APIRouter(tags=["knowledge"])
 
@@ -186,7 +185,7 @@ async def list_jobs() -> list[dict]:
 @router.get("/kb/collections")
 async def list_collections() -> dict:
     """List all Qdrant collections with their document counts."""
-    client = _get_client()
+    client = get_client()
     try:
         cols = client.get_collections().collections
         result = []
@@ -203,7 +202,7 @@ async def list_collections() -> dict:
 @router.delete("/kb/collections/{collection_name}")
 async def delete_collection(collection_name: str) -> dict:
     """Delete an entire collection (knowledge base category)."""
-    client = _get_client()
+    client = get_client()
     try:
         client.delete_collection(collection_name)
     except Exception as exc:
@@ -219,14 +218,14 @@ async def list_docs(
     offset: int = Query(0, ge=0),
 ) -> dict:
     """List or search documents in a specific collection."""
-    client = _get_client()
+    client = get_client()
     # Check collection exists
     existing = [c.name for c in client.get_collections().collections]
     if collection not in existing:
         return {"total": 0, "offset": offset, "limit": limit, "docs": [], "collection": collection}
     try:
         if q and q.strip():
-            model = _get_model()
+            model = get_model()
             vec = model.encode(q, normalize_embeddings=True).tolist()
             hits = client.query_points(
                 collection_name=collection,
@@ -255,7 +254,7 @@ async def delete_doc(
     doc_id: str,
     collection: str = Query(DEFAULT_COLLECTION, description="Collection name"),
 ) -> dict:
-    client = _get_client()
+    client = get_client()
     try:
         client.delete(
             collection_name=collection,
@@ -270,7 +269,7 @@ async def health(
     collection: str = Query(DEFAULT_COLLECTION, description="Collection name"),
 ) -> dict:
     try:
-        client = _get_client()
+        client = get_client()
         info = client.get_collection(collection)
         doc_count = info.points_count or 0
         status = "ok"
