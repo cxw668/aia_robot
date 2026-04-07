@@ -45,36 +45,30 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-def verify_collections(prefix_hint: str = "") -> None:
-    """打印 collection point count（可选按名称前缀过滤展示）。"""
+def verify_collections(prefix_hint: str = "", collection_name: str = "") -> None:
+    """打印 collection point count。
+
+    当 `collection_name` 提供时，仅展示该 collection 的点数（便于直接查看
+      http://localhost:6333/collections/<name>）。
+    """
     from qdrant_client import QdrantClient
     from app.config import settings
 
     client = QdrantClient(url=settings.qdrantclient_url or "http://localhost:6333")
-    collections = client.get_collections().collections
-    if not collections:
-        print("\n[verify] Qdrant 中暂无 collection。")
+
+    if collection_name:
+        try:
+            info = client.get_collection(collection_name)
+        except Exception as exc:
+            print(f"\n[verify] 获取 collection {collection_name} 失败: {exc}")
+            return
+
+        count = info.points_count or 0
+        print(f"\n{'=' * 55}")
+        print(f"Collection: {collection_name}")
+        print(f"Point Count: {count:,}")
+        print(f"{'=' * 55}\n")
         return
-
-    rows = []
-    for col in collections:
-        if prefix_hint and prefix_hint not in col.name:
-            continue
-        info = client.get_collection(col.name)
-        rows.append((col.name, info.points_count or 0))
-
-    rows.sort(key=lambda x: x[0])
-    print(f"\n{'=' * 55}")
-    print(f"{'Collection 名称':<30} {'Point Count':>12}")
-    print(f"{'-' * 55}")
-    total_points = 0
-    for name, count in rows:
-        total_points += count
-        print(f"{name:<30} {count:>12,}")
-    print(f"{'-' * 55}")
-    print(f"{'TOTAL':<30} {total_points:>12,}")
-    print(f"{'=' * 55}\n")
-
 
 def ingest_service_categories(data_dir: Path) -> list[dict]:
     """入库 service_categories 目录中的 JSON 文件到统一集合。"""
@@ -206,7 +200,7 @@ def main() -> None:
     )
 
     if args.verify_only:
-        verify_collections()
+        verify_collections(collection_name="aia_knowledge_base")
         return
 
     if not service_categories_dir.exists() or not service_categories_dir.is_dir():
@@ -265,7 +259,7 @@ def main() -> None:
     print(f"{'=' * 72}\n")
 
     if args.verify or error_count == 0:
-        verify_collections()
+        verify_collections(collection_name="aia_knowledge_base")
 
     if error_count > 0:
         raise SystemExit(1)

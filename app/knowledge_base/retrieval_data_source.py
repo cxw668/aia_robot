@@ -12,6 +12,7 @@ from sentence_transformers import SentenceTransformer
 from app.config import settings
 from app.env_loader import EnvLoader
 from app.knowledge_base.intent_rules import RetrievalIntent
+from app.knowledge_base.collection_taxonomy import get_available_categories
 
 _model_cache = settings.model_cache_path
 if _model_cache:
@@ -85,7 +86,24 @@ def build_filter(intent: RetrievalIntent | None, only_on_sale: bool = False) -> 
         must.append(qmodels.FieldCondition(key="product_status", match=qmodels.MatchValue(value="在售")))
     should: list[qmodels.FieldCondition] = []
     if intent and intent.categories:
-        should.extend(_match_any_condition("category", intent.categories))
+        # 仅保留那些在向量库中存在的 categories（基于已导出的 taxonomy）
+        try:
+            available = get_available_categories()
+            filtered = [c for c in intent.categories if c in available]
+        except Exception:
+            filtered = list(intent.categories)
+        if filtered:
+            should.extend(_match_any_condition("category", tuple(filtered)))
+    # 针对表单类查询，尝试更精准的匹配：优先命中 category 为表单下载或 title 中包含关键词
+    if intent and intent.key == "form":
+        # 如果 categories 中已有表单下载则提升权重（通过 should 条件）
+        should.extend(_match_any_condition("category", ("表单下载",)))
+        # 如果 payload 中有 title 字段可匹配具体表单类型，添加一个宽松的 should 条件
+        try:
+            should.append(qmodels.FieldCondition(key="title", match=qmodels.MatchValue(value="理赔申请")))
+        except Exception:
+            # 如果 qmodels 不支持匹配 title 的方式，忽略此项（兼容性保护）
+            pass
     if not must and not should:
         return None
     return qmodels.Filter(must=must, should=should or None)
@@ -118,12 +136,20 @@ def query_collection(
 
     rows: list[dict] = []
     for hit in response.points:
-        if hit.score < score_threshold:
+        # hit may be a simple dict-like or an object depending on qdrant client version
+        score = getattr(hit, "score", None) if not isinstance(hit, dict) else hit.get("score")
+        if score is None:
+            # try alternative key
+            score = hit.get("payload", {}).get("_score") if isinstance(hit, dict) else None
+        if score is None or score < score_threshold:
             continue
-        payload = hit.payload or {}
+        payload = getattr(hit, "payload", None) or (hit.get("payload") if isinstance(hit, dict) else {}) or {}
+        # retrieve id if available
+        _id = getattr(hit, "id", None) if not isinstance(hit, dict) else hit.get("id")
         rows.append(
             {
-                "score": round(hit.score, 4),
+                "id": _id,
+                "score": round(float(score), 4),
                 "title": payload.get("title", ""),
                 "content": payload.get("content", ""),
                 "service_name": payload.get("service_name", ""),
@@ -131,6 +157,7 @@ def query_collection(
                 "category": payload.get("category", ""),
                 "schema": payload.get("schema", ""),
                 "collection": collection_name,
+                "payload": payload,
             }
         )
     return rows

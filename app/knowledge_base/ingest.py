@@ -39,6 +39,7 @@ from sentence_transformers import SentenceTransformer
 from app.config import settings
 from app.env_loader import EnvLoader
 from app.knowledge_base.pdf_parser import chunk_text
+from app.knowledge_base.category_utils import normalize_category
 
 logger = logging.getLogger(__name__)
 
@@ -616,6 +617,7 @@ def ingest_forms_pdf(
                     "service_name": page_name,
                     "service_url": full_url,
                     "category": page_name,
+                    "category_canonical": normalize_category(page_name),
                     "schema": "forms_markdown",
                     "source_file": source_file,
                     "source_url": full_url,
@@ -719,6 +721,9 @@ def ingest_text_file(
     vectors = model.encode(
         chunks, batch_size=_BATCH, normalize_embeddings=True, show_progress_bar=False
     )
+    # Use the file title/name as the service/category so we don't attribute
+    # text chunks to the Qdrant collection name (e.g. "aia_knowledge_base").
+    display_name = title or path.stem
     points = [
         models.PointStruct(
             id=_doc_id(chunks[i] + path.name),
@@ -726,9 +731,10 @@ def ingest_text_file(
             payload={
                 "title": title or path.stem,
                 "content": chunks[i],
-                "service_name": collection_name,
+                "service_name": display_name,
                 "service_url": "",
-                "category": collection_name,
+                "category": display_name,
+                "category_canonical": normalize_category(display_name),
                 "schema": "text",
                 "source_file": path.name,
                 "chunk_index": i,
@@ -894,14 +900,19 @@ def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, pr
         vectors = model.encode(
             texts, batch_size=_BATCH, normalize_embeddings=True, show_progress_bar=False
         )
-        points = [
-            models.PointStruct(
-                id=_doc_id(cat_docs[i]["text"]),
-                vector=vectors[i].tolist(),
-                payload={**cat_docs[i]["payload"], "source_file": path.name},
+        points = []
+        for i in range(len(cat_docs)):
+            payload = {**cat_docs[i]["payload"], "source_file": path.name}
+            payload["category_canonical"] = normalize_category(
+                payload.get("category") or payload.get("service_name") or path.name
             )
-            for i in range(len(cat_docs))
-        ]
+            points.append(
+                models.PointStruct(
+                    id=_doc_id(cat_docs[i]["text"]),
+                    vector=vectors[i].tolist(),
+                    payload=payload,
+                )
+            )
         qdrant.upsert(collection_name, points=points)
         total += len(points)
         logger.info(f"[ingest] '{collection_name}' <- {len(points)} docs from {path.name}")
@@ -937,14 +948,19 @@ def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, pr
         texts, batch_size=_BATCH, normalize_embeddings=True, show_progress_bar=False
     )
 
-    points = [
-        models.PointStruct(
-            id=_doc_id(docs[i]["text"]),
-            vector=vectors[i].tolist(),
-            payload={**docs[i]["payload"], "source_file": path.name},
+    points = []
+    for i in range(len(docs)):
+        payload = {**docs[i]["payload"], "source_file": path.name}
+        payload["category_canonical"] = normalize_category(
+            payload.get("category") or payload.get("service_name") or path.name
         )
-        for i in range(len(docs))
-    ]
+        points.append(
+            models.PointStruct(
+                id=_doc_id(docs[i]["text"]),
+                vector=vectors[i].tolist(),
+                payload=payload,
+            )
+        )
     client.upsert(collection_name, points=points)
     return {"file": path.name, "schema": schema, "doc_count": len(docs)}
 

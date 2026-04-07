@@ -305,6 +305,85 @@ aia_robot/
 - 低置信 query：按前两名候选意图做 Top2 双路检索并合并去重。
 - 极低置信或双路无结果：回退全库检索，必要时为后续追问机制预留接口。
 
+#### Phase 2 当前补充进展（2026-04-07）
+
+已完成：
+- `app/knowledge_base/retrieval_data_source.py`：统一管理 Qdrant client、embedding model、filter 与底层 query。
+- `app/knowledge_base/intent_rules.py`：统一管理 `RetrievalIntent`、意图词典、bonus 规则与 query 归一化。
+- `app/knowledge_base/intent_recognition.py`：实现首层意图识别，并支持候选意图、置信度、澄清标记输出。
+- `app/knowledge_base/rag.py`：已完成第一轮模块化接线，保留检索主流程与上下文构建流程。
+- `scripts/evaluate_intent_quality.py`：已建立首层意图识别评测脚本，并输出 `docs/意图识别测试结果.json`。
+- `app/knowledge_base/rag.py`：已实现意图驱动的检索路由，包括高置信度单路过滤、中置信度双路检索合并去重、低置信度回退全库检索。
+
+当前结果：
+- 首层意图识别测试集：9 类意图、27 条样例。
+- 本地评测结果：通过率 `100%`。
+- 检索路由策略：高置信度（≥0.7）按意图过滤检索，中置信度（0.5-0.7）双路检索合并，低置信度（<0.5）回退全库检索。
+- 当前评测已可输出：预测意图、Top 候选、置信度、是否需要澄清。
+
+已完成方案 A 实现：
+- 在 [retrieve()](file://e:\aia_robot\app\knowledge_base\rag.py#L26-L97) 中接入首层意图识别结果。
+- 高置信 query：按第一候选意图做单路过滤检索。
+- 中置信 query：按前两名候选意图做 Top2 双路检索（filtered + unfiltered）并合并去重。
+- 低置信或双路无结果：回退全库检索。
+
+测试：
+1. 意图识别准确性测试
+运行 scripts/evaluate_intent_quality.py 验证意图分类准确性
+验证27个测试用例，确保意图识别准确率达到95%以上
+检查置信度阈值（高≥0.7、中0.5-0.7、低<0.5）的正确应用
+
+```powershell
+========================================================================
+意图识别测试完成
+------------------------------------------------------------------------
+total      : 27
+passed     : 27
+failed     : 0
+pass_rate  : 100.0%
+avg_conf   : 0.9098
+need_clarify: 1
+output     : E:\aia_robot\docs\意图识别测试结果.json
+------------------------------------------------------------------------
+service_guide        3/3 avg_conf=0.9231 clarify=0
+form                 3/3 avg_conf=0.8968 clarify=0
+branch               3/3 avg_conf=1.0 clarify=0
+branch_news          3/3 avg_conf=0.7024 clarify=1
+product_category     3/3 avg_conf=1.0 clarify=0
+recommended_product  3/3 avg_conf=0.9213 clarify=0
+on_sale_product      3/3 avg_conf=0.8783 clarify=0
+menu                 3/3 avg_conf=0.8667 clarify=0
+anti_fraud           3/3 avg_conf=1.0 clarify=0
+========================================================================
+```
+
+2. 检索质量测试
+运行 scripts/evaluate_retrieval_quality.py 验证检索结果相关性
+验证48个业务场景测试用例，确保Top-1准确率达到85%以上
+验证不同业务领域（保单服务、产品、表单等）的检索准确性
+
+```powershell
+
+```
+3. 意图路由逻辑测试
+验证高置信度查询的单路过滤检索
+验证中置信度查询的双路检索合并去重
+验证低置信度查询的全库检索回退机制
+验证无结果时的回退机制是否正常工作
+4. 核心功能验证
+验证 retrieve() 函数的完整工作流程
+验证 _merge_and_deduplicate() 结果合并去重功能
+验证 build_rag_context() 上下文构建功能
+验证 rag_query() 端到端查询功能
+5. 单元测试执行
+运行 tests/test_rag_intent_routing.py 验证各模块单元功能
+确保所有单元测试通过，验证各组件功能正常
+6. 执行顺序
+运行单元测试验证基础功能
+执行意图质量评估
+执行检索质量评估
+检查生成的JSON结果文件确认各项指标达标
+
 ### Phase 3：多轮对话能力
 
 - 状态：⏳ 待开始
