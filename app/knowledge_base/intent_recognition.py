@@ -30,6 +30,15 @@ class IntentRecognitionResult:
 
 
 def score_query_intents(query: str) -> dict[str, int]:
+    """
+    根据查询文本计算各种意图的得分
+    
+    参数:
+        query (str): 输入的查询文本
+    
+    返回:
+        dict[str, int]: 包含各种意图及其对应得分的字典
+    """
     text = normalize_query_text(query)
     scores: dict[str, int] = {key: 0 for key in INTENT_MAP}
 
