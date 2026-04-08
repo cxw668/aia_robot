@@ -18,6 +18,10 @@ _API_URL = "https://api.siliconflow.cn/v1/chat/completions"
 
 def _headers() -> dict:
     key = settings.llm_chat_api_key
+    if not key or not key.strip():
+        raise RuntimeError(
+            "LLM API key is not set. Please set LLM_CHAT_API_KEY in environment or app/.env"
+        )
     return {
         "Authorization": f"Bearer {key}",
         "Content-Type": "application/json",

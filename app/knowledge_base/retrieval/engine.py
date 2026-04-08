@@ -4,9 +4,17 @@ from __future__ import annotations
 import logging
 import time
 
-from app.knowledge_base.config import DEFAULT_COLLECTION, TOP_K
+from app.knowledge_base.config import (
+    DEFAULT_COLLECTION,
+    TOP_K,
+    VECTOR_HIGH_CONFIDENCE_THRESHOLD,
+    VECTOR_LLM_CANDIDATE_THRESHOLD,
+    VECTOR_LLM_CANDIDATE_LIMIT,
+    LLM_RELEVANCE_THRESHOLD,
+)
 from app.knowledge_base.core.vector_store import get_client, query_collection
 from app.knowledge_base.core.embedding import get_model
+from app.knowledge_base.retrieval.filter_builder import build_filter
 from app.knowledge_base.retrieval.rescorer import llm_rescore_candidates
 
 logger = logging.getLogger(__name__)
@@ -25,19 +33,62 @@ def retrieve(
     client = get_client()
 
     target_collection = collection_name or DEFAULT_COLLECTION
-    _ = (only_on_sale, category)
 
     t_enc = time.perf_counter()
     query_vector = model.encode(query, normalize_embeddings=True).tolist()
     logger.debug(f"[rag] encode: {(time.perf_counter() - t_enc) * 1000:.1f}ms")
 
-    hits = query_collection(client, target_collection, query_vector, top_k, query_filter=None)
+    query_filter = build_filter(
+        intent=None,
+        only_on_sale=only_on_sale,
+        category=category,
+    )
+
+    candidate_limit = max(top_k, VECTOR_LLM_CANDIDATE_LIMIT)
+    hits = query_collection(
+        client,
+        target_collection,
+        query_vector,
+        candidate_limit,
+        score_threshold=VECTOR_LLM_CANDIDATE_THRESHOLD,
+        query_filter=query_filter,
+    )
+
+    if not hits:
+        logger.debug(
+            f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
+            f"| collection={target_collection} | hits=0"
+        )
+        return []
+
+    high_confidence_hits = [
+        hit for hit in hits
+        if float(hit.get("score") or 0.0) >= VECTOR_HIGH_CONFIDENCE_THRESHOLD
+    ]
+    if high_confidence_hits:
+        high_confidence_hits.sort(key=lambda item: item.get("score", 0), reverse=True)
+        direct_hits = high_confidence_hits[:top_k]
+        logger.debug(
+            f"[rag] direct return high-confidence hits={len(direct_hits)} "
+            f"| collection={target_collection}"
+        )
+        logger.debug(
+            f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
+            f"| collection={target_collection} | hits={len(direct_hits)}"
+        )
+        return direct_hits
 
     try:
-        max_cand = min(len(hits), max(3, top_k, 10))
-        hits = llm_rescore_candidates(query, hits, max_candidates=max_cand)
+        hits = llm_rescore_candidates(
+            query,
+            hits,
+            max_candidates=len(hits),
+            min_llm_score=LLM_RELEVANCE_THRESHOLD,
+            final_top_k=top_k,
+        )
     except Exception:
-        logger.exception("[rag] llm rescoring step failed, continuing with existing hits")
+        logger.exception("[rag] llm rescoring step failed, using vector fallback")
+        hits = hits[:top_k]
 
     logger.debug(
         f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
