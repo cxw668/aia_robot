@@ -21,10 +21,11 @@ from collections import OrderedDict
 from threading import Thread
 
 from fastapi import APIRouter, HTTPException, UploadFile, File, Query
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from qdrant_client import models
 
-from app.knowledge_base.retrieval_data_source import DEFAULT_COLLECTION, get_client, get_model
+from app.knowledge_base.config import DEFAULT_COLLECTION
+from app.knowledge_base.core import get_client, get_model
 
 router = APIRouter(tags=["knowledge"])
 
@@ -37,10 +38,15 @@ class IngestJob(BaseModel):
     status: str
     created_at: str
     doc_count: int = 0
-    schema: str = ""
+    # 使用 `schema_` 避免与 BaseModel.schema() 方法冲突，外部仍使用 key `schema`
+    schema_: str = Field("", alias="schema")
     skipped: int = 0
     failed_items: int = 0
     error: str | None = None
+    
+    class Config:
+        # 允许以字段别名（如来自 _jobs dict 的 'schema'）进行填充
+        validate_by_name = True
 
 _jobs: OrderedDict[str, dict] = OrderedDict()
 
@@ -61,7 +67,7 @@ def _add_job(job_type: str, source: str, collection: str) -> str:
 def _run_dir(jid: str, path: str, collection: str) -> None:
     _jobs[jid]["status"] = "running"
     try:
-        from app.knowledge_base.ingest import ingest_directory
+        from app.knowledge_base.ingestion.pipeline import ingest_directory
         results = ingest_directory(path, collection_name=collection)
         total = sum(r.get("doc_count", 0) for r in results)
         _jobs[jid]["status"] = "done"
@@ -74,7 +80,7 @@ def _run_file(jid: str, tmp_path: str, filename: str, collection: str) -> None:
     import os
     _jobs[jid]["status"] = "running"
     try:
-        from app.knowledge_base.ingest import ingest_file
+        from app.knowledge_base.ingestion.pipeline import ingest_file
         r = ingest_file(tmp_path, collection_name=collection)
         _jobs[jid]["status"] = "done"
         _jobs[jid]["doc_count"] = r.get("doc_count", 0)
@@ -97,7 +103,7 @@ def _run_url(jid: str, url: str, collection: str) -> None:
         with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as f:
             f.write(resp.content)
             tmp = f.name
-        from app.knowledge_base.ingest import ingest_file
+        from app.knowledge_base.ingestion.pipeline import ingest_file
         r = ingest_file(tmp, collection_name=collection)
         _jobs[jid]["status"] = "done"
         _jobs[jid]["doc_count"] = r.get("doc_count", 0)
@@ -117,7 +123,7 @@ def _run_forms_pdf(jid: str, json_path: str) -> None:
     """Background worker: ingest a local forms JSON file via PDF pipeline."""
     _jobs[jid]["status"] = "running"
     try:
-        from app.knowledge_base.ingest import ingest_file
+        from app.knowledge_base.ingestion.pipeline import ingest_file
         r = ingest_file(json_path)
         _jobs[jid]["status"] = "done"
         _jobs[jid]["doc_count"] = r.get("doc_count", 0)

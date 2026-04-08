@@ -16,7 +16,7 @@ from app.env_loader import EnvLoader
 
 EnvLoader.load()
 
-from app.knowledge_base.intent_recognition import classify_query_intent_with_scores
+from app.knowledge_base.intent.classifier import classify_query_intent_with_scores
 
 OUTPUT_PATH = ROOT / "docs" / "意图识别测试结果.json"
 

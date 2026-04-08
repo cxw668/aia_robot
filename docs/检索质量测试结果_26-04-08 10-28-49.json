@@ -1,0 +1,113 @@
+{
+  "generated_at": "2026-04-08 10:28:59",
+  "summary": {
+    "collection": "aia_knowledge_base",
+    "top_k": 5,
+    "total_cases": 1,
+    "passed_cases": 0,
+    "failed_cases": 1,
+    "ignored_cases": 0,
+    "pass_rate": 0.0,
+    "categories": {
+      "保险计划变更": {
+        "total": 1,
+        "passed": 0
+      }
+    },
+    "failed_case_details": [
+      {
+        "category": "保险计划变更",
+        "question": "我想把年缴改成月缴，怎么申请？",
+        "top_hit": {
+          "score": 0.5749,
+          "title": "变更继任年金受领人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人持本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温馨提示： 1．此项变更适用于金瑞年金产品，且合同约定保证领取年限，须符合产品条款规定。 2．继任年金受领人应为年金受领人的直系亲属，非直系亲属的，需同时提供该继任年金受领人为合法继承人的相关证明文件。"
+        },
+        "checks": {
+          "top_category_ok": false,
+          "top_keyword_ok": false,
+          "any_keyword_ok": false,
+          "schema_ok": true
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "category": "保险计划变更",
+      "question": "我想把年缴改成月缴，怎么申请？",
+      "notes": "",
+      "expected_categories": [
+        "保险计划变更"
+      ],
+      "expected_keywords": [
+        "变更保险费支付方式",
+        "年付",
+        "月付"
+      ],
+      "elapsed_ms": 10660.5,
+      "hit_count": 5,
+      "passed": false,
+      "ignored": false,
+      "checks": {
+        "top_category_ok": false,
+        "top_keyword_ok": false,
+        "any_keyword_ok": false,
+        "schema_ok": true
+      },
+      "top_hit": {
+        "score": 0.5749,
+        "title": "变更继任年金受领人",
+        "category": "保单服务",
+        "service_name": "保单服务",
+        "schema": "service_categories",
+        "content_preview": "办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人持本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温馨提示： 1．此项变更适用于金瑞年金产品，且合同约定保证领取年限，须符合产品条款规定。 2．继任年金受领人应为年金受领人的直系亲属，非直系亲属的，需同时提供该继任年金受领人为合法继承人的相关证明文件。"
+      },
+      "hits": [
+        {
+          "score": 0.5749,
+          "title": "变更继任年金受领人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人持本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温馨提示： 1．此项变更适用于金瑞年金产品，且合同约定保证领取年限，须符合产品条款规定。 2．继任年金受领人应为年金受领人的直系亲属，非直系亲属的，需同时提供该继任年金受领人为合法继承人的相关证明文件。"
+        },
+        {
+          "score": 0.5607,
+          "title": "变更继任年金受领人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您需要变更继任年金受领人，您可通过此项目来申请变更。 申请时间：保险合同有效期内任意时间 申请人： • 年金受领人生存：投保人、被保险人和继任年金受领人共同申请 • 年金受领人身故且未指定继任年金受领人：新继任年金受领人 • 年金受领人身故且已指定继任年金受领人：已指定的继任年金受领人 申请文件： • 年金受领人生存： ① 保险合同内容变更申请书（继任年"
+        },
+        {
+          "score": 0.5503,
+          "title": "变更年金处理方式",
+          "category": "年金",
+          "service_name": "年金",
+          "schema": "service_categories",
+          "content_preview": "如果您投保了具有年金利益的产品，您可通过此项目变更年金处理方式。 您可选择的处理方式，根据您投保产品决定。 年金处理方式包括：直接领取、抵付保险费、储存于本公司、转投资账户或万能账户、增加友邦附加增利宝趸交年金保险(分红型)的基本保险金额、作为转入保险费在扣除相关费用后自动转入指定产品的个人账户。 申请时间：保险合同有效期内任意时间 申请人：投保人和被保险人"
+        },
+        {
+          "score": 0.4974,
+          "title": "变更年金受领人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您需要变更年金受领人，您可通过此项目来申请变更。 申请时间：保险合同有效期内任意时间 申请人：投保人和被保险人 申请文件： 1.保险合同内容变更申请书 2.投保人、被保险人身份证件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理： · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人持本人有效身份"
+        },
+        {
+          "score": 0.4409,
+          "title": "年金/生存金的领取",
+          "category": "年金",
+          "service_name": "年金",
+          "schema": "service_categories",
+          "content_preview": "如果您需要办理年金/生存金的领取，您可以通过此项目来申请。 申请时间：保险合同有效期内任意时间 申请人：被保险人与合同约定的领款人同时申请 申请文件： 1. 领取保险款项申请书 2. 被保险人及合同约定领款人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · "
+        }
+      ]
+    }
+  ]
+}

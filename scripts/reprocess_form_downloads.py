@@ -50,7 +50,7 @@ def _normalize_form_name(name: str) -> str:
 
 def reprocess_one(file_path: Path, collection_name: str) -> dict:
     """重建整份表单 JSON（先清理旧数据，再全量重建）。"""
-    from app.knowledge_base.ingest import clear_form_knowledge, ingest_file
+    from app.knowledge_base.ingestion.pipeline import clear_form_knowledge, ingest_file
 
     source_tag = _source_tag_for_file(file_path)
     cleanup = clear_form_knowledge(
@@ -73,7 +73,7 @@ def reprocess_one(file_path: Path, collection_name: str) -> dict:
 
 def reprocess_single_form(file_path: Path, collection_name: str, form_name: str) -> dict:
     """仅重处理一个指定表单（不清理整文件历史数据）。"""
-    from app.knowledge_base.ingest import ingest_forms_pdf
+    from app.knowledge_base.ingestion.pipeline import ingest_forms_pdf
 
     with open(file_path, "r", encoding="utf-8") as f:
         data = json.load(f)

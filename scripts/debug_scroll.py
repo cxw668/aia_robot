@@ -7,11 +7,10 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from app.knowledge_base.category_utils import get_point_category
+from app.knowledge_base.processing.normalizer import get_point_category
 
 client = QdrantClient(url="http://localhost:6333")
 collection_name = "aia_knowledge_base"
-
 
 def get_categories_scroll(client, collection_name, limit=600):
     categories = []

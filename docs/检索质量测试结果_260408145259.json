@@ -1,0 +1,2192 @@
+{
+  "generated_at": "2026-04-08 14:55:21",
+  "summary": {
+    "collection": "aia_knowledge_base",
+    "top_k": 5,
+    "content_similarity_threshold": 0.6,
+    "total_cases": 16,
+    "passed_cases": 13,
+    "failed_cases": 3,
+    "pass_rate": 81.25,
+    "avg_content_similarity": 0.6849,
+    "categories": {
+      "保险计划变更": {
+        "total": 1,
+        "passed": 0
+      },
+      "在售产品": {
+        "total": 1,
+        "passed": 1
+      },
+      "表单下载": {
+        "total": 1,
+        "passed": 1
+      },
+      "个险推荐产品": {
+        "total": 1,
+        "passed": 1
+      },
+      "分公司动态": {
+        "total": 1,
+        "passed": 1
+      },
+      "分公司": {
+        "total": 1,
+        "passed": 1
+      },
+      "保单服务": {
+        "total": 1,
+        "passed": 1
+      },
+      "个险产品": {
+        "total": 1,
+        "passed": 0
+      },
+      "团险推荐产品": {
+        "total": 1,
+        "passed": 1
+      },
+      "续期及账户管理": {
+        "total": 1,
+        "passed": 1
+      },
+      "万能险": {
+        "total": 1,
+        "passed": 1
+      },
+      "合同": {
+        "total": 1,
+        "passed": 1
+      },
+      "反保险欺诈提示及举报渠道": {
+        "total": 1,
+        "passed": 1
+      },
+      "团险产品": {
+        "total": 1,
+        "passed": 0
+      },
+      "借款": {
+        "total": 1,
+        "passed": 1
+      },
+      "退保": {
+        "total": 1,
+        "passed": 1
+      }
+    },
+    "failed_case_details": [
+      {
+        "category": "保险计划变更",
+        "question": "我想把年缴改成月缴，怎么申请？",
+        "top_hit": {
+          "score": 0.6237,
+          "title": "变更年金受领人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您需要变更年金受领人，您可通过此项目来申请变更。 申请时间：保险合同有效期内任意时间 申请人：投保人和被保险人 申请文件： 1.保险合同内容变更申请书 2.投保人、被保险人身份证件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理： · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人持本人有效身份"
+        },
+        "category_content_top_hit": {
+          "score": 0.5368,
+          "title": "健康资料变更",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "如果被保险人/投保人健康资料发生变化，您可以通过此项目申请变更。 申请时间：保险合同有效期内任意时间提出申请。 对于加费承保、或有不承保事项约定的被保险人，在健康状况好转后，应至少在签署《修订计划》/《不承保事项》一年后，在周年日（宽限期内）/保险期间届满时申请取消加费或取消不承保事项。 申请人：投保人和被保险人 申请文件： 最新个人资料通知书 办理方式： ",
+          "content_similarity": 0.5451
+        },
+        "content_similarity_score": 0.5451,
+        "checks": {
+          "top_category_ok": false,
+          "top_keyword_ok": false,
+          "any_keyword_ok": false,
+          "schema_ok": true,
+          "content_similarity_ok": false
+        }
+      },
+      {
+        "category": "个险产品",
+        "question": "个险里面的疾病保障主要是做什么的？",
+        "top_hit": {
+          "score": 0.7908,
+          "title": "疾病保障",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "重疾险是指当被保险人患有约定的重大疾病时，由保险公司给予补偿或补贴的商业保险行为。 部分重疾险产品可在重疾早期阶段便提供现金赔偿，用以支付沉重的医疗费用，帮助您减轻经济负担，与您并肩度过难关。"
+        },
+        "category_content_top_hit": {
+          "score": 0.7513,
+          "title": "疾病保障",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "重疾险是指当被保险人患有约定的重大疾病时，由保险公司给予补偿或补贴的商业保险行为。 部分重疾险产品可在重疾早期阶段便提供现金赔偿，用以支付沉重的医疗费用，帮助您减轻经济负担，与您并肩度过难关。",
+          "content_similarity": 0.7286
+        },
+        "content_similarity_score": 0.7286,
+        "checks": {
+          "top_category_ok": true,
+          "top_keyword_ok": true,
+          "any_keyword_ok": true,
+          "schema_ok": false,
+          "content_similarity_ok": true
+        }
+      },
+      {
+        "category": "团险产品",
+        "question": "投连险个人账户价值能转换到别的投资账户吗？",
+        "top_hit": {
+          "score": 0.795,
+          "title": "个人账户价值转换（限：投连险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可将您保单项下的的个人账户中的全部或部分个人账户价值从一个投资账户全部或部分转换至其他的投资账户。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销"
+        },
+        "category_content_top_hit": {
+          "score": 0.5222,
+          "title": "高净值传世系列",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "作为家庭和企业的顶梁柱，我们深知您肩上所承载的责任和重担。一份量身定做的尊享保单，助您完善财富保障、品质养老、尊贵医疗的“顶层设计”，充分彰显您的身价，成为您家庭财富的奠基石。",
+          "content_similarity": 0.5408
+        },
+        "content_similarity_score": 0.5408,
+        "checks": {
+          "top_category_ok": false,
+          "top_keyword_ok": true,
+          "any_keyword_ok": true,
+          "schema_ok": false,
+          "content_similarity_ok": false
+        }
+      }
+    ]
+  },
+  "cases": [
+    {
+      "category": "保险计划变更",
+      "question": "我想把年缴改成月缴，怎么申请？",
+      "notes": "",
+      "expected_categories": [
+        "保险计划变更"
+      ],
+      "expected_keywords": [
+        "变更保险费支付方式",
+        "年付",
+        "月付"
+      ],
+      "elapsed_ms": 11542.4,
+      "hit_count": 5,
+      "content_similarity_score": 0.5451,
+      "content_similarity_threshold": 0.6,
+      "passed": false,
+      "checks": {
+        "top_category_ok": false,
+        "top_keyword_ok": false,
+        "any_keyword_ok": false,
+        "schema_ok": true,
+        "content_similarity_ok": false
+      },
+      "top_hit": {
+        "score": 0.6237,
+        "title": "变更年金受领人",
+        "category": "保单服务",
+        "service_name": "保单服务",
+        "schema": "service_categories",
+        "content_preview": "如果您需要变更年金受领人，您可通过此项目来申请变更。 申请时间：保险合同有效期内任意时间 申请人：投保人和被保险人 申请文件： 1.保险合同内容变更申请书 2.投保人、被保险人身份证件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理： · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人持本人有效身份"
+      },
+      "hits": [
+        {
+          "score": 0.6237,
+          "title": "变更年金受领人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您需要变更年金受领人，您可通过此项目来申请变更。 申请时间：保险合同有效期内任意时间 申请人：投保人和被保险人 申请文件： 1.保险合同内容变更申请书 2.投保人、被保险人身份证件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理： · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人持本人有效身份"
+        },
+        {
+          "score": 0.6184,
+          "title": "变更继任年金受领人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人持本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温馨提示： 1．此项变更适用于金瑞年金产品，且合同约定保证领取年限，须符合产品条款规定。 2．继任年金受领人应为年金受领人的直系亲属，非直系亲属的，需同时提供该继任年金受领人为合法继承人的相关证明文件。"
+        },
+        {
+          "score": 0.5509,
+          "title": "年金/生存金的领取",
+          "category": "年金",
+          "service_name": "年金",
+          "schema": "service_categories",
+          "content_preview": "如果您需要办理年金/生存金的领取，您可以通过此项目来申请。 申请时间：保险合同有效期内任意时间 申请人：被保险人与合同约定的领款人同时申请 申请文件： 1. 领取保险款项申请书 2. 被保险人及合同约定领款人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · "
+        },
+        {
+          "score": 0.5419,
+          "title": "变更继任年金受领人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您需要变更继任年金受领人，您可通过此项目来申请变更。 申请时间：保险合同有效期内任意时间 申请人： • 年金受领人生存：投保人、被保险人和继任年金受领人共同申请 • 年金受领人身故且未指定继任年金受领人：新继任年金受领人 • 年金受领人身故且已指定继任年金受领人：已指定的继任年金受领人 申请文件： • 年金受领人生存： ① 保险合同内容变更申请书（继任年"
+        },
+        {
+          "score": 0.4577,
+          "title": "变更年金处理方式",
+          "category": "年金",
+          "service_name": "年金",
+          "schema": "service_categories",
+          "content_preview": "如果您投保了具有年金利益的产品，您可通过此项目变更年金处理方式。 您可选择的处理方式，根据您投保产品决定。 年金处理方式包括：直接领取、抵付保险费、储存于本公司、转投资账户或万能账户、增加友邦附加增利宝趸交年金保险(分红型)的基本保险金额、作为转入保险费在扣除相关费用后自动转入指定产品的个人账户。 申请时间：保险合同有效期内任意时间 申请人：投保人和被保险人"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.5368,
+        "title": "健康资料变更",
+        "category": "保险计划变更",
+        "service_name": "保险计划变更",
+        "schema": "service_categories",
+        "content_preview": "如果被保险人/投保人健康资料发生变化，您可以通过此项目申请变更。 申请时间：保险合同有效期内任意时间提出申请。 对于加费承保、或有不承保事项约定的被保险人，在健康状况好转后，应至少在签署《修订计划》/《不承保事项》一年后，在周年日（宽限期内）/保险期间届满时申请取消加费或取消不承保事项。 申请人：投保人和被保险人 申请文件： 最新个人资料通知书 办理方式： ",
+        "content_similarity": 0.5451
+      },
+      "category_content_hits": [
+        {
+          "score": 0.5368,
+          "title": "健康资料变更",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "如果被保险人/投保人健康资料发生变化，您可以通过此项目申请变更。 申请时间：保险合同有效期内任意时间提出申请。 对于加费承保、或有不承保事项约定的被保险人，在健康状况好转后，应至少在签署《修订计划》/《不承保事项》一年后，在周年日（宽限期内）/保险期间届满时申请取消加费或取消不承保事项。 申请人：投保人和被保险人 申请文件： 最新个人资料通知书 办理方式： ",
+          "content_similarity": 0.5451
+        },
+        {
+          "score": 0.5268,
+          "title": "变更保险费支付方式",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "若您的保险合同为期交支付保险费，您可以通过此项目变更。 您可选择的支付方式，根据您投保的产品决定。 保险费支付方式包括：年付、半年付、季付、月付。 申请时间： 1．长－短（较长保险费付费周期变更为较短付费周期）：原付费方式的保险费约定支付日及宽限期内。 2．短－长（较短保险费付费周期变更为较长付费周期）：新付费方式的保险费约定支付日及宽限期内。 申请人：投保",
+          "content_similarity": 0.5347
+        },
+        {
+          "score": 0.4967,
+          "title": "取消附加合同",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "如果您需要调整保险保障，您可以通过此项目申请取消附加合同，自我公司审批之日起您将不再享有该附加险种的保险保障。 申请时间：保险合同有效期内任意时间。 申请人：投保人 申请文件： 1. 保险合同内容变更申请书 2. 投保人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。（目前仅支持互联网、银保等非营销员销售的保险合同）。",
+          "content_similarity": 0.5139
+        },
+        {
+          "score": 0.4985,
+          "title": "变更保险费过期未付选择",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "如果您需要变更保险费过期未付选择，您可通过此项目来申请变更。（包含：自动垫付保险费，减额付清，中止合同。并需符合产品条款规定）。 申请时间：保险合同有效期内任意时间。 申请人：投保人 申请文件： 保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户",
+          "content_similarity": 0.5069
+        },
+        {
+          "score": 0.4888,
+          "title": "降低基本保险金额",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "如果您需要调整保险保障，您可以通过此项目申请降低基本保险金额，但须符合我公司关于最低保险金额的要求以保证您有必要的保险保障。 申请时间：保险合同有效期内任意时间。 申请人：投保人 申请文件： 1. 保险合同内容变更申请书 2. 投保人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。（目前仅支持互联网、银保等非营销员销售",
+          "content_similarity": 0.4976
+        }
+      ]
+    },
+    {
+      "category": "在售产品",
+      "question": "友邦星耀未来年金保险现在在售吗？",
+      "notes": "",
+      "expected_categories": [
+        "在售产品"
+      ],
+      "expected_keywords": [
+        "友邦星耀未来年金保险",
+        "在售"
+      ],
+      "elapsed_ms": 8052.1,
+      "hit_count": 5,
+      "content_similarity_score": 0.7478,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.8412,
+        "title": "友邦星耀未来年金保险（分红型）",
+        "category": "在售产品",
+        "service_name": "在售产品基本信息.json",
+        "schema": "products_list",
+        "content_preview": "产品名称：友邦星耀未来年金保险（分红型） 状态：在售 产品组：P3 productItem：B3156-1_ParJEB(20251230)_IAC9100031205_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/resou"
+      },
+      "hits": [
+        {
+          "score": 0.8412,
+          "title": "友邦星耀未来年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦星耀未来年金保险（分红型） 状态：在售 产品组：P3 productItem：B3156-1_ParJEB(20251230)_IAC9100031205_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/resou"
+        },
+        {
+          "score": 0.8323,
+          "title": "友邦附加星耀未来年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦附加星耀未来年金保险（分红型） 状态：在售 产品组：P3 productItem：B3157-1_ParJER(20251230)_IAC9100031206_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/res"
+        },
+        {
+          "score": 0.8099,
+          "title": "友邦传世未来2025荣耀版年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦传世未来2025荣耀版年金保险（分红型） 状态：在售 产品组：P3 productItem：B3146-1_Par DA Favor(20251103)_IAC9100029958_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientl"
+        },
+        {
+          "score": 0.8012,
+          "title": "友邦传世未来2025A款年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦传世未来2025A款年金保险（分红型） 状态：在售 产品组：P3 productItem：B3107-1_Par DA 1.75(20250626)_IAC9100026956_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib"
+        },
+        {
+          "score": 0.7803,
+          "title": "友邦传世金生2025荣耀版年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦传世金生2025荣耀版年金保险（分红型） 状态：在售 产品组：P3 productItem：B31251_PLAC2025(20250903)_IAC9100028980_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-ba"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.7453,
+        "title": "友邦星耀未来年金保险（分红型）",
+        "category": "在售产品",
+        "service_name": "在售产品基本信息.json",
+        "schema": "products_list",
+        "content_preview": "产品名称：友邦星耀未来年金保险（分红型） 状态：在售 产品组：P3 productItem：B3156-1_ParJEB(20251230)_IAC9100031205_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/resou",
+        "content_similarity": 0.7478
+      },
+      "category_content_hits": [
+        {
+          "score": 0.7453,
+          "title": "友邦星耀未来年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦星耀未来年金保险（分红型） 状态：在售 产品组：P3 productItem：B3156-1_ParJEB(20251230)_IAC9100031205_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/resou",
+          "content_similarity": 0.7478
+        },
+        {
+          "score": 0.7339,
+          "title": "友邦附加星耀未来年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦附加星耀未来年金保险（分红型） 状态：在售 产品组：P3 productItem：B3157-1_ParJER(20251230)_IAC9100031206_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/res",
+          "content_similarity": 0.7396
+        },
+        {
+          "score": 0.6965,
+          "title": "友邦传世未来2025荣耀版年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦传世未来2025荣耀版年金保险（分红型） 状态：在售 产品组：P3 productItem：B3146-1_Par DA Favor(20251103)_IAC9100029958_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientl",
+          "content_similarity": 0.7013
+        },
+        {
+          "score": 0.6854,
+          "title": "友邦传世未来2025A款年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦传世未来2025A款年金保险（分红型） 状态：在售 产品组：P3 productItem：B3107-1_Par DA 1.75(20250626)_IAC9100026956_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib",
+          "content_similarity": 0.689
+        },
+        {
+          "score": 0.6539,
+          "title": "友邦传世金生2025荣耀版年金保险（分红型）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦传世金生2025荣耀版年金保险（分红型） 状态：在售 产品组：P3 productItem：B31251_PLAC2025(20250903)_IAC9100028980_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-ba",
+          "content_similarity": 0.6576
+        }
+      ]
+    },
+    {
+      "category": "表单下载",
+      "question": "变更投保人要下载哪份个险表单？",
+      "notes": "",
+      "expected_categories": [
+        "表单下载"
+      ],
+      "expected_keywords": [
+        "《保险合同内容变更申请书》",
+        "保险合同内容变更申请书"
+      ],
+      "elapsed_ms": 6753.9,
+      "hit_count": 5,
+      "content_similarity_score": 0.6698,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": false,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7568,
+        "title": "变更个人资料",
+        "category": "保单服务",
+        "service_name": "保单服务",
+        "schema": "service_categories",
+        "content_preview": "如果您的个人资料（如投保人/被保险人姓名、证件类型、证件号码、出生日期、性别等个人信息）发生变更，您可以通过此项目申请更正个人资料。变更投保人或被保险人个人资料时，保险公司将以最新的个人资料为准，一并更新投保人或被保险人在保险公司持有的其他现存保单。 申请时间：保险合同有效期内任意时间 申请人：按申请项目执行 · 被保险人可申请办理： 被保险人的姓名/国籍/"
+      },
+      "hits": [
+        {
+          "score": 0.7568,
+          "title": "变更个人资料",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您的个人资料（如投保人/被保险人姓名、证件类型、证件号码、出生日期、性别等个人信息）发生变更，您可以通过此项目申请更正个人资料。变更投保人或被保险人个人资料时，保险公司将以最新的个人资料为准，一并更新投保人或被保险人在保险公司持有的其他现存保单。 申请时间：保险合同有效期内任意时间 申请人：按申请项目执行 · 被保险人可申请办理： 被保险人的姓名/国籍/"
+        },
+        {
+          "score": 0.7455,
+          "title": "【变更】友邦人寿团体保险合同变更申请书（上海专用版）",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "友邦人寿团体保险合同变更申请书 投保人填写 ---|--- *投保人名称|*投保单号/保险合同编号 (请完整填写所有涉及变更的“投保单号/保险合同编号”) ``` A. **投保人资料变更申请（请勾选变更项目，并填写相应内容）** □ 分支机构|分支机构名称||变更项目代码 （按左侧 A-1~A-3 代码填写） 基本信息|□ 投保人名称变更，变更原因： □ "
+        },
+        {
+          "score": 0.6317,
+          "title": "【其他】友邦养老团体保险计划客户身份识别资料告知书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "**客户身份识别资料告知书（2/3）** **表一：**(以下内容由投保人填写，请先勾选贵公司所属类型，并按照要求在表二中提供受益人所有信息提供相关资料) **投保人公章：** **盖章日期：**  ---  #"
+        },
+        {
+          "score": 0.5971,
+          "title": "【变更】友邦人寿团体保险合同变更申请书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "# 友邦人寿团体保险合同变更申请书 **投保人填写** 投保人名称 | *投保单号/保险合同编号 --- | --- 送/查询等级、 __* 受流等级、 __* 构金章、 __* 原构垒牲位置明 **A. 投保人资料变更申请（请勾选变更项目，并填写相关内容）** **投保人演变** **A. 保险公司（请勾选变更项目，并填写相关内容）** 请注意，由于图片的"
+        },
+        {
+          "score": 0.5523,
+          "title": "变更定期定额追加保险费(限：投连险产品适用)",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请变更定期定额追加保险费。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人应携带本人有效身"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.6758,
+        "title": "【变更】友邦人寿团体保险合同变更申请书（上海专用版）",
+        "category": "表单下载",
+        "service_name": "表单下载",
+        "schema": "forms_markdown",
+        "content_preview": "友邦人寿团体保险合同变更申请书 投保人填写 ---|--- *投保人名称|*投保单号/保险合同编号 (请完整填写所有涉及变更的“投保单号/保险合同编号”) ``` A. **投保人资料变更申请（请勾选变更项目，并填写相应内容）** □ 分支机构|分支机构名称||变更项目代码 （按左侧 A-1~A-3 代码填写） 基本信息|□ 投保人名称变更，变更原因： □ ",
+        "content_similarity": 0.6698
+      },
+      "category_content_hits": [
+        {
+          "score": 0.6758,
+          "title": "【变更】友邦人寿团体保险合同变更申请书（上海专用版）",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "友邦人寿团体保险合同变更申请书 投保人填写 ---|--- *投保人名称|*投保单号/保险合同编号 (请完整填写所有涉及变更的“投保单号/保险合同编号”) ``` A. **投保人资料变更申请（请勾选变更项目，并填写相应内容）** □ 分支机构|分支机构名称||变更项目代码 （按左侧 A-1~A-3 代码填写） 基本信息|□ 投保人名称变更，变更原因： □ ",
+          "content_similarity": 0.6698
+        },
+        {
+          "score": 0.6618,
+          "title": "【变更】友邦人寿团体保险合同变更申请书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "# 友邦人寿团体保险合同变更申请书 **投保人填写** 投保人名称 | *投保单号/保险合同编号 --- | --- 送/查询等级、 __* 受流等级、 __* 构金章、 __* 原构垒牲位置明 **A. 投保人资料变更申请（请勾选变更项目，并填写相关内容）** **投保人演变** **A. 保险公司（请勾选变更项目，并填写相关内容）** 请注意，由于图片的",
+          "content_similarity": 0.648
+        },
+        {
+          "score": 0.6513,
+          "title": "【变更】友邦人寿团体保险合同变更申请书（上海专用版）",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "□ 同步新增为网上服务申请绑定邮箱（1 项） □A-3 授权银行账号 变更|变更后授权银行户名： 变更后授权银行名称： 银行 支行/分理处 变更后授权银行账号： （授权银行帐号为保险费支付账户，亦供溢缴保费及调整保费退费之用） B． **保险合同（请勾选变更项目，并填写相应内容）** ``` ☐ 保险合同补发，原保险合同自补发之日起作废。 ``` ``` *",
+          "content_similarity": 0.6422
+        },
+        {
+          "score": 0.6528,
+          "title": "【其他】友邦养老团体保险计划客户身份识别资料告知书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "**客户身份识别资料告知书（2/3）** **表一：**(以下内容由投保人填写，请先勾选贵公司所属类型，并按照要求在表二中提供受益人所有信息提供相关资料) **投保人公章：** **盖章日期：**  ---  #",
+          "content_similarity": 0.6364
+        },
+        {
+          "score": 0.6198,
+          "title": "【续保】友邦团体保险续保申请书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "}^8 页共33页FINRA NOMINEES 投票人名称 - | - 保单类型 | □ 员工福利组合计划 □ 员工福利定制计划 □ 员工自选计划 与上一年度保单下保障方案及费率保持一致 | □ 不予同意 - | - □ 方案/费率变更申请（勾选此项，需填写以下具体保障详情，若保险计划超过三个月，可附页）* B. 续保保险险信息 - | - 续保决定 | □",
+          "content_similarity": 0.5888
+        }
+      ]
+    },
+    {
+      "category": "个险推荐产品",
+      "question": "长保康惠长期医疗保险适合什么场景？",
+      "notes": "",
+      "expected_categories": [
+        "个险推荐产品"
+      ],
+      "expected_keywords": [
+        "长保康惠",
+        "长期医疗"
+      ],
+      "elapsed_ms": 6672.2,
+      "hit_count": 5,
+      "content_similarity_score": 0.7088,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.6284,
+        "title": "友邦长保康惠长期医疗保险（费率可调）",
+        "category": "在售产品",
+        "service_name": "在售产品基本信息.json",
+        "schema": "products_list",
+        "content_preview": "产品名称：友邦长保康惠长期医疗保险（费率可调） 状态：在售 产品组：P1 productItem：B1194-1_LTMM(20230713)_IAC9100017229_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/reso"
+      },
+      "hits": [
+        {
+          "score": 0.6284,
+          "title": "友邦长保康惠长期医疗保险（费率可调）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦长保康惠长期医疗保险（费率可调） 状态：在售 产品组：P1 productItem：B1194-1_LTMM(20230713)_IAC9100017229_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/reso"
+        },
+        {
+          "score": 0.5339,
+          "title": "友邦长保康惠长期医疗保险（费率可调）",
+          "category": "个险推荐产品",
+          "service_name": "意外/医疗",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c"
+        },
+        {
+          "score": 0.4974,
+          "title": "友邦优享康惠医疗保险",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦优享康惠医疗保险 状态：在售 产品组：P1 productItem：B1212-1_TDHMM(20231229)_IAC9100020683_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/resources/p"
+        },
+        {
+          "score": 0.4688,
+          "title": "友邦尊享康惠（2020）医疗保险",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦尊享康惠（2020）医疗保险 状态：在售 产品组：P1 productItem：B0963-2_MedMass2020(2020602)_IAC9100009384_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/"
+        },
+        {
+          "score": 0.4656,
+          "title": "友邦智选康惠加惠（2022）医疗保险",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦智选康惠加惠（2022）医疗保险 状态：在售 产品组：P1 productItem：B1120-1_IVSMM2022(20220630)_IAC9100013372_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.6898,
+        "title": "友邦长保康惠长期医疗保险（费率可调）",
+        "category": "个险推荐产品",
+        "service_name": "意外/医疗",
+        "schema": "recommended_products",
+        "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c",
+        "content_similarity": 0.7088
+      },
+      "category_content_hits": [
+        {
+          "score": 0.6898,
+          "title": "友邦长保康惠长期医疗保险（费率可调）",
+          "category": "个险推荐产品",
+          "service_name": "意外/医疗",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c",
+          "content_similarity": 0.7088
+        },
+        {
+          "score": 0.714,
+          "title": "友邦长保康惠长期医疗保险（费率可调）",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦长保康惠长期医疗保险（费率可调） 状态：在售 产品组：P1 productItem：B1194-1_LTMM(20230713)_IAC9100017229_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/reso",
+          "content_similarity": 0.7072
+        },
+        {
+          "score": 0.648,
+          "title": "友邦尊享康惠（2020）医疗保险",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦尊享康惠（2020）医疗保险 状态：在售 产品组：P1 productItem：B0963-2_MedMass2020(2020602)_IAC9100009384_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/",
+          "content_similarity": 0.6389
+        },
+        {
+          "score": 0.6426,
+          "title": "友邦智选康惠加惠（2022）医疗保险",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦智选康惠加惠（2022）医疗保险 状态：在售 产品组：P1 productItem：B1120-1_IVSMM2022(20220630)_IAC9100013372_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base",
+          "content_similarity": 0.6335
+        },
+        {
+          "score": 0.629,
+          "title": "友邦优享康惠医疗保险",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦优享康惠医疗保险 状态：在售 产品组：P1 productItem：B1212-1_TDHMM(20231229)_IAC9100020683_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clientlib-base/resources/p",
+          "content_similarity": 0.6248
+        }
+      ]
+    },
+    {
+      "category": "分公司动态",
+      "question": "友邦北京的乳腺健康公益讲座是什么活动？",
+      "notes": "",
+      "expected_categories": [
+        "分公司动态"
+      ],
+      "expected_keywords": [
+        "乳腺健康公益讲座",
+        "北京"
+      ],
+      "elapsed_ms": 8522.4,
+      "hit_count": 5,
+      "content_similarity_score": 0.7696,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7875,
+        "title": "守护她力量 健康友同行 友邦友爱 乳腺健康公益讲座·北京场圆满结束",
+        "category": "分公司动态",
+        "service_name": "北京",
+        "schema": "branches",
+        "content_preview": "守护她力量 健康友同行 友邦友爱 乳腺健康公益讲座·北京场圆满结束 金秋十月，恰逢“世界乳腺癌防治月”。为进一步关爱女性健康，友邦人寿保险有限公司携手中国健康促进与教育协会肿瘤筛查和预防专委会，正式启动“友邦友爱·乳腺癌防治公益活动“，全面升级“友爱防癌”公益科普项目。通过“早预防、早发现、早治疗”的科学理念传播与创新服务落地，推动全民健康意识提升，共筑女性"
+      },
+      "hits": [
+        {
+          "score": 0.7875,
+          "title": "守护她力量 健康友同行 友邦友爱 乳腺健康公益讲座·北京场圆满结束",
+          "category": "分公司动态",
+          "service_name": "北京",
+          "schema": "branches",
+          "content_preview": "守护她力量 健康友同行 友邦友爱 乳腺健康公益讲座·北京场圆满结束 金秋十月，恰逢“世界乳腺癌防治月”。为进一步关爱女性健康，友邦人寿保险有限公司携手中国健康促进与教育协会肿瘤筛查和预防专委会，正式启动“友邦友爱·乳腺癌防治公益活动“，全面升级“友爱防癌”公益科普项目。通过“早预防、早发现、早治疗”的科学理念传播与创新服务落地，推动全民健康意识提升，共筑女性"
+        },
+        {
+          "score": 0.4201,
+          "title": "“友邦友爱·乐龄计划”康养公益项目，助力裕华区银龄老人无忧养老",
+          "category": "分公司动态",
+          "service_name": "河北",
+          "schema": "branches",
+          "content_preview": "“友邦友爱·乐龄计划”康养公益项目，助力裕华区银龄老人无忧养老 “友邦友爱·乐龄计划”康养公益项目正式落地石家庄"
+        },
+        {
+          "score": 0.4002,
+          "title": "2025友邦保险北京好生活节活动圆满落幕 健康新「享」法 创造美好生活",
+          "category": "分公司动态",
+          "service_name": "北京",
+          "schema": "branches",
+          "content_preview": "2025友邦保险北京好生活节活动圆满落幕 健康新「享」法 创造美好生活 2025年7月5日，由友邦人寿北京分公司（简称“友邦北京”）举办的“2025友邦保险北京好生活节”活动在北京奥林匹克森林公园露天剧场盛大举行，本次活动以“健康新享法”为主题，通过运动、音乐、市集、亲子互动和公益倡导的多元形式，吸引了近八千位友邦北京客户及营销员于盛夏时节相聚在这座大自然氧"
+        },
+        {
+          "score": 0.3855,
+          "title": "99公益日，一块做好事，友邦湖北暖心义卖行动关爱大病儿童",
+          "category": "分公司动态",
+          "service_name": "湖北",
+          "schema": "branches",
+          "content_preview": "99公益日，一块做好事，友邦湖北暖心义卖行动关爱大病儿童 2023年9月9日，湖北武汉—— 为了让因病暂缓学业的孩子重返课堂，为了长期住院的孩子领略大千世界的美好，你愿意出一份力吗？恰逢99公益日，友邦积极响应“中华慈善日”的号召，携手北京新阳光慈善基金会暖心策划“友邦友爱 向阳而生”99公益日大型线下义卖系列活动，吸引数千人踊跃参与义卖活动，累计为新阳光"
+        },
+        {
+          "score": 0.3694,
+          "title": "友邦人寿践行公益使命，助力河北女童勇敢追梦",
+          "category": "分公司动态",
+          "service_name": "河北",
+          "schema": "branches",
+          "content_preview": "友邦人寿践行公益使命，助力河北女童勇敢追梦 友邦友爱·守护春蕾，平山县河渠希望小学“HELLO 小孩”爱心套餐发放仪式"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.7459,
+        "title": "守护她力量 健康友同行 友邦友爱 乳腺健康公益讲座·北京场圆满结束",
+        "category": "分公司动态",
+        "service_name": "北京",
+        "schema": "branches",
+        "content_preview": "守护她力量 健康友同行 友邦友爱 乳腺健康公益讲座·北京场圆满结束 金秋十月，恰逢“世界乳腺癌防治月”。为进一步关爱女性健康，友邦人寿保险有限公司携手中国健康促进与教育协会肿瘤筛查和预防专委会，正式启动“友邦友爱·乳腺癌防治公益活动“，全面升级“友爱防癌”公益科普项目。通过“早预防、早发现、早治疗”的科学理念传播与创新服务落地，推动全民健康意识提升，共筑女性",
+        "content_similarity": 0.7696
+      },
+      "category_content_hits": [
+        {
+          "score": 0.7459,
+          "title": "守护她力量 健康友同行 友邦友爱 乳腺健康公益讲座·北京场圆满结束",
+          "category": "分公司动态",
+          "service_name": "北京",
+          "schema": "branches",
+          "content_preview": "守护她力量 健康友同行 友邦友爱 乳腺健康公益讲座·北京场圆满结束 金秋十月，恰逢“世界乳腺癌防治月”。为进一步关爱女性健康，友邦人寿保险有限公司携手中国健康促进与教育协会肿瘤筛查和预防专委会，正式启动“友邦友爱·乳腺癌防治公益活动“，全面升级“友爱防癌”公益科普项目。通过“早预防、早发现、早治疗”的科学理念传播与创新服务落地，推动全民健康意识提升，共筑女性",
+          "content_similarity": 0.7696
+        },
+        {
+          "score": 0.6337,
+          "title": "2025友邦保险北京好生活节活动圆满落幕 健康新「享」法 创造美好生活",
+          "category": "分公司动态",
+          "service_name": "北京",
+          "schema": "branches",
+          "content_preview": "2025友邦保险北京好生活节活动圆满落幕 健康新「享」法 创造美好生活 2025年7月5日，由友邦人寿北京分公司（简称“友邦北京”）举办的“2025友邦保险北京好生活节”活动在北京奥林匹克森林公园露天剧场盛大举行，本次活动以“健康新享法”为主题，通过运动、音乐、市集、亲子互动和公益倡导的多元形式，吸引了近八千位友邦北京客户及营销员于盛夏时节相聚在这座大自然氧",
+          "content_similarity": 0.6197
+        },
+        {
+          "score": 0.6091,
+          "title": "99公益日，一块做好事，友邦湖北暖心义卖行动关爱大病儿童",
+          "category": "分公司动态",
+          "service_name": "湖北",
+          "schema": "branches",
+          "content_preview": "99公益日，一块做好事，友邦湖北暖心义卖行动关爱大病儿童 2023年9月9日，湖北武汉—— 为了让因病暂缓学业的孩子重返课堂，为了长期住院的孩子领略大千世界的美好，你愿意出一份力吗？恰逢99公益日，友邦积极响应“中华慈善日”的号召，携手北京新阳光慈善基金会暖心策划“友邦友爱 向阳而生”99公益日大型线下义卖系列活动，吸引数千人踊跃参与义卖活动，累计为新阳光",
+          "content_similarity": 0.6098
+        },
+        {
+          "score": 0.5824,
+          "title": "友邦人寿践行公益使命，助力河北女童勇敢追梦",
+          "category": "分公司动态",
+          "service_name": "河北",
+          "schema": "branches",
+          "content_preview": "友邦人寿践行公益使命，助力河北女童勇敢追梦 友邦友爱·守护春蕾，平山县河渠希望小学“HELLO 小孩”爱心套餐发放仪式",
+          "content_similarity": 0.5901
+        },
+        {
+          "score": 0.5669,
+          "title": "“友邦友爱·乐龄计划”康养公益项目，助力裕华区银龄老人无忧养老",
+          "category": "分公司动态",
+          "service_name": "河北",
+          "schema": "branches",
+          "content_preview": "“友邦友爱·乐龄计划”康养公益项目，助力裕华区银龄老人无忧养老 “友邦友爱·乐龄计划”康养公益项目正式落地石家庄",
+          "content_similarity": 0.5641
+        }
+      ]
+    },
+    {
+      "category": "分公司",
+      "question": "北京分公司客服电话是多少？",
+      "notes": "",
+      "expected_categories": [
+        "分公司"
+      ],
+      "expected_keywords": [
+        "北京分公司",
+        "6528 6938",
+        "北京"
+      ],
+      "elapsed_ms": 7402.1,
+      "hit_count": 5,
+      "content_similarity_score": 0.6514,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7067,
+        "title": "北京分公司",
+        "category": "分公司",
+        "service_name": "北京",
+        "schema": "branches",
+        "content_preview": "北京市朝阳区东三环北路甲26 号楼4 层401 等〔168 〕套内第23 层、24 层、25 层01/02/03B 单元服务时间周一至周五：9:00-17:30（国定节假日除外）(86 10) 6528 6938查看地图"
+      },
+      "hits": [
+        {
+          "score": 0.7067,
+          "title": "北京分公司",
+          "category": "分公司",
+          "service_name": "北京",
+          "schema": "branches",
+          "content_preview": "北京市朝阳区东三环北路甲26 号楼4 层401 等〔168 〕套内第23 层、24 层、25 层01/02/03B 单元服务时间周一至周五：9:00-17:30（国定节假日除外）(86 10) 6528 6938查看地图"
+        },
+        {
+          "score": 0.5846,
+          "title": "湖北分公司",
+          "category": "分公司",
+          "service_name": "湖北",
+          "schema": "branches",
+          "content_preview": "湖北省武汉市武昌区中北路9号长城汇T1号写字楼第33层整层客户服务中心服务时间周一至周五：9:00-12:30，13:30-17:30（国定节假日除外）（86 27）8661 1388查看地图"
+        },
+        {
+          "score": 0.4987,
+          "title": "江苏分公司",
+          "category": "分公司",
+          "service_name": "江苏",
+          "schema": "branches",
+          "content_preview": "江苏省南京市建邺区江东中路347号国金中心办公楼一期20层2001-2009室、2016室服务时间周一至周五: 8:30-12:00， 13:30-17:30  (国定节假日除外）（86 25）8326 0088查看地图"
+        },
+        {
+          "score": 0.3982,
+          "title": "河北分公司",
+          "category": "分公司",
+          "service_name": "河北",
+          "schema": "branches",
+          "content_preview": "河北省石家庄市桥西区中山街道中山西路108号华润万象城02号楼2001-2016单元客户服务中心服务时间周一至周五： 9:00-12:00，13:30-17:30.( 国定节假日除外)(86 311) 8511 6688查看地图"
+        },
+        {
+          "score": 0.3725,
+          "title": "天津分公司",
+          "category": "分公司",
+          "service_name": "天津",
+          "schema": "branches",
+          "content_preview": "天津市和平区劝业场街赤峰道136号天津国际金融中心第5层01、02、03A室、第7层，第33层01-03、06-08室客户服务中心服务时间周一至周五：9:00-17:30（国定节假日除外）(8622) 2314 9988查看地图"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.6637,
+        "title": "河北分公司",
+        "category": "分公司",
+        "service_name": "河北",
+        "schema": "branches",
+        "content_preview": "河北省石家庄市桥西区中山街道中山西路108号华润万象城02号楼2001-2016单元客户服务中心服务时间周一至周五： 9:00-12:00，13:30-17:30.( 国定节假日除外)(86 311) 8511 6688查看地图",
+        "content_similarity": 0.6514
+      },
+      "category_content_hits": [
+        {
+          "score": 0.6637,
+          "title": "河北分公司",
+          "category": "分公司",
+          "service_name": "河北",
+          "schema": "branches",
+          "content_preview": "河北省石家庄市桥西区中山街道中山西路108号华润万象城02号楼2001-2016单元客户服务中心服务时间周一至周五： 9:00-12:00，13:30-17:30.( 国定节假日除外)(86 311) 8511 6688查看地图",
+          "content_similarity": 0.6514
+        },
+        {
+          "score": 0.6565,
+          "title": "北京分公司",
+          "category": "分公司",
+          "service_name": "北京",
+          "schema": "branches",
+          "content_preview": "北京市朝阳区东三环北路甲26 号楼4 层401 等〔168 〕套内第23 层、24 层、25 层01/02/03B 单元服务时间周一至周五：9:00-17:30（国定节假日除外）(86 10) 6528 6938查看地图",
+          "content_similarity": 0.6499
+        },
+        {
+          "score": 0.6131,
+          "title": "江苏分公司",
+          "category": "分公司",
+          "service_name": "江苏",
+          "schema": "branches",
+          "content_preview": "江苏省南京市建邺区江东中路347号国金中心办公楼一期20层2001-2009室、2016室服务时间周一至周五: 8:30-12:00， 13:30-17:30  (国定节假日除外）（86 25）8326 0088查看地图",
+          "content_similarity": 0.604
+        },
+        {
+          "score": 0.5963,
+          "title": "湖北分公司",
+          "category": "分公司",
+          "service_name": "湖北",
+          "schema": "branches",
+          "content_preview": "湖北省武汉市武昌区中北路9号长城汇T1号写字楼第33层整层客户服务中心服务时间周一至周五：9:00-12:30，13:30-17:30（国定节假日除外）（86 27）8661 1388查看地图",
+          "content_similarity": 0.5976
+        },
+        {
+          "score": 0.6202,
+          "title": "天津分公司",
+          "category": "分公司",
+          "service_name": "天津",
+          "schema": "branches",
+          "content_preview": "天津市和平区劝业场街赤峰道136号天津国际金融中心第5层01、02、03A室、第7层，第33层01-03、06-08室客户服务中心服务时间周一至周五：9:00-17:30（国定节假日除外）(8622) 2314 9988查看地图",
+          "content_similarity": 0.5904
+        }
+      ]
+    },
+    {
+      "category": "保单服务",
+      "question": "如何申请电子保单？",
+      "notes": "",
+      "expected_categories": [
+        "保单服务"
+      ],
+      "expected_keywords": [
+        "电子保单",
+        "申请"
+      ],
+      "elapsed_ms": 10794.2,
+      "hit_count": 5,
+      "content_similarity_score": 0.605,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": false,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7215,
+        "title": "申请电子保险合同",
+        "category": "合同",
+        "service_name": "合同",
+        "schema": "service_categories",
+        "content_preview": "您可通过本项业务申请电子合同。 申请时间：保险合同有效期内任意时间 申请人：投保人 申请文件：保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请电子合同。 · 联系保险营销员办理 您可联系服务营销员办理本项业务。 · 亲临客户服务中心办理 申请人应携带本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温"
+      },
+      "hits": [
+        {
+          "score": 0.7215,
+          "title": "申请电子保险合同",
+          "category": "合同",
+          "service_name": "合同",
+          "schema": "service_categories",
+          "content_preview": "您可通过本项业务申请电子合同。 申请时间：保险合同有效期内任意时间 申请人：投保人 申请文件：保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请电子合同。 · 联系保险营销员办理 您可联系服务营销员办理本项业务。 · 亲临客户服务中心办理 申请人应携带本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温"
+        },
+        {
+          "score": 0.6802,
+          "title": "补发保险合同",
+          "category": "合同",
+          "service_name": "合同",
+          "schema": "service_categories",
+          "content_preview": "若您的保险合同不慎遗失，您可以通过本项业务申请补发纸质保险合同。 申请时间：保险合同有效期内任意时间 申请人：投保人 申请文件：保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请补发纸质保险合同（限每年1次）。 · 亲临客户服务中心办理 申请人应携带本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温馨"
+        },
+        {
+          "score": 0.5917,
+          "title": "申请发票与付款凭证",
+          "category": "合同",
+          "service_name": "合同",
+          "schema": "service_categories",
+          "content_preview": "我公司的保险合同保险费支付成功后默认出具电子付款证。如需要发票，您可以通过拨打客户服务热线获取发票，或通过以下方式申请付款凭证（可选择电子凭证、纸制凭证）。 申请时间：保险合同有效期内任意时间（除豁免保险费及减额付清状态） 申请人：投保人 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助订阅电子付款凭证。 · 电话办理： 申请人可通过拔打客户服"
+        },
+        {
+          "score": 0.481,
+          "title": "保单借款",
+          "category": "借款",
+          "service_name": "借款",
+          "schema": "service_categories",
+          "content_preview": "在保险合同有效期内，若您的合同约定有借款条款，您可以通过此项目来申请，以公司审批结果为准。 申请时间：保险合同有效期内任意时间 申请人：投保人（同时需要被保险人签名同意） 申请文件： 1. 借款申请书 2. 投保人与被保险人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请保单借款（单日累计申请金额<20万元）。 · 联系"
+        },
+        {
+          "score": 0.4671,
+          "title": "变更信件获取方式",
+          "category": "合同",
+          "service_name": "合同",
+          "schema": "service_categories",
+          "content_preview": "我公司提供信件打印方式的变更，您可以选择通过订阅电子信件或纸制信件获取我公司的通知信件。 申请时间：保险合同有效期内任意时间（除豁免保险费及减额付清状态） 申请人：投保人 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助订阅电子信件。 · 电话办理： 申请人可通过拔打客户服务热线申请订阅电子信件、纸制信件。 · 联系保险营销员办理 您可联系服务"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.5548,
+        "title": "变更身故保险金受益人",
+        "category": "保单服务",
+        "service_name": "保单服务",
+        "schema": "service_categories",
+        "content_preview": "如果您需要调整或更换身故保险金受益人，您可以通过此项目申请办理。 申请时间：保险合同有效期内任意时间 申请人：投保人和被保险人 申请文件： 1．保险合同内容变更申请书 2．指定身故受益人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理： · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 ",
+        "content_similarity": 0.605
+      },
+      "category_content_hits": [
+        {
+          "score": 0.5548,
+          "title": "变更身故保险金受益人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您需要调整或更换身故保险金受益人，您可以通过此项目申请办理。 申请时间：保险合同有效期内任意时间 申请人：投保人和被保险人 申请文件： 1．保险合同内容变更申请书 2．指定身故受益人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理： · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 ",
+          "content_similarity": 0.605
+        },
+        {
+          "score": 0.5672,
+          "title": "变更联系资料",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您的通讯地址和联系电话发生变化时，请您及时办理变更手续。保险公司将以最新的投保人的联系资料为准，一并更新投保人在保险公司持有的其他现存保单。 申请时间：保险合同有效期内任意时间 申请人：按变更项目执行 · 被保险人可申请办理： 被保险人的联系电话/住所信息变更 · 投保人可申请办理： 通讯地址变更 投保人的联系电话/住所信息变更 被保险人的住所信息变更 ",
+          "content_similarity": 0.5959
+        },
+        {
+          "score": 0.5464,
+          "title": "变更个人资料",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您的个人资料（如投保人/被保险人姓名、证件类型、证件号码、出生日期、性别等个人信息）发生变更，您可以通过此项目申请更正个人资料。变更投保人或被保险人个人资料时，保险公司将以最新的个人资料为准，一并更新投保人或被保险人在保险公司持有的其他现存保单。 申请时间：保险合同有效期内任意时间 申请人：按申请项目执行 · 被保险人可申请办理： 被保险人的姓名/国籍/",
+          "content_similarity": 0.5843
+        },
+        {
+          "score": 0.5404,
+          "title": "变更投保人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如您需要变更投保人，在征得被保险人的书面同意后，您可以通过此项申请办理。新投保人必须与被保险人有保险利益关系。 申请时间：保险合同有效期内任意时间 若新投保人同时投保豁免保险费类附加险产品或加倍无忧定期寿险类附加险产品的，需在保险单周年日至宽限期内提出（需要同时提出附加合同的变更申请。） 申请人：投保人（原）和被保险人 申请文件： 1.     保险合同内容",
+          "content_similarity": 0.5801
+        },
+        {
+          "score": 0.5335,
+          "title": "变更年金受领人",
+          "category": "保单服务",
+          "service_name": "保单服务",
+          "schema": "service_categories",
+          "content_preview": "如果您需要变更年金受领人，您可通过此项目来申请变更。 申请时间：保险合同有效期内任意时间 申请人：投保人和被保险人 申请文件： 1.保险合同内容变更申请书 2.投保人、被保险人身份证件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理： · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人持本人有效身份",
+          "content_similarity": 0.5524
+        }
+      ]
+    },
+    {
+      "category": "个险产品",
+      "question": "个险里面的疾病保障主要是做什么的？",
+      "notes": "",
+      "expected_categories": [
+        "个险产品",
+        "个险"
+      ],
+      "expected_keywords": [
+        "疾病保障",
+        "重大疾病"
+      ],
+      "elapsed_ms": 6878.8,
+      "hit_count": 5,
+      "content_similarity_score": 0.7286,
+      "content_similarity_threshold": 0.6,
+      "passed": false,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": false,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7908,
+        "title": "疾病保障",
+        "category": "个险产品",
+        "service_name": "个险",
+        "schema": "products_page",
+        "content_preview": "重疾险是指当被保险人患有约定的重大疾病时，由保险公司给予补偿或补贴的商业保险行为。 部分重疾险产品可在重疾早期阶段便提供现金赔偿，用以支付沉重的医疗费用，帮助您减轻经济负担，与您并肩度过难关。"
+      },
+      "hits": [
+        {
+          "score": 0.7908,
+          "title": "疾病保障",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "重疾险是指当被保险人患有约定的重大疾病时，由保险公司给予补偿或补贴的商业保险行为。 部分重疾险产品可在重疾早期阶段便提供现金赔偿，用以支付沉重的医疗费用，帮助您减轻经济负担，与您并肩度过难关。"
+        },
+        {
+          "score": 0.7036,
+          "title": "意外/医疗",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "医疗保险是补偿因疾病所产生医疗费用的一种保险。 商业医疗保险可以对社保中自负部分以及其他社保不能承担的部分提供保障，是社保的有力补充，可以为希望获得更高医疗质量、享受更高医疗服务的您提供帮助。"
+        },
+        {
+          "score": 0.6904,
+          "title": "寿险保障",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "寿险不仅是对自己和家庭应尽的责任，更是防范人生风险和支付人生必须费用的手段和方法。 无论您是为人子女还是为人父母，无论生死，这份责任将永远存在。 寿险正是帮您尽到这份责任，实现爱的承诺的最佳方法之一。"
+        },
+        {
+          "score": 0.53,
+          "title": "护理保障",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "护理保险是为日常生活能力障碍引发护理需要提供保障的一种保险。"
+        },
+        {
+          "score": 0.4062,
+          "title": "《最新个人资料通知书》（指定产品专用）",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "若您提及专利或专有技术，请分别列出：  ---  }^{(2)} \\text {3. 被保险公司以前曾经患有下列疾病或症状 体格指数 (BMI=体重(公斤)/身高(米)的平方)≥30; 恶性肿瘤(含白血病、淋巴瘤)、颅内肿瘤、颅内囊肿或占位、 性别问卷 (2) https://www.cmr.gov.cn/gaokao/ke/6db/202203/t2022"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.7513,
+        "title": "疾病保障",
+        "category": "个险产品",
+        "service_name": "个险",
+        "schema": "products_page",
+        "content_preview": "重疾险是指当被保险人患有约定的重大疾病时，由保险公司给予补偿或补贴的商业保险行为。 部分重疾险产品可在重疾早期阶段便提供现金赔偿，用以支付沉重的医疗费用，帮助您减轻经济负担，与您并肩度过难关。",
+        "content_similarity": 0.7286
+      },
+      "category_content_hits": [
+        {
+          "score": 0.7513,
+          "title": "疾病保障",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "重疾险是指当被保险人患有约定的重大疾病时，由保险公司给予补偿或补贴的商业保险行为。 部分重疾险产品可在重疾早期阶段便提供现金赔偿，用以支付沉重的医疗费用，帮助您减轻经济负担，与您并肩度过难关。",
+          "content_similarity": 0.7286
+        },
+        {
+          "score": 0.7166,
+          "title": "护理保障",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "护理保险是为日常生活能力障碍引发护理需要提供保障的一种保险。",
+          "content_similarity": 0.6819
+        },
+        {
+          "score": 0.6506,
+          "title": "寿险保障",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "寿险不仅是对自己和家庭应尽的责任，更是防范人生风险和支付人生必须费用的手段和方法。 无论您是为人子女还是为人父母，无论生死，这份责任将永远存在。 寿险正是帮您尽到这份责任，实现爱的承诺的最佳方法之一。",
+          "content_similarity": 0.6526
+        },
+        {
+          "score": 0.6381,
+          "title": "享老保障",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "通过商业保险补充社保不足，提高养老金替代率，以维持或提高享老生活水平，从而真正实现老有所养。",
+          "content_similarity": 0.6343
+        },
+        {
+          "score": 0.6727,
+          "title": "意外/医疗",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "医疗保险是补偿因疾病所产生医疗费用的一种保险。 商业医疗保险可以对社保中自负部分以及其他社保不能承担的部分提供保障，是社保的有力补充，可以为希望获得更高医疗质量、享受更高医疗服务的您提供帮助。",
+          "content_similarity": 0.6312
+        }
+      ]
+    },
+    {
+      "category": "团险推荐产品",
+      "question": "有没有适合企业员工福利的团险中端医疗方案？",
+      "notes": "",
+      "expected_categories": [
+        "团险推荐产品"
+      ],
+      "expected_keywords": [
+        "中端医疗",
+        "员工企业福利"
+      ],
+      "elapsed_ms": 8970.3,
+      "hit_count": 5,
+      "content_similarity_score": 0.7196,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.8142,
+        "title": "员工企业福利",
+        "category": "团险产品",
+        "service_name": "团险",
+        "schema": "products_page",
+        "content_preview": "友邦团险在亚太区市场是行业卓越的团险供应商，逾1,700万名团体保险计划参与成员，深谙各类企业对员工福利的重视，结合自身深厚的保险产品经验，设计了一系列针对不同类型企业的员工福利保险方案，可以帮助企业客户以合理的保费，实现灵活的员工福利保障组合。同时还可为客户量身定制最合适产品和服务以满足客户的需求,提供包括意外，医疗，住院，门诊，生育，寿险在内的全方面保障"
+      },
+      "hits": [
+        {
+          "score": 0.8142,
+          "title": "员工企业福利",
+          "category": "团险产品",
+          "service_name": "团险",
+          "schema": "products_page",
+          "content_preview": "友邦团险在亚太区市场是行业卓越的团险供应商，逾1,700万名团体保险计划参与成员，深谙各类企业对员工福利的重视，结合自身深厚的保险产品经验，设计了一系列针对不同类型企业的员工福利保险方案，可以帮助企业客户以合理的保费，实现灵活的员工福利保障组合。同时还可为客户量身定制最合适产品和服务以满足客户的需求,提供包括意外，医疗，住院，门诊，生育，寿险在内的全方面保障"
+        },
+        {
+          "score": 0.8025,
+          "title": "友邦团险中端医疗智享组合计划",
+          "category": "团险推荐产品",
+          "service_name": "员工企业福利",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c"
+        },
+        {
+          "score": 0.7898,
+          "title": "友邦团险补充医疗优享组合计划",
+          "category": "团险推荐产品",
+          "service_name": "员工企业福利",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c"
+        },
+        {
+          "score": 0.7733,
+          "title": "友邦团险大型企业员工专属福利保险计划",
+          "category": "团险推荐产品",
+          "service_name": "员工企业福利",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c"
+        },
+        {
+          "score": 0.7686,
+          "title": "员工自选加保",
+          "category": "团险产品",
+          "service_name": "团险",
+          "schema": "products_page",
+          "content_preview": "友邦人寿凭借多年的企业福利方案设计经验，提出了员工自选福利保险方案，成功地解决了员工不断提升的福利需求和企业有限的福利预算之间的矛盾，也为员工提供了个性化选择最适合的保险方案的途径。通过友邦自选加保平台，企业员工可以按照自身需求，私人定制福利保险计划。同时享受友邦专业、周到的客户服务，免除企业员工和雇主的后顾之忧。"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.7237,
+        "title": "员工企业福利",
+        "category": "团险产品",
+        "service_name": "团险",
+        "schema": "products_page",
+        "content_preview": "友邦团险在亚太区市场是行业卓越的团险供应商，逾1,700万名团体保险计划参与成员，深谙各类企业对员工福利的重视，结合自身深厚的保险产品经验，设计了一系列针对不同类型企业的员工福利保险方案，可以帮助企业客户以合理的保费，实现灵活的员工福利保障组合。同时还可为客户量身定制最合适产品和服务以满足客户的需求,提供包括意外，医疗，住院，门诊，生育，寿险在内的全方面保障",
+        "content_similarity": 0.7196
+      },
+      "category_content_hits": [
+        {
+          "score": 0.7237,
+          "title": "员工企业福利",
+          "category": "团险产品",
+          "service_name": "团险",
+          "schema": "products_page",
+          "content_preview": "友邦团险在亚太区市场是行业卓越的团险供应商，逾1,700万名团体保险计划参与成员，深谙各类企业对员工福利的重视，结合自身深厚的保险产品经验，设计了一系列针对不同类型企业的员工福利保险方案，可以帮助企业客户以合理的保费，实现灵活的员工福利保障组合。同时还可为客户量身定制最合适产品和服务以满足客户的需求,提供包括意外，医疗，住院，门诊，生育，寿险在内的全方面保障",
+          "content_similarity": 0.7196
+        },
+        {
+          "score": 0.6889,
+          "title": "友邦团险大型企业员工专属福利保险计划",
+          "category": "团险推荐产品",
+          "service_name": "员工企业福利",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c",
+          "content_similarity": 0.6992
+        },
+        {
+          "score": 0.6976,
+          "title": "员工自选加保",
+          "category": "团险产品",
+          "service_name": "团险",
+          "schema": "products_page",
+          "content_preview": "友邦人寿凭借多年的企业福利方案设计经验，提出了员工自选福利保险方案，成功地解决了员工不断提升的福利需求和企业有限的福利预算之间的矛盾，也为员工提供了个性化选择最适合的保险方案的途径。通过友邦自选加保平台，企业员工可以按照自身需求，私人定制福利保险计划。同时享受友邦专业、周到的客户服务，免除企业员工和雇主的后顾之忧。",
+          "content_similarity": 0.6864
+        },
+        {
+          "score": 0.7208,
+          "title": "友邦团险中端医疗智享组合计划",
+          "category": "团险推荐产品",
+          "service_name": "员工企业福利",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c",
+          "content_similarity": 0.6747
+        },
+        {
+          "score": 0.6997,
+          "title": "友邦团险补充医疗优享组合计划",
+          "category": "团险推荐产品",
+          "service_name": "员工企业福利",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c",
+          "content_similarity": 0.6544
+        }
+      ]
+    },
+    {
+      "category": "续期及账户管理",
+      "question": "续期保费怎么交？可以在线支付吗？",
+      "notes": "",
+      "expected_categories": [
+        "续期及账户管理"
+      ],
+      "expected_keywords": [
+        "续期续保",
+        "在线支付",
+        "银行自动转账"
+      ],
+      "elapsed_ms": 9916.0,
+      "hit_count": 5,
+      "content_similarity_score": 0.6978,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7671,
+        "title": "续期续保",
+        "category": "续期及账户管理",
+        "service_name": "续期及账户管理",
+        "schema": "service_categories",
+        "content_preview": "如果您需要办理保险产品续期/续保保险费的支付，您可以通过此项目来申请。 申请时间：保险费约定支付日起的六十天内 申请人：投保人与经投保人委托授权的被保险人（若有） 申请文件： 银行自动转账授权书 办理方式： 您可以选择以下支付方式完成续期/续保费支付： 1. 银行自动转账： 为确保转账成功及时续保，请您务必在保险费到期日前在您的授权账户中存有足够的金额。 2"
+      },
+      "hits": [
+        {
+          "score": 0.7671,
+          "title": "续期续保",
+          "category": "续期及账户管理",
+          "service_name": "续期及账户管理",
+          "schema": "service_categories",
+          "content_preview": "如果您需要办理保险产品续期/续保保险费的支付，您可以通过此项目来申请。 申请时间：保险费约定支付日起的六十天内 申请人：投保人与经投保人委托授权的被保险人（若有） 申请文件： 银行自动转账授权书 办理方式： 您可以选择以下支付方式完成续期/续保费支付： 1. 银行自动转账： 为确保转账成功及时续保，请您务必在保险费到期日前在您的授权账户中存有足够的金额。 2"
+        },
+        {
+          "score": 0.7217,
+          "title": "续期续保",
+          "category": "续期及账户管理",
+          "service_name": "续期及账户管理",
+          "schema": "service_categories",
+          "content_preview": "庭团体险产品，续保时我公司会审核您的保险合同的参保人数。若参保人数满足最低3人的条件，我公司将在您的保险费约定支付日前通过短信、邮件，提醒您支付续期保险费事宜。若参保人数不足3人，我公司会邮寄《续保提醒通知书》提醒您在续期新增参保人员；若在保险费约定支付的六十天期末参保人数仍不足3人，我公司将按合同约定解除保险合同效力。"
+        },
+        {
+          "score": 0.6711,
+          "title": "变更保险费支付方式",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "若您的保险合同为期交支付保险费，您可以通过此项目变更。 您可选择的支付方式，根据您投保的产品决定。 保险费支付方式包括：年付、半年付、季付、月付。 申请时间： 1．长－短（较长保险费付费周期变更为较短付费周期）：原付费方式的保险费约定支付日及宽限期内。 2．短－长（较短保险费付费周期变更为较长付费周期）：新付费方式的保险费约定支付日及宽限期内。 申请人：投保"
+        },
+        {
+          "score": 0.6493,
+          "title": "终止保险费自动转账付款授权",
+          "category": "续期及账户管理",
+          "service_name": "续期及账户管理",
+          "schema": "service_categories",
+          "content_preview": "如果您需要停止支付保险费的银行自动转账时，您可以通过此项目来申请。 申请时间：保险合同有效期内任意时间 申请人：投保人 申请文件： 保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理 · 电话办理： 申请人可致电客户服务热线办理 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人"
+        },
+        {
+          "score": 0.6474,
+          "title": "保险费付款的自动转账授权",
+          "category": "续期及账户管理",
+          "service_name": "续期及账户管理",
+          "schema": "service_categories",
+          "content_preview": "如果您需要办理支付保险费的银行自动转账或变更支付保险费的银行账号，您可以通过此项目来申请。 申请时间：保险合同有效期内任意时间 申请人：投保人与经投保人委托授权的被保险人（若有） 申请文件：领款人 银行自动转账授权书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.7119,
+        "title": "续期续保",
+        "category": "续期及账户管理",
+        "service_name": "续期及账户管理",
+        "schema": "service_categories",
+        "content_preview": "如果您需要办理保险产品续期/续保保险费的支付，您可以通过此项目来申请。 申请时间：保险费约定支付日起的六十天内 申请人：投保人与经投保人委托授权的被保险人（若有） 申请文件： 银行自动转账授权书 办理方式： 您可以选择以下支付方式完成续期/续保费支付： 1. 银行自动转账： 为确保转账成功及时续保，请您务必在保险费到期日前在您的授权账户中存有足够的金额。 2",
+        "content_similarity": 0.6978
+      },
+      "category_content_hits": [
+        {
+          "score": 0.7119,
+          "title": "续期续保",
+          "category": "续期及账户管理",
+          "service_name": "续期及账户管理",
+          "schema": "service_categories",
+          "content_preview": "如果您需要办理保险产品续期/续保保险费的支付，您可以通过此项目来申请。 申请时间：保险费约定支付日起的六十天内 申请人：投保人与经投保人委托授权的被保险人（若有） 申请文件： 银行自动转账授权书 办理方式： 您可以选择以下支付方式完成续期/续保费支付： 1. 银行自动转账： 为确保转账成功及时续保，请您务必在保险费到期日前在您的授权账户中存有足够的金额。 2",
+          "content_similarity": 0.6978
+        },
+        {
+          "score": 0.6124,
+          "title": "保险费付款的自动转账授权",
+          "category": "续期及账户管理",
+          "service_name": "续期及账户管理",
+          "schema": "service_categories",
+          "content_preview": "如果您需要办理支付保险费的银行自动转账或变更支付保险费的银行账号，您可以通过此项目来申请。 申请时间：保险合同有效期内任意时间 申请人：投保人与经投保人委托授权的被保险人（若有） 申请文件：领款人 银行自动转账授权书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务",
+          "content_similarity": 0.6283
+        },
+        {
+          "score": 0.6155,
+          "title": "终止保险费自动转账付款授权",
+          "category": "续期及账户管理",
+          "service_name": "续期及账户管理",
+          "schema": "service_categories",
+          "content_preview": "如果您需要停止支付保险费的银行自动转账时，您可以通过此项目来申请。 申请时间：保险合同有效期内任意时间 申请人：投保人 申请文件： 保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理 · 电话办理： 申请人可致电客户服务热线办理 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人",
+          "content_similarity": 0.6201
+        },
+        {
+          "score": 0.6528,
+          "title": "续期续保",
+          "category": "续期及账户管理",
+          "service_name": "续期及账户管理",
+          "schema": "service_categories",
+          "content_preview": "庭团体险产品，续保时我公司会审核您的保险合同的参保人数。若参保人数满足最低3人的条件，我公司将在您的保险费约定支付日前通过短信、邮件，提醒您支付续期保险费事宜。若参保人数不足3人，我公司会邮寄《续保提醒通知书》提醒您在续期新增参保人员；若在保险费约定支付的六十天期末参保人数仍不足3人，我公司将按合同约定解除保险合同效力。",
+          "content_similarity": 0.6189
+        },
+        {
+          "score": 0.5778,
+          "title": "保险款项给付的自动转账授权",
+          "category": "续期及账户管理",
+          "service_name": "续期及账户管理",
+          "schema": "service_categories",
+          "content_preview": "如果您需要办理领取保险款项的银行自动转账或变更领款账号，您可以通过此项目来申请。 申请时间：保险合同有效期内任意时间 申请人：领款人 申请文件： 银行自动转账授权书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人应携本人有效身份证件原件至本公司各分",
+          "content_similarity": 0.5813
+        }
+      ]
+    },
+    {
+      "category": "万能险",
+      "question": "万能险可以追加保险费吗？",
+      "notes": "",
+      "expected_categories": [
+        "万能险"
+      ],
+      "expected_keywords": [
+        "支付追加保险费",
+        "万能险"
+      ],
+      "elapsed_ms": 7954.1,
+      "hit_count": 5,
+      "content_similarity_score": 0.7095,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7937,
+        "title": "支付追加保险费/趸交额外投资保险费（限：投连险/万能险产品适用）",
+        "category": "万能险",
+        "service_name": "万能险",
+        "schema": "service_categories",
+        "content_preview": "经我公司同意，您可以申请追加保险费/追加趸交额外投资保险费。 申请金额，根据您投保的产品决定。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 1. 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 2. 申请金额达到反洗钱审核要求时，需要同时提供相应审核资料。 3. 特殊产品，申请时依据产品规则还需要同时提供《最新个人资"
+      },
+      "hits": [
+        {
+          "score": 0.7937,
+          "title": "支付追加保险费/趸交额外投资保险费（限：投连险/万能险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请追加保险费/追加趸交额外投资保险费。 申请金额，根据您投保的产品决定。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 1. 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 2. 申请金额达到反洗钱审核要求时，需要同时提供相应审核资料。 3. 特殊产品，申请时依据产品规则还需要同时提供《最新个人资"
+        },
+        {
+          "score": 0.7692,
+          "title": "变更定期定额追加保险费(限：投连险产品适用)",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请变更定期定额追加保险费。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人应携带本人有效身"
+        },
+        {
+          "score": 0.7279,
+          "title": "个人账户价值领取（限：投连险/万能险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请部分领取该保单项下的个人账户价值。 申请金额，根据您投保的产品决定。 申请时间：犹豫期后在保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 1. 领取保险款项申请书 2. 投保人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。"
+        },
+        {
+          "score": 0.7012,
+          "title": "个人账户价值转换（限：投连险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可将您保单项下的的个人账户中的全部或部分个人账户价值从一个投资账户全部或部分转换至其他的投资账户。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销"
+        },
+        {
+          "score": 0.6893,
+          "title": "期交保险费投资账户分配比例变更（限：投连险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "书面申请并经保险公司同意后，您可以申请变更期交保险费投资账户分配比例。该项申请仅适用拥有二个或二个以上的投资账户的情形。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.6895,
+        "title": "支付追加保险费/趸交额外投资保险费（限：投连险/万能险产品适用）",
+        "category": "万能险",
+        "service_name": "万能险",
+        "schema": "service_categories",
+        "content_preview": "经我公司同意，您可以申请追加保险费/追加趸交额外投资保险费。 申请金额，根据您投保的产品决定。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 1. 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 2. 申请金额达到反洗钱审核要求时，需要同时提供相应审核资料。 3. 特殊产品，申请时依据产品规则还需要同时提供《最新个人资",
+        "content_similarity": 0.7095
+      },
+      "category_content_hits": [
+        {
+          "score": 0.6895,
+          "title": "支付追加保险费/趸交额外投资保险费（限：投连险/万能险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请追加保险费/追加趸交额外投资保险费。 申请金额，根据您投保的产品决定。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 1. 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 2. 申请金额达到反洗钱审核要求时，需要同时提供相应审核资料。 3. 特殊产品，申请时依据产品规则还需要同时提供《最新个人资",
+          "content_similarity": 0.7095
+        },
+        {
+          "score": 0.6553,
+          "title": "变更定期定额追加保险费(限：投连险产品适用)",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请变更定期定额追加保险费。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人应携带本人有效身",
+          "content_similarity": 0.69
+        },
+        {
+          "score": 0.5554,
+          "title": "个人账户价值转换（限：投连险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可将您保单项下的的个人账户中的全部或部分个人账户价值从一个投资账户全部或部分转换至其他的投资账户。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销",
+          "content_similarity": 0.6255
+        },
+        {
+          "score": 0.5932,
+          "title": "个人账户价值领取（限：投连险/万能险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请部分领取该保单项下的个人账户价值。 申请金额，根据您投保的产品决定。 申请时间：犹豫期后在保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 1. 领取保险款项申请书 2. 投保人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。",
+          "content_similarity": 0.6109
+        },
+        {
+          "score": 0.5488,
+          "title": "期交保险费投资账户分配比例变更（限：投连险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "书面申请并经保险公司同意后，您可以申请变更期交保险费投资账户分配比例。该项申请仅适用拥有二个或二个以上的投资账户的情形。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服",
+          "content_similarity": 0.6071
+        }
+      ]
+    },
+    {
+      "category": "合同",
+      "question": "纸质保单丢了，怎么补发保险合同？",
+      "notes": "",
+      "expected_categories": [
+        "合同"
+      ],
+      "expected_keywords": [
+        "补发保险合同",
+        "纸质保险合同"
+      ],
+      "elapsed_ms": 9175.7,
+      "hit_count": 5,
+      "content_similarity_score": 0.7541,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": false,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.6845,
+        "title": "犹豫期内保险合同撤销",
+        "category": "退保",
+        "service_name": "退保",
+        "schema": "service_categories",
+        "content_preview": "本公司收到解除合同申请书时起，所申请的保险合同终止。 一年期以上的人身保险产品一般有犹豫期（投保人收到保单并书面签收日起15日）的约定。除合同另有约定外，投保人在犹豫期内解除合同的，本公司返还已付保险费；投资连结保险产品，投保人在犹豫期内解除合同的，本公司收到申请时个人账户已经建立的，本公司将退还个人账户价值以及除资产管理费以外的其他已收取的各项费用。 （地"
+      },
+      "hits": [
+        {
+          "score": 0.6845,
+          "title": "犹豫期内保险合同撤销",
+          "category": "退保",
+          "service_name": "退保",
+          "schema": "service_categories",
+          "content_preview": "本公司收到解除合同申请书时起，所申请的保险合同终止。 一年期以上的人身保险产品一般有犹豫期（投保人收到保单并书面签收日起15日）的约定。除合同另有约定外，投保人在犹豫期内解除合同的，本公司返还已付保险费；投资连结保险产品，投保人在犹豫期内解除合同的，本公司收到申请时个人账户已经建立的，本公司将退还个人账户价值以及除资产管理费以外的其他已收取的各项费用。 （地"
+        },
+        {
+          "score": 0.6262,
+          "title": "补发保险合同",
+          "category": "合同",
+          "service_name": "合同",
+          "schema": "service_categories",
+          "content_preview": "若您的保险合同不慎遗失，您可以通过本项业务申请补发纸质保险合同。 申请时间：保险合同有效期内任意时间 申请人：投保人 申请文件：保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请补发纸质保险合同（限每年1次）。 · 亲临客户服务中心办理 申请人应携带本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温馨"
+        },
+        {
+          "score": 0.622,
+          "title": "【变更】友邦人寿团体保险合同变更申请书（上海专用版）",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "证合一”，请填写统一社会信用代码（18位）。 2. 如需填写税务登记号（15位）。以上开户银行名称、开户账号、税务登记电话、税务登记地址均需统一填写 3. “开户银行名称”和“开户账号”为多个分支机构时，“注：1”和“注：2”请填写 4. 如需填写浦发地区开户银行和账号，请登录浦发区网银使用中心“线上电汇付款查询”。 5. 如需填写国泰世通手机银行及ATM设"
+        },
+        {
+          "score": 0.4609,
+          "title": "【变更】友邦人寿团体保险合同变更申请书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "# 友邦人寿团体保险合同变更申请书 **投保人填写** 投保人名称 | *投保单号/保险合同编号 --- | --- 送/查询等级、 __* 受流等级、 __* 构金章、 __* 原构垒牲位置明 **A. 投保人资料变更申请（请勾选变更项目，并填写相关内容）** **投保人演变** **A. 保险公司（请勾选变更项目，并填写相关内容）** 请注意，由于图片的"
+        },
+        {
+          "score": 0.4307,
+          "title": "【变更】友邦人寿团体保险合同变更申请书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "立企业的分支机构”等主体则需签署《关于担保方未超出所属企业或企业的经营范围提供担保的书面承诺协议》（简称《承诺函》）。  ---  有很大帮助，请忽视我的回答。  ### 6. 终止保险合同/产品/计划或撤销投保/续保申请（请勾选项目后，并填写相关内容。） - 撤出新单投保申请（适合未签发保险合同），原因 。 - 终止保险合同项下部分保险产品/计划，请见下述"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.7603,
+        "title": "补发保险合同",
+        "category": "合同",
+        "service_name": "合同",
+        "schema": "service_categories",
+        "content_preview": "若您的保险合同不慎遗失，您可以通过本项业务申请补发纸质保险合同。 申请时间：保险合同有效期内任意时间 申请人：投保人 申请文件：保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请补发纸质保险合同（限每年1次）。 · 亲临客户服务中心办理 申请人应携带本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温馨",
+        "content_similarity": 0.7541
+      },
+      "category_content_hits": [
+        {
+          "score": 0.7603,
+          "title": "补发保险合同",
+          "category": "合同",
+          "service_name": "合同",
+          "schema": "service_categories",
+          "content_preview": "若您的保险合同不慎遗失，您可以通过本项业务申请补发纸质保险合同。 申请时间：保险合同有效期内任意时间 申请人：投保人 申请文件：保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请补发纸质保险合同（限每年1次）。 · 亲临客户服务中心办理 申请人应携带本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温馨",
+          "content_similarity": 0.7541
+        },
+        {
+          "score": 0.6333,
+          "title": "变更信件获取方式",
+          "category": "合同",
+          "service_name": "合同",
+          "schema": "service_categories",
+          "content_preview": "我公司提供信件打印方式的变更，您可以选择通过订阅电子信件或纸制信件获取我公司的通知信件。 申请时间：保险合同有效期内任意时间（除豁免保险费及减额付清状态） 申请人：投保人 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助订阅电子信件。 · 电话办理： 申请人可通过拔打客户服务热线申请订阅电子信件、纸制信件。 · 联系保险营销员办理 您可联系服务",
+          "content_similarity": 0.6687
+        },
+        {
+          "score": 0.6264,
+          "title": "申请电子保险合同",
+          "category": "合同",
+          "service_name": "合同",
+          "schema": "service_categories",
+          "content_preview": "您可通过本项业务申请电子合同。 申请时间：保险合同有效期内任意时间 申请人：投保人 申请文件：保险合同内容变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请电子合同。 · 联系保险营销员办理 您可联系服务营销员办理本项业务。 · 亲临客户服务中心办理 申请人应携带本人有效身份证件原件至本公司各分支机构所在地的客户服务中心办理。 温",
+          "content_similarity": 0.6361
+        },
+        {
+          "score": 0.6053,
+          "title": "申请发票与付款凭证",
+          "category": "合同",
+          "service_name": "合同",
+          "schema": "service_categories",
+          "content_preview": "我公司的保险合同保险费支付成功后默认出具电子付款证。如需要发票，您可以通过拨打客户服务热线获取发票，或通过以下方式申请付款凭证（可选择电子凭证、纸制凭证）。 申请时间：保险合同有效期内任意时间（除豁免保险费及减额付清状态） 申请人：投保人 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助订阅电子付款凭证。 · 电话办理： 申请人可通过拔打客户服",
+          "content_similarity": 0.6217
+        }
+      ]
+    },
+    {
+      "category": "反保险欺诈提示及举报渠道",
+      "question": "保险欺诈举报邮箱是多少？",
+      "notes": "",
+      "expected_categories": [
+        "反保险欺诈提示及举报渠道"
+      ],
+      "expected_keywords": [
+        "CN.BXQZJB@aia.com",
+        "举报邮箱"
+      ],
+      "elapsed_ms": 8686.8,
+      "hit_count": 5,
+      "content_similarity_score": 0.7376,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7877,
+        "title": "反保险欺诈提示及举报渠道",
+        "category": "反保险欺诈提示及举报渠道",
+        "service_name": "反保险欺诈提示及举报渠道",
+        "schema": "text",
+        "content_preview": "会受到相应的行政处罚。  【民事责任】故意或因重大过失未履行如实告知义务，保险公司不承担赔偿或给付保险金的责任。    保险活动当事人行使权利、履行义务应当遵循诚实信用原则。最大诚信是保险的基本原则，要求保险活动当事人要向对方充分而准确地告知和保险相关的重要事实。    二、 保险欺诈举报邮箱    CN.BXQZJB@aia.com  1.故意虚构保险标的"
+      },
+      "hits": [
+        {
+          "score": 0.7877,
+          "title": "反保险欺诈提示及举报渠道",
+          "category": "反保险欺诈提示及举报渠道",
+          "service_name": "反保险欺诈提示及举报渠道",
+          "schema": "text",
+          "content_preview": "会受到相应的行政处罚。  【民事责任】故意或因重大过失未履行如实告知义务，保险公司不承担赔偿或给付保险金的责任。    保险活动当事人行使权利、履行义务应当遵循诚实信用原则。最大诚信是保险的基本原则，要求保险活动当事人要向对方充分而准确地告知和保险相关的重要事实。    二、 保险欺诈举报邮箱    CN.BXQZJB@aia.com  1.故意虚构保险标的"
+        },
+        {
+          "score": 0.762,
+          "title": "反保险欺诈提示及举报渠道",
+          "category": "反保险欺诈提示及举报渠道",
+          "service_name": "反保险欺诈提示及举报渠道",
+          "schema": "text",
+          "content_preview": "一、反保险欺诈提示    请您与我们一同杜绝以下保险诈骗类欺诈行为：    1.故意虚构保险标的;  2.对发生的保险事故编造虚假的原因或者夸大损失的程度;  3.编造未曾发生的保险事故;  4.提供虚假理赔申请材料;  5.故意造成被保险人死亡、伤残或者疾病。    保险欺诈是指假借保险名义或利用保险合同谋取非法利益的行为，主要包括保险金诈骗类欺诈行为、非"
+        },
+        {
+          "score": 0.7421,
+          "title": "反保险欺诈提示及举报渠道",
+          "category": "反保险欺诈提示及举报渠道",
+          "service_name": "反保险欺诈提示及举报渠道",
+          "schema": "text",
+          "content_preview": "明人、财产评估人故意提供虚假的证明文件，为他人诈骗提供条件的，以保险诈骗罪的共犯论处。  【行政责任】进行保险诈骗活动，尚不构成犯罪的，可能会受到15日以下拘留、5千元以下罚款的行政处罚；保险事故的鉴定人、证明人故意提供虚假的证明文件，为他人诈骗提供条件的，也会受到相应的行政处罚。  【民事责任】故意或因重大过失未履行如实告知义务，保险公司不承担赔偿或给付保"
+        },
+        {
+          "score": 0.3908,
+          "title": "【其他】个人客户身份识别资料告知书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "尊敬的客户: 根据相关国家和金融监管机构法律法规的要求, 符合以下任一情况, 本公司应记录留存投保单位的基本信息并收取相关资料, 烦请您协助提供具体信息, 并填写下 表及签字, 谢谢配合！ 符合本次信息收集要求的情况是: ☐单个被保险人或分摊到每个被保险人的保险费金额达到人民币20万元及以上或者外币等值2万美元及以上的保险合同 ☐客户申请实际退还的保险费或者"
+        },
+        {
+          "score": 0.3703,
+          "title": "友邦优享年年（2025）A款年金保险",
+          "category": "个险推荐产品",
+          "service_name": "享老保障",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.6795,
+        "title": "反保险欺诈提示及举报渠道",
+        "category": "反保险欺诈提示及举报渠道",
+        "service_name": "反保险欺诈提示及举报渠道",
+        "schema": "text",
+        "content_preview": "会受到相应的行政处罚。  【民事责任】故意或因重大过失未履行如实告知义务，保险公司不承担赔偿或给付保险金的责任。    保险活动当事人行使权利、履行义务应当遵循诚实信用原则。最大诚信是保险的基本原则，要求保险活动当事人要向对方充分而准确地告知和保险相关的重要事实。    二、 保险欺诈举报邮箱    CN.BXQZJB@aia.com  1.故意虚构保险标的",
+        "content_similarity": 0.7376
+      },
+      "category_content_hits": [
+        {
+          "score": 0.6795,
+          "title": "反保险欺诈提示及举报渠道",
+          "category": "反保险欺诈提示及举报渠道",
+          "service_name": "反保险欺诈提示及举报渠道",
+          "schema": "text",
+          "content_preview": "会受到相应的行政处罚。  【民事责任】故意或因重大过失未履行如实告知义务，保险公司不承担赔偿或给付保险金的责任。    保险活动当事人行使权利、履行义务应当遵循诚实信用原则。最大诚信是保险的基本原则，要求保险活动当事人要向对方充分而准确地告知和保险相关的重要事实。    二、 保险欺诈举报邮箱    CN.BXQZJB@aia.com  1.故意虚构保险标的",
+          "content_similarity": 0.7376
+        },
+        {
+          "score": 0.67,
+          "title": "反保险欺诈提示及举报渠道",
+          "category": "反保险欺诈提示及举报渠道",
+          "service_name": "反保险欺诈提示及举报渠道",
+          "schema": "text",
+          "content_preview": "一、反保险欺诈提示    请您与我们一同杜绝以下保险诈骗类欺诈行为：    1.故意虚构保险标的;  2.对发生的保险事故编造虚假的原因或者夸大损失的程度;  3.编造未曾发生的保险事故;  4.提供虚假理赔申请材料;  5.故意造成被保险人死亡、伤残或者疾病。    保险欺诈是指假借保险名义或利用保险合同谋取非法利益的行为，主要包括保险金诈骗类欺诈行为、非",
+          "content_similarity": 0.7286
+        },
+        {
+          "score": 0.6368,
+          "title": "反保险欺诈提示及举报渠道",
+          "category": "反保险欺诈提示及举报渠道",
+          "service_name": "反保险欺诈提示及举报渠道",
+          "schema": "text",
+          "content_preview": "明人、财产评估人故意提供虚假的证明文件，为他人诈骗提供条件的，以保险诈骗罪的共犯论处。  【行政责任】进行保险诈骗活动，尚不构成犯罪的，可能会受到15日以下拘留、5千元以下罚款的行政处罚；保险事故的鉴定人、证明人故意提供虚假的证明文件，为他人诈骗提供条件的，也会受到相应的行政处罚。  【民事责任】故意或因重大过失未履行如实告知义务，保险公司不承担赔偿或给付保",
+          "content_similarity": 0.7218
+        },
+        {
+          "score": 0.5053,
+          "title": "健康资料变更",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "如果被保险人/投保人健康资料发生变化，您可以通过此项目申请变更。 申请时间：保险合同有效期内任意时间提出申请。 对于加费承保、或有不承保事项约定的被保险人，在健康状况好转后，应至少在签署《修订计划》/《不承保事项》一年后，在周年日（宽限期内）/保险期间届满时申请取消加费或取消不承保事项。 申请人：投保人和被保险人 申请文件： 最新个人资料通知书 办理方式： ",
+          "content_similarity": 0.5018
+        },
+        {
+          "score": 0.4926,
+          "title": "变更保险费支付方式",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "若您的保险合同为期交支付保险费，您可以通过此项目变更。 您可选择的支付方式，根据您投保的产品决定。 保险费支付方式包括：年付、半年付、季付、月付。 申请时间： 1．长－短（较长保险费付费周期变更为较短付费周期）：原付费方式的保险费约定支付日及宽限期内。 2．短－长（较短保险费付费周期变更为较长付费周期）：新付费方式的保险费约定支付日及宽限期内。 申请人：投保",
+          "content_similarity": 0.4934
+        }
+      ]
+    },
+    {
+      "category": "团险产品",
+      "question": "投连险个人账户价值能转换到别的投资账户吗？",
+      "notes": "",
+      "expected_categories": [
+        "团险产品"
+      ],
+      "expected_keywords": [
+        "个人账户价值转换",
+        "投资账户"
+      ],
+      "elapsed_ms": 7829.3,
+      "hit_count": 5,
+      "content_similarity_score": 0.5408,
+      "content_similarity_threshold": 0.6,
+      "passed": false,
+      "checks": {
+        "top_category_ok": false,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": false,
+        "content_similarity_ok": false
+      },
+      "top_hit": {
+        "score": 0.795,
+        "title": "个人账户价值转换（限：投连险产品适用）",
+        "category": "万能险",
+        "service_name": "万能险",
+        "schema": "service_categories",
+        "content_preview": "经我公司同意，您可将您保单项下的的个人账户中的全部或部分个人账户价值从一个投资账户全部或部分转换至其他的投资账户。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销"
+      },
+      "hits": [
+        {
+          "score": 0.795,
+          "title": "个人账户价值转换（限：投连险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可将您保单项下的的个人账户中的全部或部分个人账户价值从一个投资账户全部或部分转换至其他的投资账户。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销"
+        },
+        {
+          "score": 0.7298,
+          "title": "个人账户价值领取（限：投连险/万能险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请部分领取该保单项下的个人账户价值。 申请金额，根据您投保的产品决定。 申请时间：犹豫期后在保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 1. 领取保险款项申请书 2. 投保人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。"
+        },
+        {
+          "score": 0.6907,
+          "title": "期交保险费投资账户分配比例变更（限：投连险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "书面申请并经保险公司同意后，您可以申请变更期交保险费投资账户分配比例。该项申请仅适用拥有二个或二个以上的投资账户的情形。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服"
+        },
+        {
+          "score": 0.662,
+          "title": "变更定期定额追加保险费(限：投连险产品适用)",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请变更定期定额追加保险费。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · 亲临客户服务中心办理 申请人应携带本人有效身"
+        },
+        {
+          "score": 0.6372,
+          "title": "支付追加保险费/趸交额外投资保险费（限：投连险/万能险产品适用）",
+          "category": "万能险",
+          "service_name": "万能险",
+          "schema": "service_categories",
+          "content_preview": "经我公司同意，您可以申请追加保险费/追加趸交额外投资保险费。 申请金额，根据您投保的产品决定。 申请时间：保险合同有效期内且个人账户建立后 申请人：投保人 申请文件： 1. 保险合同内容变更申请书（投资连结型/万能型寿险保险计划专用） 2. 申请金额达到反洗钱审核要求时，需要同时提供相应审核资料。 3. 特殊产品，申请时依据产品规则还需要同时提供《最新个人资"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.5222,
+        "title": "高净值传世系列",
+        "category": "个险产品",
+        "service_name": "个险",
+        "schema": "products_page",
+        "content_preview": "作为家庭和企业的顶梁柱，我们深知您肩上所承载的责任和重担。一份量身定做的尊享保单，助您完善财富保障、品质养老、尊贵医疗的“顶层设计”，充分彰显您的身价，成为您家庭财富的奠基石。",
+        "content_similarity": 0.5408
+      },
+      "category_content_hits": [
+        {
+          "score": 0.5222,
+          "title": "高净值传世系列",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "作为家庭和企业的顶梁柱，我们深知您肩上所承载的责任和重担。一份量身定做的尊享保单，助您完善财富保障、品质养老、尊贵医疗的“顶层设计”，充分彰显您的身价，成为您家庭财富的奠基石。",
+          "content_similarity": 0.5408
+        },
+        {
+          "score": 0.4996,
+          "title": "财富管理",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "您努力打拼积累财富，自然需要专业的财富管理来抵御风险，满足人生不同阶段财务需求，实现财富稳健增值。我们为您度身定制产品，帮助您早日实现人生梦想。",
+          "content_similarity": 0.5041
+        },
+        {
+          "score": 0.4842,
+          "title": "友邦附加盈如意顺心版提前给付重大疾病保险",
+          "category": "在售产品",
+          "service_name": "在售产品基本信息.json",
+          "schema": "products_list",
+          "content_preview": "产品名称：友邦附加盈如意顺心版提前给付重大疾病保险 状态：在售 产品组：P2 productItem：B3119-1_Par CI Adu Rider(20250905)_IAC9100028717_con productItem链接：https://www.aia.com.cn/etc.clientlibs/cn-wise/clientlibs/clien",
+          "content_similarity": 0.4841
+        },
+        {
+          "score": 0.4891,
+          "title": "友邦传世盈佳2025A款终身寿险（分红型）",
+          "category": "个险推荐产品",
+          "service_name": "财富管理",
+          "schema": "recommended_products",
+          "content_preview": "{\"Benefit limit\": {\"comparable\": true, \"icon\": \"noicon\", \"label\": \"Benefit limit\", \"value\": \"HKD600,000/yr\"}, \"Supplementary major medical benefit\": {\"comparable\": true, \"icon\": \"c",
+          "content_similarity": 0.4775
+        },
+        {
+          "score": 0.4857,
+          "title": "意外/医疗",
+          "category": "个险产品",
+          "service_name": "个险",
+          "schema": "products_page",
+          "content_preview": "医疗保险是补偿因疾病所产生医疗费用的一种保险。 商业医疗保险可以对社保中自负部分以及其他社保不能承担的部分提供保障，是社保的有力补充，可以为希望获得更高医疗质量、享受更高医疗服务的您提供帮助。",
+          "content_similarity": 0.462
+        }
+      ]
+    },
+    {
+      "category": "借款",
+      "question": "保单可以借款吗？单日金额有限制吗？",
+      "notes": "",
+      "expected_categories": [
+        "借款"
+      ],
+      "expected_keywords": [
+        "保单借款",
+        "20万元",
+        "5万元"
+      ],
+      "elapsed_ms": 7979.9,
+      "hit_count": 5,
+      "content_similarity_score": 0.6631,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7193,
+        "title": "保单借款",
+        "category": "借款",
+        "service_name": "借款",
+        "schema": "service_categories",
+        "content_preview": "在保险合同有效期内，若您的合同约定有借款条款，您可以通过此项目来申请，以公司审批结果为准。 申请时间：保险合同有效期内任意时间 申请人：投保人（同时需要被保险人签名同意） 申请文件： 1. 借款申请书 2. 投保人与被保险人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请保单借款（单日累计申请金额<20万元）。 · 联系"
+      },
+      "hits": [
+        {
+          "score": 0.7193,
+          "title": "保单借款",
+          "category": "借款",
+          "service_name": "借款",
+          "schema": "service_categories",
+          "content_preview": "在保险合同有效期内，若您的合同约定有借款条款，您可以通过此项目来申请，以公司审批结果为准。 申请时间：保险合同有效期内任意时间 申请人：投保人（同时需要被保险人签名同意） 申请文件： 1. 借款申请书 2. 投保人与被保险人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请保单借款（单日累计申请金额<20万元）。 · 联系"
+        },
+        {
+          "score": 0.4922,
+          "title": "年金/生存金的领取",
+          "category": "年金",
+          "service_name": "年金",
+          "schema": "service_categories",
+          "content_preview": "如果您需要办理年金/生存金的领取，您可以通过此项目来申请。 申请时间：保险合同有效期内任意时间 申请人：被保险人与合同约定的领款人同时申请 申请文件： 1. 领取保险款项申请书 2. 被保险人及合同约定领款人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助办理。 · 联系保险营销员办理 您可联系服务营销员办理上述业务。 · "
+        },
+        {
+          "score": 0.411,
+          "title": "降低基本保险金额",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "如果您需要调整保险保障，您可以通过此项目申请降低基本保险金额，但须符合我公司关于最低保险金额的要求以保证您有必要的保险保障。 申请时间：保险合同有效期内任意时间。 申请人：投保人 申请文件： 1. 保险合同内容变更申请书 2. 投保人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。（目前仅支持互联网、银保等非营销员销售"
+        },
+        {
+          "score": 0.3666,
+          "title": "保单还款",
+          "category": "借款",
+          "service_name": "借款",
+          "schema": "service_categories",
+          "content_preview": "在保险合同有效期内，若您的合同约定有借款条款且已发生借款，您可以通过此项目来申请，以公司审批结果为准。 申请时间：保险合同借款期间 申请人：投保人 申请文件：保险合同变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请借款还款。 · 联系保险营销员办理 您可联系服务营销员办理本项业务。 · 亲临客户服务中心办理 申请人应携带本人有效"
+        },
+        {
+          "score": 0.3271,
+          "title": "《最新个人资料通知书》（指定产品专用）",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "www.cmr.gov.cn/gaokao/ke/6db/202203/t20220301_17115333.html 和 严重疾病的设立可以接受以下哪些风险。  #mp 请帮助我和李佳玉联系我联系我什么关闭的。请帮忙确认以下各项，请确保他们有权限访问。 5.是否已明确：请你们认同驾驶人应该确认自身的在做工作的证明书里面有夜长记录。 6. 与司机聊天的文字记"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.6989,
+        "title": "保单借款",
+        "category": "借款",
+        "service_name": "借款",
+        "schema": "service_categories",
+        "content_preview": "在保险合同有效期内，若您的合同约定有借款条款，您可以通过此项目来申请，以公司审批结果为准。 申请时间：保险合同有效期内任意时间 申请人：投保人（同时需要被保险人签名同意） 申请文件： 1. 借款申请书 2. 投保人与被保险人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请保单借款（单日累计申请金额<20万元）。 · 联系",
+        "content_similarity": 0.6631
+      },
+      "category_content_hits": [
+        {
+          "score": 0.6989,
+          "title": "保单借款",
+          "category": "借款",
+          "service_name": "借款",
+          "schema": "service_categories",
+          "content_preview": "在保险合同有效期内，若您的合同约定有借款条款，您可以通过此项目来申请，以公司审批结果为准。 申请时间：保险合同有效期内任意时间 申请人：投保人（同时需要被保险人签名同意） 申请文件： 1. 借款申请书 2. 投保人与被保险人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请保单借款（单日累计申请金额<20万元）。 · 联系",
+          "content_similarity": 0.6631
+        },
+        {
+          "score": 0.611,
+          "title": "保单还款",
+          "category": "借款",
+          "service_name": "借款",
+          "schema": "service_categories",
+          "content_preview": "在保险合同有效期内，若您的合同约定有借款条款且已发生借款，您可以通过此项目来申请，以公司审批结果为准。 申请时间：保险合同借款期间 申请人：投保人 申请文件：保险合同变更申请书 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请借款还款。 · 联系保险营销员办理 您可联系服务营销员办理本项业务。 · 亲临客户服务中心办理 申请人应携带本人有效",
+          "content_similarity": 0.5956
+        }
+      ]
+    },
+    {
+      "category": "退保",
+      "question": "犹豫期内可以撤销保险合同吗？",
+      "notes": "",
+      "expected_categories": [
+        "退保"
+      ],
+      "expected_keywords": [
+        "犹豫期内保险合同撤销",
+        "犹豫期"
+      ],
+      "elapsed_ms": 7171.9,
+      "hit_count": 5,
+      "content_similarity_score": 0.7106,
+      "content_similarity_threshold": 0.6,
+      "passed": true,
+      "checks": {
+        "top_category_ok": true,
+        "top_keyword_ok": true,
+        "any_keyword_ok": true,
+        "schema_ok": true,
+        "content_similarity_ok": true
+      },
+      "top_hit": {
+        "score": 0.7998,
+        "title": "犹豫期内保险合同撤销",
+        "category": "退保",
+        "service_name": "退保",
+        "schema": "service_categories",
+        "content_preview": "本公司收到解除合同申请书时起，所申请的保险合同终止。 一年期以上的人身保险产品一般有犹豫期（投保人收到保单并书面签收日起15日）的约定。除合同另有约定外，投保人在犹豫期内解除合同的，本公司返还已付保险费；投资连结保险产品，投保人在犹豫期内解除合同的，本公司收到申请时个人账户已经建立的，本公司将退还个人账户价值以及除资产管理费以外的其他已收取的各项费用。 （地"
+      },
+      "hits": [
+        {
+          "score": 0.7998,
+          "title": "犹豫期内保险合同撤销",
+          "category": "退保",
+          "service_name": "退保",
+          "schema": "service_categories",
+          "content_preview": "本公司收到解除合同申请书时起，所申请的保险合同终止。 一年期以上的人身保险产品一般有犹豫期（投保人收到保单并书面签收日起15日）的约定。除合同另有约定外，投保人在犹豫期内解除合同的，本公司返还已付保险费；投资连结保险产品，投保人在犹豫期内解除合同的，本公司收到申请时个人账户已经建立的，本公司将退还个人账户价值以及除资产管理费以外的其他已收取的各项费用。 （地"
+        },
+        {
+          "score": 0.6776,
+          "title": "解除保险合同/退保",
+          "category": "退保",
+          "service_name": "退保",
+          "schema": "service_categories",
+          "content_preview": "本公司收到解除合同申请书时起，所申请的保险合同终止。 投保人在犹豫期后解除合同的，本公司自收到解除合同申请书之日起三十日内向投保人退还现金价值（具体根据合同约定）。 一年期及以内的人身保险产品，除合同另有约定外，投保人申请解除合同的，本公司自收到解除合同申请书之日起三十日内向投保人退还现金价值或未满期净保险费（具体根据合同约定）。 如有未还款项，将在退还款项"
+        },
+        {
+          "score": 0.6193,
+          "title": "取消附加合同",
+          "category": "保险计划变更",
+          "service_name": "保险计划变更",
+          "schema": "service_categories",
+          "content_preview": "如果您需要调整保险保障，您可以通过此项目申请取消附加合同，自我公司审批之日起您将不再享有该附加险种的保险保障。 申请时间：保险合同有效期内任意时间。 申请人：投保人 申请文件： 1. 保险合同内容变更申请书 2. 投保人的有效身份证明文件 办理方式： · 自助办理： 申请人可通过“友邦友享”App自助申请。（目前仅支持互联网、银保等非营销员销售的保险合同）。"
+        },
+        {
+          "score": 0.5747,
+          "title": "【变更】友邦人寿团体保险合同变更申请书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "同效力恢复（仅适用于《友邦智选人生团体定期寿险》） - 申请恢复合同效力  ### 1. 投保人原计划商业医疗保险  #### *投保人原计划人工支付商业保费*  #### *投保人现今生效的医疗大病保险* - 投保人需注意，此种形式的《友邦智选人生团体定期寿险》是一种商业保险，tot_hiye 无法覆盖该类型的账单。对于此类保单，**由于商业保费约占保费总"
+        },
+        {
+          "score": 0.4984,
+          "title": "【变更】友邦人寿团体保险合同变更申请书",
+          "category": "表单下载",
+          "service_name": "表单下载",
+          "schema": "forms_markdown",
+          "content_preview": "立企业的分支机构”等主体则需签署《关于担保方未超出所属企业或企业的经营范围提供担保的书面承诺协议》（简称《承诺函》）。  ---  有很大帮助，请忽视我的回答。  ### 6. 终止保险合同/产品/计划或撤销投保/续保申请（请勾选项目后，并填写相关内容。） - 撤出新单投保申请（适合未签发保险合同），原因 。 - 终止保险合同项下部分保险产品/计划，请见下述"
+        }
+      ],
+      "category_content_top_hit": {
+        "score": 0.7997,
+        "title": "犹豫期内保险合同撤销",
+        "category": "退保",
+        "service_name": "退保",
+        "schema": "service_categories",
+        "content_preview": "本公司收到解除合同申请书时起，所申请的保险合同终止。 一年期以上的人身保险产品一般有犹豫期（投保人收到保单并书面签收日起15日）的约定。除合同另有约定外，投保人在犹豫期内解除合同的，本公司返还已付保险费；投资连结保险产品，投保人在犹豫期内解除合同的，本公司收到申请时个人账户已经建立的，本公司将退还个人账户价值以及除资产管理费以外的其他已收取的各项费用。 （地",
+        "content_similarity": 0.7106
+      },
+      "category_content_hits": [
+        {
+          "score": 0.7997,
+          "title": "犹豫期内保险合同撤销",
+          "category": "退保",
+          "service_name": "退保",
+          "schema": "service_categories",
+          "content_preview": "本公司收到解除合同申请书时起，所申请的保险合同终止。 一年期以上的人身保险产品一般有犹豫期（投保人收到保单并书面签收日起15日）的约定。除合同另有约定外，投保人在犹豫期内解除合同的，本公司返还已付保险费；投资连结保险产品，投保人在犹豫期内解除合同的，本公司收到申请时个人账户已经建立的，本公司将退还个人账户价值以及除资产管理费以外的其他已收取的各项费用。 （地",
+          "content_similarity": 0.7106
+        },
+        {
+          "score": 0.6627,
+          "title": "解除保险合同/退保",
+          "category": "退保",
+          "service_name": "退保",
+          "schema": "service_categories",
+          "content_preview": "本公司收到解除合同申请书时起，所申请的保险合同终止。 投保人在犹豫期后解除合同的，本公司自收到解除合同申请书之日起三十日内向投保人退还现金价值（具体根据合同约定）。 一年期及以内的人身保险产品，除合同另有约定外，投保人申请解除合同的，本公司自收到解除合同申请书之日起三十日内向投保人退还现金价值或未满期净保险费（具体根据合同约定）。 如有未还款项，将在退还款项",
+          "content_similarity": 0.6467
+        }
+      ]
+    }
+  ]
+}

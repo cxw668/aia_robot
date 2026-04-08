@@ -72,7 +72,8 @@ def verify_collections(prefix_hint: str = "", collection_name: str = "") -> None
 
 def ingest_service_categories(data_dir: Path) -> list[dict]:
     """入库 service_categories 目录中的 JSON 文件到统一集合。"""
-    from app.knowledge_base.ingest import ingest_file, DEFAULT_COLLECTION
+    from app.knowledge_base.config import DEFAULT_COLLECTION
+    from app.knowledge_base.ingestion.pipeline import ingest_file
 
     results: list[dict] = []
     for p in sorted(data_dir.glob("*.json")):
@@ -88,7 +89,8 @@ def ingest_service_categories(data_dir: Path) -> list[dict]:
 
 def ingest_json_file(file_path: Path) -> dict:
     """入库单个 JSON 文件到统一集合。"""
-    from app.knowledge_base.ingest import ingest_file, DEFAULT_COLLECTION
+    from app.knowledge_base.config import DEFAULT_COLLECTION
+    from app.knowledge_base.ingestion.pipeline import ingest_file
 
     try:
         result = ingest_file(str(file_path), collection_name=DEFAULT_COLLECTION)
@@ -101,7 +103,8 @@ def ingest_json_file(file_path: Path) -> dict:
 
 def ingest_text(file_path: Path, title: str = "") -> dict:
     """入库单个文本文件到统一集合。"""
-    from app.knowledge_base.ingest import ingest_text_file, DEFAULT_COLLECTION
+    from app.knowledge_base.config import DEFAULT_COLLECTION
+    from app.knowledge_base.ingestion.pipeline import ingest_text_file
 
     try:
         result = ingest_text_file(str(file_path), collection_name=DEFAULT_COLLECTION, title=title or file_path.stem)

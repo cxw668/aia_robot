@@ -21,7 +21,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.chat.index import chat_completion, chat_completion_stream
 from app.database import ChatMessage, ChatSession, MessageRole, User, get_db
-from app.knowledge_base.rag import retrieve
+from app.knowledge_base.retrieval.engine import retrieve
 from app.routers.auth import get_current_user
 
 router = APIRouter(prefix="/chat", tags=["chat"])
@@ -47,6 +47,7 @@ class ChatRequest(BaseModel):
     query: str
     session_id: str | None = None
     top_k: int = 5
+    category: str | None = None
 
 
 class Citation(BaseModel):
@@ -177,7 +178,7 @@ async def chat(
     retrieval_query = _rewrite_query_with_history(req.query, llm_messages)
 
     # Retrieve relevant docs
-    docs = retrieve(retrieval_query, top_k=req.top_k)
+    docs = retrieve(retrieval_query, top_k=req.top_k, category=req.category)
     citations = [
         Citation(
             title=d["title"],
@@ -262,7 +263,7 @@ async def chat_stream(
     llm_messages = _trim_to_window(history)
     retrieval_query = _rewrite_query_with_history(req.query, llm_messages)
 
-    docs = retrieve(retrieval_query, top_k=req.top_k)
+    docs = retrieve(retrieval_query, top_k=req.top_k, category=req.category)
     citations = [
         Citation(
             title=d["title"],

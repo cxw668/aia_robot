@@ -1,0 +1,17 @@
+"""知识库全局常量配置。"""
+from __future__ import annotations
+
+# Qdrant 集合
+DEFAULT_COLLECTION = "aia_knowledge_base"
+COLLECTION_NAME = DEFAULT_COLLECTION
+
+# 向量模型
+MODEL_NAME = "BAAI/bge-small-zh-v1.5"
+VECTOR_SIZE = 512
+
+# 检索参数
+TOP_K = 5
+SCORE_THRESHOLD = 0.45
+
+# 向量化批大小
+_BATCH = 32
