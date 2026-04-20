@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import {
   Box, IconButton, TextField, Typography, Tooltip, Divider,
-  Chip, Paper, Collapse, Button, Dialog,
+  Chip, Paper, Collapse, Button, Dialog, ToggleButton, ToggleButtonGroup,
   DialogTitle, DialogActions, useTheme, useMediaQuery, Avatar,
 } from '@mui/material';
 import {
@@ -12,7 +12,7 @@ import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { useChatStore, type Message, type Citation } from '../store/useChatStore';
+import { useChatStore, type Message, type Citation, type ChatMode, DEFAULT_CHAT_MODE } from '../store/useChatStore';
 import { sendChatStream } from '../api/chat';
 function MsgBubble({ msg, convId, isStreamingActive }: { msg: Message; convId: string; isStreamingActive?: boolean }) {
   const { t } = useTranslation();
@@ -141,11 +141,14 @@ export default function ChatPage() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const {
     conversations, activeId, streaming,
-    createConversation, setActiveId,
+    createConversation, setActiveId, setConversationMode,
     addMessage, updateMessage, deleteConversation, clearAll, setStreaming,
   } = useChatStore();
   const messages = useChatStore((s) => s.conversations.find((x) => x.id === s.activeId)?.messages ?? []);
   const convTitle = useChatStore((s) => s.conversations.find((x) => x.id === s.activeId)?.title ?? '');
+  const currentMode = useChatStore(
+    (s) => s.conversations.find((x) => x.id === s.activeId)?.mode ?? DEFAULT_CHAT_MODE
+  );
   const [input, setInput] = useState('');
   const [sideOpen, setSideOpen] = useState(!isMobile);
   const [confirmClear, setConfirmClear] = useState(false);
@@ -155,6 +158,8 @@ export default function ChatPage() {
   const streamAbortRef = useRef<AbortController | null>(null);
   const streamAssistantIdRef = useRef<string | null>(null);
   const isDark = theme.palette.mode === 'dark';
+  const inputPlaceholder =
+    currentMode === 'casual' ? t('inputPlaceholderCasual') : t('inputPlaceholderSupport');
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages.length, streaming]);
 
@@ -198,9 +203,9 @@ export default function ChatPage() {
     const convId = activeId;
 
     streamAbortRef.current = sendChatStream(
-      { query: text, session_id: activeId, top_k: 5 },
+      { query: text, session_id: activeId, top_k: 5, mode: currentMode },
       {
-        onCitations: (citations: Citation[], _sessionId: string) => {
+        onCitations: (citations: Citation[]) => {
           updateMessage(convId, assistantMsgId, { citations });
         },
         onDelta: (chunk: string) => {
@@ -295,13 +300,33 @@ export default function ChatPage() {
             <Add sx={{ transform: sideOpen ? 'rotate(45deg)' : 'none', transition: '0.2s' }} />
           </IconButton>
           <Typography variant="body2" fontWeight={600} noWrap sx={{ flex: 1 }}>{convTitle || t('newChat')}</Typography>
+          <ToggleButtonGroup
+            size="small"
+            exclusive
+            value={currentMode}
+            onChange={(_, mode: ChatMode | null) => {
+              if (!mode || !activeId || streaming) return;
+              setConversationMode(activeId, mode);
+            }}
+            sx={{
+              '& .MuiToggleButton-root': {
+                px: 1.25,
+                py: 0.5,
+                fontSize: '0.75rem',
+                textTransform: 'none',
+              },
+            }}
+          >
+            <ToggleButton value="casual">{t('chatModeCasual')}</ToggleButton>
+            <ToggleButton value="support">{t('chatModeSupport')}</ToggleButton>
+          </ToggleButtonGroup>
         </Box>
 
         <Box sx={{ flex: 1, overflowY: 'auto', py: 2 }}>
           {messages.length === 0 && (
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '60%', gap: 2, opacity: 0.4 }}>
               <AutoAwesome sx={{ fontSize: 52, color: 'primary.main' }} />
-              <Typography variant="body1" color="text.secondary">{t('inputPlaceholder')}</Typography>
+              <Typography variant="body1" color="text.secondary">{inputPlaceholder}</Typography>
             </Box>
           )}
           {messages.map((m, idx) => {
@@ -315,7 +340,7 @@ export default function ChatPage() {
         <Box sx={{ p: { xs: 1.5, sm: 2 }, borderTop: 1, borderColor: 'divider', bgcolor: 'background.paper' }}>
           <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-end', maxWidth: 860, mx: 'auto' }}>
             <TextField inputRef={inputRef} multiline maxRows={6} fullWidth size="small"
-              placeholder={t('inputPlaceholder')} value={input}
+              placeholder={inputPlaceholder} value={input}
               onChange={(e) => setInput(e.target.value)} onKeyDown={handleKeyDown}
               disabled={streaming}
               sx={{ '& .MuiOutlinedInput-root': { borderRadius: 3, bgcolor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.02)' } }} />

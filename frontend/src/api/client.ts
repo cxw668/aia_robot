@@ -6,10 +6,35 @@ const client = axios.create({
   timeout: 60000,
 });
 
+const APP_STORE_KEY = 'aia-app-store';
+
+type PersistedAppStore = {
+  state?: {
+    user?: {
+      token?: string;
+    } | null;
+  };
+};
+
+export function getAuthToken(): string | null {
+  const stateToken = useAppStore.getState().user?.token;
+  if (stateToken) return stateToken;
+
+  const raw = window.localStorage.getItem(APP_STORE_KEY);
+  if (!raw) return null;
+
+  try {
+    const persisted = JSON.parse(raw) as PersistedAppStore;
+    return persisted.state?.user?.token ?? null;
+  } catch {
+    return null;
+  }
+}
+
 client.interceptors.request.use((config) => {
-  const user = useAppStore.getState().user;
-  if (user?.token) {
-    config.headers.Authorization = `Bearer ${user.token}`;
+  const token = getAuthToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });

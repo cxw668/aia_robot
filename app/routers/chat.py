@@ -9,6 +9,7 @@ GET  /chat/{id}/history — return message history
 """
 from __future__ import annotations
 
+import enum
 import json
 import uuid
 from datetime import datetime
@@ -30,7 +31,7 @@ router = APIRouter(prefix="/chat", tags=["chat"])
 
 MAX_HISTORY_TURNS = 5   # keep last N user+assistant pairs in LLM context
 
-SYSTEM_PROMPT = (
+SUPPORT_SYSTEM_PROMPT = (
     "你是友邦保险（AIA）的专业智能客服助手，名字叫小邦。\n"
     "职责：\n"
     "1. 严格依据提供的【知识库参考】内容回答用户问题，不得编造信息。\n"
@@ -40,14 +41,29 @@ SYSTEM_PROMPT = (
     "5. 涉及具体产品条款、费率等敏感信息时，提示用户以正式合同为准。"
 )
 
+CASUAL_SYSTEM_PROMPT = (
+    "你是友邦保险（AIA）的智能助手，名字叫小邦。\n"
+    "当前处于【日常聊天】模式，可以像自然、友好的中文助手一样与用户交流。\n"
+    "要求：\n"
+    "1. 优先直接理解并回答用户问题，保持自然、清晰、简洁。\n"
+    "2. 不依赖知识库引用，可以进行一般性闲聊、说明和建议。\n"
+    "3. 涉及医疗、法律、投资、保险条款等高风险或强专业内容时，明确说明仅供参考，并建议用户以官方信息或专业人士意见为准。"
+)
+
 
 # ── Pydantic models ───────────────────────────────────────────────────────────
+
+class ChatMode(str, enum.Enum):
+    CASUAL = "casual"
+    SUPPORT = "support"
+
 
 class ChatRequest(BaseModel):
     query: str
     session_id: str | None = None
     top_k: int = 5
     category: str | None = None
+    mode: ChatMode = ChatMode.SUPPORT
 
 
 class Citation(BaseModel):
@@ -92,14 +108,17 @@ async def _load_session_messages(db: AsyncSession, session_id: str) -> list[Chat
 
 # ── Context builders ──────────────────────────────────────────────────────────
 
-def _trim_to_window(messages: list[ChatMessage]) -> list[dict]:
-    """Convert DB messages to OpenAI format, keeping system + last MAX_HISTORY_TURNS pairs."""
-    system = [m for m in messages if m.role == MessageRole.SYSTEM]
+def _get_system_prompt(mode: ChatMode) -> str:
+    return CASUAL_SYSTEM_PROMPT if mode == ChatMode.CASUAL else SUPPORT_SYSTEM_PROMPT
+
+
+def _trim_to_window(messages: list[ChatMessage], mode: ChatMode) -> list[dict]:
+    """Convert DB messages to OpenAI format, keeping current system prompt + recent turns."""
     turns = [m for m in messages if m.role != MessageRole.SYSTEM]
-    # Keep only the last MAX_HISTORY_TURNS * 2 turn messages
     turns = turns[-(MAX_HISTORY_TURNS * 2):]
-    combined = system + turns
-    return [{"role": m.role.value, "content": m.content} for m in combined]
+    combined = [{"role": MessageRole.SYSTEM.value, "content": _get_system_prompt(mode)}]
+    combined.extend({"role": m.role.value, "content": m.content} for m in turns)
+    return combined
 
 
 def _rewrite_query_with_history(query: str, history: list[dict]) -> str:
@@ -161,24 +180,15 @@ async def chat(
 
     history = await _load_session_messages(db, session.id)
 
-    # Init system prompt on first turn
-    if not history:
-        sys_msg = ChatMessage(
-            session_id=session.id,
-            role=MessageRole.SYSTEM,
-            content=SYSTEM_PROMPT,
-        )
-        db.add(sys_msg)
-        history = [sys_msg]
+    llm_messages = _trim_to_window(history, req.mode)
 
-    # Build LLM context window
-    llm_messages = _trim_to_window(history)
-
-    # Rewrite query for retrieval (co-reference resolution)
     retrieval_query = _rewrite_query_with_history(req.query, llm_messages)
 
-    # Retrieve relevant docs
-    docs = retrieve(retrieval_query, top_k=req.top_k, category=req.category)
+    docs = (
+        retrieve(retrieval_query, top_k=req.top_k, category=req.category)
+        if req.mode == ChatMode.SUPPORT
+        else []
+    )
     citations = [
         Citation(
             title=d["title"],
@@ -251,19 +261,14 @@ async def chat_stream(
 
     history = await _load_session_messages(db, session.id)
 
-    if not history:
-        sys_msg = ChatMessage(
-            session_id=session.id,
-            role=MessageRole.SYSTEM,
-            content=SYSTEM_PROMPT,
-        )
-        db.add(sys_msg)
-        history = [sys_msg]
-
-    llm_messages = _trim_to_window(history)
+    llm_messages = _trim_to_window(history, req.mode)
     retrieval_query = _rewrite_query_with_history(req.query, llm_messages)
 
-    docs = retrieve(retrieval_query, top_k=req.top_k, category=req.category)
+    docs = (
+        retrieve(retrieval_query, top_k=req.top_k, category=req.category)
+        if req.mode == ChatMode.SUPPORT
+        else []
+    )
     citations = [
         Citation(
             title=d["title"],

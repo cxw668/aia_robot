@@ -1,10 +1,11 @@
-import client from './client';
-import type { Citation } from '../store/useChatStore';
+import client, { getAuthToken } from './client';
+import type { Citation, ChatMode } from '../store/useChatStore';
 
 export interface ChatRequest {
   query: string;
   session_id?: string;
   top_k?: number;
+  mode?: ChatMode;
 }
 
 export interface ChatResponse {
@@ -51,7 +52,7 @@ export async function sendChat(payload: ChatRequest): Promise<ChatResponse> {
  * Streaming chat via SSE.
  *
  * Calls /chat/stream and invokes callbacks as events arrive:
- *   onCitations  — called once with citations + session_id
+ *   onCitations  — called once with citations
  *   onDelta      — called for each text chunk
  *   onDone       — called when stream ends
  *   onError      — called on error
@@ -61,7 +62,7 @@ export async function sendChat(payload: ChatRequest): Promise<ChatResponse> {
 export function sendChatStream(
   payload: ChatRequest,
   callbacks: {
-    onCitations: (citations: Citation[], sessionId: string) => void;
+    onCitations: (citations: Citation[]) => void;
     onDelta: (text: string) => void;
     onDone: () => void;
     onError: (msg: string) => void;
@@ -74,8 +75,7 @@ export function sendChatStream(
     (client.defaults.baseURL as string | undefined) ?? 'http://localhost:8000/api';
   const url = `${baseURL}/chat/stream`;
 
-  // Get auth token from localStorage (same key used by the axios client interceptor)
-  const token = localStorage.getItem('token') ?? '';
+  const token = getAuthToken();
 
   fetch(url, {
     method: 'POST',
@@ -110,7 +110,7 @@ export function sendChatStream(
           try {
             const event = JSON.parse(jsonStr) as SseEvent;
             if (event.type === 'citations') {
-              callbacks.onCitations(event.citations, event.session_id);
+              callbacks.onCitations(event.citations);
             } else if (event.type === 'delta') {
               callbacks.onDelta(event.text);
             } else if (event.type === 'done') {

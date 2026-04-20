@@ -25,9 +25,13 @@ const en = {
   // Chat
   newChat: 'New Chat',
   inputPlaceholder: 'Ask anything… Shift+Enter for newline, Enter to send',
+  inputPlaceholderCasual: 'Chat freely… Shift+Enter for newline, Enter to send',
+  inputPlaceholderSupport: 'Ask about policies, claims, or services… Shift+Enter for newline, Enter to send',
   send: 'Send',
   thinking: 'Thinking…',
   references: 'References',
+  chatModeCasual: 'Daily Chat',
+  chatModeSupport: 'Support',
   noHistory: 'No conversations yet',
   clearHistory: 'Clear History',
   copyMsg: 'Copied',

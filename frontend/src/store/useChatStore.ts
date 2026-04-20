@@ -10,6 +10,9 @@ export interface Citation {
   collection?: string;
 }
 
+export type ChatMode = 'casual' | 'support';
+export const DEFAULT_CHAT_MODE: ChatMode = 'support';
+
 export interface Message {
   id: string;
   role: 'user' | 'assistant';
@@ -23,6 +26,7 @@ export interface Message {
 export interface Conversation {
   id: string;
   title: string;
+  mode: ChatMode;
   messages: Message[];
   createdAt: number;
   updatedAt: number;
@@ -34,6 +38,7 @@ interface ChatState {
   streaming: boolean;
   createConversation: () => string;
   setActiveId: (id: string) => void;
+  setConversationMode: (convId: string, mode: ChatMode) => void;
   addMessage: (convId: string, msg: Message) => void;
   updateMessage: (convId: string, msgId: string, patch: Partial<Message>) => void;
   deleteConversation: (id: string) => void;
@@ -45,7 +50,7 @@ const genId = () => Math.random().toString(36).slice(2, 10);
 
 export const useChatStore = create<ChatState>()(
   persist(
-    (set, _get) => ({
+    (set) => ({
       conversations: [],
       activeId: null,
       streaming: false,
@@ -54,20 +59,29 @@ export const useChatStore = create<ChatState>()(
         const now = Date.now();
         set((s) => ({
           conversations: [
-            {
-              id,
-              title: '新对话',
-              messages: [],
-              createdAt: now,
-              updatedAt: now,
-            },
-            ...s.conversations,
+              {
+                id,
+                title: '新对话',
+                mode: DEFAULT_CHAT_MODE,
+                messages: [],
+                createdAt: now,
+                updatedAt: now,
+              },
+              ...s.conversations,
           ],
           activeId: id,
         }));
         return id;
       },
       setActiveId: (id) => set({ activeId: id }),
+      setConversationMode: (convId, mode) =>
+        set((s) => ({
+          conversations: s.conversations.map((c) =>
+            c.id === convId
+              ? { ...c, mode, updatedAt: Date.now() }
+              : c
+          ),
+        })),
       addMessage: (convId, msg) =>
         set((s) => ({
           conversations: s.conversations.map((c) =>

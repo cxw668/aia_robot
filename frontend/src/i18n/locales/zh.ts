@@ -25,9 +25,13 @@ const zh = {
   // Chat
   newChat: '新建对话',
   inputPlaceholder: '输入问题，Shift+Enter 换行，Enter 发送…',
+  inputPlaceholderCasual: '随便聊聊，Shift+Enter 换行，Enter 发送…',
+  inputPlaceholderSupport: '请输入保单、理赔、服务等问题，Shift+Enter 换行，Enter 发送…',
   send: '发送',
   thinking: '思考中…',
   references: '参考来源',
+  chatModeCasual: '日常聊天',
+  chatModeSupport: '专业客服',
   noHistory: '暂无对话记录',
   clearHistory: '清空历史',
   copyMsg: '已复制',
