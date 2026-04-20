@@ -20,7 +20,7 @@ export interface KbDoc {
   id: string;
   score: number | null;
   title: string;
-  content: string;
+  content: unknown;
   service_name: string;
   service_url?: string;
   source_file?: string;

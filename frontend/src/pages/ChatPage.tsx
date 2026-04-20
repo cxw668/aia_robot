@@ -7,6 +7,7 @@ import {
 import {
   Send, Add, Delete, ContentCopy, ThumbUp, ThumbDown,
   AutoAwesome, Clear, ExpandMore, Stop,
+  KeyboardDoubleArrowRight,
 } from '@mui/icons-material';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
@@ -297,7 +298,7 @@ export default function ChatPage() {
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', minWidth: 0 }}>
         <Box sx={{ px: 2, py: 1.2, borderBottom: 1, borderColor: 'divider', display: 'flex', alignItems: 'center', gap: 1, minHeight: 52, bgcolor: 'background.paper' }}>
           <IconButton size="small" onClick={() => setSideOpen(!sideOpen)}>
-            <Add sx={{ transform: sideOpen ? 'rotate(45deg)' : 'none', transition: '0.2s' }} />
+            <KeyboardDoubleArrowRight sx={{ transform: sideOpen ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />
           </IconButton>
           <Typography variant="body2" fontWeight={600} noWrap sx={{ flex: 1 }}>{convTitle || t('newChat')}</Typography>
           <ToggleButtonGroup

@@ -25,6 +25,15 @@ import { useTranslation } from 'react-i18next';
 import type { KbDoc } from '../../api/knowledge';
 import { STATUS_COLORS } from '../../types/constants';
 
+function formatDocContent(content: unknown): string {
+  if (typeof content === 'string') return content;
+  if (content == null) return '';
+  if (typeof content === 'object') {
+    return JSON.stringify(content, null, 2);
+  }
+  return String(content);
+}
+
 export function StatusChip({ status }: { status: string }) {
   const { t } = useTranslation();
   const map: Record<string, string> = {
@@ -62,6 +71,7 @@ export function DocCard({
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
+  const contentText = formatDocContent(doc.content);
 
   return (
     <Paper
@@ -149,7 +159,7 @@ export function DocCard({
             color="text.secondary"
             sx={{ whiteSpace: 'pre-wrap', lineHeight: 1.8, display: 'block', maxHeight: 200, overflowY: 'auto' }}
           >
-            {doc.content}
+            {contentText}
           </Typography>
         </Box>
       </Collapse>

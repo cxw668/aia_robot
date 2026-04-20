@@ -16,7 +16,7 @@ import { StatusChip, DocCard, DropZone } from '../components/knowledge/KbWidgets
 import SnackbarAlert from '../components/atoms/SnackbarAlert';
 
 const LIMIT = 10;
-const DEFAULT_COLLECTION = 'knowledge_base';
+const TARGET_COLLECTION = 'aia_knowledge_base';
 
 export default function KnowledgePage() {
   const { t } = useTranslation();
@@ -26,12 +26,12 @@ export default function KnowledgePage() {
   const [ingestTab, setIngestTab] = useState(0);
   const [dirPath, setDirPath] = useState('');
   const [url, setUrl] = useState('');
-  const [ingestCollection, setIngestCollection] = useState(DEFAULT_COLLECTION);
+  const ingestCollection = TARGET_COLLECTION;
   const [submitting, setSubmitting] = useState(false);
   const [jobs, setJobs] = useState<IngestJob[]>([]);
   const [loadingJobs, setLoadingJobs] = useState(false);
   const [collections, setCollections] = useState<KbCollection[]>([]);
-  const [activeCollection, setActiveCollection] = useState<string | null>(null);
+  const [activeCollection, setActiveCollection] = useState<string>(TARGET_COLLECTION);
   const [deleteColTarget, setDeleteColTarget] = useState<string | null>(null);
   const [docs, setDocs] = useState<KbDoc[]>([]);
   const [total, setTotal] = useState(0);
@@ -48,10 +48,16 @@ export default function KnowledgePage() {
   }, []);
   const fetchJobs = useCallback(async () => {
     setLoadingJobs(true);
-    try { setJobs(await getJobs()); } catch {/**/} finally { setLoadingJobs(false); }
+    try {
+      const allJobs = await getJobs();
+      setJobs(allJobs.filter((job) => job.collection === TARGET_COLLECTION));
+    } catch {/**/} finally { setLoadingJobs(false); }
   }, []);
   const fetchCollections = useCallback(async () => {
-    try { setCollections(await getCollections()); } catch {/**/}
+    try {
+      const allCollections = await getCollections();
+      setCollections(allCollections.filter((col) => col.name === TARGET_COLLECTION));
+    } catch {/**/}
   }, []);
   const fetchDocs = useCallback(async (q: string, col: string | null, off: number, append = false) => {
     if (!col) { setDocs([]); setTotal(0); return; }
@@ -77,21 +83,19 @@ export default function KnowledgePage() {
   const handleSearch = () => { setSearchQ(searchInput); setOffset(0); fetchDocs(searchInput, activeCollection, 0); };
   const handleLoadMore = () => { const nx = offset + LIMIT; setOffset(nx); fetchDocs(searchQ, activeCollection, nx, true); };
   const handleIngestSubmit = async () => {
-    if (!ingestCollection.trim()) { toast(t('collectionName') + ': ' + t('fieldRequired'), 'error'); return; }
     setSubmitting(true);
     try {
-      if (ingestTab === 0) await ingestDir(dirPath.trim(), ingestCollection.trim());
-      else await ingestUrl(url.trim(), ingestCollection.trim());
+      if (ingestTab === 0) await ingestDir(dirPath.trim(), ingestCollection);
+      else await ingestUrl(url.trim(), ingestCollection);
       toast(t('ingestSuccess')); setDirPath(''); setUrl('');
       setTimeout(() => { fetchJobs(); fetchCollections(); }, 1200);
     } catch { toast(t('ingestError'), 'error'); } finally { setSubmitting(false); }
   };
   const handleUpload = async (file: File) => {
-    if (!ingestCollection.trim()) { toast(t('collectionName') + ': ' + t('fieldRequired'), 'error'); return; }
     setSubmitting(true);
     try {
-      await uploadFile(file, ingestCollection.trim()); toast(t('ingestSuccess'));
-      setTimeout(() => { fetchJobs(); fetchCollections(); if (activeCollection === ingestCollection.trim()) fetchDocs(searchQ, activeCollection, 0); }, 1500);
+      await uploadFile(file, ingestCollection); toast(t('ingestSuccess'));
+      setTimeout(() => { fetchJobs(); fetchCollections(); fetchDocs(searchQ, activeCollection, 0); }, 1500);
     } catch { toast(t('ingestError'), 'error'); } finally { setSubmitting(false); }
   };
   const handleDeleteDoc = async (id: string) => {
@@ -103,7 +107,7 @@ export default function KnowledgePage() {
     if (!deleteColTarget) return;
     try {
       await deleteCollection(deleteColTarget); toast(t('statusDone'));
-      if (activeCollection === deleteColTarget) { setActiveCollection(null); setDocs([]); setTotal(0); }
+      if (activeCollection === deleteColTarget) { setDocs([]); setTotal(0); setHealth(null); }
       await fetchCollections();
     } catch { toast(t('ingestError'), 'error'); }
     setDeleteColTarget(null);
@@ -115,14 +119,14 @@ export default function KnowledgePage() {
   return (
     <Box sx={{ height: '100%', overflowY: 'auto', p: { xs: 2, sm: 3 }, maxWidth: 960, mx: 'auto', width: '100%' }}>
       <Box sx={{ mb: 3, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 1 }}>
-        <Box>
-          <Typography variant="h5" fontWeight={700} sx={{ letterSpacing: '-0.02em' }}>{t('knowledgeTitle')}</Typography>
-          <Box sx={{ display: 'flex', gap: 1, mt: 0.75, flexWrap: 'wrap' }}>
-            <Chip size="small" label={`${t('totalDocs')}: ${totalAllDocs}`} variant="outlined" />
-            <Chip size="small" label={`${collections.length} ${t('collections')}`} variant="outlined" />
-            {health && activeCollection && (
-              <Chip size="small" color={health.status === 'ok' ? 'success' : 'error'} label={`${activeCollection}: ${health.doc_count} docs`} />
-            )}
+          <Box>
+            <Typography variant="h5" fontWeight={700} sx={{ letterSpacing: '-0.02em' }}>{t('knowledgeTitle')}</Typography>
+            <Box sx={{ display: 'flex', gap: 1, mt: 0.75, flexWrap: 'wrap' }}>
+              <Chip size="small" label={TARGET_COLLECTION} color="primary" variant="outlined" />
+              <Chip size="small" label={`${t('totalDocs')}: ${totalAllDocs}`} variant="outlined" />
+              {health && activeCollection && (
+                <Chip size="small" color={health.status === 'ok' ? 'success' : 'error'} label={`${activeCollection}: ${health.doc_count} docs`} />
+              )}
           </Box>
         </Box>
         <Tooltip title={t('refresh')}>
@@ -182,45 +186,38 @@ export default function KnowledgePage() {
           </Paper>
 
           <Box sx={{ flex: 1, minWidth: 0 }}>
-            {!activeCollection ? (
-              <Box sx={{ py: 8, textAlign: 'center', opacity: 0.4 }}>
-                <Inventory2 sx={{ fontSize: 48, color: 'text.disabled', mb: 1 }} />
-                <Typography variant="body2" color="text.secondary">{t('allCategories')}</Typography>
+            <>
+              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+                <TextField fullWidth size="small" placeholder={t('searchDocs')}
+                  value={searchInput} onChange={e => setSearchInput(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && handleSearch()}
+                  InputProps={{ startAdornment: <InputAdornment position="start"><Search sx={{ fontSize: 18, color: 'text.disabled' }} /></InputAdornment> }}
+                  sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
+                />
+                <Button variant="contained" onClick={handleSearch} disabled={loadingDocs}
+                  sx={{ flexShrink: 0, borderRadius: 2, background: 'linear-gradient(135deg,#e94560,#0f3460)', '&:hover': { background: 'linear-gradient(135deg,#c73652,#0a2440)' } }}>
+                  {loadingDocs ? <CircularProgress size={16} color="inherit" /> : <Search fontSize="small" />}
+                </Button>
               </Box>
-            ) : (
-              <>
-                <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                  <TextField fullWidth size="small" placeholder={t('searchDocs')}
-                    value={searchInput} onChange={e => setSearchInput(e.target.value)}
-                    onKeyDown={e => e.key === 'Enter' && handleSearch()}
-                    InputProps={{ startAdornment: <InputAdornment position="start"><Search sx={{ fontSize: 18, color: 'text.disabled' }} /></InputAdornment> }}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
-                  />
-                  <Button variant="contained" onClick={handleSearch} disabled={loadingDocs}
-                    sx={{ flexShrink: 0, borderRadius: 2, background: 'linear-gradient(135deg,#e94560,#0f3460)', '&:hover': { background: 'linear-gradient(135deg,#c73652,#0a2440)' } }}>
-                    {loadingDocs ? <CircularProgress size={16} color="inherit" /> : <Search fontSize="small" />}
+              <Typography variant="caption" color="text.secondary" sx={{ mb: 1.5, display: 'block' }}>
+                {total} {t('totalDocs')} &middot; {activeCollection}
+              </Typography>
+              {docs.length === 0 && !loadingDocs && (
+                <Box sx={{ py: 6, textAlign: 'center', opacity: 0.4 }}>
+                  <Typography variant="body2" color="text.secondary">{t('noDocsFound')}</Typography>
+                </Box>
+              )}
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                {docs.map(d => <DocCard key={d.id} doc={d} onDelete={handleDeleteDoc} />)}
+              </Box>
+              {hasMore && (
+                <Box sx={{ textAlign: 'center', mt: 2 }}>
+                  <Button variant="outlined" onClick={handleLoadMore} disabled={loadingDocs} sx={{ borderRadius: 2 }}>
+                    {loadingDocs ? <CircularProgress size={16} /> : t('loadMore')}
                   </Button>
                 </Box>
-                <Typography variant="caption" color="text.secondary" sx={{ mb: 1.5, display: 'block' }}>
-                  {total} {t('totalDocs')} &middot; {activeCollection}
-                </Typography>
-                {docs.length === 0 && !loadingDocs && (
-                  <Box sx={{ py: 6, textAlign: 'center', opacity: 0.4 }}>
-                    <Typography variant="body2" color="text.secondary">{t('noDocsFound')}</Typography>
-                  </Box>
-                )}
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                  {docs.map(d => <DocCard key={d.id} doc={d} onDelete={handleDeleteDoc} />)}
-                </Box>
-                {hasMore && (
-                  <Box sx={{ textAlign: 'center', mt: 2 }}>
-                    <Button variant="outlined" onClick={handleLoadMore} disabled={loadingDocs} sx={{ borderRadius: 2 }}>
-                      {loadingDocs ? <CircularProgress size={16} /> : t('loadMore')}
-                    </Button>
-                  </Box>
-                )}
-              </>
-            )}
+              )}
+            </>
           </Box>
         </Box>
       )}
@@ -233,9 +230,9 @@ export default function KnowledgePage() {
               <TextField
                 fullWidth size="small"
                 placeholder={t('collectionNamePlaceholder')}
-                helperText={t('collectionNameHint')}
+                helperText={TARGET_COLLECTION}
                 value={ingestCollection}
-                onChange={e => setIngestCollection(e.target.value)}
+                disabled
                 sx={{ '& .MuiOutlinedInput-root': { borderRadius: 2 } }}
               />
             </Box>
@@ -255,7 +252,7 @@ export default function KnowledgePage() {
                 }
                 <Button variant="contained"
                   startIcon={submitting ? <CircularProgress size={14} color="inherit" /> : <Upload />}
-                  disabled={submitting || (ingestTab === 0 ? !dirPath.trim() : !url.trim()) || !ingestCollection.trim()}
+                  disabled={submitting || (ingestTab === 0 ? !dirPath.trim() : !url.trim())}
                   onClick={handleIngestSubmit}
                   sx={{ flexShrink: 0, borderRadius: 2, px: 3, color: '#fff !important', background: 'linear-gradient(135deg,#e94560,#0f3460)', '&:hover': { background: 'linear-gradient(135deg,#c73652,#0a2440)' }, '&.Mui-disabled': { opacity: 0.5 } }}>
                   {t('startIngest')}
