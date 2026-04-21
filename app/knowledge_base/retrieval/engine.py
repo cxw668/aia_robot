@@ -16,6 +16,7 @@ from app.knowledge_base.core.vector_store import get_client, query_collection
 from app.knowledge_base.core.embedding import get_model
 from app.knowledge_base.retrieval.filter_builder import build_filter
 from app.knowledge_base.retrieval.rescorer import llm_rescore_candidates
+from app.request_context import get_request_id
 
 logger = logging.getLogger(__name__)
 
@@ -70,29 +71,45 @@ def retrieve(
         direct_hits = high_confidence_hits[:top_k]
         logger.debug(
             f"[rag] direct return high-confidence hits={len(direct_hits)} "
-            f"| collection={target_collection}"
+            f"| collection={target_collection} | request_id={get_request_id()}"
         )
         logger.debug(
             f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
-            f"| collection={target_collection} | hits={len(direct_hits)}"
+            f"| collection={target_collection} | hits={len(direct_hits)} | request_id={get_request_id()}"
         )
         return direct_hits
 
     try:
-        hits = llm_rescore_candidates(
+        rescore_result = llm_rescore_candidates(
             query,
             hits,
             max_candidates=len(hits),
             min_llm_score=LLM_RELEVANCE_THRESHOLD,
             final_top_k=top_k,
         )
+        hits = rescore_result.items
+        if rescore_result.used_llm:
+            logger.info(
+                "[rag] llm rerank applied | request_id=%s | collection=%s | hits=%s",
+                get_request_id(),
+                target_collection,
+                len(hits),
+            )
+        else:
+            logger.warning(
+                "[rag] vector fallback used | request_id=%s | collection=%s | reason=%s | hits=%s",
+                get_request_id(),
+                target_collection,
+                rescore_result.fallback_reason,
+                len(hits),
+            )
     except Exception:
-        logger.exception("[rag] llm rescoring step failed, using vector fallback")
+        logger.exception("[rag] llm rescoring step failed, using vector fallback | request_id=%s", get_request_id())
         hits = hits[:top_k]
 
     logger.debug(
         f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
-        f"| collection={target_collection} | hits={len(hits)}"
+        f"| collection={target_collection} | hits={len(hits)} | request_id={get_request_id()}"
     )
     return hits
 

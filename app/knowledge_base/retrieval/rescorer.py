@@ -3,10 +3,28 @@ from __future__ import annotations
 
 import json
 import logging
+from dataclasses import dataclass
 
 from app.knowledge_base.retrieval.prompt_builder import build_scoring_prompt
 
 logger = logging.getLogger(__name__)
+
+
+@dataclass(frozen=True)
+class RescoreResult:
+    items: list[dict]
+    used_llm: bool
+    fallback_reason: str | None = None
+
+
+def _fallback(candidates: list[dict], final_top_k: int, reason: str) -> RescoreResult:
+    # Preserve a concrete fallback reason so retrieval logs can tell whether we
+    # failed on the LLM call, JSON parsing, or a schema mismatch.
+    return RescoreResult(
+        items=candidates[:final_top_k],
+        used_llm=False,
+        fallback_reason=reason,
+    )
 
 
 def llm_rescore_candidates(
@@ -15,12 +33,12 @@ def llm_rescore_candidates(
     max_candidates: int = 10,
     min_llm_score: float = 0.6,
     final_top_k: int = 5,
-) -> list[dict]:
+) -> RescoreResult:
     """使用 LLM 对候选文档进行逐条评分，并返回基于 LLM 分数融合后的候选列表。"""
     from app.chat.index import query_llm
 
     if not candidates:
-        return candidates
+        return RescoreResult(items=[], used_llm=False, fallback_reason="no_candidates")
 
     slice_cands = candidates[: max(1, min(len(candidates), max_candidates))]
     prompt = build_scoring_prompt(query, slice_cands)
@@ -28,7 +46,7 @@ def llm_rescore_candidates(
         resp = query_llm(prompt)
     except Exception as exc:
         logger.exception("[rag] llm_rescore failed: %s", exc)
-        return candidates[:final_top_k]
+        return _fallback(candidates, final_top_k, "llm_request_failed")
 
     try:
         parsed = json.loads(resp)
@@ -45,7 +63,7 @@ def llm_rescore_candidates(
                     parsed = json.loads(resp[start_idx:end_idx])
                 else:
                     logger.warning("[rag] could not locate JSON in LLM response")
-                    return candidates[:final_top_k]
+                    return _fallback(candidates, final_top_k, "llm_response_parse_failed")
         except json.JSONDecodeError as exc:
             try:
                 import re
@@ -55,13 +73,19 @@ def llm_rescore_candidates(
                     parsed = json.loads(json_match.group(0))
                 else:
                     logger.exception("[rag] failed to parse llm response: %s", exc)
-                    return candidates[:final_top_k]
+                    return _fallback(candidates, final_top_k, "llm_response_parse_failed")
             except Exception as exc2:
                 logger.exception("[rag] failed to parse llm response after fix attempts: %s", exc2)
-                return candidates[:final_top_k]
+                return _fallback(candidates, final_top_k, "llm_response_parse_failed")
         except Exception as exc:
             logger.exception("[rag] failed to parse llm response: %s", exc)
-            return candidates[:final_top_k]
+            return _fallback(candidates, final_top_k, "llm_response_parse_failed")
+
+    if isinstance(parsed, dict):
+        # Accept both array-only responses and wrapper objects from the model.
+        parsed = parsed.get("items") or parsed.get("results") or []
+    if not isinstance(parsed, list):
+        return _fallback(candidates, final_top_k, "llm_response_schema_invalid")
 
     score_map: dict[str, dict] = {}
     for item in parsed or []:
@@ -75,6 +99,8 @@ def llm_rescore_candidates(
             }
         except Exception:
             continue
+    if not score_map:
+        return _fallback(candidates, final_top_k, "llm_scores_missing")
 
     fused: list[dict] = []
     for c in slice_cands:
@@ -102,9 +128,9 @@ def llm_rescore_candidates(
     ]
     if filtered:
         filtered.sort(key=lambda x: x.get("score", 0), reverse=True)
-        return filtered[:final_top_k]
+        return RescoreResult(items=filtered[:final_top_k], used_llm=True)
 
-    return full[:final_top_k]
+    return RescoreResult(items=full[:final_top_k], used_llm=True)
 
 
-__all__ = ["llm_rescore_candidates"]
+__all__ = ["RescoreResult", "llm_rescore_candidates"]

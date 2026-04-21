@@ -24,7 +24,35 @@ export type SseEvent =
   | { type: 'citations'; citations: Citation[]; session_id: string }
   | { type: 'delta'; text: string }
   | { type: 'done' }
-  | { type: 'error'; message: string };
+  | { type: 'error'; message: string; code?: string; request_id?: string };
+
+type ApiErrorEnvelope = {
+  error?: {
+    code?: string;
+    message?: string;
+    request_id?: string;
+  };
+};
+
+function parseApiErrorPayload(payload: unknown): { message: string; code?: string } {
+  // Streaming and non-streaming failures now share the same backend envelope,
+  // so the client only needs one parser here.
+  if (typeof payload === 'string') {
+    try {
+      return parseApiErrorPayload(JSON.parse(payload) as ApiErrorEnvelope);
+    } catch {
+      return { message: payload };
+    }
+  }
+  if (typeof payload === 'object' && payload !== null && 'error' in payload) {
+    const envelope = payload as ApiErrorEnvelope;
+    return {
+      message: envelope.error?.message?.trim() || 'Request failed',
+      code: envelope.error?.code,
+    };
+  }
+  return { message: 'Request failed' };
+}
 
 /** Non-streaming chat request */
 export async function sendChat(payload: ChatRequest): Promise<ChatResponse> {
@@ -65,7 +93,7 @@ export function sendChatStream(
     onCitations: (citations: Citation[]) => void;
     onDelta: (text: string) => void;
     onDone: () => void;
-    onError: (msg: string) => void;
+    onError: (msg: string, code?: string) => void;
   },
 ): AbortController {
   const ac = new AbortController();
@@ -89,7 +117,8 @@ export function sendChatStream(
     .then(async (resp) => {
       if (!resp.ok) {
         const text = await resp.text();
-        callbacks.onError(`HTTP ${resp.status}: ${text}`);
+        const parsed = parseApiErrorPayload(text);
+        callbacks.onError(parsed.message || `HTTP ${resp.status}`, parsed.code);
         return;
       }
       const reader = resp.body!.getReader();
@@ -117,7 +146,7 @@ export function sendChatStream(
               doneEmitted = true;
               callbacks.onDone();
             } else if (event.type === 'error') {
-              callbacks.onError(event.message);
+              callbacks.onError(event.message, event.code);
             }
           } catch {
             // ignore malformed SSE lines

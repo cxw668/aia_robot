@@ -55,6 +55,8 @@ class Settings:
         self.redis_db: int = _to_int(EnvLoader.get("REDIS_DB", "6"), 6)
         self.redis_password: str | None = _to_optional_str(EnvLoader.get("REDIS_PASSWORD", None))
         self.redis_max_connections: int = _to_int(EnvLoader.get("REDIS_MAX_CONNECTIONS", "20"), 20)
+        self.chat_cache_enabled: bool = _to_bool(EnvLoader.get("CHAT_CACHE_ENABLED", "true"), True)
+        self.chat_cache_ttl_seconds: int = _to_int(EnvLoader.get("CHAT_CACHE_TTL_SECONDS", "300"), 300)
 
         # ── LLM ───────────────────────────────────────────────────────────────
         self.llm_chat_api_key: str = EnvLoader.get("LLM_CHAT_API_KEY", "") or ""
