@@ -1,7 +1,5 @@
 """Knowledge base router — multi-collection architecture.
 
-Each collection_name is an independent knowledge base category.
-
 Endpoints
 ---------
 POST   /kb/ingest                submit ingest job (dir | url)
@@ -15,21 +13,35 @@ GET    /health                   Qdrant status
 """
 from __future__ import annotations
 
+import asyncio
+import os
+import tempfile
 import time
 import uuid
-from collections import OrderedDict
+from datetime import datetime
 from threading import Thread
 
-from fastapi import APIRouter, HTTPException, UploadFile, File, Query
+import requests
+from fastapi import APIRouter, File, HTTPException, Query, UploadFile, Depends
 from pydantic import BaseModel, Field
 from qdrant_client import models
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.database import JobStatus, get_db
 from app.knowledge_base.config import DEFAULT_COLLECTION
 from app.knowledge_base.core import get_client, get_model
+from app.knowledge_base.ingestion.pipeline import ingest_directory, ingest_file
+from app.knowledge_jobs import (
+    create_ingest_job,
+    list_ingest_jobs,
+    serialize_ingest_job,
+    summarize_job_result,
+    update_ingest_job,
+)
 
 router = APIRouter(tags=["knowledge"])
 
-# ── In-memory job store ───────────────────────────────────────────────────────
+
 class IngestJob(BaseModel):
     job_id: str
     type: str
@@ -37,157 +49,176 @@ class IngestJob(BaseModel):
     collection: str
     status: str
     created_at: str
+    started_at: str | None = None
+    finished_at: str | None = None
     doc_count: int = 0
     # 使用 `schema_` 避免与 BaseModel.schema() 方法冲突，外部仍使用 key `schema`
     schema_: str = Field("", alias="schema")
     skipped: int = 0
     failed_items: int = 0
     error: str | None = None
-    
+
     class Config:
-        # 允许以字段别名（如来自 _jobs dict 的 'schema'）进行填充
         validate_by_name = True
 
-_jobs: OrderedDict[str, dict] = OrderedDict()
 
-def _add_job(job_type: str, source: str, collection: str) -> str:
-    jid = str(uuid.uuid4())[:8]
-    _jobs[jid] = {
-        "job_id": jid, "type": job_type, "source": source,
-        "collection": collection, "status": "pending", "doc_count": 0,
-        "schema": "", "skipped": 0, "failed_items": 0,
-        "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "error": None,
-    }
-    if len(_jobs) > 200:
-        _jobs.popitem(last=False)
-    return jid
-
-# ── Background workers ────────────────────────────────────────────────────────
-def _run_dir(jid: str, path: str, collection: str) -> None:
-    _jobs[jid]["status"] = "running"
+def _run_job(job_id: str, work) -> None:
+    asyncio.run(
+        update_ingest_job(
+            job_id,
+            status=JobStatus.RUNNING,
+            started_at=datetime.utcnow(),
+            error=None,
+        )
+    )
     try:
-        from app.knowledge_base.ingestion.pipeline import ingest_directory
-        results = ingest_directory(path, collection_name=collection)
-        total = sum(r.get("doc_count", 0) for r in results)
-        _jobs[jid]["status"] = "done"
-        _jobs[jid]["doc_count"] = total
+        result = work()
+        summary = summarize_job_result(result)
+        asyncio.run(
+            update_ingest_job(
+                job_id,
+                status=JobStatus.DONE,
+                doc_count=summary["doc_count"],
+                schema_name=summary["schema_name"],
+                skipped_count=summary["skipped_count"],
+                failed_items=summary["failed_items"],
+                error=summary["error"],
+                finished_at=datetime.utcnow(),
+            )
+        )
     except Exception as exc:
-        _jobs[jid]["status"] = "failed"
-        _jobs[jid]["error"] = str(exc)
+        asyncio.run(
+            update_ingest_job(
+                job_id,
+                status=JobStatus.FAILED,
+                error=str(exc),
+                finished_at=datetime.utcnow(),
+            )
+        )
 
-def _run_file(jid: str, tmp_path: str, filename: str, collection: str) -> None:
-    import os
-    _jobs[jid]["status"] = "running"
+
+def _run_dir(job_id: str, path: str, collection: str) -> None:
+    _run_job(job_id, lambda: ingest_directory(path, collection_name=collection))
+
+
+def _run_file(job_id: str, tmp_path: str, collection: str) -> None:
     try:
-        from app.knowledge_base.ingestion.pipeline import ingest_file
-        r = ingest_file(tmp_path, collection_name=collection)
-        _jobs[jid]["status"] = "done"
-        _jobs[jid]["doc_count"] = r.get("doc_count", 0)
-    except Exception as exc:
-        _jobs[jid]["status"] = "failed"
-        _jobs[jid]["error"] = str(exc)
+        _run_job(job_id, lambda: ingest_file(tmp_path, collection_name=collection))
     finally:
         try:
             os.unlink(tmp_path)
-        except Exception:
+        except OSError:
             pass
 
-def _run_url(jid: str, url: str, collection: str) -> None:
-    import tempfile, os, requests
-    _jobs[jid]["status"] = "running"
-    tmp = ""
+
+def _run_url(job_id: str, url: str, collection: str) -> None:
+    tmp_path = ""
     try:
-        resp = requests.get(url, timeout=60)
-        resp.raise_for_status()
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as f:
-            f.write(resp.content)
-            tmp = f.name
-        from app.knowledge_base.ingestion.pipeline import ingest_file
-        r = ingest_file(tmp, collection_name=collection)
-        _jobs[jid]["status"] = "done"
-        _jobs[jid]["doc_count"] = r.get("doc_count", 0)
-        _jobs[jid]["schema"] = r.get("schema", "")
-    except Exception as exc:
-        _jobs[jid]["status"] = "failed"
-        _jobs[jid]["error"] = str(exc)
+        response = requests.get(url, timeout=60)
+        response.raise_for_status()
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as handle:
+            handle.write(response.content)
+            tmp_path = handle.name
+        _run_job(job_id, lambda: ingest_file(tmp_path, collection_name=collection))
     finally:
-        if tmp:
+        if tmp_path:
             try:
-                os.unlink(tmp)
-            except Exception:
+                os.unlink(tmp_path)
+            except OSError:
                 pass
 
 
-def _run_forms_pdf(jid: str, json_path: str) -> None:
-    """Background worker: ingest a local forms JSON file via PDF pipeline."""
-    _jobs[jid]["status"] = "running"
-    try:
-        from app.knowledge_base.ingestion.pipeline import ingest_file
-        r = ingest_file(json_path)
-        _jobs[jid]["status"] = "done"
-        _jobs[jid]["doc_count"] = r.get("doc_count", 0)
-        _jobs[jid]["schema"] = r.get("schema", "forms_pdf")
-        _jobs[jid]["skipped"] = r.get("skipped", 0)
-        _jobs[jid]["failed_items"] = r.get("failed", 0)
-    except Exception as exc:
-        _jobs[jid]["status"] = "failed"
-        _jobs[jid]["error"] = str(exc)
+def _run_forms_pdf(job_id: str, json_path: str, collection: str) -> None:
+    _run_job(job_id, lambda: ingest_file(json_path, collection_name=collection))
 
 
-# ── Request models ────────────────────────────────────────────────────────────
 class IngestRequest(BaseModel):
     type: str
     path: str | None = None
     url: str | None = None
     collection: str = DEFAULT_COLLECTION
 
-# ── Routes ───────────────────────────────────────────────────────────────────
+
 @router.post("/kb/ingest", status_code=202)
-async def ingest(req: IngestRequest) -> dict:
-    jid: str = ""
+async def ingest(req: IngestRequest, db: AsyncSession = Depends(get_db)) -> dict:
+    job_id = str(uuid.uuid4())[:8]
+    worker: Thread | None = None
+
     if req.type == "dir":
         if not req.path:
             raise HTTPException(400, "path required")
-        jid = _add_job("dir", req.path, req.collection)
-        Thread(target=_run_dir, args=(jid, req.path, req.collection), daemon=True).start()
+        await create_ingest_job(
+            db,
+            job_id=job_id,
+            job_type="dir",
+            source=req.path,
+            collection_name=req.collection,
+        )
+        worker = Thread(target=_run_dir, args=(job_id, req.path, req.collection), daemon=True)
     elif req.type == "url":
         if not req.url:
             raise HTTPException(400, "url required")
-        jid = _add_job("url", req.url, req.collection)
-        Thread(target=_run_url, args=(jid, req.url, req.collection), daemon=True).start()
+        await create_ingest_job(
+            db,
+            job_id=job_id,
+            job_type="url",
+            source=req.url,
+            collection_name=req.collection,
+        )
+        worker = Thread(target=_run_url, args=(job_id, req.url, req.collection), daemon=True)
     elif req.type == "forms_pdf":
-        # Ingest a local forms JSON file (items with full_url → PDF download pipeline)
         if not req.path:
             raise HTTPException(400, "path required for forms_pdf type")
-        jid = _add_job("forms_pdf", req.path, req.collection)
-        Thread(target=_run_forms_pdf, args=(jid, req.path), daemon=True).start()
+        await create_ingest_job(
+            db,
+            job_id=job_id,
+            job_type="forms_pdf",
+            source=req.path,
+            collection_name=req.collection,
+        )
+        worker = Thread(target=_run_forms_pdf, args=(job_id, req.path, req.collection), daemon=True)
     else:
         raise HTTPException(400, f"unknown type: {req.type!r}  (supported: dir, url, forms_pdf)")
-    return {"job_id": jid, "collection": req.collection}
+
+    await db.commit()
+    worker.start()
+    return {"job_id": job_id, "collection": req.collection}
+
 
 @router.post("/kb/upload", status_code=202)
 async def upload_file(
     file: UploadFile = File(...),
     collection: str = Query(DEFAULT_COLLECTION, description="Target collection (category) name"),
+    db: AsyncSession = Depends(get_db),
 ) -> dict:
     """Upload a JSON file and ingest it into the specified collection."""
-    import tempfile, os
     if not file.filename or not file.filename.endswith(".json"):
         raise HTTPException(400, "Only .json files are supported")
+
     contents = await file.read()
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as f:
-        f.write(contents)
-        tmp = f.name
-    jid = _add_job("file", file.filename, collection)
-    Thread(target=_run_file, args=(jid, tmp, file.filename, collection), daemon=True).start()
-    return {"job_id": jid, "collection": collection}
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as handle:
+        handle.write(contents)
+        tmp_path = handle.name
+
+    job_id = str(uuid.uuid4())[:8]
+    await create_ingest_job(
+        db,
+        job_id=job_id,
+        job_type="file",
+        source=file.filename,
+        collection_name=collection,
+    )
+    await db.commit()
+    Thread(target=_run_file, args=(job_id, tmp_path, collection), daemon=True).start()
+    return {"job_id": job_id, "collection": collection}
+
 
 @router.get("/kb/jobs", response_model=list[IngestJob])
-async def list_jobs() -> list[dict]:
-    return list(reversed(list(_jobs.values())))
+async def list_jobs(db: AsyncSession = Depends(get_db)) -> list[dict]:
+    jobs = await list_ingest_jobs(db)
+    return [serialize_ingest_job(job) for job in jobs]
 
-# ── Collections (category) management ────────────────────────────────────────
+
 @router.get("/kb/collections")
 async def list_collections() -> dict:
     """List all Qdrant collections with their document counts."""
@@ -195,15 +226,16 @@ async def list_collections() -> dict:
     try:
         cols = client.get_collections().collections
         result = []
-        for c in cols:
+        for collection in cols:
             try:
-                info = client.get_collection(c.name)
-                result.append({"name": c.name, "doc_count": info.points_count or 0})
+                info = client.get_collection(collection.name)
+                result.append({"name": collection.name, "doc_count": info.points_count or 0})
             except Exception:
-                result.append({"name": c.name, "doc_count": 0})
+                result.append({"name": collection.name, "doc_count": 0})
         return {"collections": result}
     except Exception as exc:
         raise HTTPException(500, str(exc))
+
 
 @router.delete("/kb/collections/{collection_name}")
 async def delete_collection(collection_name: str) -> dict:
@@ -215,7 +247,7 @@ async def delete_collection(collection_name: str) -> dict:
         raise HTTPException(500, str(exc))
     return {"deleted": collection_name}
 
-# ── Docs within a collection ──────────────────────────────────────────────────
+
 @router.get("/kb/docs")
 async def list_docs(
     collection: str = Query(DEFAULT_COLLECTION, description="Collection (category) name"),
@@ -225,8 +257,7 @@ async def list_docs(
 ) -> dict:
     """List or search documents in a specific collection."""
     client = get_client()
-    # Check collection exists
-    existing = [c.name for c in client.get_collections().collections]
+    existing = [item.name for item in client.get_collections().collections]
     if collection not in existing:
         return {"total": 0, "offset": offset, "limit": limit, "docs": [], "collection": collection}
     try:
@@ -239,7 +270,7 @@ async def list_docs(
                 limit=1000,
                 with_payload=True,
             ).points
-            all_docs = [{"id": str(h.id), "score": round(h.score, 4), **h.payload} for h in hits]
+            all_docs = [{"id": str(hit.id), "score": round(hit.score, 4), **hit.payload} for hit in hits]
         else:
             result, _ = client.scroll(
                 collection_name=collection,
@@ -248,12 +279,13 @@ async def list_docs(
                 with_payload=True,
                 with_vectors=False,
             )
-            all_docs = [{"id": str(p.id), "score": None, **p.payload} for p in result]
+            all_docs = [{"id": str(point.id), "score": None, **point.payload} for point in result]
         total = len(all_docs)
         docs = all_docs[offset: offset + limit]
     except Exception as exc:
         raise HTTPException(500, str(exc))
     return {"total": total, "offset": offset, "limit": limit, "docs": docs, "collection": collection}
+
 
 @router.delete("/kb/docs/{doc_id}")
 async def delete_doc(
@@ -270,6 +302,7 @@ async def delete_doc(
         raise HTTPException(500, str(exc))
     return {"deleted": doc_id, "collection": collection}
 
+
 @router.get("/health")
 async def health(
     collection: str = Query(DEFAULT_COLLECTION, description="Collection name"),
@@ -283,6 +316,8 @@ async def health(
         doc_count = 0
         status = f"error: {exc}"
     return {
-        "status": status, "doc_count": doc_count, "collection": collection,
+        "status": status,
+        "doc_count": doc_count,
+        "collection": collection,
         "last_updated": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }

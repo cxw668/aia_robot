@@ -13,6 +13,9 @@ const zh = {
   registerSuccess: '注册成功',
   loginError: '用户名或密码错误',
   passwordMismatch: '两次密码不一致',
+  passwordTooShort: '密码至少需要 8 位',
+  passwordNeedLetter: '密码至少需要包含一个字母',
+  passwordNeedNumber: '密码至少需要包含一个数字',
   fieldRequired: '此项为必填',
   logout: '退出登录',
 

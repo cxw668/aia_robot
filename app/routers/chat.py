@@ -29,11 +29,18 @@ from app.chat.index import chat_completion, chat_completion_stream
 from app.config import settings
 from app.database import ChatMessage, ChatSession, MessageRole, User, get_db
 from app.knowledge_base.retrieval.engine import retrieve
+from app.rate_limit import build_rate_limit_dependency
 from app.request_context import get_request_id
 from app.routers.auth import get_current_user
 
 router = APIRouter(prefix="/chat", tags=["chat"])
 logger = logging.getLogger(__name__)
+chat_rate_limit = build_rate_limit_dependency(
+    scope="chat",
+    limit=settings.chat_rate_limit_count,
+    window_seconds=settings.chat_rate_limit_window_seconds,
+    message="Too many chat requests. Please slow down and try again shortly.",
+)
 
 # ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -373,6 +380,7 @@ async def chat(
     req: ChatRequest,
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
+    _: None = Depends(chat_rate_limit),
 ) -> ChatResponse:
     """Multi-turn RAG chat with DB persistence (non-streaming)."""
     started_at = time.perf_counter()
@@ -428,6 +436,7 @@ async def chat_stream(
     req: ChatRequest,
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user),
+    _: None = Depends(chat_rate_limit),
 ) -> StreamingResponse:
     """Multi-turn RAG chat with SSE streaming response.
 

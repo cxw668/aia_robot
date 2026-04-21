@@ -18,6 +18,8 @@ from sqlalchemy import (
     String,
     Text,
     func,
+    inspect,
+    text,
 )
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
@@ -152,8 +154,12 @@ class KnowledgeIngestJob(Base):
     id: Mapped[str] = mapped_column(String(36), primary_key=True)
     job_type: Mapped[str] = mapped_column(String(32), index=True)
     source: Mapped[str] = mapped_column(String(500))
+    collection_name: Mapped[str] = mapped_column(String(255), default="aia_knowledge_base")
     status: Mapped[JobStatus] = mapped_column(Enum(JobStatus), default=JobStatus.PENDING, index=True)
+    schema_name: Mapped[str | None] = mapped_column(String(64), nullable=True)
     doc_count: Mapped[int] = mapped_column(Integer, default=0)
+    skipped_count: Mapped[int] = mapped_column(Integer, default=0)
+    failed_items: Mapped[int] = mapped_column(Integer, default=0)
     error: Mapped[str | None] = mapped_column(Text, nullable=True)
     requested_by: Mapped[int | None] = mapped_column(ForeignKey("users.id"), index=True, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, server_default=func.now())
@@ -178,3 +184,36 @@ async def get_db() -> AsyncSession:  # type: ignore[return]
 async def init_db() -> None:
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+        await conn.run_sync(_ensure_knowledge_ingest_job_columns)
+
+
+def _ensure_knowledge_ingest_job_columns(sync_conn) -> None:
+    inspector = inspect(sync_conn)
+    if "knowledge_ingest_jobs" not in inspector.get_table_names():
+        return
+
+    columns = {column["name"] for column in inspector.get_columns("knowledge_ingest_jobs")}
+    statements: list[str] = []
+    if "collection_name" not in columns:
+        statements.append(
+            "ALTER TABLE knowledge_ingest_jobs "
+            "ADD COLUMN collection_name VARCHAR(255) NOT NULL DEFAULT 'aia_knowledge_base'"
+        )
+    if "schema_name" not in columns:
+        statements.append(
+            "ALTER TABLE knowledge_ingest_jobs "
+            "ADD COLUMN schema_name VARCHAR(64) NULL"
+        )
+    if "skipped_count" not in columns:
+        statements.append(
+            "ALTER TABLE knowledge_ingest_jobs "
+            "ADD COLUMN skipped_count INTEGER NOT NULL DEFAULT 0"
+        )
+    if "failed_items" not in columns:
+        statements.append(
+            "ALTER TABLE knowledge_ingest_jobs "
+            "ADD COLUMN failed_items INTEGER NOT NULL DEFAULT 0"
+        )
+
+    for statement in statements:
+        sync_conn.execute(text(statement))

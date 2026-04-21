@@ -2,12 +2,17 @@ import client from './client';
 
 export interface IngestJob {
   job_id: string;
-  type: 'dir' | 'url' | 'file';
+  type: 'dir' | 'url' | 'file' | 'forms_pdf';
   source: string;
   collection: string;
   status: 'pending' | 'running' | 'done' | 'failed';
   created_at: string;
+  started_at?: string | null;
+  finished_at?: string | null;
   doc_count: number;
+  schema?: string;
+  skipped?: number;
+  failed_items?: number;
   error?: string;
 }
 

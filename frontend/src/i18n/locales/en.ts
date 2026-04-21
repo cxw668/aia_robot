@@ -13,6 +13,9 @@ const en = {
   registerSuccess: 'Account created successfully',
   loginError: 'Invalid username or password',
   passwordMismatch: 'Passwords do not match',
+  passwordTooShort: 'Password must be at least 8 characters long',
+  passwordNeedLetter: 'Password must include at least one letter',
+  passwordNeedNumber: 'Password must include at least one number',
   fieldRequired: 'This field is required',
   logout: 'Sign Out',
 

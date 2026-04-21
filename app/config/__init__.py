@@ -57,6 +57,10 @@ class Settings:
         self.redis_max_connections: int = _to_int(EnvLoader.get("REDIS_MAX_CONNECTIONS", "20"), 20)
         self.chat_cache_enabled: bool = _to_bool(EnvLoader.get("CHAT_CACHE_ENABLED", "true"), True)
         self.chat_cache_ttl_seconds: int = _to_int(EnvLoader.get("CHAT_CACHE_TTL_SECONDS", "300"), 300)
+        self.auth_rate_limit_count: int = _to_int(EnvLoader.get("AUTH_RATE_LIMIT_COUNT", "10"), 10)
+        self.auth_rate_limit_window_seconds: int = _to_int(EnvLoader.get("AUTH_RATE_LIMIT_WINDOW_SECONDS", "60"), 60)
+        self.chat_rate_limit_count: int = _to_int(EnvLoader.get("CHAT_RATE_LIMIT_COUNT", "30"), 30)
+        self.chat_rate_limit_window_seconds: int = _to_int(EnvLoader.get("CHAT_RATE_LIMIT_WINDOW_SECONDS", "60"), 60)
 
         # ── LLM ───────────────────────────────────────────────────────────────
         self.llm_chat_api_key: str = EnvLoader.get("LLM_CHAT_API_KEY", "") or ""

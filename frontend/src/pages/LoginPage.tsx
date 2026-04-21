@@ -39,10 +39,21 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const validateRegisterPassword = (value: string) => {
+    if (value.length < 8) return t('passwordTooShort');
+    if (!/[A-Za-z]/.test(value)) return t('passwordNeedLetter');
+    if (!/\d/.test(value)) return t('passwordNeedNumber');
+    return '';
+  };
+
   const validate = () => {
     const e: Record<string, string> = {};
     if (!username.trim()) e.username = t('fieldRequired');
     if (!password.trim()) e.password = t('fieldRequired');
+    if (tab === 1 && password.trim()) {
+      const passwordError = validateRegisterPassword(password);
+      if (passwordError) e.password = passwordError;
+    }
     if (tab === 1 && password !== confirmPwd) e.confirmPwd = t('passwordMismatch');
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -59,8 +70,9 @@ export default function LoginPage() {
       setUser({ username: data.username, token: data.token });
       enqueueSnackbar(tab === 0 ? t('loginSuccess') : t('registerSuccess'), { variant: 'success' });
       setTimeout(() => navigate('/chat'), 800);
-    } catch {
-      enqueueSnackbar(t('loginError'), { variant: 'error' });
+    } catch (error: unknown) {
+      const message = error instanceof Error && error.message ? error.message : t('loginError');
+      enqueueSnackbar(message, { variant: 'error' });
     } finally {
       setLoading(false);
     }

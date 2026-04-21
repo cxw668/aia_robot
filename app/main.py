@@ -19,6 +19,7 @@ from app.errors import (
     unhandled_exception_handler,
     validation_exception_handler,
 )
+from app.knowledge_jobs import recover_interrupted_ingest_jobs
 from app.request_context import reset_request_id, set_request_id
 from app.routers.auth import router as auth_router
 from app.routers.chat import router as chat_router
@@ -40,6 +41,12 @@ async def lifespan(application: FastAPI) -> AsyncGenerator[None, None]:
         print("[startup] MySQL tables initialised.")
     except Exception as exc:
         print(f"[startup] MySQL init warning: {exc}")
+
+    try:
+        recovered_jobs = await recover_interrupted_ingest_jobs()
+        print(f"[startup] Recovered interrupted ingest jobs: {recovered_jobs}")
+    except Exception as exc:
+        print(f"[startup] Ingest job recovery warning: {exc}")
 
     redis_ok = await ping_redis()
     print(f"[startup] Redis ping: {'OK' if redis_ok else 'FAILED — running without cache'}")
