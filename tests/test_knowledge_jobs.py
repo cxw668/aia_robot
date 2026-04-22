@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import os
+import tempfile
 import unittest
 from datetime import datetime
 
 from app.database import JobStatus, KnowledgeIngestJob
-from app.knowledge_jobs import serialize_ingest_job, summarize_job_result
+from app.knowledge_jobs import can_retry_ingest_job, serialize_ingest_job, summarize_job_result
 
 
 class KnowledgeJobTests(unittest.TestCase):
@@ -63,3 +65,30 @@ class KnowledgeJobTests(unittest.TestCase):
         self.assertEqual(payload["doc_count"], 4)
         self.assertEqual(payload["skipped"], 1)
         self.assertEqual(payload["failed_items"], 0)
+
+    def test_can_retry_failed_url_job(self) -> None:
+        job = KnowledgeIngestJob(
+            id="job-002",
+            job_type="url",
+            source="https://example.com/data.json",
+            collection_name="aia_knowledge_base",
+            status=JobStatus.FAILED,
+        )
+
+        can_retry, message = can_retry_ingest_job(job)
+        self.assertTrue(can_retry)
+        self.assertIsNone(message)
+
+    def test_cannot_retry_file_job_when_uploaded_source_is_missing(self) -> None:
+        missing_path = os.path.join(tempfile.gettempdir(), "missing-upload.json")
+        job = KnowledgeIngestJob(
+            id="job-003",
+            job_type="file",
+            source=missing_path,
+            collection_name="aia_knowledge_base",
+            status=JobStatus.FAILED,
+        )
+
+        can_retry, message = can_retry_ingest_job(job)
+        self.assertFalse(can_retry)
+        self.assertEqual(message, "Uploaded file is no longer available for retry")

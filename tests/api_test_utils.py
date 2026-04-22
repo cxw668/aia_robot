@@ -117,6 +117,8 @@ def create_test_client(
         stack.enter_context(
             patch.object(main_module, "recover_interrupted_ingest_jobs", new=AsyncMock(return_value=0))
         )
+        stack.enter_context(patch.object(main_module, "start_ingest_worker", new=AsyncMock(return_value=None)))
+        stack.enter_context(patch.object(main_module, "stop_ingest_worker", new=AsyncMock(return_value=None)))
         stack.enter_context(patch.object(main_module, "ping_redis", new=AsyncMock(return_value=True)))
         stack.enter_context(patch.object(auth_router, "_get_user_by_username", new=fake_get_user_by_username))
         stack.enter_context(patch.object(auth_router, "_get_user_by_id", new=fake_get_user_by_id))

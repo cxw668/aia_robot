@@ -13,16 +13,12 @@ GET    /health                   Qdrant status
 """
 from __future__ import annotations
 
-import asyncio
 import os
 import tempfile
 import time
 import uuid
-from datetime import datetime
-from threading import Thread
 
-import requests
-from fastapi import APIRouter, File, HTTPException, Query, UploadFile, Depends
+from fastapi import APIRouter, Depends, File, HTTPException, Query, UploadFile
 from pydantic import BaseModel, Field
 from qdrant_client import models
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -30,13 +26,14 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import JobStatus, get_db
 from app.knowledge_base.config import DEFAULT_COLLECTION
 from app.knowledge_base.core import get_client, get_model
-from app.knowledge_base.ingestion.pipeline import ingest_directory, ingest_file
 from app.knowledge_jobs import (
+    can_retry_ingest_job,
     create_ingest_job,
+    get_ingest_job,
     list_ingest_jobs,
+    notify_ingest_worker,
+    requeue_ingest_job,
     serialize_ingest_job,
-    summarize_job_result,
-    update_ingest_job,
 )
 
 router = APIRouter(tags=["knowledge"])
@@ -61,77 +58,6 @@ class IngestJob(BaseModel):
     class Config:
         validate_by_name = True
 
-
-def _run_job(job_id: str, work) -> None:
-    asyncio.run(
-        update_ingest_job(
-            job_id,
-            status=JobStatus.RUNNING,
-            started_at=datetime.utcnow(),
-            error=None,
-        )
-    )
-    try:
-        result = work()
-        summary = summarize_job_result(result)
-        asyncio.run(
-            update_ingest_job(
-                job_id,
-                status=JobStatus.DONE,
-                doc_count=summary["doc_count"],
-                schema_name=summary["schema_name"],
-                skipped_count=summary["skipped_count"],
-                failed_items=summary["failed_items"],
-                error=summary["error"],
-                finished_at=datetime.utcnow(),
-            )
-        )
-    except Exception as exc:
-        asyncio.run(
-            update_ingest_job(
-                job_id,
-                status=JobStatus.FAILED,
-                error=str(exc),
-                finished_at=datetime.utcnow(),
-            )
-        )
-
-
-def _run_dir(job_id: str, path: str, collection: str) -> None:
-    _run_job(job_id, lambda: ingest_directory(path, collection_name=collection))
-
-
-def _run_file(job_id: str, tmp_path: str, collection: str) -> None:
-    try:
-        _run_job(job_id, lambda: ingest_file(tmp_path, collection_name=collection))
-    finally:
-        try:
-            os.unlink(tmp_path)
-        except OSError:
-            pass
-
-
-def _run_url(job_id: str, url: str, collection: str) -> None:
-    tmp_path = ""
-    try:
-        response = requests.get(url, timeout=60)
-        response.raise_for_status()
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as handle:
-            handle.write(response.content)
-            tmp_path = handle.name
-        _run_job(job_id, lambda: ingest_file(tmp_path, collection_name=collection))
-    finally:
-        if tmp_path:
-            try:
-                os.unlink(tmp_path)
-            except OSError:
-                pass
-
-
-def _run_forms_pdf(job_id: str, json_path: str, collection: str) -> None:
-    _run_job(job_id, lambda: ingest_file(json_path, collection_name=collection))
-
-
 class IngestRequest(BaseModel):
     type: str
     path: str | None = None
@@ -139,10 +65,22 @@ class IngestRequest(BaseModel):
     collection: str = DEFAULT_COLLECTION
 
 
+def _save_uploaded_file(file: UploadFile, contents: bytes) -> str:
+    upload_dir = os.path.join(tempfile.gettempdir(), "aia_robot_ingest")
+    os.makedirs(upload_dir, exist_ok=True)
+    safe_name = os.path.basename(file.filename or "upload.json")
+    suffix = os.path.splitext(safe_name)[1] or ".json"
+    tmp_path = os.path.join(upload_dir, f"{uuid.uuid4().hex[:8]}_{safe_name}")
+    if not tmp_path.endswith(suffix):
+        tmp_path = f"{tmp_path}{suffix}"
+    with open(tmp_path, "wb") as handle:
+        handle.write(contents)
+    return tmp_path
+
+
 @router.post("/kb/ingest", status_code=202)
 async def ingest(req: IngestRequest, db: AsyncSession = Depends(get_db)) -> dict:
     job_id = str(uuid.uuid4())[:8]
-    worker: Thread | None = None
 
     if req.type == "dir":
         if not req.path:
@@ -154,7 +92,6 @@ async def ingest(req: IngestRequest, db: AsyncSession = Depends(get_db)) -> dict
             source=req.path,
             collection_name=req.collection,
         )
-        worker = Thread(target=_run_dir, args=(job_id, req.path, req.collection), daemon=True)
     elif req.type == "url":
         if not req.url:
             raise HTTPException(400, "url required")
@@ -165,7 +102,6 @@ async def ingest(req: IngestRequest, db: AsyncSession = Depends(get_db)) -> dict
             source=req.url,
             collection_name=req.collection,
         )
-        worker = Thread(target=_run_url, args=(job_id, req.url, req.collection), daemon=True)
     elif req.type == "forms_pdf":
         if not req.path:
             raise HTTPException(400, "path required for forms_pdf type")
@@ -176,12 +112,11 @@ async def ingest(req: IngestRequest, db: AsyncSession = Depends(get_db)) -> dict
             source=req.path,
             collection_name=req.collection,
         )
-        worker = Thread(target=_run_forms_pdf, args=(job_id, req.path, req.collection), daemon=True)
     else:
         raise HTTPException(400, f"unknown type: {req.type!r}  (supported: dir, url, forms_pdf)")
 
     await db.commit()
-    worker.start()
+    notify_ingest_worker()
     return {"job_id": job_id, "collection": req.collection}
 
 
@@ -196,20 +131,18 @@ async def upload_file(
         raise HTTPException(400, "Only .json files are supported")
 
     contents = await file.read()
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as handle:
-        handle.write(contents)
-        tmp_path = handle.name
+    tmp_path = _save_uploaded_file(file, contents)
 
     job_id = str(uuid.uuid4())[:8]
     await create_ingest_job(
         db,
         job_id=job_id,
         job_type="file",
-        source=file.filename,
+        source=tmp_path,
         collection_name=collection,
     )
     await db.commit()
-    Thread(target=_run_file, args=(job_id, tmp_path, collection), daemon=True).start()
+    notify_ingest_worker()
     return {"job_id": job_id, "collection": collection}
 
 
@@ -217,6 +150,24 @@ async def upload_file(
 async def list_jobs(db: AsyncSession = Depends(get_db)) -> list[dict]:
     jobs = await list_ingest_jobs(db)
     return [serialize_ingest_job(job) for job in jobs]
+
+
+@router.post("/kb/jobs/{job_id}/retry", status_code=202)
+async def retry_job(job_id: str, db: AsyncSession = Depends(get_db)) -> dict:
+    job = await get_ingest_job(db, job_id)
+    if not job:
+        raise HTTPException(404, "Job not found")
+
+    can_retry, message = can_retry_ingest_job(job)
+    if not can_retry:
+        raise HTTPException(409, message or "Job cannot be retried")
+
+    requeued = await requeue_ingest_job(job_id)
+    if not requeued:
+        raise HTTPException(409, "Job cannot be retried")
+
+    notify_ingest_worker()
+    return {"job_id": job_id, "status": JobStatus.PENDING.value}
 
 
 @router.get("/kb/collections")

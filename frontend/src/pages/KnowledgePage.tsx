@@ -5,10 +5,10 @@ import {
   DialogTitle, DialogActions, InputAdornment, useTheme,
   Table, TableBody, TableCell, TableHead, TableRow,
 } from '@mui/material';
-import { Refresh, FolderOpen, Link as LinkIcon, Upload, Search, Delete, Inventory2 } from '@mui/icons-material';
+import { Refresh, FolderOpen, Link as LinkIcon, Upload, Search, Delete, Inventory2, Replay } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import {
-  ingestDir, ingestUrl, uploadFile, getJobs, getDocs, getCollections,
+  ingestDir, ingestUrl, uploadFile, getJobs, getDocs, getCollections, retryIngestJob,
   deleteDoc, deleteCollection, getHealth,
   type IngestJob, type KbDoc, type KbCollection,
 } from '../api/knowledge';
@@ -111,6 +111,13 @@ export default function KnowledgePage() {
       await fetchCollections();
     } catch { toast(t('ingestError'), 'error'); }
     setDeleteColTarget(null);
+  };
+  const handleRetryJob = async (jobId: string) => {
+    try {
+      await retryIngestJob(jobId);
+      toast(t('retryJobSuccess'));
+      fetchJobs();
+    } catch { toast(t('retryJobError'), 'error'); }
   };
 
   const hasMore = docs.length < total;
@@ -282,6 +289,7 @@ export default function KnowledgePage() {
                   <TableCell>{t('status')}</TableCell>
                   <TableCell>Docs</TableCell>
                   <TableCell>{t('createdAt')}</TableCell>
+                  <TableCell>{t('actions')}</TableCell>
                 </TableRow></TableHead>
                 <TableBody>{jobs.map(j => (
                   <TableRow key={j.job_id} sx={{ '&:last-child td': { border: 0 }, '&:hover': { bgcolor: isDark ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.01)' } }}>
@@ -292,6 +300,15 @@ export default function KnowledgePage() {
                     <TableCell><StatusChip status={j.status} /></TableCell>
                     <TableCell sx={{ fontSize: '0.8rem' }}>{j.doc_count}</TableCell>
                     <TableCell sx={{ fontSize: '0.78rem', color: 'text.secondary' }}>{new Date(j.created_at).toLocaleString()}</TableCell>
+                    <TableCell>
+                      {j.status === 'failed' && (
+                        <Tooltip title={t('retryJob')}>
+                          <IconButton size="small" onClick={() => handleRetryJob(j.job_id)}>
+                            <Replay fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
+                      )}
+                    </TableCell>
                   </TableRow>
                 ))}</TableBody>
               </Table></Box>

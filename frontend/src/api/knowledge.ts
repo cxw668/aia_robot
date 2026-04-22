@@ -73,6 +73,11 @@ export async function getJobs(): Promise<IngestJob[]> {
   return res.data;
 }
 
+export async function retryIngestJob(jobId: string): Promise<{ job_id: string; status: IngestJob['status'] }> {
+  const res = await client.post<{ job_id: string; status: IngestJob['status'] }>(`/kb/jobs/${encodeURIComponent(jobId)}/retry`);
+  return res.data;
+}
+
 export async function getCollections(): Promise<KbCollection[]> {
   const res = await client.get<{ collections: KbCollection[] }>('/kb/collections');
   return res.data.collections;

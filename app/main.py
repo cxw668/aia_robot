@@ -19,7 +19,11 @@ from app.errors import (
     unhandled_exception_handler,
     validation_exception_handler,
 )
-from app.knowledge_jobs import recover_interrupted_ingest_jobs
+from app.knowledge_jobs import (
+    recover_interrupted_ingest_jobs,
+    start_ingest_worker,
+    stop_ingest_worker,
+)
 from app.request_context import reset_request_id, set_request_id
 from app.routers.auth import router as auth_router
 from app.routers.chat import router as chat_router
@@ -48,12 +52,22 @@ async def lifespan(application: FastAPI) -> AsyncGenerator[None, None]:
     except Exception as exc:
         print(f"[startup] Ingest job recovery warning: {exc}")
 
+    try:
+        await start_ingest_worker()
+        print("[startup] Ingest worker started.")
+    except Exception as exc:
+        print(f"[startup] Ingest worker warning: {exc}")
+
     redis_ok = await ping_redis()
     print(f"[startup] Redis ping: {'OK' if redis_ok else 'FAILED — running without cache'}")
 
     yield
 
     # ── Shutdown (nothing to tear down for now) ───────────────────────────────
+    try:
+        await stop_ingest_worker()
+    except Exception as exc:
+        print(f"[shutdown] Ingest worker warning: {exc}")
 
 
 app = FastAPI(
