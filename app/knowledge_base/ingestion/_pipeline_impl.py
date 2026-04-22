@@ -95,6 +95,60 @@ def _ensure_collection(client: QdrantClient, name: str = COLLECTION_NAME) -> Non
     )
 
 
+def _embedding_chunk_size() -> int:
+    return max(80, settings.embedding_max_input_chars or settings.pdf_chunk_size)
+
+
+def _embedding_chunk_overlap(chunk_size: int) -> int:
+    return min(settings.pdf_chunk_overlap, max(chunk_size // 5, 0))
+
+
+def _split_docs_for_embedding_limit(docs: list[dict]) -> list[dict]:
+    chunk_size = _embedding_chunk_size()
+    overlap = _embedding_chunk_overlap(chunk_size)
+    expanded: list[dict] = []
+
+    for doc in docs:
+        text = str(doc.get("text") or "").strip()
+        payload = dict(doc.get("payload") or {})
+        if not text:
+            continue
+
+        title = str(payload.get("title") or "").strip()
+        content = payload.get("content")
+        if isinstance(content, str) and content.strip():
+            content_chunks = chunk_text(content, chunk_size=chunk_size, overlap=overlap)
+            text_chunks = [
+                f"「{title}」\n{chunk}" if title else chunk
+                for chunk in content_chunks
+            ]
+        else:
+            text_chunks = chunk_text(text, chunk_size=chunk_size, overlap=overlap)
+            content_chunks = text_chunks
+
+        if not text_chunks:
+            continue
+
+        original_chunk_index = payload.get("chunk_index")
+        original_chunk_total = payload.get("chunk_total")
+        split_required = len(text_chunks) > 1 or len(text) > chunk_size
+
+        for index, text_chunk in enumerate(text_chunks):
+            item_payload = dict(payload)
+            item_payload["content"] = content_chunks[index]
+            item_payload["chunk_index"] = index
+            item_payload["chunk_total"] = len(text_chunks)
+            if split_required:
+                item_payload["embedding_chunked"] = True
+                if original_chunk_index is not None:
+                    item_payload["source_chunk_index"] = original_chunk_index
+                if original_chunk_total is not None:
+                    item_payload["source_chunk_total"] = original_chunk_total
+            expanded.append({"text": text_chunk, "payload": item_payload})
+
+    return expanded
+
+
 # ── Schema detection ──────────────────────────────────────────────────────────
 
 def _detect_schema(data: Any) -> str:
@@ -885,6 +939,7 @@ def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, pr
         cat_docs: list[dict] = []
         for cat in data.get("service_categories", []):
             cat_docs.extend(_flatten_service_categories({"service_categories": [cat]}))
+        cat_docs = _split_docs_for_embedding_limit(cat_docs)
         if not cat_docs:
             return {"file": path.name, "schema": schema, "doc_count": 0, "collections": [collection_name]}
 
@@ -928,6 +983,7 @@ def ingest_file(file_path: str, *, collection_name: str = DEFAULT_COLLECTION, pr
 
     # Standard JSON text ingestion
     docs = flatten_json(data, source_file=path.name)
+    docs = _split_docs_for_embedding_limit(docs)
     if not docs:
         return {"file": path.name, "schema": schema, "doc_count": 0}
 

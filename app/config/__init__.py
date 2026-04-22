@@ -108,6 +108,7 @@ class Settings:
         )
         self.embedding_timeout: int = _to_int(EnvLoader.get("EMBEDDING_TIMEOUT", "60"), 60)
         self.embedding_vector_size: int = _to_int(EnvLoader.get("EMBEDDING_VECTOR_SIZE", "1024"), 1024)
+        self.embedding_max_input_chars: int = _to_int(EnvLoader.get("EMBEDDING_MAX_INPUT_CHARS", "380"), 380)
 
         # ── OCR ───────────────────────────────────────────────────────────────
         self.ocr_api_url: str = (

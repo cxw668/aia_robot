@@ -295,7 +295,11 @@ def extract_pdf_text(pdf_bytes: bytes) -> str:
 
 def chunk_markdown(text: str, chunk_size: Optional[int] = None, overlap: Optional[int] = None) -> list[str]:
     size = chunk_size or settings.pdf_chunk_size
+    if settings.embedding_max_input_chars > 0:
+        size = min(size, settings.embedding_max_input_chars)
     ovlp = overlap or settings.pdf_chunk_overlap
+    if ovlp >= size:
+        ovlp = max(size // 5, 0)
     if not text.strip():
         return []
     sections: list[str] = []
