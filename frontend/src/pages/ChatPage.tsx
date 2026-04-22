@@ -24,6 +24,13 @@ function MsgBubble({ msg, convId, isStreamingActive }: { msg: Message; convId: s
   const [citOpen, setCitOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const isDark = theme.palette.mode === 'dark';
+  const structuredAnswer = msg.structuredAnswer;
+  const confidenceLabel =
+    structuredAnswer?.confidence === 'high'
+      ? t('structuredConfidenceHigh')
+      : structuredAnswer?.confidence === 'medium'
+        ? t('structuredConfidenceMedium')
+        : t('structuredConfidenceLow');
 
   const copy = () => {
     navigator.clipboard.writeText(msg.content);
@@ -114,7 +121,89 @@ function MsgBubble({ msg, convId, isStreamingActive }: { msg: Message; convId: s
                 onClick={() => setCitOpen(!citOpen)} variant="outlined"
                 sx={{ ml: 0.5, height: 22, fontSize: '0.7rem' }} />
             )}
+            {structuredAnswer && (
+              <Chip
+                size="small"
+                label={`${t('structuredConfidence')}: ${confidenceLabel}`}
+                variant="outlined"
+                color={structuredAnswer.confidence === 'high' ? 'success' : structuredAnswer.confidence === 'medium' ? 'warning' : 'default'}
+                sx={{ ml: 0.5, height: 22, fontSize: '0.7rem' }}
+              />
+            )}
           </Box>
+        )}
+
+        {structuredAnswer && !isUser && !isStreamingActive && (
+          <Paper
+            elevation={0}
+            sx={{
+              mt: 1,
+              p: 1.5,
+              border: 1,
+              borderColor: 'divider',
+              borderRadius: 2,
+              bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.015)',
+            }}
+          >
+            {structuredAnswer.evidence.length > 0 && (
+              <Box sx={{ mb: structuredAnswer.nextActions.length > 0 || structuredAnswer.riskTips.length > 0 ? 1.25 : 0 }}>
+                <Typography variant="caption" fontWeight={700} color="text.secondary">
+                  {t('structuredEvidence')}
+                </Typography>
+                <Box sx={{ mt: 0.75, display: 'flex', flexDirection: 'column', gap: 0.75 }}>
+                  {structuredAnswer.evidence.map((item, index) => (
+                    <Box key={`${item.title}-${index}`} sx={{ display: 'flex', flexDirection: 'column', gap: 0.3 }}>
+                      <Typography variant="caption" fontWeight={600}>
+                        {item.title}
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary">
+                        {item.snippet}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            )}
+
+            {structuredAnswer.nextActions.length > 0 && (
+              <Box sx={{ mb: structuredAnswer.riskTips.length > 0 ? 1.25 : 0 }}>
+                <Typography variant="caption" fontWeight={700} color="text.secondary">
+                  {t('structuredNextActions')}
+                </Typography>
+                <Box sx={{ mt: 0.75, display: 'flex', gap: 0.75, flexWrap: 'wrap' }}>
+                  {structuredAnswer.nextActions.map((item, index) => (
+                    <Chip
+                      key={`${item.label}-${index}`}
+                      label={item.label}
+                      component={item.url ? 'a' : 'div'}
+                      clickable={!!item.url}
+                      href={item.url || undefined}
+                      target={item.url ? '_blank' : undefined}
+                      rel={item.url ? 'noreferrer' : undefined}
+                      variant="outlined"
+                      color="primary"
+                      sx={{ maxWidth: '100%' }}
+                    />
+                  ))}
+                </Box>
+              </Box>
+            )}
+
+            {structuredAnswer.riskTips.length > 0 && (
+              <Box>
+                <Typography variant="caption" fontWeight={700} color="text.secondary">
+                  {t('structuredRiskTips')}
+                </Typography>
+                <Box component="ul" sx={{ mt: 0.75, mb: 0, pl: 2 }}>
+                  {structuredAnswer.riskTips.map((item, index) => (
+                    <Typography key={`${item}-${index}`} component="li" variant="caption" color="text.secondary" sx={{ mb: 0.35 }}>
+                      {item}
+                    </Typography>
+                  ))}
+                </Box>
+              </Box>
+            )}
+          </Paper>
         )}
 
         {msg.citations && msg.citations.length > 0 && (
@@ -215,6 +304,9 @@ export default function ChatPage() {
           const msg = conv?.messages.find((m) => m.id === assistantMsgId);
           if (!msg) return;
           updateMessage(convId, assistantMsgId, { content: msg.content + chunk });
+        },
+        onStructured: (structuredAnswer) => {
+          updateMessage(convId, assistantMsgId, { structuredAnswer });
         },
         onDone: () => {
           setStreaming(false);

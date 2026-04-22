@@ -26,6 +26,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.cache import get_json as cache_get_json, set_json as cache_set_json
 from app.chat.index import chat_completion, chat_completion_stream
+from app.chat.structured import StructuredAnswer, build_structured_answer
 from app.config import settings
 from app.database import ChatMessage, ChatSession, MessageRole, User, get_db
 from app.knowledge_base.retrieval.engine import retrieve
@@ -93,6 +94,7 @@ class Citation(BaseModel):
 class ChatResponse(BaseModel):
     answer: str
     citations: list[Citation]
+    structured_answer: StructuredAnswer
     session_id: str
 
 
@@ -202,6 +204,10 @@ def _serialize_citations(citations: list[Citation]) -> list[dict]:
     return [citation.model_dump() for citation in citations]
 
 
+def _serialize_structured_answer(structured_answer: StructuredAnswer) -> dict:
+    return structured_answer.model_dump()
+
+
 def _deserialize_citations(payload: object) -> list[Citation]:
     if not isinstance(payload, list):
         return []
@@ -228,6 +234,18 @@ def _build_history_signature(history: list[dict]) -> str:
         json.dumps(normalized, ensure_ascii=False, sort_keys=True).encode("utf-8")
     ).hexdigest()
     return digest[:16]
+
+
+def _build_structured_answer_for_response(
+    answer: str,
+    citations: list[Citation],
+    mode: ChatMode,
+) -> StructuredAnswer:
+    return build_structured_answer(
+        answer,
+        citations,
+        support_mode=mode == ChatMode.SUPPORT,
+    )
 
 
 def _build_chat_cache_key(
@@ -432,7 +450,17 @@ async def chat(
         duration_ms=(time.perf_counter() - started_at) * 1000,
         cache_lookup_ms=prepared_turn.cache_lookup_ms,
     )
-    return ChatResponse(answer=answer, citations=prepared_turn.citations, session_id=session.id)
+    structured_answer = _build_structured_answer_for_response(
+        answer,
+        prepared_turn.citations,
+        req.mode,
+    )
+    return ChatResponse(
+        answer=answer,
+        citations=prepared_turn.citations,
+        structured_answer=structured_answer,
+        session_id=session.id,
+    )
 
 
 # ── Streaming SSE endpoint ────────────────────────────────────────────────────
@@ -487,6 +515,11 @@ async def chat_stream(
             duration_ms=(time.perf_counter() - started_at) * 1000,
             cache_lookup_ms=prepared_turn.cache_lookup_ms,
         )
+        structured_answer = _build_structured_answer_for_response(
+            prepared_turn.cached_answer,
+            prepared_turn.citations,
+            req.mode,
+        )
 
         async def cached_event_generator():
             yield (
@@ -494,6 +527,9 @@ async def chat_stream(
             )
             yield (
                 f"data: {json.dumps({'type': 'delta', 'text': prepared_turn.cached_answer}, ensure_ascii=False)}\n\n"
+            )
+            yield (
+                f"data: {json.dumps({'type': 'structured', 'structured_answer': _serialize_structured_answer(structured_answer)}, ensure_ascii=False)}\n\n"
             )
             yield f"data: {json.dumps({'type': 'done'}, ensure_ascii=False)}\n\n"
 
@@ -526,6 +562,11 @@ async def chat_stream(
             return
 
         answer_text = "".join(full_answer)
+        structured_answer = _build_structured_answer_for_response(
+            answer_text,
+            prepared_turn.citations,
+            req.mode,
+        )
         db.add(_create_assistant_message(session.id, answer_text, prepared_turn.citations))
         await _store_cached_turn(
             prepared_turn.cache_key,
@@ -547,6 +588,9 @@ async def chat_stream(
             citations_count=len(prepared_turn.citations),
             duration_ms=(time.perf_counter() - started_at) * 1000,
             cache_lookup_ms=prepared_turn.cache_lookup_ms,
+        )
+        yield (
+            f"data: {json.dumps({'type': 'structured', 'structured_answer': _serialize_structured_answer(structured_answer)}, ensure_ascii=False)}\n\n"
         )
         yield f"data: {json.dumps({'type': 'done'}, ensure_ascii=False)}\n\n"
 

@@ -1,5 +1,5 @@
 import client, { getAuthToken } from './client';
-import type { Citation, ChatMode } from '../store/useChatStore';
+import type { Citation, ChatMode, StructuredAnswer } from '../store/useChatStore';
 
 export interface ChatRequest {
   query: string;
@@ -11,8 +11,32 @@ export interface ChatRequest {
 export interface ChatResponse {
   answer: string;
   citations: Citation[];
+  structuredAnswer: StructuredAnswer;
   session_id: string;
 }
+
+type RawStructuredAnswer = {
+  summary: string;
+  evidence: Array<{
+    title: string;
+    snippet: string;
+    score: number;
+    url?: string;
+  }>;
+  next_actions: Array<{
+    label: string;
+    url?: string;
+  }>;
+  risk_tips: string[];
+  confidence: string;
+};
+
+type RawChatResponse = {
+  answer: string;
+  citations: Citation[];
+  structured_answer: RawStructuredAnswer;
+  session_id: string;
+};
 
 export interface HistoryMessage {
   role: 'user' | 'assistant';
@@ -23,6 +47,7 @@ export interface HistoryMessage {
 export type SseEvent =
   | { type: 'citations'; citations: Citation[]; session_id: string }
   | { type: 'delta'; text: string }
+  | { type: 'structured'; structured_answer: RawStructuredAnswer }
   | { type: 'done' }
   | { type: 'error'; message: string; code?: string; request_id?: string };
 
@@ -57,8 +82,8 @@ function parseApiErrorPayload(payload: unknown): { message: string; code?: strin
 /** Non-streaming chat request */
 export async function sendChat(payload: ChatRequest): Promise<ChatResponse> {
   try {
-    const res = await client.post<ChatResponse>('/chat', payload);
-    return res.data;
+    const res = await client.post<RawChatResponse>('/chat', payload);
+    return normalizeChatResponse(res.data);
   } catch (err: unknown) {
     const isNetworkError =
       typeof err === 'object' &&
@@ -71,6 +96,13 @@ export async function sendChat(payload: ChatRequest): Promise<ChatResponse> {
       answer:
         '您好！我是 AIA 智能助手。后端服务暂未连接，这是模拟回复。\n\n请启动后端后重试：\n```bash\nuvicorn app.main:app --reload\n```',
       citations: [],
+      structuredAnswer: {
+        summary: '后端服务暂未连接，当前展示的是本地模拟回复。',
+        evidence: [],
+        nextActions: [],
+        riskTips: ['请启动后端服务后重试正式问答。'],
+        confidence: 'low',
+      },
       session_id: payload.session_id || 'mock-' + Date.now(),
     };
   }
@@ -92,6 +124,7 @@ export function sendChatStream(
   callbacks: {
     onCitations: (citations: Citation[]) => void;
     onDelta: (text: string) => void;
+    onStructured: (structuredAnswer: StructuredAnswer) => void;
     onDone: () => void;
     onError: (msg: string, code?: string) => void;
   },
@@ -142,6 +175,8 @@ export function sendChatStream(
               callbacks.onCitations(event.citations);
             } else if (event.type === 'delta') {
               callbacks.onDelta(event.text);
+            } else if (event.type === 'structured') {
+              callbacks.onStructured(normalizeStructuredAnswer(event.structured_answer));
             } else if (event.type === 'done') {
               doneEmitted = true;
               callbacks.onDone();
@@ -172,4 +207,23 @@ export async function clearSession(sessionId: string): Promise<void> {
 export async function getSessionHistory(sessionId: string): Promise<HistoryMessage[]> {
   const res = await client.get<{ messages: HistoryMessage[] }>(`/chat/${sessionId}/history`);
   return res.data.messages;
+}
+
+function normalizeChatResponse(payload: RawChatResponse): ChatResponse {
+  return {
+    answer: payload.answer,
+    citations: payload.citations,
+    structuredAnswer: normalizeStructuredAnswer(payload.structured_answer),
+    session_id: payload.session_id,
+  };
+}
+
+function normalizeStructuredAnswer(payload: RawStructuredAnswer): StructuredAnswer {
+  return {
+    summary: payload.summary,
+    evidence: payload.evidence,
+    nextActions: payload.next_actions,
+    riskTips: payload.risk_tips,
+    confidence: payload.confidence,
+  };
 }

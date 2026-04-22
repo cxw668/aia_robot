@@ -10,6 +10,26 @@ export interface Citation {
   collection?: string;
 }
 
+export interface StructuredEvidence {
+  title: string;
+  snippet: string;
+  score: number;
+  url?: string;
+}
+
+export interface StructuredAction {
+  label: string;
+  url?: string;
+}
+
+export interface StructuredAnswer {
+  summary: string;
+  evidence: StructuredEvidence[];
+  nextActions: StructuredAction[];
+  riskTips: string[];
+  confidence: string;
+}
+
 export type ChatMode = 'casual' | 'support';
 export const DEFAULT_CHAT_MODE: ChatMode = 'support';
 
@@ -18,6 +38,7 @@ export interface Message {
   role: 'user' | 'assistant';
   content: string;
   citations?: Citation[];
+  structuredAnswer?: StructuredAnswer;
   feedback?: 'helpful' | 'not_helpful';
   timestamp: number;
   streaming?: boolean;

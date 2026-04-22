@@ -42,6 +42,12 @@ class ChatApiTests(unittest.TestCase):
             self.assertEqual(chat_payload["answer"], "您可以通过友邦官网提交保单借款申请。")
             self.assertEqual(len(chat_payload["citations"]), 1)
             self.assertEqual(chat_payload["citations"][0]["title"], "保单借款")
+            self.assertEqual(chat_payload["structured_answer"]["summary"], "您可以通过友邦官网提交保单借款申请。")
+            self.assertEqual(chat_payload["structured_answer"]["confidence"], "high")
+            self.assertEqual(
+                chat_payload["structured_answer"]["next_actions"][0]["url"],
+                "https://www.aia.com.cn/service/loan",
+            )
 
             session_id = chat_payload["session_id"]
             history_response = client.get(
@@ -92,4 +98,6 @@ class ChatApiTests(unittest.TestCase):
             self.assertIn('"type": "citations"', stream_response.text)
             self.assertIn('"type": "delta", "text": "第一段"', stream_response.text)
             self.assertIn('"type": "delta", "text": "第二段"', stream_response.text)
+            self.assertIn('"type": "structured"', stream_response.text)
+            self.assertIn('"confidence": "low"', stream_response.text)
             self.assertIn('"type": "done"', stream_response.text)
