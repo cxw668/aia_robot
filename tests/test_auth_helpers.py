@@ -3,6 +3,8 @@ from __future__ import annotations
 import unittest
 from unittest.mock import patch
 
+from jose import jwt
+
 from app.routers.auth import _create_token, _validate_password_strength, get_username_from_token
 from app.database import User
 
@@ -29,8 +31,13 @@ class AuthHelperTests(unittest.TestCase):
             "Password must include at least one number",
         )
 
-    @patch("app.routers.auth.JWT_SECRET_KEY", "unit-test-secret")
+    @patch("app.routers.auth.JWT_SECRET_KEYS", ("unit-test-secret",))
     def test_create_token_can_be_read_back(self) -> None:
         user = User(id=7, username="tester", password_hash="hashed")
         token = _create_token(user)
         self.assertEqual(get_username_from_token(token), "tester")
+
+    @patch("app.routers.auth.JWT_SECRET_KEYS", ("active-secret", "previous-secret"))
+    def test_get_username_from_token_accepts_previous_secret(self) -> None:
+        token = jwt.encode({"sub": "legacy-user"}, "previous-secret", algorithm="HS256")
+        self.assertEqual(get_username_from_token(token), "legacy-user")

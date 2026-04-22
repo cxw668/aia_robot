@@ -15,7 +15,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import User, get_db
 from app.config import settings
-from app.env_loader import EnvLoader
 from app.rate_limit import build_rate_limit_dependency
 from app.request_context import get_request_id
 
@@ -26,7 +25,7 @@ logger = logging.getLogger(__name__)
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRE_HOURS = 24 * 7
-JWT_SECRET_KEY = EnvLoader.get("JWT_SECRET_KEY", "aia-robot-dev-secret") or "aia-robot-dev-secret"
+JWT_SECRET_KEYS = tuple(settings.jwt_secret_keys)
 
 
 class AuthRequest(BaseModel):
@@ -72,7 +71,19 @@ def _create_token(user: User) -> str:
         "uid": user.id,
         "exp": expire_at,
     }
-    return jwt.encode(payload, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+    return jwt.encode(payload, JWT_SECRET_KEYS[0], algorithm=JWT_ALGORITHM)
+
+
+def _decode_token(token: str) -> dict:
+    last_error: JWTError | None = None
+    for secret in JWT_SECRET_KEYS:
+        try:
+            return jwt.decode(token, secret, algorithms=[JWT_ALGORITHM])
+        except JWTError as exc:
+            last_error = exc
+    if last_error is not None:
+        raise last_error
+    raise JWTError("JWT secret keys are not configured")
 
 
 async def _get_user_by_username(db: AsyncSession, username: str) -> User | None:
@@ -144,7 +155,7 @@ async def get_current_user(
 
     token = credentials.credentials
     try:
-        payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+        payload = _decode_token(token)
         user_id = payload.get("uid")
         if not user_id:
             raise HTTPException(status_code=401, detail="Invalid token")
@@ -170,7 +181,7 @@ async def refresh_token(
 def get_username_from_token(token: str) -> str | None:
     """Utility for compatibility with existing imports/tests."""
     try:
-        payload = jwt.decode(token, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+        payload = _decode_token(token)
         return payload.get("sub")
     except JWTError:
         return None

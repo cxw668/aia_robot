@@ -1,7 +1,11 @@
 from __future__ import annotations
 
 import unittest
+from unittest.mock import patch
 
+from jose import jwt
+
+from app.database import User
 from tests.api_test_utils import FakeAsyncSession, auth_headers, create_test_client
 
 
@@ -69,3 +73,24 @@ class AuthApiTests(unittest.TestCase):
             invalid_login_error = invalid_login_response.json()["error"]
             self.assertEqual(invalid_login_error["code"], "unauthorized")
             self.assertEqual(invalid_login_error["message"], "Invalid credentials")
+
+    def test_refresh_accepts_token_signed_with_previous_secret(self) -> None:
+        db = FakeAsyncSession()
+        db.add(User(id=9, username="legacy", password_hash="hashed"))
+        legacy_token = jwt.encode(
+            {"sub": "legacy", "uid": 9},
+            "previous-secret",
+            algorithm="HS256",
+        )
+
+        with patch("app.routers.auth.JWT_SECRET_KEYS", ("active-secret", "previous-secret")):
+            with create_test_client(db) as client:
+                refresh_response = client.post(
+                    "/auth/refresh",
+                    headers=auth_headers(legacy_token),
+                )
+
+        self.assertEqual(refresh_response.status_code, 200)
+        refresh_payload = refresh_response.json()
+        self.assertEqual(refresh_payload["username"], "legacy")
+        self.assertTrue(refresh_payload["token"])

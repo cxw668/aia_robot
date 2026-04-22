@@ -2,6 +2,7 @@ from __future__ import annotations
 from functools import lru_cache
 from app.env_loader import EnvLoader
 
+
 def _to_bool(value: str | None, default: bool = False) -> bool:
     if value is None:
         return default
@@ -19,6 +20,12 @@ def _to_optional_str(value: str | None) -> str | None:
         return None
     text = value.strip()
     return text or None
+
+
+def _to_str_list(value: str | None) -> list[str]:
+    if value is None:
+        return []
+    return [item.strip() for item in value.split(",") if item.strip()]
 
 
 class Settings:
@@ -61,6 +68,13 @@ class Settings:
         self.auth_rate_limit_window_seconds: int = _to_int(EnvLoader.get("AUTH_RATE_LIMIT_WINDOW_SECONDS", "60"), 60)
         self.chat_rate_limit_count: int = _to_int(EnvLoader.get("CHAT_RATE_LIMIT_COUNT", "30"), 30)
         self.chat_rate_limit_window_seconds: int = _to_int(EnvLoader.get("CHAT_RATE_LIMIT_WINDOW_SECONDS", "60"), 60)
+        active_jwt_secret = _to_optional_str(EnvLoader.get("JWT_SECRET_KEY", "aia-robot-dev-secret"))
+        previous_jwt_secrets = _to_str_list(EnvLoader.get("JWT_PREVIOUS_SECRET_KEYS", ""))
+        self.jwt_secret_keys: list[str] = [active_jwt_secret or "aia-robot-dev-secret"]
+        self.jwt_secret_keys.extend(
+            secret for secret in previous_jwt_secrets
+            if secret not in self.jwt_secret_keys
+        )
 
         # ── LLM ───────────────────────────────────────────────────────────────
         self.llm_chat_api_key: str = EnvLoader.get("LLM_CHAT_API_KEY", "") or ""
