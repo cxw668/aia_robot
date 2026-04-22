@@ -5,6 +5,7 @@ from unittest.mock import patch
 
 from jose import jwt
 
+from app.auth_security import FailedLoginTracker
 from app.database import User
 from tests.api_test_utils import FakeAsyncSession, auth_headers, create_test_client
 
@@ -94,3 +95,43 @@ class AuthApiTests(unittest.TestCase):
         refresh_payload = refresh_response.json()
         self.assertEqual(refresh_payload["username"], "legacy")
         self.assertTrue(refresh_payload["token"])
+
+    def test_repeated_failed_login_triggers_temporary_lockout(self) -> None:
+        db = FakeAsyncSession()
+        tracker = FailedLoginTracker(
+            max_failures=2,
+            window_seconds=300,
+            lockout_seconds=120,
+        )
+
+        with patch("app.routers.auth.failed_login_tracker", tracker):
+            with create_test_client(db) as client:
+                client.post(
+                    "/auth/register",
+                    json={"username": "alice", "password": "abc12345"},
+                )
+
+                first_failure = client.post(
+                    "/auth/login",
+                    json={"username": "alice", "password": "wrong-pass-1"},
+                )
+                self.assertEqual(first_failure.status_code, 401)
+
+                second_failure = client.post(
+                    "/auth/login",
+                    json={"username": "alice", "password": "wrong-pass-2"},
+                )
+                self.assertEqual(second_failure.status_code, 429)
+                self.assertEqual(second_failure.json()["error"]["code"], "rate_limited")
+                self.assertGreater(
+                    second_failure.json()["error"]["details"]["retry_after_seconds"],
+                    0,
+                )
+
+                blocked_login = client.post(
+                    "/auth/login",
+                    json={"username": "alice", "password": "abc12345"},
+                )
+
+        self.assertEqual(blocked_login.status_code, 429)
+        self.assertEqual(blocked_login.json()["error"]["code"], "rate_limited")

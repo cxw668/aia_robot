@@ -13,6 +13,7 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.auth_security import FailedLoginTracker
 from app.database import User, get_db
 from app.config import settings
 from app.rate_limit import build_rate_limit_dependency
@@ -26,6 +27,11 @@ pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRE_HOURS = 24 * 7
 JWT_SECRET_KEYS = tuple(settings.jwt_secret_keys)
+failed_login_tracker = FailedLoginTracker(
+    max_failures=settings.auth_login_failure_threshold,
+    window_seconds=settings.auth_login_failure_window_seconds,
+    lockout_seconds=settings.auth_login_lockout_seconds,
+)
 
 
 class AuthRequest(BaseModel):
@@ -62,6 +68,20 @@ def _hash_password(password: str) -> str:
 
 def _verify_password(password: str, password_hash: str) -> bool:
     return pwd_context.verify(password, password_hash)
+
+
+def _normalize_username_key(username: str) -> str:
+    return username.strip().lower()
+
+
+def _build_login_lockout_exception(retry_after_seconds: int) -> HTTPException:
+    return HTTPException(
+        status_code=429,
+        detail={
+            "message": "Too many failed login attempts. Please try again later.",
+            "details": {"retry_after_seconds": retry_after_seconds},
+        },
+    )
 
 
 def _create_token(user: User) -> str:
@@ -104,11 +124,32 @@ async def login(
     db: AsyncSession = Depends(get_db),
     _: None = Depends(auth_rate_limit),
 ) -> AuthResponse:
+    username_key = _normalize_username_key(req.username)
+    retry_after_seconds = failed_login_tracker.get_retry_after(username_key)
+    if retry_after_seconds > 0:
+        logger.warning(
+            "[auth] login blocked | request_id=%s | username=%s | retry_after_seconds=%s",
+            get_request_id(),
+            req.username,
+            retry_after_seconds,
+        )
+        raise _build_login_lockout_exception(retry_after_seconds)
+
     user = await _get_user_by_username(db, req.username)
     if not user or not _verify_password(req.password, user.password_hash):
         logger.warning("[auth] login failed | request_id=%s | username=%s", get_request_id(), req.username)
+        retry_after_seconds = failed_login_tracker.record_failure(username_key)
+        if retry_after_seconds > 0:
+            logger.warning(
+                "[auth] login locked | request_id=%s | username=%s | retry_after_seconds=%s",
+                get_request_id(),
+                req.username,
+                retry_after_seconds,
+            )
+            raise _build_login_lockout_exception(retry_after_seconds)
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
+    failed_login_tracker.reset(username_key)
     token = _create_token(user)
     logger.info("[auth] login succeeded | request_id=%s | username=%s", get_request_id(), user.username)
     return AuthResponse(token=token, username=user.username)
