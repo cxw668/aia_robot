@@ -15,7 +15,7 @@ from app.chat import index as chat_index
 
 
 class EmbeddingsAdapter:
-    """包装现有 SentenceTransformer 模型，提供 embed_documents / embed_query 接口。"""
+    """包装现有 embedding 服务，提供 embed_documents / embed_query 接口。"""
 
     def __init__(self) -> None:
         self._model = get_model()
@@ -29,7 +29,6 @@ class EmbeddingsAdapter:
 
     def embed_query(self, text: str) -> List[float]:
         vec = self._model.encode(text, normalize_embeddings=True)
-        # SentenceTransformer.encode 单条返回 numpy.ndarray
         return vec.tolist()
 
 

@@ -27,17 +27,16 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
-import os
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
 import requests
 from qdrant_client import QdrantClient, models
-from sentence_transformers import SentenceTransformer
 
 from app.config import settings
-from app.env_loader import EnvLoader
+from app.knowledge_base.config import MODEL_NAME, VECTOR_SIZE
+from app.knowledge_base.core.embedding import get_model
 from app.knowledge_base.processing.chunker import chunk_text
 from app.knowledge_base.processing.normalizer import normalize_category
 
@@ -45,8 +44,6 @@ logger = logging.getLogger(__name__)
 
 COLLECTION_NAME = "aia_knowledge_base"
 DEFAULT_COLLECTION = COLLECTION_NAME
-MODEL_NAME = "BAAI/bge-small-zh-v1.5"
-VECTOR_SIZE = 512
 _BATCH = 32
 
 
@@ -59,33 +56,8 @@ def _client() -> QdrantClient:
     )
 
 
-def _model() -> SentenceTransformer:
-    mp = settings.model_cache_path or EnvLoader.get("MODEL_CACHE_PATH", "")
-    explicit_local = (EnvLoader.get("EMBEDDING_MODEL_PATH", "") or "").strip()
-
-    if mp:
-        os.environ["HF_HOME"] = mp
-        os.environ["SENTENCE_TRANSFORMERS_HOME"] = mp
-
-    local_candidates: list[Path] = []
-    if explicit_local:
-        local_candidates.append(Path(explicit_local))
-
-    if mp:
-        root = Path(mp)
-        direct = root / "models--BAAI--bge-small-zh-v1.5"
-        if direct.exists():
-            local_candidates.append(direct)
-            snap_dir = direct / "snapshots"
-            if snap_dir.exists():
-                local_candidates.extend([p for p in snap_dir.iterdir() if p.is_dir()])
-
-    for cand in local_candidates:
-        if (cand / "config.json").exists() or (cand / "modules.json").exists():
-            logger.info(f"[embedding] using local model path: {cand}")
-            return SentenceTransformer(str(cand), local_files_only=True)
-
-    return SentenceTransformer(MODEL_NAME)
+def _model():
+    return get_model()
 
 
 def _doc_id(text: str) -> int:
@@ -95,13 +67,32 @@ def _doc_id(text: str) -> int:
 
 def _ensure_collection(client: QdrantClient, name: str = COLLECTION_NAME) -> None:
     existing = [c.name for c in client.get_collections().collections]
-    if name not in existing:
-        client.create_collection(
-            name,
-            vectors_config=models.VectorParams(
-                size=VECTOR_SIZE, distance=models.Distance.COSINE
-            ),
+    if name in existing:
+        info = client.get_collection(name)
+        vectors = getattr(getattr(info.config, "params", None), "vectors", None)
+        current_size = (
+            getattr(vectors, "size", None)
+            if not isinstance(vectors, dict)
+            else next(
+                (
+                    value.get("size") if isinstance(value, dict) else getattr(value, "size", None)
+                    for value in vectors.values()
+                ),
+                None,
+            )
         )
+        if current_size is not None and int(current_size) != VECTOR_SIZE:
+            raise RuntimeError(
+                f"Collection '{name}' vector size is {current_size}, but embedding model "
+                f"'{MODEL_NAME}' requires {VECTOR_SIZE}. Please recreate the collection and re-ingest data."
+            )
+        return
+    client.create_collection(
+        name,
+        vectors_config=models.VectorParams(
+            size=VECTOR_SIZE, distance=models.Distance.COSINE
+        ),
+    )
 
 
 # ── Schema detection ──────────────────────────────────────────────────────────

@@ -41,3 +41,14 @@ class RescorerTests(unittest.TestCase):
         self.assertTrue(result.used_llm)
         self.assertIsNone(result.fallback_reason)
         self.assertEqual(result.items[0]["id"], "2")
+
+    @patch(
+        "app.chat.index.query_llm",
+        return_value='评分结果如下：```json\n[{id: 2, relevance_score: 0.95, verdict: "use"}, {id: 1, relevance_score: 0.2, verdict: "skip"}]\n```\n请按此排序。',
+    )
+    def test_rescorer_accepts_fenced_json_with_unquoted_keys(self, _: object) -> None:
+        result = llm_rescore_candidates("退保怎么办", _candidates(), final_top_k=2)
+
+        self.assertTrue(result.used_llm)
+        self.assertIsNone(result.fallback_reason)
+        self.assertEqual(result.items[0]["id"], "2")

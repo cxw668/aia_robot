@@ -35,7 +35,7 @@ _EXECUTOR = ThreadPoolExecutor(max_workers=4, thread_name_prefix="lc_sync")
 # ── 1. Embeddings ────────────────────────────────────────────────────────────
 
 class AIAEmbeddings(Embeddings):
-    """友邦本地 SentenceTransformer 嵌入模型（LangChain Embeddings 接口）。"""
+    """友邦 embedding 服务（LangChain Embeddings 接口）。"""
 
     def __init__(self) -> None:
         self._model = get_model()

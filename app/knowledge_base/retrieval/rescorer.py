@@ -3,11 +3,13 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 from dataclasses import dataclass
 
 from app.knowledge_base.retrieval.prompt_builder import build_scoring_prompt
 
 logger = logging.getLogger(__name__)
+_JSON_DECODER = json.JSONDecoder()
 
 
 @dataclass(frozen=True)
@@ -24,6 +26,53 @@ def _fallback(candidates: list[dict], final_top_k: int, reason: str) -> RescoreR
         items=candidates[:final_top_k],
         used_llm=False,
         fallback_reason=reason,
+    )
+
+
+def _parse_llm_response_payload(resp: str) -> list[dict] | dict:
+    for candidate in _iter_json_candidates(resp):
+        parsed = _try_decode_json(candidate)
+        if parsed is not None:
+            return parsed
+    raise json.JSONDecodeError("Could not parse JSON payload", resp, 0)
+
+
+def _iter_json_candidates(resp: str):
+    seen: set[str] = set()
+
+    def _yield_once(text: str):
+        normalized = text.strip()
+        if not normalized or normalized in seen:
+            return
+        seen.add(normalized)
+        yield normalized
+
+    yield from _yield_once(resp)
+
+    for match in re.finditer(r"```(?:json)?\s*(.*?)```", resp, re.IGNORECASE | re.DOTALL):
+        yield from _yield_once(match.group(1))
+
+    for index, char in enumerate(resp):
+        if char not in "[{":
+            continue
+        yield from _yield_once(resp[index:])
+
+
+def _try_decode_json(candidate: str) -> list[dict] | dict | None:
+    for text in (candidate, _quote_unquoted_keys(candidate)):
+        try:
+            parsed, _ = _JSON_DECODER.raw_decode(text)
+            return parsed
+        except json.JSONDecodeError:
+            continue
+    return None
+
+
+def _quote_unquoted_keys(text: str) -> str:
+    return re.sub(
+        r'(?P<prefix>[\{,]\s*)(?P<key>[A-Za-z_][A-Za-z0-9_]*)\s*:',
+        r'\g<prefix>"\g<key>":',
+        text,
     )
 
 
@@ -49,37 +98,10 @@ def llm_rescore_candidates(
         return _fallback(candidates, final_top_k, "llm_request_failed")
 
     try:
-        parsed = json.loads(resp)
-    except Exception:
-        try:
-            start_idx = resp.find("[")
-            end_idx = resp.rfind("]") + 1
-            if start_idx != -1 and end_idx != 0:
-                parsed = json.loads(resp[start_idx:end_idx])
-            else:
-                start_idx = resp.find("{")
-                end_idx = resp.rfind("}") + 1
-                if start_idx != -1 and end_idx != 0:
-                    parsed = json.loads(resp[start_idx:end_idx])
-                else:
-                    logger.warning("[rag] could not locate JSON in LLM response")
-                    return _fallback(candidates, final_top_k, "llm_response_parse_failed")
-        except json.JSONDecodeError as exc:
-            try:
-                import re
-                fixed_resp = re.sub(r"(\s*{\s*|\s*,\s*)(\w+)\s*:", r'\1"\2":', resp)
-                json_match = re.search(r"(\[.*\]|{.*})", fixed_resp, re.DOTALL)
-                if json_match:
-                    parsed = json.loads(json_match.group(0))
-                else:
-                    logger.exception("[rag] failed to parse llm response: %s", exc)
-                    return _fallback(candidates, final_top_k, "llm_response_parse_failed")
-            except Exception as exc2:
-                logger.exception("[rag] failed to parse llm response after fix attempts: %s", exc2)
-                return _fallback(candidates, final_top_k, "llm_response_parse_failed")
-        except Exception as exc:
-            logger.exception("[rag] failed to parse llm response: %s", exc)
-            return _fallback(candidates, final_top_k, "llm_response_parse_failed")
+        parsed = _parse_llm_response_payload(resp)
+    except json.JSONDecodeError:
+        logger.warning("[rag] could not parse JSON payload from LLM response")
+        return _fallback(candidates, final_top_k, "llm_response_parse_failed")
 
     if isinstance(parsed, dict):
         # Accept both array-only responses and wrapper objects from the model.

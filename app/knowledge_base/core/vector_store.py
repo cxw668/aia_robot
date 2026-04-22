@@ -28,13 +28,32 @@ def get_client() -> QdrantClient:
 
 def ensure_collection(client: QdrantClient, name: str, vector_size: int = VECTOR_SIZE) -> None:
     existing = [c.name for c in client.get_collections().collections]
-    if name not in existing:
-        client.create_collection(
-            name,
-            vectors_config=qmodels.VectorParams(
-                size=vector_size, distance=qmodels.Distance.COSINE
-            ),
+    if name in existing:
+        info = client.get_collection(name)
+        vectors = getattr(getattr(info.config, "params", None), "vectors", None)
+        current_size = (
+            getattr(vectors, "size", None)
+            if not isinstance(vectors, dict)
+            else next(
+                (
+                    value.get("size") if isinstance(value, dict) else getattr(value, "size", None)
+                    for value in vectors.values()
+                ),
+                None,
+            )
         )
+        if current_size is not None and int(current_size) != vector_size:
+            raise RuntimeError(
+                f"Collection '{name}' vector size is {current_size}, but the current embedding model "
+                f"requires {vector_size}. Please recreate the collection and re-ingest data."
+            )
+        return
+    client.create_collection(
+        name,
+        vectors_config=qmodels.VectorParams(
+            size=vector_size, distance=qmodels.Distance.COSINE
+        ),
+    )
 
 
 def _match_any_condition(key: str, values: tuple[str, ...]) -> list[qmodels.FieldCondition]:

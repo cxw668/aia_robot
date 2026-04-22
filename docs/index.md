@@ -12,7 +12,7 @@ AIA Robot 是面向友邦保险（AIA）用户的 RAG（检索增强生成）智
 | 目标         | 说明                                               |
 | ------------ | -------------------------------------------------- |
 | **低延迟**   | 使用本地 Docker Qdrant，降低网络 RTT，提升检索速度 |
-| **高精度**   | 基于`BAAI/bge-small-zh-v1.5` 做中文语义向量检索    |
+| **高精度**   | 基于 SiliconFlow `BAAI/bge-large-zh-v1.5` 做中文语义向量检索    |
 | **数据完整** | 覆盖`aia_data/` 当前全部核心数据文件               |
 | **可扩展**   | 支持后续接入 PDF 文档、更多模型与多轮对话优化      |
 
@@ -85,8 +85,8 @@ aia_robot/
    v
 [RAG 检索引擎 - app/knowledge_base/rag.py]
    |
-   |---> [SentenceTransformer] BAAI/bge-small-zh-v1.5
-   |       encode(query) -> 512 维向量
+   |---> [SiliconFlow Embeddings API] BAAI/bge-large-zh-v1.5
+   |       encode(query) -> 1024 维向量
    |
    |---> [本地 Qdrant - Docker :6333]
    |       在 `aia_knowledge_base` 中检索 Top-K
@@ -104,7 +104,7 @@ aia_robot/
 | 组件           | 技术选型                    | 用途                         |
 | -------------- | --------------------------- | ---------------------------- |
 | 向量数据库     | Qdrant（Docker 本地）       | 存储 embedding，执行语义检索 |
-| Embedding 模型 | `BAAI/bge-small-zh-v1.5`    | 中文语义向量化（512 维）     |
+| Embedding 模型 | `BAAI/bge-large-zh-v1.5`    | 通过 SiliconFlow API 做中文语义向量化（1024 维）     |
 | LLM            | SiliconFlow / Hunyuan-MT-7B | 自然语言生成                 |
 | 关系数据库     | MySQL                       | 用户、会话、历史记录         |
 | 缓存           | Redis                       | 高频问答缓存                 |
@@ -195,11 +195,13 @@ aia_robot/
 
 | 参数         | 值                       | 说明                  |
 | ------------ | ------------------------ | --------------------- |
-| 模型         | `BAAI/bge-small-zh-v1.5` | 中文检索主模型        |
-| 向量维度     | 512                      | 固定输出维度          |
+| 模型         | `BAAI/bge-large-zh-v1.5` | 中文检索主模型        |
+| 向量维度     | 1024                     | 固定输出维度          |
 | 相似度类型   | Cosine                   | 归一化后余弦相似度    |
 | 文本分块大小 | 600 字符                 | 长文本（txt/PDF）分块 |
 | 分块重叠     | 80 字符                  | 保持上下文连续性      |
+
+> 当前 embedding 已切换为 SiliconFlow Embeddings API，配置项为 `EMBEDDING_API_URL`、`EMBEDDING_API_KEY`、`EMBEDDING_MODEL`、`EMBEDDING_VECTOR_SIZE`。由于向量维度从 512 升级到 1024，现有 Qdrant collection 需要重建并重新入库。
 
 ---
 

@@ -93,6 +93,21 @@ class Settings:
 
         # ── Embedding ─────────────────────────────────────────────────────────
         self.model_cache_path: str = EnvLoader.get("MODEL_CACHE_PATH", "E:\\aia_embedding_models") or "E:\\aia_embedding_models"
+        self.embedding_api_url: str = (
+            EnvLoader.get("EMBEDDING_API_URL", "https://api.siliconflow.cn/v1/embeddings")
+            or "https://api.siliconflow.cn/v1/embeddings"
+        )
+        self.embedding_api_key: str = (
+            EnvLoader.get("EMBEDDING_API_KEY", self.llm_chat_api_key)
+            or self.llm_chat_api_key
+            or ""
+        )
+        self.embedding_model: str = (
+            EnvLoader.get("EMBEDDING_MODEL", "BAAI/bge-large-zh-v1.5")
+            or "BAAI/bge-large-zh-v1.5"
+        )
+        self.embedding_timeout: int = _to_int(EnvLoader.get("EMBEDDING_TIMEOUT", "60"), 60)
+        self.embedding_vector_size: int = _to_int(EnvLoader.get("EMBEDDING_VECTOR_SIZE", "1024"), 1024)
 
         # ── OCR ───────────────────────────────────────────────────────────────
         self.ocr_api_url: str = (

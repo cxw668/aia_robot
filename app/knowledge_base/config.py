@@ -1,13 +1,15 @@
 """知识库全局常量配置。"""
 from __future__ import annotations
 
+from app.config import settings
+
 # Qdrant 集合
 DEFAULT_COLLECTION = "aia_knowledge_base"
 COLLECTION_NAME = DEFAULT_COLLECTION
 
 # 向量模型
-MODEL_NAME = "BAAI/bge-small-zh-v1.5"
-VECTOR_SIZE = 512
+MODEL_NAME = settings.embedding_model or "BAAI/bge-large-zh-v1.5"
+VECTOR_SIZE = settings.embedding_vector_size or 1024
 
 # 检索参数
 TOP_K = 5
