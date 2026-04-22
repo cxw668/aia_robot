@@ -21,6 +21,27 @@ from app.request_context import get_request_id
 logger = logging.getLogger(__name__)
 
 
+def _log_retrieval_summary(
+    *,
+    query: str,
+    collection: str,
+    top_k: int,
+    hits: int,
+    strategy: str,
+    duration_ms: float,
+) -> None:
+    logger.info(
+        "[rag] retrieval completed | request_id=%s | collection=%s | query=%s | top_k=%s | hits=%s | strategy=%s | duration_ms=%.1f",
+        get_request_id(),
+        collection,
+        query,
+        top_k,
+        hits,
+        strategy,
+        duration_ms,
+    )
+
+
 def retrieve(
     query: str,
     top_k: int = TOP_K,
@@ -56,6 +77,14 @@ def retrieve(
     )
 
     if not hits:
+        _log_retrieval_summary(
+            query=query,
+            collection=target_collection,
+            top_k=top_k,
+            hits=0,
+            strategy="no_hit",
+            duration_ms=(time.perf_counter() - t_total) * 1000,
+        )
         logger.debug(
             f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
             f"| collection={target_collection} | hits=0"
@@ -77,8 +106,17 @@ def retrieve(
             f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
             f"| collection={target_collection} | hits={len(direct_hits)} | request_id={get_request_id()}"
         )
+        _log_retrieval_summary(
+            query=query,
+            collection=target_collection,
+            top_k=top_k,
+            hits=len(direct_hits),
+            strategy="vector_high_confidence",
+            duration_ms=(time.perf_counter() - t_total) * 1000,
+        )
         return direct_hits
 
+    strategy = "llm_rerank"
     try:
         rescore_result = llm_rescore_candidates(
             query,
@@ -96,6 +134,7 @@ def retrieve(
                 len(hits),
             )
         else:
+            strategy = f"vector_fallback:{rescore_result.fallback_reason}"
             logger.warning(
                 "[rag] vector fallback used | request_id=%s | collection=%s | reason=%s | hits=%s",
                 get_request_id(),
@@ -106,7 +145,16 @@ def retrieve(
     except Exception:
         logger.exception("[rag] llm rescoring step failed, using vector fallback | request_id=%s", get_request_id())
         hits = hits[:top_k]
+        strategy = "vector_fallback:exception"
 
+    _log_retrieval_summary(
+        query=query,
+        collection=target_collection,
+        top_k=top_k,
+        hits=len(hits),
+        strategy=strategy,
+        duration_ms=(time.perf_counter() - t_total) * 1000,
+    )
     logger.debug(
         f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
         f"| collection={target_collection} | hits={len(hits)} | request_id={get_request_id()}"

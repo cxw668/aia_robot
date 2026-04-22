@@ -303,7 +303,7 @@ export default function KnowledgePage() {
                     <TableCell>
                       {j.status === 'failed' && (
                         <Tooltip title={t('retryJob')}>
-                          <IconButton size="small" onClick={() => handleRetryJob(j.job_id)}>
+                          <IconButton size="small" aria-label={t('retryJob')} onClick={() => handleRetryJob(j.job_id)}>
                             <Replay fontSize="small" />
                           </IconButton>
                         </Tooltip>

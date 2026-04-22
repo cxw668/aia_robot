@@ -355,17 +355,21 @@ def _create_assistant_message(
 def _log_chat_result(
     *,
     session_id: str,
+    query: str,
     mode: ChatMode,
     cache_hit: bool,
+    answer_source: str,
     citations_count: int,
     duration_ms: float,
     cache_lookup_ms: float,
 ) -> None:
     logger.info(
-        "[chat] completed | request_id=%s | session_id=%s | mode=%s | cache_hit=%s | citations=%s | cache_lookup_ms=%.1f | duration_ms=%.1f",
+        "[chat] completed | request_id=%s | session_id=%s | mode=%s | query=%s | answer_source=%s | cache_hit=%s | citations=%s | cache_lookup_ms=%.1f | duration_ms=%.1f",
         get_request_id(),
         session_id,
         mode.value,
+        query,
+        answer_source,
         cache_hit,
         citations_count,
         cache_lookup_ms,
@@ -420,8 +424,10 @@ async def chat(
 
     _log_chat_result(
         session_id=session.id,
+        query=req.query,
         mode=req.mode,
         cache_hit=prepared_turn.cache_hit,
+        answer_source="cache" if prepared_turn.cache_hit else "llm",
         citations_count=len(prepared_turn.citations),
         duration_ms=(time.perf_counter() - started_at) * 1000,
         cache_lookup_ms=prepared_turn.cache_lookup_ms,
@@ -473,8 +479,10 @@ async def chat_stream(
 
         _log_chat_result(
             session_id=session.id,
+            query=req.query,
             mode=req.mode,
             cache_hit=True,
+            answer_source="cache",
             citations_count=len(prepared_turn.citations),
             duration_ms=(time.perf_counter() - started_at) * 1000,
             cache_lookup_ms=prepared_turn.cache_lookup_ms,
@@ -532,8 +540,10 @@ async def chat_stream(
 
         _log_chat_result(
             session_id=session.id,
+            query=req.query,
             mode=req.mode,
             cache_hit=False,
+            answer_source="llm_stream",
             citations_count=len(prepared_turn.citations),
             duration_ms=(time.perf_counter() - started_at) * 1000,
             cache_lookup_ms=prepared_turn.cache_lookup_ms,

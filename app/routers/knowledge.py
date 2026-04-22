@@ -13,6 +13,7 @@ GET    /health                   Qdrant status
 """
 from __future__ import annotations
 
+import logging
 import os
 import tempfile
 import time
@@ -35,8 +36,10 @@ from app.knowledge_jobs import (
     requeue_ingest_job,
     serialize_ingest_job,
 )
+from app.request_context import get_request_id
 
 router = APIRouter(tags=["knowledge"])
+logger = logging.getLogger(__name__)
 
 
 class IngestJob(BaseModel):
@@ -78,6 +81,13 @@ def _save_uploaded_file(file: UploadFile, contents: bytes) -> str:
     return tmp_path
 
 
+def _log_knowledge_audit(action: str, **fields: object) -> None:
+    details = [f"request_id={get_request_id()}", f"action={action}"]
+    for key, value in fields.items():
+        details.append(f"{key}={value}")
+    logger.info("[knowledge] audit | %s", " | ".join(details))
+
+
 @router.post("/kb/ingest", status_code=202)
 async def ingest(req: IngestRequest, db: AsyncSession = Depends(get_db)) -> dict:
     job_id = str(uuid.uuid4())[:8]
@@ -116,6 +126,13 @@ async def ingest(req: IngestRequest, db: AsyncSession = Depends(get_db)) -> dict
         raise HTTPException(400, f"unknown type: {req.type!r}  (supported: dir, url, forms_pdf)")
 
     await db.commit()
+    _log_knowledge_audit(
+        "ingest_submitted",
+        job_id=job_id,
+        job_type=req.type,
+        source=req.path or req.url or "",
+        collection=req.collection,
+    )
     notify_ingest_worker()
     return {"job_id": job_id, "collection": req.collection}
 
@@ -142,6 +159,13 @@ async def upload_file(
         collection_name=collection,
     )
     await db.commit()
+    _log_knowledge_audit(
+        "upload_submitted",
+        job_id=job_id,
+        filename=file.filename,
+        stored_source=tmp_path,
+        collection=collection,
+    )
     notify_ingest_worker()
     return {"job_id": job_id, "collection": collection}
 
@@ -166,6 +190,13 @@ async def retry_job(job_id: str, db: AsyncSession = Depends(get_db)) -> dict:
     if not requeued:
         raise HTTPException(409, "Job cannot be retried")
 
+    _log_knowledge_audit(
+        "job_retried",
+        job_id=job_id,
+        job_type=job.job_type,
+        source=job.source,
+        collection=job.collection_name,
+    )
     notify_ingest_worker()
     return {"job_id": job_id, "status": JobStatus.PENDING.value}
 
@@ -196,6 +227,7 @@ async def delete_collection(collection_name: str) -> dict:
         client.delete_collection(collection_name)
     except Exception as exc:
         raise HTTPException(500, str(exc))
+    _log_knowledge_audit("collection_deleted", collection=collection_name)
     return {"deleted": collection_name}
 
 
@@ -251,6 +283,7 @@ async def delete_doc(
         )
     except Exception as exc:
         raise HTTPException(500, str(exc))
+    _log_knowledge_audit("document_deleted", doc_id=doc_id, collection=collection)
     return {"deleted": doc_id, "collection": collection}
 
 
