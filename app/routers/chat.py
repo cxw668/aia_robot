@@ -31,6 +31,7 @@ from app.chat.context import (
     build_chat_context,
     build_context_system_note,
     build_support_fallback_decision,
+    select_context_messages,
     rewrite_query_with_context,
 )
 from app.chat.index import chat_completion, chat_completion_stream
@@ -149,10 +150,21 @@ def _get_system_prompt(mode: ChatMode) -> str:
     return CASUAL_SYSTEM_PROMPT if mode == ChatMode.CASUAL else SUPPORT_SYSTEM_PROMPT
 
 
-def _trim_to_window(messages: list[ChatMessage], mode: ChatMode, *, context_note: str = "") -> list[dict]:
+def _trim_to_window(
+    messages: list[ChatMessage],
+    mode: ChatMode,
+    *,
+    query: str,
+    context: ChatContext,
+    context_note: str = "",
+) -> list[dict]:
     """Convert DB messages to OpenAI format, keeping current system prompt + recent turns."""
-    turns = [m for m in messages if m.role != MessageRole.SYSTEM]
-    turns = turns[-(MAX_HISTORY_TURNS * 2):]
+    turns = select_context_messages(
+        messages,
+        query=query,
+        context=context,
+        max_turns=MAX_HISTORY_TURNS,
+    )
     combined = [{"role": MessageRole.SYSTEM.value, "content": _get_system_prompt(mode)}]
     if context_note:
         combined.append({"role": MessageRole.SYSTEM.value, "content": context_note})
@@ -442,6 +454,8 @@ async def chat(
     llm_messages = _trim_to_window(
         history,
         req.mode,
+        query=req.query,
+        context=context,
         context_note=build_context_system_note(context) if req.mode == ChatMode.SUPPORT else "",
     )
     prepared_turn = await _prepare_chat_turn(req, llm_messages, context)
@@ -541,6 +555,8 @@ async def chat_stream(
     llm_messages = _trim_to_window(
         history,
         req.mode,
+        query=req.query,
+        context=context,
         context_note=build_context_system_note(context) if req.mode == ChatMode.SUPPORT else "",
     )
     prepared_turn = await _prepare_chat_turn(req, llm_messages, context)

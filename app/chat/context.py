@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from collections.abc import Sequence
 from dataclasses import dataclass
 
@@ -103,6 +104,46 @@ def build_chat_context(messages: Sequence[ChatMessage], *, max_turns: int) -> Ch
         summary="；".join(part for part in summary_parts if part)[:220],
         clarification_options=clarification_options,
     )
+
+
+def select_context_messages(
+    messages: Sequence[ChatMessage],
+    *,
+    query: str,
+    context: ChatContext,
+    max_turns: int,
+) -> list[ChatMessage]:
+    if max_turns <= 0:
+        return []
+
+    turns = _group_messages_into_turns(messages)
+    if len(turns) <= max_turns:
+        return [message for turn in turns for message in turn]
+
+    pinned_turn_indexes = {len(turns) - 1}
+    remaining_slots = max_turns - len(pinned_turn_indexes)
+    ranked_turns = sorted(
+        (
+            (
+                _score_turn(turn, turn_index=turn_index, total_turns=len(turns), query=query, context=context),
+                turn_index,
+            )
+            for turn_index, turn in enumerate(turns)
+            if turn_index not in pinned_turn_indexes
+        ),
+        key=lambda item: (item[0], item[1]),
+        reverse=True,
+    )
+
+    selected_turn_indexes = set(pinned_turn_indexes)
+    for _, turn_index in ranked_turns[: max(remaining_slots, 0)]:
+        selected_turn_indexes.add(turn_index)
+
+    selected_messages: list[ChatMessage] = []
+    for turn_index, turn in enumerate(turns):
+        if turn_index in selected_turn_indexes:
+            selected_messages.extend(turn)
+    return selected_messages
 
 
 def build_context_system_note(context: ChatContext) -> str:
@@ -249,3 +290,110 @@ def _citation_score(citation: object) -> float:
         return float(value or 0.0)
     except (TypeError, ValueError):
         return 0.0
+
+
+def _group_messages_into_turns(messages: Sequence[ChatMessage]) -> list[list[ChatMessage]]:
+    turns: list[list[ChatMessage]] = []
+    pending_user: ChatMessage | None = None
+
+    for message in messages:
+        if message.role == MessageRole.SYSTEM:
+            continue
+        if message.role == MessageRole.USER:
+            if pending_user is not None:
+                turns.append([pending_user])
+            pending_user = message
+            continue
+        if pending_user is not None:
+            turns.append([pending_user, message])
+            pending_user = None
+        else:
+            turns.append([message])
+
+    if pending_user is not None:
+        turns.append([pending_user])
+    return turns
+
+
+def _score_turn(
+    turn: Sequence[ChatMessage],
+    *,
+    turn_index: int,
+    total_turns: int,
+    query: str,
+    context: ChatContext,
+) -> float:
+    score = (turn_index + 1) / max(total_turns, 1)
+    turn_text = _build_turn_text(turn)
+    primary_terms = {value for value in (context.topic, context.service_name) if value}
+    for term in _build_relevance_terms(query, context):
+        if term in turn_text:
+            score += 2.5 if term in primary_terms else 0.8
+    if any(message.role == MessageRole.ASSISTANT and _extract_citations(message.citations) for message in turn):
+        score += 0.2
+    return score
+
+
+def _build_turn_text(turn: Sequence[ChatMessage]) -> str:
+    parts: list[str] = []
+    for message in turn:
+        parts.append(_extract_user_query(message.content))
+        if message.role != MessageRole.ASSISTANT:
+            continue
+        for citation in _extract_citations(message.citations):
+            for field in ("title", "service_name", "content"):
+                value = str(citation.get(field) or "").strip()
+                if value:
+                    parts.append(value)
+    return "\n".join(parts)
+
+
+def _build_relevance_terms(query: str, context: ChatContext) -> tuple[str, ...]:
+    terms: list[str] = []
+    for candidate in (context.topic, context.service_name):
+        cleaned = _clean_topic(candidate)
+        if len(cleaned) >= 2 and cleaned not in terms:
+            terms.append(cleaned)
+
+    if not is_ambiguous_query(query, context) or _contains_explicit_topic(query, context):
+        for candidate in _extract_match_terms(query):
+            if candidate not in terms:
+                terms.append(candidate)
+    return tuple(terms)
+
+
+def _extract_match_terms(text: str) -> list[str]:
+    normalized = re.sub(r"[^0-9A-Za-z\u4e00-\u9fff]", "", text or "")
+    if len(normalized) < 2:
+        return []
+
+    stop_terms = {
+        "怎么",
+        "如何",
+        "请问",
+        "可以",
+        "现在",
+        "哪里",
+        "什么",
+        "这个",
+        "那个",
+        "一下",
+        "办理",
+        "申请",
+        "下载",
+        "查询",
+        "多少",
+    }
+    terms: list[str] = []
+    seen: set[str] = set()
+    max_length = min(4, len(normalized))
+    for length in range(max_length, 1, -1):
+        for index in range(0, len(normalized) - length + 1):
+            candidate = normalized[index:index + length]
+            if candidate in stop_terms or candidate in seen:
+                continue
+            if any(candidate in pronoun for pronoun in PRONOUN_HINTS):
+                continue
+            seen.add(candidate)
+            terms.append(candidate)
+    return terms[:12]
