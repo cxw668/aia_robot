@@ -40,7 +40,10 @@ def build_structured_answer(
         StructuredEvidence(
             title=_citation_value(citation, "title") or _citation_value(citation, "service_name") or "参考资料",
             snippet=_truncate(_citation_value(citation, "content"), 120),
-            score=float(_citation_value(citation, "score") or 0.0),
+            score=max(
+                float(_citation_value(citation, "score") or 0.0),
+                float(_citation_value(citation, "llm_score") or 0.0),
+            ),
             url=_citation_value(citation, "service_url"),
         )
         for citation in citations[:3]

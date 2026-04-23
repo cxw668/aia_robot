@@ -1,5 +1,5 @@
 import client, { getAuthToken } from './client';
-import type { Citation, ChatMode, StructuredAnswer } from '../store/useChatStore';
+import type { Citation, ChatMode, ProcessingStep, StructuredAnswer } from '../store/useChatStore';
 
 export interface ChatRequest {
   query: string;
@@ -45,6 +45,7 @@ export interface HistoryMessage {
 
 // SSE event types from /chat/stream
 export type SseEvent =
+  | { type: 'progress'; stage: string; label: string; detail?: string }
   | { type: 'citations'; citations: Citation[]; session_id: string }
   | { type: 'delta'; text: string }
   | { type: 'structured'; structured_answer: RawStructuredAnswer }
@@ -122,6 +123,7 @@ export async function sendChat(payload: ChatRequest): Promise<ChatResponse> {
 export function sendChatStream(
   payload: ChatRequest,
   callbacks: {
+    onProgress: (step: ProcessingStep) => void;
     onCitations: (citations: Citation[]) => void;
     onDelta: (text: string) => void;
     onStructured: (structuredAnswer: StructuredAnswer) => void;
@@ -171,7 +173,13 @@ export function sendChatStream(
           if (!jsonStr) continue;
           try {
             const event = JSON.parse(jsonStr) as SseEvent;
-            if (event.type === 'citations') {
+            if (event.type === 'progress') {
+              callbacks.onProgress({
+                stage: event.stage,
+                label: event.label,
+                detail: event.detail,
+              });
+            } else if (event.type === 'citations') {
               callbacks.onCitations(event.citations);
             } else if (event.type === 'delta') {
               callbacks.onDelta(event.text);

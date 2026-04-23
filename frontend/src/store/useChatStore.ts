@@ -30,6 +30,12 @@ export interface StructuredAnswer {
   confidence: string;
 }
 
+export interface ProcessingStep {
+  stage: string;
+  label: string;
+  detail?: string;
+}
+
 export type ChatMode = 'casual' | 'support';
 export const DEFAULT_CHAT_MODE: ChatMode = 'support';
 
@@ -38,6 +44,7 @@ export interface Message {
   role: 'user' | 'assistant';
   content: string;
   citations?: Citation[];
+  processingSteps?: ProcessingStep[];
   structuredAnswer?: StructuredAnswer;
   feedback?: 'helpful' | 'not_helpful';
   timestamp: number;

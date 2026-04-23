@@ -15,6 +15,18 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useChatStore, type Message, type Citation, type ChatMode, DEFAULT_CHAT_MODE } from '../store/useChatStore';
 import { sendChatStream } from '../api/chat';
+
+function mergeProcessingSteps(
+  steps: NonNullable<Message['processingSteps']>,
+  nextStep: NonNullable<Message['processingSteps']>[number],
+): NonNullable<Message['processingSteps']> {
+  const existingIndex = steps.findIndex((step) => step.stage === nextStep.stage);
+  if (existingIndex === -1) {
+    return [...steps, nextStep];
+  }
+  return steps.map((step, index) => (index === existingIndex ? nextStep : step));
+}
+
 function MsgBubble({ msg, convId, isStreamingActive }: { msg: Message; convId: string; isStreamingActive?: boolean }) {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
@@ -22,9 +34,13 @@ function MsgBubble({ msg, convId, isStreamingActive }: { msg: Message; convId: s
   const { updateMessage } = useChatStore();
   const isUser = msg.role === 'user';
   const [citOpen, setCitOpen] = useState(false);
+  const [progressOpen, setProgressOpen] = useState(Boolean(isStreamingActive));
+  const [structuredOpen, setStructuredOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const isDark = theme.palette.mode === 'dark';
   const structuredAnswer = msg.structuredAnswer;
+  const processingSteps = msg.processingSteps ?? [];
+  const showProgressPanel = progressOpen || (Boolean(isStreamingActive) && processingSteps.length > 0);
   const confidenceLabel =
     structuredAnswer?.confidence === 'high'
       ? t('structuredConfidenceHigh')
@@ -81,39 +97,54 @@ function MsgBubble({ msg, convId, isStreamingActive }: { msg: Message; convId: s
           )}
         </Paper>
 
-        {!isUser && !isStreamingActive && (
+        {!isUser && (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5, ml: 0.5 }}>
-            <Tooltip title={copied ? t('copyMsg') : 'Copy'}>
-              <IconButton size="small" onClick={copy} sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}>
-                <ContentCopy sx={{ fontSize: 14 }} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title={t('helpful')}>
-              <IconButton
+            {!isStreamingActive && (
+              <>
+                <Tooltip title={copied ? t('copyMsg') : 'Copy'}>
+                  <IconButton size="small" onClick={copy} sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}>
+                    <ContentCopy sx={{ fontSize: 14 }} />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={t('helpful')}>
+                  <IconButton
+                    size="small"
+                    onClick={() => {
+                      updateMessage(convId, msg.id, { feedback: 'helpful' });
+                      enqueueSnackbar(t('feedbackSent'), { variant: 'success' });
+                    }}
+                    color={msg.feedback === 'helpful' ? 'success' : 'default'}
+                    sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
+                  >
+                    <ThumbUp sx={{ fontSize: 14 }} />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip title={t('notHelpful')}>
+                  <IconButton
+                    size="small"
+                    onClick={() => {
+                      updateMessage(convId, msg.id, { feedback: 'not_helpful' });
+                      enqueueSnackbar(t('feedbackSent'), { variant: 'success' });
+                    }}
+                    color={msg.feedback === 'not_helpful' ? 'error' : 'default'}
+                    sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
+                  >
+                    <ThumbDown sx={{ fontSize: 14 }} />
+                  </IconButton>
+                </Tooltip>
+              </>
+            )}
+            {processingSteps.length > 0 && (
+              <Chip
                 size="small"
-                onClick={() => {
-                  updateMessage(convId, msg.id, { feedback: 'helpful' });
-                  enqueueSnackbar(t('feedbackSent'), { variant: 'success' });
-                }}
-                color={msg.feedback === 'helpful' ? 'success' : 'default'}
-                sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
-              >
-                <ThumbUp sx={{ fontSize: 14 }} />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title={t('notHelpful')}>
-              <IconButton
-                size="small"
-                onClick={() => {
-                  updateMessage(convId, msg.id, { feedback: 'not_helpful' });
-                  enqueueSnackbar(t('feedbackSent'), { variant: 'success' });
-                }}
-                color={msg.feedback === 'not_helpful' ? 'error' : 'default'}
-                sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
-              >
-                <ThumbDown sx={{ fontSize: 14 }} />
-              </IconButton>
-            </Tooltip>
+                icon={<ExpandMore sx={{ fontSize: '14px !important', transform: showProgressPanel ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />}
+                label={`${t('processingTimeline')} (${processingSteps.length})`}
+                onClick={() => setProgressOpen(!progressOpen)}
+                variant="outlined"
+                color={isStreamingActive ? 'primary' : 'default'}
+                sx={{ ml: 0.5, height: 22, fontSize: '0.7rem' }}
+              />
+            )}
             {msg.citations && msg.citations.length > 0 && (
               <Chip size="small"
                 icon={<ExpandMore sx={{ fontSize: '14px !important', transform: citOpen ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />}
@@ -122,88 +153,155 @@ function MsgBubble({ msg, convId, isStreamingActive }: { msg: Message; convId: s
                 sx={{ ml: 0.5, height: 22, fontSize: '0.7rem' }} />
             )}
             {structuredAnswer && (
-              <Chip
-                size="small"
-                label={`${t('structuredConfidence')}: ${confidenceLabel}`}
-                variant="outlined"
-                color={structuredAnswer.confidence === 'high' ? 'success' : structuredAnswer.confidence === 'medium' ? 'warning' : 'default'}
-                sx={{ ml: 0.5, height: 22, fontSize: '0.7rem' }}
-              />
+              <>
+                <Chip
+                  size="small"
+                  icon={<ExpandMore sx={{ fontSize: '14px !important', transform: structuredOpen ? 'rotate(180deg)' : 'none', transition: '0.2s' }} />}
+                  label={t('structuredPanel')}
+                  onClick={() => setStructuredOpen(!structuredOpen)}
+                  variant="outlined"
+                  sx={{ ml: 0.5, height: 22, fontSize: '0.7rem' }}
+                />
+                {!isStreamingActive && (
+                  <Chip
+                    size="small"
+                    label={`${t('structuredConfidence')}: ${confidenceLabel}`}
+                    variant="outlined"
+                    color={structuredAnswer.confidence === 'high' ? 'success' : structuredAnswer.confidence === 'medium' ? 'warning' : 'default'}
+                    sx={{ ml: 0.5, height: 22, fontSize: '0.7rem' }}
+                  />
+                )}
+              </>
             )}
           </Box>
         )}
 
-        {structuredAnswer && !isUser && !isStreamingActive && (
-          <Paper
-            elevation={0}
-            sx={{
-              mt: 1,
-              p: 1.5,
-              border: 1,
-              borderColor: 'divider',
-              borderRadius: 2,
-              bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.015)',
-            }}
-          >
-            {structuredAnswer.evidence.length > 0 && (
-              <Box sx={{ mb: structuredAnswer.nextActions.length > 0 || structuredAnswer.riskTips.length > 0 ? 1.25 : 0 }}>
-                <Typography variant="caption" fontWeight={700} color="text.secondary">
-                  {t('structuredEvidence')}
-                </Typography>
-                <Box sx={{ mt: 0.75, display: 'flex', flexDirection: 'column', gap: 0.75 }}>
-                  {structuredAnswer.evidence.map((item, index) => (
-                    <Box key={`${item.title}-${index}`} sx={{ display: 'flex', flexDirection: 'column', gap: 0.3 }}>
-                      <Typography variant="caption" fontWeight={600}>
-                        {item.title}
-                      </Typography>
-                      <Typography variant="caption" color="text.secondary">
-                        {item.snippet}
-                      </Typography>
-                    </Box>
-                  ))}
-                </Box>
-              </Box>
-            )}
-
-            {structuredAnswer.nextActions.length > 0 && (
-              <Box sx={{ mb: structuredAnswer.riskTips.length > 0 ? 1.25 : 0 }}>
-                <Typography variant="caption" fontWeight={700} color="text.secondary">
-                  {t('structuredNextActions')}
-                </Typography>
-                <Box sx={{ mt: 0.75, display: 'flex', gap: 0.75, flexWrap: 'wrap' }}>
-                  {structuredAnswer.nextActions.map((item, index) => (
-                    <Chip
-                      key={`${item.label}-${index}`}
-                      label={item.label}
-                      component={item.url ? 'a' : 'div'}
-                      clickable={!!item.url}
-                      href={item.url || undefined}
-                      target={item.url ? '_blank' : undefined}
-                      rel={item.url ? 'noreferrer' : undefined}
-                      variant="outlined"
-                      color="primary"
-                      sx={{ maxWidth: '100%' }}
+        {!isUser && processingSteps.length > 0 && (
+          <Collapse in={showProgressPanel}>
+            <Paper
+              elevation={0}
+              sx={{
+                mt: 1,
+                px: 1.25,
+                py: 1,
+                border: 1,
+                borderColor: 'divider',
+                borderRadius: 2,
+                bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.015)',
+              }}
+            >
+              <Typography variant="caption" fontWeight={700} color="text.secondary">
+                {t('processingTimeline')}
+              </Typography>
+              <Box sx={{ mt: 0.75, display: 'flex', flexDirection: 'column', gap: 0.85 }}>
+                {processingSteps.map((step, index) => (
+                  <Box key={`${step.stage}-${index}`} sx={{ display: 'flex', alignItems: 'flex-start', gap: 0.9 }}>
+                    <Box
+                      sx={{
+                        mt: 0.45,
+                        width: 8,
+                        height: 8,
+                        borderRadius: '50%',
+                        bgcolor:
+                          isStreamingActive && index === processingSteps.length - 1
+                            ? 'primary.main'
+                            : 'success.main',
+                        boxShadow:
+                          isStreamingActive && index === processingSteps.length - 1
+                            ? `0 0 0 4px ${isDark ? 'rgba(144,202,249,0.16)' : 'rgba(25,118,210,0.12)'}`
+                            : 'none',
+                      }}
                     />
-                  ))}
-                </Box>
+                    <Box sx={{ minWidth: 0 }}>
+                      <Typography variant="caption" sx={{ display: 'block', fontWeight: 600 }}>
+                        {step.label}
+                      </Typography>
+                      {step.detail && (
+                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.15 }}>
+                          {step.detail}
+                        </Typography>
+                      )}
+                    </Box>
+                  </Box>
+                ))}
               </Box>
-            )}
+            </Paper>
+          </Collapse>
+        )}
 
-            {structuredAnswer.riskTips.length > 0 && (
-              <Box>
-                <Typography variant="caption" fontWeight={700} color="text.secondary">
-                  {t('structuredRiskTips')}
-                </Typography>
-                <Box component="ul" sx={{ mt: 0.75, mb: 0, pl: 2 }}>
-                  {structuredAnswer.riskTips.map((item, index) => (
-                    <Typography key={`${item}-${index}`} component="li" variant="caption" color="text.secondary" sx={{ mb: 0.35 }}>
-                      {item}
-                    </Typography>
-                  ))}
+        {structuredAnswer && !isUser && (
+          <Collapse in={structuredOpen}>
+            <Paper
+              elevation={0}
+              sx={{
+                mt: 1,
+                p: 1.5,
+                border: 1,
+                borderColor: 'divider',
+                borderRadius: 2,
+                bgcolor: isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.015)',
+              }}
+            >
+              {structuredAnswer.evidence.length > 0 && (
+                <Box sx={{ mb: structuredAnswer.nextActions.length > 0 || structuredAnswer.riskTips.length > 0 ? 1.25 : 0 }}>
+                  <Typography variant="caption" fontWeight={700} color="text.secondary">
+                    {t('structuredEvidence')}
+                  </Typography>
+                  <Box sx={{ mt: 0.75, display: 'flex', flexDirection: 'column', gap: 0.75 }}>
+                    {structuredAnswer.evidence.map((item, index) => (
+                      <Box key={`${item.title}-${index}`} sx={{ display: 'flex', flexDirection: 'column', gap: 0.3 }}>
+                        <Typography variant="caption" fontWeight={600}>
+                          {item.title}
+                        </Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          {item.snippet}
+                        </Typography>
+                      </Box>
+                    ))}
+                  </Box>
                 </Box>
-              </Box>
-            )}
-          </Paper>
+              )}
+
+              {structuredAnswer.nextActions.length > 0 && (
+                <Box sx={{ mb: structuredAnswer.riskTips.length > 0 ? 1.25 : 0 }}>
+                  <Typography variant="caption" fontWeight={700} color="text.secondary">
+                    {t('structuredNextActions')}
+                  </Typography>
+                  <Box sx={{ mt: 0.75, display: 'flex', gap: 0.75, flexWrap: 'wrap' }}>
+                    {structuredAnswer.nextActions.map((item, index) => (
+                      <Chip
+                        key={`${item.label}-${index}`}
+                        label={item.label}
+                        component={item.url ? 'a' : 'div'}
+                        clickable={!!item.url}
+                        href={item.url || undefined}
+                        target={item.url ? '_blank' : undefined}
+                        rel={item.url ? 'noreferrer' : undefined}
+                        variant="outlined"
+                        color="primary"
+                        sx={{ maxWidth: '100%' }}
+                      />
+                    ))}
+                  </Box>
+                </Box>
+              )}
+
+              {structuredAnswer.riskTips.length > 0 && (
+                <Box>
+                  <Typography variant="caption" fontWeight={700} color="text.secondary">
+                    {t('structuredRiskTips')}
+                  </Typography>
+                  <Box component="ul" sx={{ mt: 0.75, mb: 0, pl: 2 }}>
+                    {structuredAnswer.riskTips.map((item, index) => (
+                      <Typography key={`${item}-${index}`} component="li" variant="caption" color="text.secondary" sx={{ mb: 0.35 }}>
+                        {item}
+                      </Typography>
+                    ))}
+                  </Box>
+                </Box>
+              )}
+            </Paper>
+          </Collapse>
         )}
 
         {msg.citations && msg.citations.length > 0 && (
@@ -295,6 +393,15 @@ export default function ChatPage() {
     streamAbortRef.current = sendChatStream(
       { query: text, session_id: activeId, top_k: 5, mode: currentMode },
       {
+        onProgress: (step) => {
+          const state = useChatStore.getState();
+          const conv = state.conversations.find((c) => c.id === convId);
+          const msg = conv?.messages.find((m) => m.id === assistantMsgId);
+          if (!msg) return;
+          updateMessage(convId, assistantMsgId, {
+            processingSteps: mergeProcessingSteps(msg.processingSteps ?? [], step),
+          });
+        },
         onCitations: (citations: Citation[]) => {
           updateMessage(convId, assistantMsgId, { citations });
         },

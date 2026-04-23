@@ -33,6 +33,8 @@ const zh = {
   send: '发送',
   thinking: '思考中…',
   references: '参考来源',
+  processingTimeline: '实际处理过程',
+  structuredPanel: '结构化信息',
   structuredConfidence: '置信度',
   structuredConfidenceHigh: '高',
   structuredConfidenceMedium: '中',

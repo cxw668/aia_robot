@@ -51,3 +51,19 @@ class StructuredAnswerTests(unittest.TestCase):
         self.assertIn("确认是否继续咨询“保单借款”", structured.next_actions[0].label)
         self.assertIn("补充办理条件", structured.next_actions[1].label)
         self.assertIn("上下文省略", structured.risk_tips[1])
+
+    def test_build_structured_answer_uses_llm_score_for_confidence(self) -> None:
+        structured = build_structured_answer(
+            "根据知识库内容，您可以优先考虑意外险、医疗险和基础重疾保障。",
+            [
+                {
+                    "title": "大学生保险建议",
+                    "content": "临近毕业且运动频率较高的人群，可优先关注意外伤害、医疗保障和基础重疾保障。",
+                    "score": 0.41,
+                    "llm_score": 0.88,
+                }
+            ],
+            support_mode=True,
+        )
+
+        self.assertEqual(structured.confidence, "high")

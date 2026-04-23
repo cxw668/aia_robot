@@ -284,7 +284,7 @@ aia_robot/
 | 用户认证           | 已完成   | `app/routers/auth.py` 已具备注册、登录、JWT 鉴权。                                                                          |
 | 会话与消息持久化   | 已完成   | `app/database/__init__.py` 已定义 `User`、`ChatSession`、`ChatMessage` 等模型，`app/routers/chat.py` 已接入数据库读写。     |
 | 多轮对话基础能力   | 已完成   | `app/routers/chat.py` 已实现最近若干轮历史拼接、普通问答和流式问答。                                                        |
-| SSE 流式输出       | 已完成   | 前后端已打通，后端通过`/chat/stream` 输出事件流，前端已解析 citations、delta、done 事件。                                   |
+| SSE 流式输出       | 已完成   | 前后端已打通，后端通过`/chat/stream` 输出事件流；除 citations、delta、done 外，现已补充真实 `progress` 过程事件，用于展示缓存检查、向量检索、LLM 重排、答案生成等实际阶段。 |
 | 向量检索主链路     | 已完成   | `app/knowledge_base/core`、`app/knowledge_base/retrieval` 已完成 embedding、Qdrant 查询、过滤、重排主流程。                 |
 | 数据入库脚本       | 已完成   | `scripts/run_ingest_all.py`、`scripts/reprocess_form_downloads.py`、`app/knowledge_base/ingestion` 已能支撑当前数据源入库。 |
 | 意图识别基础版     | 已完成   | `app/knowledge_base/intent/classifier.py` 已实现规则型意图分类，评测脚本已补齐。                                            |
@@ -418,7 +418,7 @@ aia_robot/
 - 输出结构化答案对象，至少包含回答正文、引用证据、推荐动作和风险提示。
 - 建立低分拒答和人工兜底策略，减少“看起来回答了，实际没答上”的情况。
 
-截至 **2026-04-23**，第二阶段规划内的核心开发项已基本补齐：`/chat` 与 `/chat/stream` 已具备结构化答案输出、上下文摘要、槽位记忆、追问 query 改写、relevance-based 历史排序，以及低置信澄清追问 / 人工兜底；现有 `scripts/evaluate_retrieval_quality.py` 与 `scripts/evaluate_intent_quality.py` 也已补首批 **表单、保全、分公司、在售产品** 高频业务回归样本，并新增 `tests/test_regression_datasets.py` 和上下文排序单测，保障样本与排序逻辑不回退。第二阶段剩余工作更适合按评测结果持续细化样本与阈值，研发主线则可以转向 worker 独立进程化等生产化事项。
+截至 **2026-04-23**，第二阶段规划内的核心开发项已基本补齐：`/chat` 与 `/chat/stream` 已具备结构化答案输出、上下文摘要、槽位记忆、追问 query 改写、relevance-based 历史排序，以及低置信澄清追问 / 人工兜底；现有 `scripts/evaluate_retrieval_quality.py` 与 `scripts/evaluate_intent_quality.py` 也已补首批 **表单、保全、分公司、在售产品** 高频业务回归样本，并新增 `tests/test_regression_datasets.py` 和上下文排序单测，保障样本与排序逻辑不回退。另已修复低置信兜底对 `llm_rerank` 推荐型问答的误杀，fallback 现在会结合 `llm_score / llm_verdict` 判断证据是否足够。针对流式响应等待感较强的问题，`/chat/stream` 现已进一步输出真实 `progress` 事件，前端聊天页会按实际阶段展示缓存检查、向量库候选查询、LLM 重排、答案生成等过程，而不再只显示笼统占位。第二阶段剩余工作更适合按评测结果持续细化样本与阈值，研发主线则可以转向 worker 独立进程化等生产化事项。
 
 阶段目标：核心业务问题的回答稳定性和可解释性明显提升。
 

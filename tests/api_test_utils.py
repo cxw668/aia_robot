@@ -112,6 +112,25 @@ def create_test_client(
     async def fake_load_session_messages(_: object, session_id: str) -> list[ChatMessage]:
         return list(db.chat_messages.get(session_id, []))
 
+    def resolve_docs(*args, **kwargs) -> list[dict]:
+        if callable(retrieve_docs):
+            return list(retrieve_docs(*args, **kwargs))
+        return list(retrieve_docs or [])
+
+    def fake_retrieve_with_progress(*args, **kwargs):
+        docs = resolve_docs(*args, **kwargs)
+        yield {"type": "embedding_start"}
+        yield {"type": "embedding_done", "duration_ms": 1.0}
+        yield {"type": "vector_search_start", "candidate_limit": max(len(docs), 5)}
+        yield {"type": "vector_search_done", "candidate_hits": len(docs), "duration_ms": 2.0}
+        yield {
+            "type": "complete",
+            "hits": docs,
+            "strategy": "vector_high_confidence" if docs else "no_hit",
+            "hit_count": len(docs),
+            "duration_ms": 3.0,
+        }
+
     with ExitStack() as stack:
         stack.enter_context(patch.object(main_module, "init_db", new=AsyncMock(return_value=None)))
         stack.enter_context(
@@ -130,6 +149,9 @@ def create_test_client(
             stack.enter_context(
                 patch.object(chat_router, "retrieve", return_value=list(retrieve_docs or []))
             )
+        stack.enter_context(
+            patch.object(chat_router, "retrieve_with_progress", side_effect=fake_retrieve_with_progress)
+        )
         stack.enter_context(patch.object(chat_router, "chat_completion", return_value=chat_answer))
         stack.enter_context(
             patch.object(chat_router, "chat_completion_stream", return_value=iter(stream_chunks or [chat_answer]))

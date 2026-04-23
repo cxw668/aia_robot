@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import logging
 import time
+from collections.abc import Iterator
+from typing import Any
 
 from app.knowledge_base.config import (
     DEFAULT_COLLECTION,
@@ -49,8 +51,29 @@ def retrieve(
     only_on_sale: bool = False,
     category: str | None = None,
 ) -> list[dict]:
+    final_hits: list[dict] = []
+    for step in retrieve_with_progress(
+        query,
+        top_k=top_k,
+        collection_name=collection_name,
+        only_on_sale=only_on_sale,
+        category=category,
+    ):
+        if step["type"] == "complete":
+            final_hits = list(step["hits"])
+    return final_hits
+
+
+def retrieve_with_progress(
+    query: str,
+    top_k: int = TOP_K,
+    collection_name: str = DEFAULT_COLLECTION,
+    only_on_sale: bool = False,
+    category: str | None = None,
+) -> Iterator[dict[str, Any]]:
     """在单个集合上进行语义检索。"""
     t_total = time.perf_counter()
+    yield {"type": "embedding_start"}
     model = get_model()
     client = get_client()
 
@@ -59,6 +82,11 @@ def retrieve(
     t_enc = time.perf_counter()
     query_vector = model.encode(query, normalize_embeddings=True).tolist()
     logger.debug(f"[rag] encode: {(time.perf_counter() - t_enc) * 1000:.1f}ms")
+    yield {
+        "type": "embedding_done",
+        "duration_ms": round((time.perf_counter() - t_enc) * 1000, 1),
+        "collection": target_collection,
+    }
 
     query_filter = build_filter(
         intent=None,
@@ -67,6 +95,12 @@ def retrieve(
     )
 
     candidate_limit = max(top_k, VECTOR_LLM_CANDIDATE_LIMIT)
+    t_vector = time.perf_counter()
+    yield {
+        "type": "vector_search_start",
+        "collection": target_collection,
+        "candidate_limit": candidate_limit,
+    }
     hits = query_collection(
         client,
         target_collection,
@@ -75,21 +109,36 @@ def retrieve(
         score_threshold=VECTOR_LLM_CANDIDATE_THRESHOLD,
         query_filter=query_filter,
     )
+    yield {
+        "type": "vector_search_done",
+        "collection": target_collection,
+        "candidate_hits": len(hits),
+        "duration_ms": round((time.perf_counter() - t_vector) * 1000, 1),
+    }
 
     if not hits:
+        total_duration_ms = (time.perf_counter() - t_total) * 1000
         _log_retrieval_summary(
             query=query,
             collection=target_collection,
             top_k=top_k,
             hits=0,
             strategy="no_hit",
-            duration_ms=(time.perf_counter() - t_total) * 1000,
+            duration_ms=total_duration_ms,
         )
         logger.debug(
             f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
             f"| collection={target_collection} | hits=0"
         )
-        return []
+        yield {
+            "type": "complete",
+            "collection": target_collection,
+            "strategy": "no_hit",
+            "hits": [],
+            "hit_count": 0,
+            "duration_ms": round(total_duration_ms, 1),
+        }
+        return
 
     high_confidence_hits = [
         hit for hit in hits
@@ -114,9 +163,23 @@ def retrieve(
             strategy="vector_high_confidence",
             duration_ms=(time.perf_counter() - t_total) * 1000,
         )
-        return direct_hits
+        yield {
+            "type": "complete",
+            "collection": target_collection,
+            "strategy": "vector_high_confidence",
+            "hits": direct_hits,
+            "hit_count": len(direct_hits),
+            "duration_ms": round((time.perf_counter() - t_total) * 1000, 1),
+        }
+        return
 
     strategy = "llm_rerank"
+    t_rerank = time.perf_counter()
+    yield {
+        "type": "rerank_start",
+        "collection": target_collection,
+        "candidate_hits": len(hits),
+    }
     try:
         rescore_result = llm_rescore_candidates(
             query,
@@ -146,20 +209,35 @@ def retrieve(
         logger.exception("[rag] llm rescoring step failed, using vector fallback | request_id=%s", get_request_id())
         hits = hits[:top_k]
         strategy = "vector_fallback:exception"
+    yield {
+        "type": "rerank_done",
+        "collection": target_collection,
+        "candidate_hits": len(hits),
+        "strategy": strategy,
+        "duration_ms": round((time.perf_counter() - t_rerank) * 1000, 1),
+    }
 
+    total_duration_ms = (time.perf_counter() - t_total) * 1000
     _log_retrieval_summary(
         query=query,
         collection=target_collection,
         top_k=top_k,
         hits=len(hits),
         strategy=strategy,
-        duration_ms=(time.perf_counter() - t_total) * 1000,
+        duration_ms=total_duration_ms,
     )
     logger.debug(
         f"[rag] total {(time.perf_counter() - t_total) * 1000:.1f}ms "
         f"| collection={target_collection} | hits={len(hits)} | request_id={get_request_id()}"
     )
-    return hits
+    yield {
+        "type": "complete",
+        "collection": target_collection,
+        "strategy": strategy,
+        "hits": hits,
+        "hit_count": len(hits),
+        "duration_ms": round(total_duration_ms, 1),
+    }
 
 
 def rag_query(

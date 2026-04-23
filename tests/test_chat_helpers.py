@@ -155,6 +155,40 @@ class ChatContextTests(unittest.TestCase):
         self.assertEqual(decision.kind, "handoff")
         self.assertIn("95519", decision.answer)
 
+    def test_low_confidence_fallback_accepts_llm_reranked_evidence(self) -> None:
+        decision = build_support_fallback_decision(
+            "我是一个大四毕业生，即将毕业，热爱篮球运动，推荐几个我适合购买的保险产品。",
+            [
+                {
+                    "title": "大学生保险建议",
+                    "score": 0.41,
+                    "llm_score": 0.88,
+                    "llm_verdict": "use",
+                }
+            ],
+            build_chat_context([], max_turns=5),
+            low_confidence_threshold=0.65,
+        )
+
+        self.assertIsNone(decision)
+
+    def test_low_confidence_fallback_accepts_single_use_hit_for_synthesis_query(self) -> None:
+        decision = build_support_fallback_decision(
+            "我是一个大四毕业生，即将毕业，热爱篮球运动，推荐几个我适合购买的保险产品。",
+            [
+                {
+                    "title": "大学生保险建议",
+                    "score": 0.33,
+                    "llm_score": 0.34,
+                    "llm_verdict": "use",
+                }
+            ],
+            build_chat_context([], max_turns=5),
+            low_confidence_threshold=0.65,
+        )
+
+        self.assertIsNone(decision)
+
     def test_context_sorting_keeps_relevant_older_turns(self) -> None:
         messages = [
             ChatMessage(

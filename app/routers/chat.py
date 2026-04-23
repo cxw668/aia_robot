@@ -38,7 +38,7 @@ from app.chat.index import chat_completion, chat_completion_stream
 from app.chat.structured import StructuredAnswer, build_structured_answer
 from app.config import settings
 from app.database import ChatMessage, ChatSession, MessageRole, User, get_db
-from app.knowledge_base.retrieval.engine import retrieve
+from app.knowledge_base.retrieval.engine import retrieve, retrieve_with_progress
 from app.rate_limit import build_rate_limit_dependency
 from app.request_context import get_request_id
 from app.routers.auth import get_current_user
@@ -95,6 +95,8 @@ class Citation(BaseModel):
     title: str
     content: str
     score: float
+    llm_score: float | None = None
+    llm_verdict: str = ""
     service_name: str = ""
     service_url: str = ""
     collection: str = ""
@@ -193,6 +195,8 @@ def _build_citations(docs: list[dict]) -> list[Citation]:
             title=d["title"],
             content=d["content"],
             score=d["score"],
+            llm_score=d.get("llm_score"),
+            llm_verdict=d.get("llm_verdict", ""),
             service_name=d.get("service_name", ""),
             service_url=d.get("service_url", ""),
             collection=d.get("collection", ""),
@@ -207,6 +211,21 @@ def _serialize_citations(citations: list[Citation]) -> list[dict]:
 
 def _serialize_structured_answer(structured_answer: StructuredAnswer) -> dict:
     return structured_answer.model_dump()
+
+
+def _sse_payload(payload: dict) -> str:
+    return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
+
+def _progress_event(stage: str, label: str, detail: str = "") -> str:
+    payload = {
+        "type": "progress",
+        "stage": stage,
+        "label": label,
+    }
+    if detail:
+        payload["detail"] = detail
+    return _sse_payload(payload)
 
 
 def _deserialize_citations(payload: object) -> list[Citation]:
@@ -559,141 +578,248 @@ async def chat_stream(
         context=context,
         context_note=build_context_system_note(context) if req.mode == ChatMode.SUPPORT else "",
     )
-    prepared_turn = await _prepare_chat_turn(req, llm_messages, context)
-
-    db.add(_create_user_message(session.id, prepared_turn.user_message))
-    llm_messages.append({"role": MessageRole.USER.value, "content": prepared_turn.user_message})
-    session.last_message_at = datetime.utcnow()
-    if not session.title:
-        session.title = req.query[:20]
-
-    if prepared_turn.fallback_decision is not None:
-        answer = prepared_turn.fallback_decision.answer
-        db.add(_create_assistant_message(session.id, answer, prepared_turn.citations))
-        if not prepared_turn.cache_hit or prepared_turn.cached_answer != answer:
-            await _store_cached_turn(
-                prepared_turn.cache_key,
-                answer=answer,
-                user_message=prepared_turn.user_message,
-                citations=prepared_turn.citations,
-            )
-        await db.flush()
-        await db.commit()
-
-        _log_chat_result(
-            session_id=session.id,
-            query=req.query,
-            mode=req.mode,
-            cache_hit=prepared_turn.cache_hit,
-            answer_source="fallback_cache" if prepared_turn.cache_hit else "fallback",
-            citations_count=len(prepared_turn.citations),
-            duration_ms=(time.perf_counter() - started_at) * 1000,
-            cache_lookup_ms=prepared_turn.cache_lookup_ms,
-        )
-        structured_answer = _build_structured_answer_for_response(
-            answer,
-            prepared_turn.citations,
-            req.mode,
-            fallback_decision=prepared_turn.fallback_decision,
-            context=prepared_turn.context,
-        )
-
-        async def fallback_event_generator():
-            yield (
-                f"data: {json.dumps({'type': 'citations', 'citations': _serialize_citations(prepared_turn.citations), 'session_id': session.id}, ensure_ascii=False)}\n\n"
-            )
-            yield f"data: {json.dumps({'type': 'delta', 'text': answer}, ensure_ascii=False)}\n\n"
-            yield (
-                f"data: {json.dumps({'type': 'structured', 'structured_answer': _serialize_structured_answer(structured_answer)}, ensure_ascii=False)}\n\n"
-            )
-            yield f"data: {json.dumps({'type': 'done'}, ensure_ascii=False)}\n\n"
-
-        return StreamingResponse(
-            fallback_event_generator(),
-            media_type="text/event-stream",
-            headers={
-                "Cache-Control": "no-cache",
-                "X-Accel-Buffering": "no",
-            },
-        )
-
-    if prepared_turn.cache_hit and prepared_turn.cached_answer is not None:
-        # Emit a normal SSE sequence even on cache hit so the frontend does not
-        # need a separate fast-path protocol.
-        db.add(_create_assistant_message(session.id, prepared_turn.cached_answer, prepared_turn.citations))
-        await db.flush()
-        await db.commit()
-
-        _log_chat_result(
-            session_id=session.id,
-            query=req.query,
-            mode=req.mode,
-            cache_hit=True,
-            answer_source="cache",
-            citations_count=len(prepared_turn.citations),
-            duration_ms=(time.perf_counter() - started_at) * 1000,
-            cache_lookup_ms=prepared_turn.cache_lookup_ms,
-        )
-        structured_answer = _build_structured_answer_for_response(
-            prepared_turn.cached_answer,
-            prepared_turn.citations,
-            req.mode,
-            context=prepared_turn.context,
-        )
-
-        async def cached_event_generator():
-            yield (
-                f"data: {json.dumps({'type': 'citations', 'citations': _serialize_citations(prepared_turn.citations), 'session_id': session.id}, ensure_ascii=False)}\n\n"
-            )
-            yield (
-                f"data: {json.dumps({'type': 'delta', 'text': prepared_turn.cached_answer}, ensure_ascii=False)}\n\n"
-            )
-            yield (
-                f"data: {json.dumps({'type': 'structured', 'structured_answer': _serialize_structured_answer(structured_answer)}, ensure_ascii=False)}\n\n"
-            )
-            yield f"data: {json.dumps({'type': 'done'}, ensure_ascii=False)}\n\n"
-
-        return StreamingResponse(
-            cached_event_generator(),
-            media_type="text/event-stream",
-            headers={
-                "Cache-Control": "no-cache",
-                "X-Accel-Buffering": "no",
-            },
-        )
-
-    await db.flush()
 
     async def event_generator():
-        yield (
-            f"data: {json.dumps({'type': 'citations', 'citations': _serialize_citations(prepared_turn.citations), 'session_id': session.id}, ensure_ascii=False)}\n\n"
+        retrieval_query = rewrite_query_with_context(req.query, context)
+        cache_key = _build_chat_cache_key(
+            query=req.query,
+            retrieval_query=retrieval_query,
+            mode=req.mode,
+            category=req.category,
+            top_k=req.top_k,
+            history=llm_messages,
+        )
+
+        yield _progress_event(
+            "context_ready",
+            "已整理多轮上下文",
+            f"当前纳入 {max(len(llm_messages) - 1, 0)} 条历史消息",
+        )
+        yield _progress_event("cache_lookup_start", "正在检查会话缓存")
+        cache_started_at = time.perf_counter()
+        cached = await _load_cached_turn(cache_key)
+        cache_lookup_ms = (time.perf_counter() - cache_started_at) * 1000
+
+        citations: list[Citation] = []
+        fallback_decision: FallbackDecision | None = None
+        cache_hit = False
+        cached_answer: str | None = None
+        user_message = req.query.strip()
+
+        if cached:
+            cached_answer, cached_user_message, citations = cached
+            cache_hit = True
+            fallback_decision = (
+                build_support_fallback_decision(
+                    req.query,
+                    citations,
+                    context,
+                    low_confidence_threshold=settings.chat_low_confidence_score,
+                )
+                if req.mode == ChatMode.SUPPORT
+                else None
+            )
+            user_message = req.query.strip() if fallback_decision else cached_user_message
+            yield _progress_event(
+                "cache_hit",
+                "命中会话缓存",
+                f"耗时 {cache_lookup_ms:.0f} ms，直接复用历史答案",
+            )
+        else:
+            yield _progress_event(
+                "cache_miss",
+                "缓存未命中",
+                f"耗时 {cache_lookup_ms:.0f} ms，开始检索知识库",
+            )
+            docs: list[dict] = []
+            if req.mode == ChatMode.SUPPORT:
+                for step in retrieve_with_progress(
+                    retrieval_query,
+                    top_k=req.top_k,
+                    category=req.category,
+                ):
+                    step_type = str(step.get("type", ""))
+                    if step_type == "embedding_start":
+                        yield _progress_event("embedding_start", "正在编码查询向量")
+                    elif step_type == "embedding_done":
+                        yield _progress_event(
+                            "embedding_done",
+                            "已完成查询向量编码",
+                            f"耗时 {float(step.get('duration_ms') or 0.0):.0f} ms",
+                        )
+                    elif step_type == "vector_search_start":
+                        yield _progress_event(
+                            "vector_search_start",
+                            "正在查询向量库候选文档",
+                            f"候选上限 {int(step.get('candidate_limit') or 0)} 条",
+                        )
+                    elif step_type == "vector_search_done":
+                        yield _progress_event(
+                            "vector_search_done",
+                            "向量库已返回候选文档",
+                            f"候选 {int(step.get('candidate_hits') or 0)} 条",
+                        )
+                    elif step_type == "rerank_start":
+                        yield _progress_event(
+                            "rerank_start",
+                            "正在进行 LLM 重排",
+                            f"重排候选 {int(step.get('candidate_hits') or 0)} 条",
+                        )
+                    elif step_type == "rerank_done":
+                        strategy = str(step.get("strategy") or "")
+                        label = (
+                            "LLM 重排完成"
+                            if strategy.startswith("llm_rerank")
+                            else "已回退向量排序结果"
+                        )
+                        yield _progress_event(
+                            "rerank_done",
+                            label,
+                            f"当前策略 {strategy or 'vector_fallback'}",
+                        )
+                    elif step_type == "complete":
+                        docs = list(step.get("hits") or [])
+                        yield _progress_event(
+                            "retrieval_done",
+                            "检索阶段完成",
+                            f"策略 {step.get('strategy') or 'unknown'}，命中 {int(step.get('hit_count') or 0)} 条",
+                        )
+            citations = _build_citations(docs)
+            fallback_decision = (
+                build_support_fallback_decision(
+                    req.query,
+                    citations,
+                    context,
+                    low_confidence_threshold=settings.chat_low_confidence_score,
+                )
+                if req.mode == ChatMode.SUPPORT
+                else None
+            )
+            user_message = req.query.strip() if fallback_decision else _build_user_message(req.query, docs)
+
+        db.add(_create_user_message(session.id, user_message))
+        llm_messages.append({"role": MessageRole.USER.value, "content": user_message})
+        session.last_message_at = datetime.utcnow()
+        if not session.title:
+            session.title = req.query[:20]
+        await db.flush()
+
+        if fallback_decision is not None:
+            answer = fallback_decision.answer
+            yield _progress_event("fallback", "依据不足，转入低置信兜底")
+            db.add(_create_assistant_message(session.id, answer, citations))
+            if not cache_hit or cached_answer != answer:
+                await _store_cached_turn(
+                    cache_key,
+                    answer=answer,
+                    user_message=user_message,
+                    citations=citations,
+                )
+            try:
+                await db.commit()
+            except Exception:
+                await db.rollback()
+
+            _log_chat_result(
+                session_id=session.id,
+                query=req.query,
+                mode=req.mode,
+                cache_hit=cache_hit,
+                answer_source="fallback_cache" if cache_hit else "fallback",
+                citations_count=len(citations),
+                duration_ms=(time.perf_counter() - started_at) * 1000,
+                cache_lookup_ms=cache_lookup_ms,
+            )
+            structured_answer = _build_structured_answer_for_response(
+                answer,
+                citations,
+                req.mode,
+                fallback_decision=fallback_decision,
+                context=context,
+            )
+            yield _sse_payload(
+                {"type": "citations", "citations": _serialize_citations(citations), "session_id": session.id}
+            )
+            yield _sse_payload({"type": "delta", "text": answer})
+            yield _sse_payload(
+                {"type": "structured", "structured_answer": _serialize_structured_answer(structured_answer)}
+            )
+            yield _sse_payload({"type": "done"})
+            return
+
+        if cache_hit and cached_answer is not None:
+            yield _progress_event("cache_answer", "已从缓存返回答案")
+            db.add(_create_assistant_message(session.id, cached_answer, citations))
+            try:
+                await db.commit()
+            except Exception:
+                await db.rollback()
+
+            _log_chat_result(
+                session_id=session.id,
+                query=req.query,
+                mode=req.mode,
+                cache_hit=True,
+                answer_source="cache",
+                citations_count=len(citations),
+                duration_ms=(time.perf_counter() - started_at) * 1000,
+                cache_lookup_ms=cache_lookup_ms,
+            )
+            structured_answer = _build_structured_answer_for_response(
+                cached_answer,
+                citations,
+                req.mode,
+                context=context,
+            )
+            yield _sse_payload(
+                {"type": "citations", "citations": _serialize_citations(citations), "session_id": session.id}
+            )
+            yield _sse_payload({"type": "delta", "text": cached_answer})
+            yield _sse_payload(
+                {"type": "structured", "structured_answer": _serialize_structured_answer(structured_answer)}
+            )
+            yield _sse_payload({"type": "done"})
+            return
+
+        yield _progress_event(
+            "generation_start",
+            "已整理知识依据，开始生成回答",
+            f"将引用 {len(citations)} 条知识依据",
+        )
+        yield _sse_payload(
+            {"type": "citations", "citations": _serialize_citations(citations), "session_id": session.id}
         )
 
         full_answer: list[str] = []
         try:
             for chunk in chat_completion_stream(llm_messages):
                 full_answer.append(chunk)
-                yield f"data: {json.dumps({'type': 'delta', 'text': chunk}, ensure_ascii=False)}\n\n"
+                yield _sse_payload({"type": "delta", "text": chunk})
         except Exception as exc:
             logger.exception("[chat] streaming llm call failed | request_id=%s", get_request_id(), exc_info=exc)
-            yield (
-                f"data: {json.dumps({'type': 'error', 'code': 'upstream_error', 'message': '聊天模型调用失败，请稍后重试。', 'request_id': get_request_id()}, ensure_ascii=False)}\n\n"
+            yield _sse_payload(
+                {
+                    "type": "error",
+                    "code": "upstream_error",
+                    "message": "聊天模型调用失败，请稍后重试。",
+                    "request_id": get_request_id(),
+                }
             )
             return
 
         answer_text = "".join(full_answer)
         structured_answer = _build_structured_answer_for_response(
             answer_text,
-            prepared_turn.citations,
+            citations,
             req.mode,
-            context=prepared_turn.context,
+            context=context,
         )
-        db.add(_create_assistant_message(session.id, answer_text, prepared_turn.citations))
+        db.add(_create_assistant_message(session.id, answer_text, citations))
         await _store_cached_turn(
-            prepared_turn.cache_key,
+            cache_key,
             answer=answer_text,
-            user_message=prepared_turn.user_message,
-            citations=prepared_turn.citations,
+            user_message=user_message,
+            citations=citations,
         )
         try:
             await db.commit()
@@ -706,14 +832,15 @@ async def chat_stream(
             mode=req.mode,
             cache_hit=False,
             answer_source="llm_stream",
-            citations_count=len(prepared_turn.citations),
+            citations_count=len(citations),
             duration_ms=(time.perf_counter() - started_at) * 1000,
-            cache_lookup_ms=prepared_turn.cache_lookup_ms,
+            cache_lookup_ms=cache_lookup_ms,
         )
-        yield (
-            f"data: {json.dumps({'type': 'structured', 'structured_answer': _serialize_structured_answer(structured_answer)}, ensure_ascii=False)}\n\n"
+        yield _progress_event("generation_done", "回答生成完成")
+        yield _sse_payload(
+            {"type": "structured", "structured_answer": _serialize_structured_answer(structured_answer)}
         )
-        yield f"data: {json.dumps({'type': 'done'}, ensure_ascii=False)}\n\n"
+        yield _sse_payload({"type": "done"})
 
     return StreamingResponse(
         event_generator(),

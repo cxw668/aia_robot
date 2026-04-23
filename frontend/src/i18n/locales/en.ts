@@ -33,6 +33,8 @@ const en = {
   send: 'Send',
   thinking: 'Thinking…',
   references: 'References',
+  processingTimeline: 'Processing timeline',
+  structuredPanel: 'Structured details',
   structuredConfidence: 'Confidence',
   structuredConfidenceHigh: 'High',
   structuredConfidenceMedium: 'Medium',

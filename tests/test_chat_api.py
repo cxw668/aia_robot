@@ -95,6 +95,8 @@ class ChatApiTests(unittest.TestCase):
 
             self.assertEqual(stream_response.status_code, 200)
             self.assertEqual(stream_response.headers["content-type"], "text/event-stream; charset=utf-8")
+            self.assertIn('"type": "progress"', stream_response.text)
+            self.assertIn('"stage": "context_ready"', stream_response.text)
             self.assertIn('"type": "citations"', stream_response.text)
             self.assertIn('"type": "delta", "text": "第一段"', stream_response.text)
             self.assertIn('"type": "delta", "text": "第二段"', stream_response.text)
@@ -194,3 +196,77 @@ class ChatApiTests(unittest.TestCase):
             self.assertIn('"type": "structured"', stream_response.text)
             self.assertIn('"confidence": "low"', stream_response.text)
             self.assertIn('"type": "done"', stream_response.text)
+
+    def test_chat_keeps_llm_reranked_recommendation_answer_when_evidence_is_rich(self) -> None:
+        docs = [
+            {
+                "title": "大学生保险建议",
+                "content": "临近毕业且运动频率较高的人群，可优先关注意外伤害、医疗保障和基础重疾保障。",
+                "score": 0.41,
+                "llm_score": 0.88,
+                "llm_verdict": "use",
+                "service_name": "个险推荐产品",
+                "service_url": "https://www.aia.com.cn/products",
+                "collection": "aia_knowledge_base",
+            }
+        ]
+        db = FakeAsyncSession()
+
+        with create_test_client(
+            db,
+            retrieve_docs=docs,
+            chat_answer="根据知识库内容，您可以优先考虑意外险、医疗险和基础重疾保障。",
+        ) as client:
+            token = register_user(client, username="recommendation")
+
+            response = client.post(
+                "/chat",
+                headers=auth_headers(token),
+                json={
+                    "query": "我是一个大四毕业生，即将毕业，热爱篮球运动，推荐几个我适合购买的保险产品。",
+                    "mode": "support",
+                },
+            )
+
+            self.assertEqual(response.status_code, 200)
+            payload = response.json()
+            self.assertEqual(payload["answer"], "根据知识库内容，您可以优先考虑意外险、医疗险和基础重疾保障。")
+            self.assertNotIn("我暂时没有从当前知识库里找到足够直接的依据", payload["answer"])
+            self.assertNotEqual(payload["structured_answer"]["confidence"], "low")
+
+    def test_chat_keeps_single_reranked_recommendation_hit_without_fallback(self) -> None:
+        docs = [
+            {
+                "title": "大学生保险建议",
+                "content": "临近毕业且运动频率较高的人群，可优先关注意外伤害、医疗保障和基础重疾保障。",
+                "score": 0.33,
+                "llm_score": 0.34,
+                "llm_verdict": "use",
+                "service_name": "个险推荐产品",
+                "service_url": "https://www.aia.com.cn/products",
+                "collection": "aia_knowledge_base",
+            }
+        ]
+        db = FakeAsyncSession()
+
+        with create_test_client(
+            db,
+            retrieve_docs=docs,
+            chat_answer="结合知识库内容，您可以优先考虑意外和医疗保障，再根据预算补充重疾保障。",
+        ) as client:
+            token = register_user(client, username="recommendation-single-hit")
+
+            response = client.post(
+                "/chat",
+                headers=auth_headers(token),
+                json={
+                    "query": "我是一个大四毕业生，即将毕业，热爱篮球运动，推荐几个我适合购买的保险产品。",
+                    "mode": "support",
+                },
+            )
+
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(
+                response.json()["answer"],
+                "结合知识库内容，您可以优先考虑意外和医疗保障，再根据预算补充重疾保障。",
+            )

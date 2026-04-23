@@ -184,8 +184,11 @@ def build_support_fallback_decision(
     *,
     low_confidence_threshold: float,
 ) -> FallbackDecision | None:
-    top_score = max((_citation_score(citation) for citation in citations), default=0.0)
-    if citations and top_score >= low_confidence_threshold:
+    if _has_sufficient_evidence(
+        query,
+        citations,
+        low_confidence_threshold=low_confidence_threshold,
+    ):
         return None
 
     if is_ambiguous_query(query, context):
@@ -282,14 +285,72 @@ def _contains_explicit_topic(query: str, context: ChatContext) -> bool:
 
 
 def _citation_score(citation: object) -> float:
+    vector_score = _citation_value(citation, "score")
+    llm_score = _citation_value(citation, "llm_score")
+    return max(_to_float(vector_score), _to_float(llm_score))
+
+
+def _has_sufficient_evidence(
+    query: str,
+    citations: Sequence[object],
+    *,
+    low_confidence_threshold: float,
+) -> bool:
+    if not citations:
+        return False
+
+    top_score = max((_citation_score(citation) for citation in citations), default=0.0)
+    if top_score >= low_confidence_threshold:
+        return True
+
+    top_llm_score = max((_to_float(_citation_value(citation, "llm_score")) for citation in citations), default=0.0)
+    if top_llm_score >= max(0.55, low_confidence_threshold - 0.1):
+        return True
+
+    llm_use_hits = sum(
+        1
+        for citation in citations
+        if str(_citation_value(citation, "llm_verdict")).strip().lower() == "use"
+    )
+    if llm_use_hits >= 1:
+        return True
+
+    if _is_synthesis_query(query) and _has_llm_rerank_signal(citations):
+        return True
+
+    if _is_synthesis_query(query) and len(citations) >= 3 and max(top_score, top_llm_score) >= 0.45:
+        return True
+    return False
+
+
+def _citation_value(citation: object, field: str) -> object:
     if isinstance(citation, dict):
-        value = citation.get("score", 0.0)
-    else:
-        value = getattr(citation, "score", 0.0)
+        return citation.get(field, 0.0)
+    return getattr(citation, field, 0.0)
+
+
+def _to_float(value: object) -> float:
     try:
         return float(value or 0.0)
     except (TypeError, ValueError):
         return 0.0
+
+
+def _is_synthesis_query(query: str) -> bool:
+    normalized_query = query.strip()
+    if len(normalized_query) < 12:
+        return False
+    keywords = ("推荐", "适合", "产品", "保险", "组合", "保障方案", "怎么买", "买什么")
+    return any(keyword in normalized_query for keyword in keywords)
+
+
+def _has_llm_rerank_signal(citations: Sequence[object]) -> bool:
+    for citation in citations:
+        if _to_float(_citation_value(citation, "llm_score")) > 0.0:
+            return True
+        if str(_citation_value(citation, "llm_verdict")).strip():
+            return True
+    return False
 
 
 def _group_messages_into_turns(messages: Sequence[ChatMessage]) -> list[list[ChatMessage]]:
