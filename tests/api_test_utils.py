@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections.abc import AsyncIterator, Iterator
+from collections.abc import AsyncIterator, Callable, Iterator
 from contextlib import ExitStack, contextmanager
 from dataclasses import dataclass, field
 from unittest.mock import AsyncMock, patch
@@ -83,7 +83,7 @@ def register_user(
 def create_test_client(
     db: FakeAsyncSession,
     *,
-    retrieve_docs: list[dict] | None = None,
+    retrieve_docs: list[dict] | Callable[..., list[dict]] | None = None,
     chat_answer: str = "这是测试回答。",
     stream_chunks: list[str] | None = None,
     cached_turn: dict | None = None,
@@ -124,9 +124,12 @@ def create_test_client(
         stack.enter_context(patch.object(auth_router, "_get_user_by_id", new=fake_get_user_by_id))
         stack.enter_context(patch.object(chat_router, "_get_user_session", new=fake_get_user_session))
         stack.enter_context(patch.object(chat_router, "_load_session_messages", new=fake_load_session_messages))
-        stack.enter_context(
-            patch.object(chat_router, "retrieve", return_value=list(retrieve_docs or []))
-        )
+        if callable(retrieve_docs):
+            stack.enter_context(patch.object(chat_router, "retrieve", side_effect=retrieve_docs))
+        else:
+            stack.enter_context(
+                patch.object(chat_router, "retrieve", return_value=list(retrieve_docs or []))
+            )
         stack.enter_context(patch.object(chat_router, "chat_completion", return_value=chat_answer))
         stack.enter_context(
             patch.object(chat_router, "chat_completion_stream", return_value=iter(stream_chunks or [chat_answer]))

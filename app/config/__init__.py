@@ -15,6 +15,12 @@ def _to_int(value: str | None, default: int = 0) -> int:
     return int(value)
 
 
+def _to_float(value: str | None, default: float = 0.0) -> float:
+    if value is None or value == "":
+        return default
+    return float(value)
+
+
 def _to_optional_str(value: str | None) -> str | None:
     if value is None:
         return None
@@ -71,6 +77,7 @@ class Settings:
         self.auth_login_lockout_seconds: int = _to_int(EnvLoader.get("AUTH_LOGIN_LOCKOUT_SECONDS", "600"), 600)
         self.chat_rate_limit_count: int = _to_int(EnvLoader.get("CHAT_RATE_LIMIT_COUNT", "30"), 30)
         self.chat_rate_limit_window_seconds: int = _to_int(EnvLoader.get("CHAT_RATE_LIMIT_WINDOW_SECONDS", "60"), 60)
+        self.chat_low_confidence_score: float = _to_float(EnvLoader.get("CHAT_LOW_CONFIDENCE_SCORE", "0.65"), 0.65)
         active_jwt_secret = _to_optional_str(EnvLoader.get("JWT_SECRET_KEY", "aia-robot-dev-secret"))
         previous_jwt_secrets = _to_str_list(EnvLoader.get("JWT_PREVIOUS_SECRET_KEYS", ""))
         self.jwt_secret_keys: list[str] = [active_jwt_secret or "aia-robot-dev-secret"]

@@ -25,6 +25,14 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.cache import get_json as cache_get_json, set_json as cache_set_json
+from app.chat.context import (
+    ChatContext,
+    FallbackDecision,
+    build_chat_context,
+    build_context_system_note,
+    build_support_fallback_decision,
+    rewrite_query_with_context,
+)
 from app.chat.index import chat_completion, chat_completion_stream
 from app.chat.structured import StructuredAnswer, build_structured_answer
 from app.config import settings
@@ -105,6 +113,8 @@ class PreparedChatTurn:
     cache_key: str
     cache_hit: bool
     cache_lookup_ms: float
+    context: ChatContext
+    fallback_decision: FallbackDecision | None = None
     cached_answer: str | None = None
 
 
@@ -139,36 +149,15 @@ def _get_system_prompt(mode: ChatMode) -> str:
     return CASUAL_SYSTEM_PROMPT if mode == ChatMode.CASUAL else SUPPORT_SYSTEM_PROMPT
 
 
-def _trim_to_window(messages: list[ChatMessage], mode: ChatMode) -> list[dict]:
+def _trim_to_window(messages: list[ChatMessage], mode: ChatMode, *, context_note: str = "") -> list[dict]:
     """Convert DB messages to OpenAI format, keeping current system prompt + recent turns."""
     turns = [m for m in messages if m.role != MessageRole.SYSTEM]
     turns = turns[-(MAX_HISTORY_TURNS * 2):]
     combined = [{"role": MessageRole.SYSTEM.value, "content": _get_system_prompt(mode)}]
+    if context_note:
+        combined.append({"role": MessageRole.SYSTEM.value, "content": context_note})
     combined.extend({"role": m.role.value, "content": m.content} for m in turns)
     return combined
-
-
-def _rewrite_query_with_history(query: str, history: list[dict]) -> str:
-    """Prepend recent context summary to help retrieval when query contains pronouns.
-
-    If the last assistant message exists and the query is short / contains
-    pronouns, prefix the query with the last topic for better vector search.
-    """
-    pronoun_hints = ["它", "这个", "那个", "上面", "之前", "刚才", "该", "其", "这些", "那些"]
-    has_pronoun = any(p in query for p in pronoun_hints)
-    if not has_pronoun or len(query) > 40:
-        return query
-
-    for msg in reversed(history):
-        if msg["role"] == "user":
-            prev = msg["content"]
-            if "【用户问题】" in prev:
-                prev = prev.split("【用户问题】")[-1].strip()
-            elif "【知识库参考】" in prev:
-                prev = prev.split("【用户问题】")[-1].strip() if "【用户问题】" in prev else query
-            combined = f"{prev} {query}"
-            return combined[:120]
-    return query
 
 
 def _build_user_message(query: str, docs: list[dict]) -> str:
@@ -240,11 +229,17 @@ def _build_structured_answer_for_response(
     answer: str,
     citations: list[Citation],
     mode: ChatMode,
+    *,
+    fallback_decision: FallbackDecision | None = None,
+    context: ChatContext | None = None,
 ) -> StructuredAnswer:
     return build_structured_answer(
         answer,
         citations,
         support_mode=mode == ChatMode.SUPPORT,
+        fallback_kind=fallback_decision.kind if fallback_decision else None,
+        clarification_options=fallback_decision.clarification_options if fallback_decision else (),
+        context_topic=context.topic if context else "",
     )
 
 
@@ -309,8 +304,12 @@ async def _store_cached_turn(
     )
 
 
-async def _prepare_chat_turn(req: ChatRequest, llm_messages: list[dict]) -> PreparedChatTurn:
-    retrieval_query = _rewrite_query_with_history(req.query, llm_messages)
+async def _prepare_chat_turn(
+    req: ChatRequest,
+    llm_messages: list[dict],
+    context: ChatContext,
+) -> PreparedChatTurn:
+    retrieval_query = rewrite_query_with_context(req.query, context)
     cache_key = _build_chat_cache_key(
         query=req.query,
         retrieval_query=retrieval_query,
@@ -326,12 +325,24 @@ async def _prepare_chat_turn(req: ChatRequest, llm_messages: list[dict]) -> Prep
         # Reuse the cached user_message together with the answer so persisted
         # history stays identical to the non-cached path.
         answer, user_message, citations = cached
+        fallback_decision = (
+            build_support_fallback_decision(
+                req.query,
+                citations,
+                context,
+                low_confidence_threshold=settings.chat_low_confidence_score,
+            )
+            if req.mode == ChatMode.SUPPORT
+            else None
+        )
         return PreparedChatTurn(
-            user_message=user_message,
+            user_message=req.query.strip() if fallback_decision else user_message,
             citations=citations,
             cache_key=cache_key,
             cache_hit=True,
             cache_lookup_ms=cache_lookup_ms,
+            context=context,
+            fallback_decision=fallback_decision,
             cached_answer=answer,
         )
 
@@ -340,12 +351,25 @@ async def _prepare_chat_turn(req: ChatRequest, llm_messages: list[dict]) -> Prep
         if req.mode == ChatMode.SUPPORT
         else []
     )
+    citations = _build_citations(docs)
+    fallback_decision = (
+        build_support_fallback_decision(
+            req.query,
+            citations,
+            context,
+            low_confidence_threshold=settings.chat_low_confidence_score,
+        )
+        if req.mode == ChatMode.SUPPORT
+        else None
+    )
     return PreparedChatTurn(
-        user_message=_build_user_message(req.query, docs),
-        citations=_build_citations(docs),
+        user_message=req.query.strip() if fallback_decision else _build_user_message(req.query, docs),
+        citations=citations,
         cache_key=cache_key,
         cache_hit=False,
         cache_lookup_ms=cache_lookup_ms,
+        context=context,
+        fallback_decision=fallback_decision,
     )
 
 
@@ -414,13 +438,27 @@ async def chat(
         await db.flush()
 
     history = await _load_session_messages(db, session.id)
-    llm_messages = _trim_to_window(history, req.mode)
-    prepared_turn = await _prepare_chat_turn(req, llm_messages)
+    context = build_chat_context(history, max_turns=MAX_HISTORY_TURNS)
+    llm_messages = _trim_to_window(
+        history,
+        req.mode,
+        context_note=build_context_system_note(context) if req.mode == ChatMode.SUPPORT else "",
+    )
+    prepared_turn = await _prepare_chat_turn(req, llm_messages, context)
 
     db.add(_create_user_message(session.id, prepared_turn.user_message))
     llm_messages.append({"role": MessageRole.USER.value, "content": prepared_turn.user_message})
 
-    if prepared_turn.cache_hit and prepared_turn.cached_answer is not None:
+    if prepared_turn.fallback_decision is not None:
+        answer = prepared_turn.fallback_decision.answer
+        if not prepared_turn.cache_hit or prepared_turn.cached_answer != answer:
+            await _store_cached_turn(
+                prepared_turn.cache_key,
+                answer=answer,
+                user_message=prepared_turn.user_message,
+                citations=prepared_turn.citations,
+            )
+    elif prepared_turn.cache_hit and prepared_turn.cached_answer is not None:
         answer = prepared_turn.cached_answer
     else:
         try:
@@ -445,7 +483,15 @@ async def chat(
         query=req.query,
         mode=req.mode,
         cache_hit=prepared_turn.cache_hit,
-        answer_source="cache" if prepared_turn.cache_hit else "llm",
+        answer_source=(
+            "fallback_cache"
+            if prepared_turn.fallback_decision is not None and prepared_turn.cache_hit
+            else "fallback"
+            if prepared_turn.fallback_decision is not None
+            else "cache"
+            if prepared_turn.cache_hit
+            else "llm"
+        ),
         citations_count=len(prepared_turn.citations),
         duration_ms=(time.perf_counter() - started_at) * 1000,
         cache_lookup_ms=prepared_turn.cache_lookup_ms,
@@ -454,6 +500,8 @@ async def chat(
         answer,
         prepared_turn.citations,
         req.mode,
+        fallback_decision=prepared_turn.fallback_decision,
+        context=prepared_turn.context,
     )
     return ChatResponse(
         answer=answer,
@@ -489,14 +537,69 @@ async def chat_stream(
         await db.flush()
 
     history = await _load_session_messages(db, session.id)
-    llm_messages = _trim_to_window(history, req.mode)
-    prepared_turn = await _prepare_chat_turn(req, llm_messages)
+    context = build_chat_context(history, max_turns=MAX_HISTORY_TURNS)
+    llm_messages = _trim_to_window(
+        history,
+        req.mode,
+        context_note=build_context_system_note(context) if req.mode == ChatMode.SUPPORT else "",
+    )
+    prepared_turn = await _prepare_chat_turn(req, llm_messages, context)
 
     db.add(_create_user_message(session.id, prepared_turn.user_message))
     llm_messages.append({"role": MessageRole.USER.value, "content": prepared_turn.user_message})
     session.last_message_at = datetime.utcnow()
     if not session.title:
         session.title = req.query[:20]
+
+    if prepared_turn.fallback_decision is not None:
+        answer = prepared_turn.fallback_decision.answer
+        db.add(_create_assistant_message(session.id, answer, prepared_turn.citations))
+        if not prepared_turn.cache_hit or prepared_turn.cached_answer != answer:
+            await _store_cached_turn(
+                prepared_turn.cache_key,
+                answer=answer,
+                user_message=prepared_turn.user_message,
+                citations=prepared_turn.citations,
+            )
+        await db.flush()
+        await db.commit()
+
+        _log_chat_result(
+            session_id=session.id,
+            query=req.query,
+            mode=req.mode,
+            cache_hit=prepared_turn.cache_hit,
+            answer_source="fallback_cache" if prepared_turn.cache_hit else "fallback",
+            citations_count=len(prepared_turn.citations),
+            duration_ms=(time.perf_counter() - started_at) * 1000,
+            cache_lookup_ms=prepared_turn.cache_lookup_ms,
+        )
+        structured_answer = _build_structured_answer_for_response(
+            answer,
+            prepared_turn.citations,
+            req.mode,
+            fallback_decision=prepared_turn.fallback_decision,
+            context=prepared_turn.context,
+        )
+
+        async def fallback_event_generator():
+            yield (
+                f"data: {json.dumps({'type': 'citations', 'citations': _serialize_citations(prepared_turn.citations), 'session_id': session.id}, ensure_ascii=False)}\n\n"
+            )
+            yield f"data: {json.dumps({'type': 'delta', 'text': answer}, ensure_ascii=False)}\n\n"
+            yield (
+                f"data: {json.dumps({'type': 'structured', 'structured_answer': _serialize_structured_answer(structured_answer)}, ensure_ascii=False)}\n\n"
+            )
+            yield f"data: {json.dumps({'type': 'done'}, ensure_ascii=False)}\n\n"
+
+        return StreamingResponse(
+            fallback_event_generator(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "X-Accel-Buffering": "no",
+            },
+        )
 
     if prepared_turn.cache_hit and prepared_turn.cached_answer is not None:
         # Emit a normal SSE sequence even on cache hit so the frontend does not
@@ -519,6 +622,7 @@ async def chat_stream(
             prepared_turn.cached_answer,
             prepared_turn.citations,
             req.mode,
+            context=prepared_turn.context,
         )
 
         async def cached_event_generator():
@@ -566,6 +670,7 @@ async def chat_stream(
             answer_text,
             prepared_turn.citations,
             req.mode,
+            context=prepared_turn.context,
         )
         db.add(_create_assistant_message(session.id, answer_text, prepared_turn.citations))
         await _store_cached_turn(

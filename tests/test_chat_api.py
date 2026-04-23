@@ -101,3 +101,96 @@ class ChatApiTests(unittest.TestCase):
             self.assertIn('"type": "structured"', stream_response.text)
             self.assertIn('"confidence": "low"', stream_response.text)
             self.assertIn('"type": "done"', stream_response.text)
+
+    def test_follow_up_query_reuses_context_for_retrieval(self) -> None:
+        queries: list[str] = []
+        docs = [
+            {
+                "title": "保单借款",
+                "content": "可通过友邦官网提交借款申请。",
+                "score": 0.96,
+                "service_name": "借款",
+                "service_url": "https://www.aia.com.cn/service/loan",
+                "collection": "aia_knowledge_base",
+            }
+        ]
+        db = FakeAsyncSession()
+
+        def retrieve_docs(query: str, top_k: int = 5, category: str | None = None) -> list[dict]:
+            del top_k, category
+            queries.append(query)
+            return docs if "保单借款" in query else []
+
+        with create_test_client(
+            db,
+            retrieve_docs=retrieve_docs,
+            chat_answer="请前往友邦官网借款入口办理。",
+        ) as client:
+            token = register_user(client, username="followup")
+
+            first_response = client.post(
+                "/chat",
+                headers=auth_headers(token),
+                json={"query": "保单借款怎么办？", "mode": "support"},
+            )
+            self.assertEqual(first_response.status_code, 200)
+
+            second_response = client.post(
+                "/chat",
+                headers=auth_headers(token),
+                json={
+                    "query": "这个怎么办？",
+                    "mode": "support",
+                    "session_id": first_response.json()["session_id"],
+                },
+            )
+
+            self.assertEqual(second_response.status_code, 200)
+            self.assertGreaterEqual(len(queries), 2)
+            self.assertIn("保单借款", queries[-1])
+            self.assertEqual(second_response.json()["structured_answer"]["confidence"], "high")
+
+    def test_chat_returns_clarification_for_low_confidence_support_query(self) -> None:
+        db = FakeAsyncSession()
+
+        with create_test_client(
+            db,
+            retrieve_docs=[],
+            chat_answer="这段回答不应被返回。",
+        ) as client:
+            token = register_user(client, username="clarify")
+
+            response = client.post(
+                "/chat",
+                headers=auth_headers(token),
+                json={"query": "这个怎么办？", "mode": "support"},
+            )
+
+            self.assertEqual(response.status_code, 200)
+            payload = response.json()
+            self.assertIn("还不够具体", payload["answer"])
+            self.assertEqual(payload["structured_answer"]["confidence"], "low")
+            self.assertIn("补充", payload["structured_answer"]["next_actions"][0]["label"])
+
+    def test_stream_chat_returns_fallback_sequence_for_low_confidence_support_query(self) -> None:
+        db = FakeAsyncSession()
+
+        with create_test_client(
+            db,
+            retrieve_docs=[],
+            chat_answer="这段回答不应被返回。",
+            stream_chunks=["模型流式输出"],
+        ) as client:
+            token = register_user(client, username="stream-fallback")
+
+            stream_response = client.post(
+                "/chat/stream",
+                headers=auth_headers(token),
+                json={"query": "这个怎么办？", "mode": "support"},
+            )
+
+            self.assertEqual(stream_response.status_code, 200)
+            self.assertIn("还不够具体", stream_response.text)
+            self.assertIn('"type": "structured"', stream_response.text)
+            self.assertIn('"confidence": "low"', stream_response.text)
+            self.assertIn('"type": "done"', stream_response.text)
